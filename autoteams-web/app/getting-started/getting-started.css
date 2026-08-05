@@ -1,0 +1,498 @@
+.gs-page {
+  min-height: 100vh;
+  padding: 48px 0 88px;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(124, 92, 255, 0.12), transparent 30%),
+    radial-gradient(circle at 88% 10%, rgba(79, 142, 247, 0.12), transparent 28%),
+    #0f1420;
+  color: #f7f9fc;
+}
+
+.gs-container {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.gs-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(340px, 0.75fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.gs-hero-copy,
+.gs-atlas-card,
+.gs-step-card,
+.gs-value-grid article,
+.gs-faq-grid article {
+  border: 1px solid #2b3549;
+  border-radius: 24px;
+  background: rgba(23, 30, 45, 0.94);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+}
+
+.gs-hero-copy {
+  padding: 52px;
+  background:
+    radial-gradient(circle at 85% 16%, rgba(79, 142, 247, 0.15), transparent 28%),
+    linear-gradient(145deg, rgba(38, 24, 92, 0.96), rgba(18, 24, 39, 0.97));
+}
+
+.gs-pill {
+  display: inline-flex;
+  padding: 8px 13px;
+  color: #ddd8ff;
+  background: rgba(124, 92, 255, 0.18);
+  border: 1px solid rgba(154, 132, 255, 0.35);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.gs-hero h1 {
+  max-width: 760px;
+  margin: 22px 0 6px;
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 680;
+  line-height: 1.01;
+  letter-spacing: -0.05em;
+}
+
+.gs-hero h2 {
+  margin: 0;
+  color: transparent;
+  background: linear-gradient(90deg, #a18fff, #59a7ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-size: clamp(27px, 3vw, 38px);
+  font-weight: 630;
+}
+
+.gs-lead {
+  max-width: 760px;
+  margin: 25px 0 0;
+  color: #b4bfd0;
+  font-size: 18px;
+  line-height: 1.72;
+}
+
+.gs-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-top: 30px;
+}
+
+.gs-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 750;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.gs-button:hover {
+  transform: translateY(-2px);
+}
+
+.gs-button-primary {
+  color: white;
+  background: linear-gradient(135deg, #7868ff, #4f8ef7);
+  box-shadow: 0 12px 28px rgba(79, 142, 247, 0.24);
+}
+
+.gs-button-secondary {
+  color: #e8ecf4;
+  background: #171e2d;
+  border: 1px solid #374259;
+}
+
+.gs-button-light {
+  color: #4e38b2;
+  background: white;
+}
+
+.gs-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.gs-meta span {
+  padding: 7px 10px;
+  color: #aab5c7;
+  background: rgba(15, 20, 32, 0.54);
+  border: 1px solid #303a4f;
+  border-radius: 999px;
+  font-size: 11px;
+}
+
+.gs-atlas-card {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  padding: 34px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(124, 92, 255, 0.22), transparent 38%),
+    #171e2d;
+}
+
+.gs-atlas-card h3 {
+  margin: 11px 0 8px;
+  font-size: 27px;
+  font-weight: 650;
+}
+
+.gs-atlas-card p {
+  max-width: 370px;
+  margin: 0;
+  color: #98a4b7;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.gs-eyebrow {
+  color: #9d90ff;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.gs-flow-section,
+.gs-value-section,
+.gs-faq-section {
+  margin-top: 74px;
+}
+
+.gs-section-heading {
+  max-width: 780px;
+  margin-bottom: 28px;
+}
+
+.gs-section-heading h2 {
+  margin: 8px 0 10px;
+  font-size: clamp(34px, 4vw, 48px);
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.gs-section-heading p {
+  margin: 0;
+  color: #9aa6b9;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.gs-flow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.gs-flow-item {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 9px;
+  min-width: 0;
+  padding: 20px 12px;
+  text-align: center;
+  background: #171e2d;
+  border: 1px solid #2b3549;
+  border-radius: 17px;
+}
+
+.gs-flow-item > span {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  color: white;
+  background: linear-gradient(135deg, #7868ff, #4f8ef7);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.gs-flow-item strong {
+  font-size: 12px;
+}
+
+.gs-flow-item i {
+  position: absolute;
+  right: -18px;
+  top: 50%;
+  z-index: 2;
+  color: #69758c;
+  font-style: normal;
+  transform: translateY(-50%);
+}
+
+.gs-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.gs-step-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 370px;
+  padding: 26px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.gs-step-card:hover {
+  transform: translateY(-4px);
+  border-color: #554b80;
+}
+
+.gs-step-card:last-child {
+  grid-column: 1 / -1;
+  width: calc(50% - 9px);
+  justify-self: center;
+}
+
+.gs-step-top,
+.gs-step-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.gs-step-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  color: #b2a7ff;
+  background: #292442;
+  border-radius: 14px;
+  font-size: 20px;
+}
+
+.gs-step-number,
+.gs-step-title-row > span {
+  color: #8e9aae;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.gs-step-title-row {
+  margin-top: 25px;
+}
+
+.gs-step-title-row h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 650;
+}
+
+.gs-step-card > p {
+  color: #9ca8ba;
+  font-size: 14px;
+  line-height: 1.67;
+}
+
+.gs-outcome {
+  display: grid;
+  gap: 5px;
+  padding: 14px;
+  margin-top: auto;
+  background: #121827;
+  border: 1px solid #293246;
+  border-radius: 13px;
+}
+
+.gs-outcome strong {
+  color: #e6eaf1;
+  font-size: 11px;
+}
+
+.gs-outcome span {
+  color: #8f9bae;
+  font-size: 12px;
+}
+
+.gs-card-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 46px;
+  padding: 0 15px;
+  margin-top: 14px;
+  color: white;
+  background: linear-gradient(135deg, #6657e8, #397fdc);
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.gs-value-grid,
+.gs-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.gs-value-grid article,
+.gs-faq-grid article {
+  padding: 23px;
+}
+
+.gs-value-grid article > span {
+  display: grid;
+  place-items: center;
+  width: 39px;
+  height: 39px;
+  color: #ad9fff;
+  background: #292442;
+  border-radius: 12px;
+}
+
+.gs-value-grid h3,
+.gs-faq-grid h3 {
+  margin: 15px 0 7px;
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.gs-value-grid p,
+.gs-faq-grid p {
+  margin: 0;
+  color: #98a4b7;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.gs-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 38px 42px;
+  margin-top: 74px;
+  color: white;
+  background: linear-gradient(125deg, #241153, #5a3ac7 65%, #3e88ee);
+  border-radius: 24px;
+}
+
+.gs-cta h2 {
+  margin: 7px 0;
+  font-size: 36px;
+  font-weight: 650;
+}
+
+.gs-cta p {
+  margin: 0;
+  color: #ddd8f3;
+  font-size: 14px;
+}
+
+html[data-theme="light"] .gs-page {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(124, 92, 255, 0.09), transparent 30%),
+    radial-gradient(circle at 88% 10%, rgba(79, 142, 247, 0.08), transparent 28%),
+    #f6f8fc;
+  color: #182033;
+}
+
+html[data-theme="light"] .gs-hero-copy,
+html[data-theme="light"] .gs-atlas-card,
+html[data-theme="light"] .gs-step-card,
+html[data-theme="light"] .gs-value-grid article,
+html[data-theme="light"] .gs-faq-grid article,
+html[data-theme="light"] .gs-flow-item {
+  background: white;
+  border-color: #e1e6ef;
+  box-shadow: 0 18px 50px rgba(32, 43, 78, 0.07);
+}
+
+html[data-theme="light"] .gs-hero h1,
+html[data-theme="light"] .gs-atlas-card h3,
+html[data-theme="light"] .gs-section-heading h2,
+html[data-theme="light"] .gs-step-title-row h3,
+html[data-theme="light"] .gs-value-grid h3,
+html[data-theme="light"] .gs-faq-grid h3 {
+  color: #182033;
+}
+
+html[data-theme="light"] .gs-lead,
+html[data-theme="light"] .gs-atlas-card p,
+html[data-theme="light"] .gs-section-heading p,
+html[data-theme="light"] .gs-step-card > p,
+html[data-theme="light"] .gs-value-grid p,
+html[data-theme="light"] .gs-faq-grid p {
+  color: #667085;
+}
+
+@media (max-width: 980px) {
+  .gs-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .gs-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .gs-flow-item i {
+    position: static;
+    transform: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .gs-container {
+    width: min(100% - 24px, 1200px);
+  }
+
+  .gs-page {
+    padding-top: 24px;
+  }
+
+  .gs-hero-copy,
+  .gs-atlas-card {
+    padding: 28px;
+  }
+
+  .gs-hero h1 {
+    font-size: 46px;
+  }
+
+  .gs-actions,
+  .gs-cta {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .gs-button {
+    width: 100%;
+  }
+
+  .gs-steps-grid,
+  .gs-value-grid,
+  .gs-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gs-step-card:last-child {
+    grid-column: auto;
+    width: auto;
+  }
+
+  .gs-cta h2 {
+    font-size: 30px;
+  }
+}

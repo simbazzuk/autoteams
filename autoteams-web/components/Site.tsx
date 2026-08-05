@@ -21,6 +21,7 @@ export function RobotLogo() {
 
 const primaryLinks = [
   { href: "/dashboard", label: "Dashboard" },
+  { href: "/getting-started", label: "Getting Started" },
   { href: "/atlas", label: "Atlas", atlas: true },
   { href: "/team-dna", label: "Team DNA" },
   { href: "/team-builder", label: "Team Builder" },
