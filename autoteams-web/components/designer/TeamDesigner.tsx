@@ -140,7 +140,7 @@ export function TeamDesigner() {
           onClick={() => setDesigned(true)}
           type="button"
         >
-          Design my team
+          Build my team
         </button>
       </section>
 
@@ -165,7 +165,7 @@ export function TeamDesigner() {
           <>
             <div className="v4-team-summary">
               <div>
-                <span className="eyebrow">Recommended team design</span>
+                <span className="eyebrow">Recommended team</span>
                 <h2>{template}</h2>
                 <p>{purpose}</p>
               </div>

@@ -41,8 +41,8 @@ export function V10Dashboard() {
           <div>
             <small>Welcome back, {name} 👋</small>
             <h1>Build better teams.<br /><span>Faster. Smarter. Together.</span></h1>
-            <p>AI-powered team intelligence to help you create high-performing, trusted and connected teams.</p>
-            <div className="actions"><Link className="button" href="/team-canvas">Open Team Canvas</Link><Link className="button secondary" href="/teamguide">Ask TeamGuide</Link></div>
+            <p>Atlas-powered team intelligence to help you create high-performing, trusted and connected teams.</p>
+            <div className="actions"><Link className="button" href="/team-canvas">Open Team Canvas</Link><Link className="button secondary" href="/atlas">Ask Atlas</Link></div>
           </div>
           <div className="hero-robot" aria-hidden="true">
             <div className="hero-robot-antenna" />
@@ -55,7 +55,7 @@ export function V10Dashboard() {
           <Stat icon="♟" label="Team Personas" value={String(personas.length)} note="Your active profiles" />
           <Stat icon="♙" label="Profile Completion" value={`${average}%`} note="Keep improving" />
           <Stat icon="♥" label="Matches Ready" value={personas.length ? "6" : "0"} note="Based on sample pool" />
-          <Stat icon="◌" label="Team DNA Score" value={personas.length ? "92%" : "—"} note="Gemini enabled" />
+          <Stat icon="◌" label="Team DNA Score" value={personas.length ? "92%" : "—"} note="Atlas enabled" />
           <Stat icon="ϟ" label="AI Insights" value="24" note="Available suggestions" />
         </section>
 
@@ -78,7 +78,7 @@ export function V10Dashboard() {
           </div>
 
           <div className="card dna-overview">
-            <div className="card-heading"><h3>Team DNA Overview</h3><Link href="/intelligence">View report</Link></div>
+            <div className="card-heading"><h3>Team DNA Overview</h3><Link href="/insights">View report</Link></div>
             <div className="radar-sim"><div className="radar-ring ring-1" /><div className="radar-ring ring-2" /><div className="radar-ring ring-3" /><div className="radar-shape" /></div>
             <div className="dna-labels">{dna.map(([label,score])=><span key={label}><strong>{label}</strong>{score}%</span>)}</div>
             <div className="dna-message"><span>◌</span><p><strong>Your Team DNA is strong.</strong><br />Keep nurturing trust and adaptability.</p></div>
@@ -86,17 +86,17 @@ export function V10Dashboard() {
 
           <div className="dashboard-right-column">
             <div className="teamguide-widget">
-              <div className="card-heading"><h3>✦ Ask TeamGuide</h3><Link href="/teamguide">New chat</Link></div>
-              <p>Your AI assistant for team success.</p>
-              {["How can I improve collaboration?","What makes a high-performing team?","Suggest team-building activities"].map((question)=><Link href="/teamguide" key={question}>{question}<span>›</span></Link>)}
+              <div className="card-heading"><h3>✦ Ask Atlas</h3><Link href="/atlas">New conversation</Link></div>
+              <p>Your AI strategist for team success.</p>
+              {["How can I improve collaboration?","What makes a high-performing team?","Suggest team-building activities"].map((question)=><Link href="/atlas" key={question}>{question}<span>›</span></Link>)}
               <div className="teamguide-prompt">Ask anything about teams… <span>➜</span></div>
             </div>
             <div className="card quick-actions">
               <h3>ϟ Quick Actions</h3>
               <div>
-                <QuickAction href="/team-designer" icon="＋" title="Create" text="New Team" />
+                <QuickAction href="/team-builder" icon="＋" title="Create" text="New Team" />
                 <QuickAction href="/register" icon="♙" title="Create" text="Persona" />
-                <QuickAction href="/intelligence" icon="▥" title="Run" text="Team DNA" />
+                <QuickAction href="/insights" icon="▥" title="Run" text="Team DNA" />
                 <QuickAction href="/team-canvas" icon="◫" title="Open" text="Team Canvas" />
               </div>
             </div>

@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { PageShell } from "@/components/Site";
+import { AtlasOrb } from "@/components/AtlasOrb";
 
 const capabilities = [
   {
     icon: "✦",
     title: "Understand people",
-    text: "TeamGuide turns natural conversation into an explainable Team DNA profile.",
+    text: "Atlas turns natural conversation into an explainable Team DNA profile.",
   },
   {
     icon: "◎",
-    title: "Design complete teams",
+    title: "Build complete teams",
     text: "Define the purpose, roles and constraints before creating the composition.",
   },
   {
@@ -27,119 +28,86 @@ const capabilities = [
 export default function HomePage() {
   return (
     <PageShell>
-      <section className="v6-home-hero">
-        <div className="container v6-home-layout">
-          <div className="v6-home-copy">
-            <span className="eyebrow">
-              Professional AI team intelligence
-            </span>
+      <section className="v7-home-hero">
+        <div className="container v7-home-layout">
+          <div className="v7-home-copy">
+            <div className="v7-atlas-kicker">
+              <AtlasOrb size="md" />
+              <span>
+                <strong>Meet Atlas</strong>
+                <small>Your AI Team Strategist</small>
+              </span>
+            </div>
 
             <h1>
-              Build Better Teams
-              <span>Using Explainable AI</span>
+              Build Teams That Work
+              <span>Every Recommendation Explained</span>
             </h1>
 
             <p>
-              AutoTeams combines Gemini AI, explainable Team DNA and
-              collaborative design to help organisations and communities build
-              balanced, high-performing teams with confidence.
+              AutoTeams combines Atlas, explainable Team DNA and collaborative
+              design to help organisations and communities create balanced,
+              high-performing teams with confidence.
             </p>
 
             <div className="actions">
-              <Link className="button" href="/teamguide">
-                Start with TeamGuide
+              <Link className="button" href="/atlas">
+                Start with Atlas
               </Link>
-
               <Link className="button secondary" href="/team-canvas">
                 Explore Team Canvas
               </Link>
             </div>
 
-            <div className="v6-trust-points">
+            <div className="v7-trust-points">
               <span>Explainable recommendations</span>
               <span>Human decisions retained</span>
               <span>Privacy-aware design</span>
             </div>
           </div>
 
-          <div className="v6-product-preview">
-            <div className="v6-preview-toolbar">
-              <span>
-                <i />
-                Live team design
-              </span>
-              <em>92% confidence</em>
-            </div>
-
-            <div className="v6-preview-header">
-              <div>
-                <span className="v6-team-icon">A</span>
-                <span>
-                  <strong>AI Product Team</strong>
-                  <small>Balanced delivery scenario</small>
-                </span>
-              </div>
-
-              <button type="button">View team</button>
-            </div>
-
-            <div className="v6-preview-members">
-              {[
-                ["Amara", "Product Connector"],
-                ["James", "Delivery Builder"],
-                ["Maya", "Analytical Challenger"],
-                ["Sukh", "Strategic Lead"],
-              ].map(([name, role]) => (
-                <article key={name}>
-                  <span>{name.charAt(0)}</span>
-                  <div>
-                    <strong>{name}</strong>
-                    <small>{role}</small>
-                  </div>
-                  <em>✓</em>
-                </article>
-              ))}
-            </div>
-
-            <div className="v6-preview-metrics">
-              <div>
-                <span>Collaboration</span>
-                <strong>91%</strong>
-              </div>
-              <div>
-                <span>Leadership</span>
-                <strong>88%</strong>
-              </div>
-              <div>
-                <span>Conflict risk</span>
-                <strong>Low</strong>
+          <div className="v7-atlas-preview">
+            <div className="v7-orb-stage">
+              <AtlasOrb size="xl" state="idle" />
+              <div className="v7-orb-copy">
+                <span className="eyebrow">Atlas is ready</span>
+                <h2>Your AI Team Strategist</h2>
+                <p>
+                  Create Team DNA, build balanced teams and understand every
+                  recommendation.
+                </p>
               </div>
             </div>
 
-            <div className="v6-preview-insight">
+            <div className="v7-preview-actions">
+              <Link href="/atlas">Create Team DNA <span>→</span></Link>
+              <Link href="/team-builder">Build a team <span>→</span></Link>
+              <Link href="/matches">Compare people <span>→</span></Link>
+            </div>
+
+            <div className="v7-preview-insight">
               <span>✦</span>
               <p>
-                <strong>Strong collaboration coverage.</strong>
-                Add a creative specialist when innovation becomes the main
-                priority.
+                <strong>Atlas suggestion:</strong> add a creative specialist
+                when innovation becomes the main priority.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="v6-capabilities">
+      <section className="v7-capabilities">
         <div className="container">
-          <div className="v6-section-heading">
+          <div className="v7-section-heading">
             <span className="eyebrow">One connected workflow</span>
             <h2>Move from individual insight to a complete team.</h2>
             <p>
-              Every stage uses the same profile, matching and explainability
-              model.
+              Atlas, Team DNA, Team Builder and Team Canvas all use the same
+              profile and explainability model.
             </p>
           </div>
 
-          <div className="v6-capability-grid">
+          <div className="v7-capability-grid">
             {capabilities.map((capability) => (
               <article key={capability.title}>
                 <span>{capability.icon}</span>
@@ -151,19 +119,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="v6-home-cta">
+      <section className="v7-home-cta">
         <div className="container">
           <div>
-            <span className="eyebrow">Start with one profile</span>
-            <h2>Create your first Team DNA.</h2>
+            <span className="eyebrow">Start with one conversation</span>
+            <h2>Let Atlas create your first Team DNA.</h2>
             <p>
               A short guided conversation is enough to begin building an
               explainable collaboration profile.
             </p>
           </div>
-
-          <Link className="button" href="/teamguide">
-            Meet TeamGuide
+          <Link className="button" href="/atlas">
+            Meet Atlas
           </Link>
         </div>
       </section>

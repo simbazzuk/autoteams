@@ -3,13 +3,13 @@ import Link from "next/link";
 const sections = [
   { title: "", links: [{ href: "/dashboard", icon: "⌂", label: "Overview" }] },
   { title: "BUILD", links: [
-    { href: "/team-designer", icon: "◎", label: "Team Designer" },
+    { href: "/team-builder", icon: "◎", label: "Team Builder" },
     { href: "/team-canvas", icon: "◫", label: "Team Canvas" },
     { href: "/register", icon: "♙", label: "Team Personas" },
   ]},
   { title: "INTELLIGENCE", links: [
-    { href: "/teamguide", icon: "✦", label: "TeamGuide" },
-    { href: "/intelligence", icon: "◌", label: "Team DNA" },
+    { href: "/atlas", icon: "✦", label: "Atlas" },
+    { href: "/insights", icon: "◌", label: "Team DNA" },
     { href: "/matches", icon: "♡", label: "Matches" },
   ]},
   { title: "WORKSPACE", links: [
@@ -39,8 +39,8 @@ export function DashboardSidebar() {
 
       <div className="sidebar-upgrade">
         <span className="sidebar-upgrade-icon">✦</span>
-        <strong>AutoTeams v4.0</strong>
-        <p>Professional team intelligence, matching and canvas workflows.</p>
+        <strong>AutoTeams v7.0</strong>
+        <p>Atlas, Team DNA, Team Builder and explainable team workflows.</p>
         <Link href="/team-canvas">Open Team Canvas →</Link>
       </div>
     </aside>

@@ -115,7 +115,7 @@ export function ProfileIntelligence() {
         {error && <div className="form-error">{error}</div>}
 
         <button className="button" disabled={working} type="submit">
-          {working ? "Analysing profile…" : "Generate Team Intelligence"}
+          {working ? "Analysing profile…" : "Generate Team DNA"}
         </button>
       </form>
 
@@ -123,11 +123,11 @@ export function ProfileIntelligence() {
         <div className="v4-panel-header">
           <div>
             <span className="eyebrow">
-              {analysis ? "Analysis complete" : "Intelligence preview"}
+              {analysis ? "Analysis complete" : "Team DNA preview"}
             </span>
             <h2>
               {analysis
-                ? "Your collaboration profile"
+                ? "Your Team DNA profile"
                 : "Your results will appear here"}
             </h2>
           </div>

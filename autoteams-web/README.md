@@ -122,3 +122,47 @@ No additional npm packages are required.
 
 No additional packages are required.
 Firebase, Firestore, Gemini and Vercel environment variables are unchanged.
+
+
+# AutoTeams v7.0 — Atlas Edition
+
+## Product language
+
+- TeamGuide is now Atlas
+- Team Designer is now Team Builder
+- Intelligence is now Insights
+- Team DNA is a dedicated product route
+
+## New Atlas identity
+
+- Custom purple-to-blue SVG orb
+- Idle pulse animation
+- Faster thinking animation during Gemini analysis
+- Completion sparkle state
+- Reusable small, medium, large and extra-large sizes
+
+## New routes
+
+- `/atlas`
+- `/team-dna`
+- `/team-builder`
+- `/insights`
+
+The former `/teamguide`, `/team-designer` and `/intelligence` routes redirect
+to the new product routes.
+
+## Preserved capabilities
+
+- Firebase Authentication
+- Firestore personas
+- Gemini Team DNA analysis
+- Team Canvas
+- Matches
+- Notifications
+- Settings
+- Dark and light appearance
+- Route-aware navigation
+- Hydration-safe theme setup
+
+No MCP functionality has been added.
+No additional npm packages are required.

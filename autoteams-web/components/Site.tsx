@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { AccountMenu } from "./AccountMenu";
+import { AtlasOrb } from "./AtlasOrb";
 
 export function RobotLogo() {
   return (
@@ -20,11 +21,12 @@ export function RobotLogo() {
 
 const primaryLinks = [
   { href: "/dashboard", label: "Dashboard" },
-  { href: "/teamguide", label: "TeamGuide" },
-  { href: "/team-designer", label: "Designer" },
-  { href: "/team-canvas", label: "Canvas" },
+  { href: "/atlas", label: "Atlas", atlas: true },
+  { href: "/team-dna", label: "Team DNA" },
+  { href: "/team-builder", label: "Team Builder" },
+  { href: "/team-canvas", label: "Team Canvas" },
   { href: "/matches", label: "Matches" },
-  { href: "/intelligence", label: "Intelligence" },
+  { href: "/insights", label: "Insights" },
 ];
 
 function isActivePath(pathname: string, href: string): boolean {
@@ -36,14 +38,14 @@ export function Navbar() {
 
   return (
     <header className="site-header">
-      <div className="container product-nav">
+      <div className="container product-nav atlas-product-nav">
         <Link href="/" className="brand product-brand">
           <RobotLogo />
           <span>AutoTeams</span>
-          <small>v6.0</small>
+          <small>v7.0</small>
         </Link>
 
-        <nav className="product-nav-links" aria-label="Primary navigation">
+        <nav className="product-nav-links atlas-nav-links" aria-label="Primary navigation">
           {primaryLinks.map((link) => {
             const active = isActivePath(pathname, link.href);
 
@@ -54,7 +56,8 @@ export function Navbar() {
                 href={link.href}
                 key={link.href}
               >
-                {link.label}
+                {link.atlas && <AtlasOrb size="sm" />}
+                <span>{link.label}</span>
               </Link>
             );
           })}
@@ -65,15 +68,13 @@ export function Navbar() {
             <summary>
               Platform <span>⌄</span>
             </summary>
-
             <div className="nav-dropdown-menu">
               <Link href="/solutions">Solutions</Link>
-              <Link href="/team-engine">AI Team Engine</Link>
               <Link href="/trust-centre">Trust Centre</Link>
               <Link href="/why-this-team">Explainability</Link>
+              <Link href="/settings">Settings</Link>
             </div>
           </details>
-
           <AccountMenu />
         </div>
       </div>
@@ -90,17 +91,16 @@ export function Footer() {
             <RobotLogo />
             <span>AutoTeams</span>
           </div>
-
           <p className="muted">
-            Professional AI team intelligence for work, life and community.
+            Professional AI team intelligence powered by Atlas.
           </p>
         </div>
 
         <div className="footer-links">
-          <Link href="/dashboard">Dashboard</Link>
-          <Link href="/teamguide">TeamGuide</Link>
+          <Link href="/atlas">Atlas</Link>
+          <Link href="/team-dna">Team DNA</Link>
+          <Link href="/team-builder">Team Builder</Link>
           <Link href="/team-canvas">Team Canvas</Link>
-          <Link href="/trust-centre">Trust Centre</Link>
         </div>
       </div>
     </footer>

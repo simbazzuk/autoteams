@@ -1,20 +1,5 @@
-import { PageShell } from "@/components/Site";
-import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { ProductPage } from "@/components/ProductPage";
-import { TeamGuideInterview } from "@/components/teamguide/TeamGuideInterview";
+import { redirect } from "next/navigation";
 
-export default function TeamGuidePage() {
-  return (
-    <PageShell>
-      <ProtectedRoute>
-        <ProductPage
-          eyebrow="Conversational onboarding"
-          title="Meet TeamGuide."
-          text="A guided AI interview that turns natural conversation into an explainable collaboration profile."
-        >
-          <TeamGuideInterview />
-        </ProductPage>
-      </ProtectedRoute>
-    </PageShell>
-  );
+export default function TeamGuideRedirectPage() {
+  redirect("/atlas");
 }

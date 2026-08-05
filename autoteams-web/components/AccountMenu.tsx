@@ -58,6 +58,7 @@ export function AccountMenu() {
             <small>{user.email}</small>
           </div>
           <Link href="/dashboard"><span>⌂</span> Dashboard</Link>
+          <Link href="/atlas"><span>✦</span> Atlas</Link>
           <Link href="/team-canvas"><span>◫</span> Team Canvas</Link>
           <Link href="/settings"><span>⚙</span> Settings</Link>
           <Link href="/trust-centre"><span>◇</span> Privacy & Trust</Link>

@@ -4,7 +4,7 @@ import { AuthProvider } from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
   title: "AutoTeams",
-  description: "Professional AI team intelligence",
+  description: "Explainable AI team intelligence powered by Atlas",
 };
 
 const themeScript = `
