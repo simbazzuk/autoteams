@@ -24,6 +24,7 @@ export function Navbar() {
           <Link href="/solutions">Solutions</Link>
           <Link href="/trust-centre">Trust Centre</Link>
           <Link href="/why-this-team">Why This Team?</Link>
+          <Link href="/dashboard">Dashboard</Link>
         </nav>
         <Link className="button small" href="/register">Build a Team</Link>
       </div>
@@ -44,6 +45,7 @@ export function Footer() {
           <Link href="/solutions">Solutions</Link>
           <Link href="/trust-centre">Trust Centre</Link>
           <Link href="/why-this-team">Why This Team?</Link>
+          <Link href="/dashboard">Dashboard</Link>
         </div>
       </div>
     </footer>

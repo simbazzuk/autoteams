@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { savePersona } from "./PersonaDashboard";
 
 const types = [
   ["Friendship","🤝","Meaningful local groups"],["Business","💼","Project and innovation teams"],
@@ -17,7 +19,9 @@ const prompts: Record<string,string[]> = {
 };
 
 export function PersonaWizard() {
+  const router = useRouter();
   const [step,setStep]=useState(1);
+  const [saved,setSaved]=useState(false);
   const [name,setName]=useState("Sukh");
   const [city,setCity]=useState("Leeds");
   const [type,setType]=useState("Friendship");
@@ -26,11 +30,30 @@ export function PersonaWizard() {
   function choose(t:string){setType(t);setValues(prompts[t]);}
   function update(i:number,v:string){setValues(current=>current.map((x,index)=>index===i?v:x));}
 
+  function persistPersona() {
+    const persona = {
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      accountName: name || "Member",
+      city: city || "Not specified",
+      teamType: type,
+      values,
+      createdAt: new Date().toISOString(),
+    };
+
+    savePersona(persona);
+    setSaved(true);
+    setStep(4);
+  }
+
+  function openDashboard() {
+    router.push("/dashboard");
+  }
+
   return <div className="wizard">
     <div className="wizard-progress">{[1,2,3,4].map(n=><span className={n<=step?"active":""} key={n}/>)}</div>
     {step===1 && <section><span className="eyebrow">Step 1</span><h2>Create your account</h2><div className="form-grid"><label>First name<input value={name} onChange={e=>setName(e.target.value)}/></label><label>Email<input defaultValue="sukh@example.com"/></label><label>City<input value={city} onChange={e=>setCity(e.target.value)}/></label><label>Country<select defaultValue="United Kingdom"><option>United Kingdom</option></select></label></div><div className="wizard-actions end"><button className="button" onClick={()=>setStep(2)}>Continue</button></div></section>}
     {step===2 && <section><span className="eyebrow">Step 2</span><h2>What kind of team are you looking for?</h2><div className="type-grid">{types.map(([t,i,d])=><button className={`type-card ${type===t?"selected":""}`} onClick={()=>choose(t)} key={t}><span>{i}</span><strong>{t}</strong><small>{d}</small></button>)}</div><div className="wizard-actions"><button className="button secondary" onClick={()=>setStep(1)}>Back</button><button className="button" onClick={()=>setStep(3)}>Continue</button></div></section>}
-    {step===3 && <section><span className="eyebrow">Step 3</span><h2>Create your {type} Persona</h2><p className="lead">Questions change based on the selected team experience.</p><div className="form-grid">{values.map((v,i)=><label key={i}>Matching signal {i+1}<input value={v} onChange={e=>update(i,e.target.value)}/></label>)}</div><div className="notice">Sensitive information should be optional and collected only where relevant, lawful and clearly explained.</div><div className="wizard-actions"><button className="button secondary" onClick={()=>setStep(2)}>Back</button><button className="button" onClick={()=>setStep(4)}>Create Persona</button></div></section>}
-    {step===4 && <section><span className="eyebrow">Persona created</span><h2>Your profile is ready for matching.</h2><div className="persona"><div className="persona-head"><div className="persona-id"><span className="avatar">{name.charAt(0).toUpperCase()}</span><span><strong>{name}</strong><small>{type} Persona • {city}</small></span></div><span className="badge">Ready for matching</span></div><div className="chips">{values.map(v=><span className="chip" key={v}>{v}</span>)}</div></div><div className="wizard-actions"><button className="button secondary" onClick={()=>setStep(2)}>Create another Persona</button><button className="button">Find My Team</button></div></section>}
+    {step===3 && <section><span className="eyebrow">Step 3</span><h2>Create your {type} Persona</h2><p className="lead">Questions change based on the selected team experience.</p><div className="form-grid">{values.map((v,i)=><label key={i}>Matching signal {i+1}<input value={v} onChange={e=>update(i,e.target.value)}/></label>)}</div><div className="notice">Sensitive information should be optional and collected only where relevant, lawful and clearly explained.</div><div className="wizard-actions"><button className="button secondary" onClick={()=>setStep(2)}>Back</button><button className="button" onClick={persistPersona}>Create Persona</button></div></section>}
+    {step===4 && <section><span className="eyebrow">{saved ? "Persona saved" : "Persona created"}</span><h2>Your profile is ready for matching.</h2><div className="persona"><div className="persona-head"><div className="persona-id"><span className="avatar">{name.charAt(0).toUpperCase()}</span><span><strong>{name}</strong><small>{type} Persona • {city}</small></span></div><span className="badge">Ready for matching</span></div><div className="chips">{values.map(v=><span className="chip" key={v}>{v}</span>)}</div></div><div className="wizard-actions"><button className="button secondary" onClick={()=>setStep(2)}>Create another Persona</button><button className="button" onClick={openDashboard}>View Dashboard</button></div></section>}
   </div>;
 }
