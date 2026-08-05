@@ -1,341 +1,200 @@
 import { GoogleGenAI } from "@google/genai";
 import { NextResponse } from "next/server";
+import {
+  ProfileAnalysis,
+  defaultDna,
+} from "@/lib/team-intelligence";
 
 type RequestBody = {
   narrative?: string;
   teamType?: string;
 };
 
-type TeamDna = {
-  leadership: number;
-  collaboration: number;
-  communication: number;
-  planning: number;
-  creativity: number;
-  adaptability: number;
-  socialEnergy: number;
-  reliability: number;
-};
-
-type ProfileAnalysis = {
-  summary: string;
-  teamDna: TeamDna;
-  preferredRoles: string[];
-  workingStyle: string;
-  strengths: string[];
-  potentialChallenges: string[];
-  recommendedEnvironment: string;
-};
-
-const profileAnalysisSchema = {
-  type: "object",
-  properties: {
-    summary: {
-      type: "string",
-      description: "A concise two-sentence summary of the user's team profile.",
-    },
-    teamDna: {
-      type: "object",
-      properties: {
-        leadership: {
-          type: "integer",
-          minimum: 0,
-          maximum: 100,
-        },
-        collaboration: {
-          type: "integer",
-          minimum: 0,
-          maximum: 100,
-        },
-        communication: {
-          type: "integer",
-          minimum: 0,
-          maximum: 100,
-        },
-        planning: {
-          type: "integer",
-          minimum: 0,
-          maximum: 100,
-        },
-        creativity: {
-          type: "integer",
-          minimum: 0,
-          maximum: 100,
-        },
-        adaptability: {
-          type: "integer",
-          minimum: 0,
-          maximum: 100,
-        },
-        socialEnergy: {
-          type: "integer",
-          minimum: 0,
-          maximum: 100,
-        },
-        reliability: {
-          type: "integer",
-          minimum: 0,
-          maximum: 100,
-        },
-      },
-      required: [
-        "leadership",
-        "collaboration",
-        "communication",
-        "planning",
-        "creativity",
-        "adaptability",
-        "socialEnergy",
-        "reliability",
-      ],
-    },
-    preferredRoles: {
-      type: "array",
-      items: {
-        type: "string",
-      },
-    },
-    workingStyle: {
-      type: "string",
-    },
-    strengths: {
-      type: "array",
-      items: {
-        type: "string",
-      },
-    },
-    potentialChallenges: {
-      type: "array",
-      items: {
-        type: "string",
-      },
-    },
-    recommendedEnvironment: {
-      type: "string",
-    },
-  },
-  required: [
-    "summary",
-    "teamDna",
-    "preferredRoles",
-    "workingStyle",
-    "strengths",
-    "potentialChallenges",
-    "recommendedEnvironment",
+const fallbackAnalysis: ProfileAnalysis = {
+  summary:
+    "A collaborative and thoughtful person who values purposeful teams, clear ownership and practical outcomes.",
+  teamDna: defaultDna,
+  preferredRoles: ["Strategic contributor", "Collaborator"],
+  workingStyle:
+    "Works best in a small team with clear goals, shared ownership and time for independent reflection.",
+  strengths: [
+    "Balances collaboration with independent thinking",
+    "Values purposeful and reliable teamwork",
+    "Communicates with consideration",
   ],
+  potentialChallenges: [
+    "May prefer more context before making rapid decisions",
+    "Could become frustrated by unclear ownership",
+  ],
+  recommendedEnvironment:
+    "A trusted team of four to six people with clear responsibilities and regular check-ins.",
 };
 
-function validateScore(value: unknown, field: string): number {
-  if (
-    typeof value !== "number" ||
-    !Number.isFinite(value) ||
-    value < 0 ||
-    value > 100
-  ) {
-    throw new Error(`Invalid Team DNA score returned for ${field}.`);
-  }
-
-  return Math.round(value);
+function stripCodeFence(value: string): string {
+  return value
+    .replace(/^```json\s*/i, "")
+    .replace(/^```\s*/i, "")
+    .replace(/\s*```$/i, "")
+    .trim();
 }
 
-function validateStringArray(
-  value: unknown,
-  field: string,
-): string[] {
-  if (
-    !Array.isArray(value) ||
-    !value.every((item) => typeof item === "string")
-  ) {
-    throw new Error(`Invalid string array returned for ${field}.`);
-  }
-
-  return value;
+function validScore(value: unknown, fallback: number): number {
+  return typeof value === "number"
+    ? Math.max(0, Math.min(100, Math.round(value)))
+    : fallback;
 }
 
-function validateAnalysis(value: unknown): ProfileAnalysis {
-  if (!value || typeof value !== "object") {
-    throw new Error("Gemini returned an invalid analysis object.");
-  }
+function normaliseAnalysis(value: unknown): ProfileAnalysis {
+  if (!value || typeof value !== "object") return fallbackAnalysis;
 
-  const analysis = value as Record<string, unknown>;
-
-  if (!analysis.teamDna || typeof analysis.teamDna !== "object") {
-    throw new Error("Gemini did not return a Team DNA object.");
-  }
-
-  const dna = analysis.teamDna as Record<string, unknown>;
-
-  if (
-    typeof analysis.summary !== "string" ||
-    typeof analysis.workingStyle !== "string" ||
-    typeof analysis.recommendedEnvironment !== "string"
-  ) {
-    throw new Error("Gemini returned incomplete profile text.");
-  }
+  const input = value as Record<string, unknown>;
+  const dna =
+    input.teamDna && typeof input.teamDna === "object"
+      ? (input.teamDna as Record<string, unknown>)
+      : {};
 
   return {
-    summary: analysis.summary,
+    summary:
+      typeof input.summary === "string"
+        ? input.summary
+        : fallbackAnalysis.summary,
     teamDna: {
-      leadership: validateScore(dna.leadership, "leadership"),
-      collaboration: validateScore(
+      leadership: validScore(dna.leadership, defaultDna.leadership),
+      collaboration: validScore(
         dna.collaboration,
-        "collaboration",
+        defaultDna.collaboration
       ),
-      communication: validateScore(
+      communication: validScore(
         dna.communication,
-        "communication",
+        defaultDna.communication
       ),
-      planning: validateScore(dna.planning, "planning"),
-      creativity: validateScore(dna.creativity, "creativity"),
-      adaptability: validateScore(
+      planning: validScore(dna.planning, defaultDna.planning),
+      creativity: validScore(dna.creativity, defaultDna.creativity),
+      adaptability: validScore(
         dna.adaptability,
-        "adaptability",
+        defaultDna.adaptability
       ),
-      socialEnergy: validateScore(
+      socialEnergy: validScore(
         dna.socialEnergy,
-        "socialEnergy",
+        defaultDna.socialEnergy
       ),
-      reliability: validateScore(dna.reliability, "reliability"),
+      reliability: validScore(
+        dna.reliability,
+        defaultDna.reliability
+      ),
     },
-    preferredRoles: validateStringArray(
-      analysis.preferredRoles,
-      "preferredRoles",
-    ),
-    workingStyle: analysis.workingStyle,
-    strengths: validateStringArray(
-      analysis.strengths,
-      "strengths",
-    ),
-    potentialChallenges: validateStringArray(
-      analysis.potentialChallenges,
-      "potentialChallenges",
-    ),
-    recommendedEnvironment: analysis.recommendedEnvironment,
+    preferredRoles: Array.isArray(input.preferredRoles)
+      ? input.preferredRoles.filter(
+          (item): item is string => typeof item === "string"
+        )
+      : fallbackAnalysis.preferredRoles,
+    workingStyle:
+      typeof input.workingStyle === "string"
+        ? input.workingStyle
+        : fallbackAnalysis.workingStyle,
+    strengths: Array.isArray(input.strengths)
+      ? input.strengths.filter(
+          (item): item is string => typeof item === "string"
+        )
+      : fallbackAnalysis.strengths,
+    potentialChallenges: Array.isArray(input.potentialChallenges)
+      ? input.potentialChallenges.filter(
+          (item): item is string => typeof item === "string"
+        )
+      : fallbackAnalysis.potentialChallenges,
+    recommendedEnvironment:
+      typeof input.recommendedEnvironment === "string"
+        ? input.recommendedEnvironment
+        : fallbackAnalysis.recommendedEnvironment,
   };
 }
 
 export async function POST(request: Request) {
+  let body: RequestBody;
+
   try {
-    const body = (await request.json()) as RequestBody;
+    body = (await request.json()) as RequestBody;
+  } catch {
+    return NextResponse.json(
+      { error: "A valid JSON request is required." },
+      { status: 400 }
+    );
+  }
 
-    const narrative = body.narrative?.trim();
-    const teamType = body.teamType?.trim() || "General";
+  const narrative = body.narrative?.trim();
+  const teamType = body.teamType?.trim() || "General";
 
-    if (!narrative || narrative.length < 40) {
-      return NextResponse.json(
-        {
-          error:
-            "Please provide at least 40 characters about yourself.",
-        },
-        { status: 400 },
-      );
-    }
+  if (!narrative || narrative.length < 40) {
+    return NextResponse.json(
+      { error: "Please provide at least 40 characters about yourself." },
+      { status: 400 }
+    );
+  }
 
-    const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
 
-    if (!apiKey) {
-      return NextResponse.json(
-        {
-          error:
-            "GEMINI_API_KEY is not configured in .env.local.",
-        },
-        { status: 500 },
-      );
-    }
-
-    const model =
-      process.env.GEMINI_MODEL || "gemini-3.6-flash";
-
-    const client = new GoogleGenAI({
-      apiKey,
+  // The fallback lets the feature remain testable before a Gemini key is added.
+  if (!apiKey) {
+    return NextResponse.json({
+      analysis: fallbackAnalysis,
+      mode: "deterministic-demo",
     });
+  }
 
+  try {
+    const ai = new GoogleGenAI({ apiKey });
     const prompt = `
-You are the profile intelligence component of AutoTeams, an
-explainable AI team-formation platform.
+You are the profile intelligence component of AutoTeams, an explainable AI
+team-formation platform.
 
-Analyse the user's description in the context of a ${teamType}
-team.
+Analyse the user's own description for a ${teamType} team context.
+Do not infer protected or highly sensitive characteristics such as ethnicity,
+religion, health, sexuality, politics or disability. Do not diagnose the user.
+Use only evidence in the supplied narrative. Express uncertainty conservatively.
 
-Use only information clearly supported by the user's description.
+Return JSON only, with exactly this shape:
+{
+  "summary": "2 concise sentences",
+  "teamDna": {
+    "leadership": 0-100,
+    "collaboration": 0-100,
+    "communication": 0-100,
+    "planning": 0-100,
+    "creativity": 0-100,
+    "adaptability": 0-100,
+    "socialEnergy": 0-100,
+    "reliability": 0-100
+  },
+  "preferredRoles": ["up to 3 roles"],
+  "workingStyle": "one concise paragraph",
+  "strengths": ["3 evidence-based strengths"],
+  "potentialChallenges": ["up to 2 neutral, constructive challenges"],
+  "recommendedEnvironment": "one concise recommendation"
+}
 
-Do not infer or speculate about:
-- ethnicity
-- religion
-- medical conditions
-- disability
-- sexuality
-- political beliefs
-- other sensitive personal characteristics
-
-Do not diagnose the user or present the results as a scientific
-personality assessment.
-
-Scores must be integers from 0 to 100.
-
-Return:
-- a concise summary
-- eight Team DNA scores
-- up to three preferred roles
-- a working-style description
-- three evidence-based strengths
-- up to two constructive potential challenges
-- a recommended team environment
-
-User description:
-
+User narrative:
 ${narrative}
 `;
 
-    const interaction = await client.interactions.create({
-      model,
-      input: prompt,
-      response_format: {
-        type: "text",
-        mime_type: "application/json",
-        schema: profileAnalysisSchema,
+    const response = await ai.models.generateContent({
+      model: process.env.GEMINI_MODEL || "gemini-2.5-flash",
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json",
+        temperature: 0.2,
       },
     });
 
-    const responseText = interaction.output_text?.trim();
-
-    if (!responseText) {
-      throw new Error("Gemini returned an empty response.");
-    }
-
-    let parsed: unknown;
-
-    try {
-      parsed = JSON.parse(responseText);
-    } catch (error) {
-      console.error("Invalid Gemini JSON response:", responseText);
-
-      throw new Error(
-        error instanceof Error
-          ? `Gemini returned invalid JSON: ${error.message}`
-          : "Gemini returned invalid JSON.",
-      );
-    }
-
-    const analysis = validateAnalysis(parsed);
-
+    const parsed = JSON.parse(stripCodeFence(response.text || "{}"));
     return NextResponse.json({
-      analysis,
+      analysis: normaliseAnalysis(parsed),
       mode: "gemini",
-      model,
     });
   } catch (error) {
-    console.error("Gemini profile analysis failed:", error);
-
-    return NextResponse.json(
-      {
-        error:
-          error instanceof Error
-            ? error.message
-            : "Gemini profile analysis failed.",
-        mode: "gemini-error",
-      },
-      { status: 500 },
-    );
+    console.error("Gemini profile analysis failed", error);
+    return NextResponse.json({
+      analysis: fallbackAnalysis,
+      mode: "fallback-after-error",
+    });
   }
 }

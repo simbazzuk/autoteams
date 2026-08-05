@@ -20,8 +20,8 @@ export default function HomePage() {
             <h1>Better people.<br /><span className="gradient">Better teams.</span></h1>
             <p className="lead">AutoTeams uses AI to understand people, purpose and context, then forms compatible teams for life, work and community.</p>
             <div className="actions">
-              <Link className="button" href="/register">Build a Team</Link>
-              <Link className="button secondary" href="/team-engine">Explore the AI Team Engine</Link>
+              <Link className="button" href="/teamguide">Talk to TeamGuide</Link>
+              <Link className="button secondary" href="/team-designer">Design a Team</Link>
             </div>
             <div className="chips">
               <Link className="chip" href="/trust-centre">Privacy by design</Link>

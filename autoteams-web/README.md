@@ -194,3 +194,19 @@ for profile understanding, not as the final matching decision-maker.
 The v4 API route is an MVP. Before public launch, validate authenticated Firebase
 ID tokens server-side, add rate limiting, structured audit logs, consent controls,
 model evaluation and abuse protection.
+
+
+# v5 — Product Experience Release
+
+New features:
+
+- Redesigned intelligent dashboard
+- Profile completeness and recommended next actions
+- `/teamguide` conversational AI onboarding
+- Team DNA generated from a guided interview
+- `/team-designer` whole-team design prototype
+- Purpose, team size and design-priority controls
+- Explainable roles for each proposed team member
+- Updated homepage actions and navigation
+
+No additional npm packages are required beyond v4.

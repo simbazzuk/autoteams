@@ -87,3 +87,70 @@ button:disabled{cursor:not-allowed;opacity:.65}
   .analysis-grid,.dimension-grid,.explanation-columns{grid-template-columns:1fr}
   .candidate-heading,.result-heading{align-items:stretch;flex-direction:column}
 }
+
+
+.dashboard-page{padding-top:48px}
+.smart-dashboard{display:grid;gap:24px}
+.dashboard-welcome{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:36px;background:linear-gradient(135deg,#11182a,#202b47);color:#fff;border-radius:30px;box-shadow:var(--shadow)}
+.dashboard-welcome h1{font-size:clamp(36px,5vw,56px);margin-bottom:10px}
+.dashboard-welcome p{max-width:680px;color:#c6cede;font-size:18px}
+.dashboard-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.dashboard-kpi span,.dashboard-kpi small{display:block;color:var(--muted)}
+.dashboard-kpi strong{display:block;margin:5px 0;font-size:30px}
+.dashboard-main-grid{display:grid;grid-template-columns:1.5fr .7fr;gap:22px;align-items:start}
+.dashboard-primary,.dashboard-side{display:grid;gap:18px}
+.dashboard-section-heading{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.dashboard-persona-list{display:grid;gap:16px}
+.dashboard-persona-top,.dashboard-persona-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.dashboard-completion{margin:18px 0 0}
+.dashboard-side{position:sticky;top:105px}
+.next-action-card{background:linear-gradient(180deg,#fff,#f4f2ff)}
+
+.teamguide-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start}
+.teamguide-header{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.teamguide-header div{display:grid}
+.teamguide-header small{color:var(--muted)}
+.teamguide-avatar{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:#eef2ff;font-size:24px}
+.teamguide-progress{height:7px;margin:20px 0;background:#edf0f6;border-radius:999px;overflow:hidden}
+.teamguide-progress span{display:block;height:100%;background:linear-gradient(90deg,var(--violet),var(--blue))}
+.conversation{min-height:430px;max-height:570px;overflow:auto;padding:18px;background:#f8faff;border:1px solid var(--line);border-radius:18px}
+.message-group{display:grid}
+.message{max-width:82%;padding:12px 14px;margin-bottom:12px;border-radius:16px;font-size:14px}
+.assistant-message{background:#fff;border:1px solid var(--line)}
+.user-message{justify-self:end;color:#fff;background:linear-gradient(135deg,var(--violet),var(--blue))}
+.teamguide-input{display:grid;grid-template-columns:1fr auto;gap:12px;margin-top:14px;align-items:end}
+.teamguide-input textarea{min-height:88px}
+.teamguide-complete{display:flex;justify-content:space-between;align-items:end;gap:14px;margin-top:14px}
+.teamguide-complete label{display:grid;gap:7px;color:var(--muted);font-size:13px;font-weight:800}
+.teamguide-profile{position:sticky;top:105px}
+.interview-checklist{display:grid;gap:10px;margin-top:24px}
+.interview-checklist>div{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;padding:11px;background:#fbfcfe;border:1px solid var(--line);border-radius:12px;color:var(--muted)}
+.interview-checklist>div>span{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#edf0f6;font-weight:800}
+.interview-checklist>div.done{color:var(--ink);border-color:#caeee5;background:#f2fbf8}
+.interview-checklist>div.done>span{color:#16896f;background:#dff5ef}
+
+.designer-layout{display:grid;grid-template-columns:.75fr 1.25fr;gap:22px;align-items:start}
+.designer-form{position:sticky;top:105px}
+.designer-form label{display:grid;gap:7px;margin-top:16px;color:var(--muted);font-size:13px;font-weight:800}
+.designer-form textarea{min-height:150px}
+.designer-form .button{width:100%;margin-top:18px}
+.designer-result{display:grid;gap:18px}
+.designer-placeholder{text-align:center;padding:70px 30px}
+.designer-summary{text-align:center}
+.designer-member-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.designer-member{display:grid;grid-template-columns:auto 1fr;gap:14px}
+.designer-member h3{margin-top:8px}
+.designer-explanation ul{padding-left:20px;color:var(--muted)}
+
+@media(max-width:980px){
+  .dashboard-main-grid,.teamguide-layout,.designer-layout{grid-template-columns:1fr}
+  .dashboard-side,.teamguide-profile,.designer-form{position:static}
+  .dashboard-kpis{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  .dashboard-welcome,.dashboard-section-heading,.teamguide-complete{align-items:stretch;flex-direction:column}
+  .dashboard-kpis,.designer-member-list{grid-template-columns:1fr}
+  .teamguide-input{grid-template-columns:1fr}
+  .teamguide-header{grid-template-columns:auto 1fr}
+  .teamguide-header .badge{grid-column:1/-1;width:max-content}
+}

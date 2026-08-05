@@ -1,22 +1,7 @@
-import { PageHero, PageShell } from "@/components/Site";
-import { PersonaDashboard } from "@/components/PersonaDashboard";
+import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { SmartDashboard } from "@/components/dashboard/SmartDashboard";
 
 export default function DashboardPage() {
-  return (
-    <PageShell>
-      <ProtectedRoute>
-        <PageHero
-          eyebrow="AutoTeams Dashboard"
-          title="Your Team Personas."
-          text="View, edit and manage the profiles AutoTeams will use for different team experiences."
-        />
-        <section className="section tight">
-          <div className="container">
-            <PersonaDashboard />
-          </div>
-        </section>
-      </ProtectedRoute>
-    </PageShell>
-  );
+  return <PageShell><ProtectedRoute><section className="section dashboard-page"><div className="container"><SmartDashboard /></div></section></ProtectedRoute></PageShell>;
 }

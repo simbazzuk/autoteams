@@ -30,6 +30,8 @@ export function Navbar() {
           <Link href="/why-this-team">Why This Team?</Link>
           <Link href="/intelligence">Intelligence</Link>
           <Link href="/matches">Matches</Link>
+          <Link href="/teamguide">TeamGuide</Link>
+          <Link href="/team-designer">Team Designer</Link>
         </nav>
         <AccountNav />
       </div>
