@@ -102,3 +102,23 @@ No new npm packages are required.
 
 Firebase, Firestore and Gemini configuration are unchanged.
 No additional npm packages are required.
+
+
+# AutoTeams v6.0
+
+## Main improvements
+
+- Premium two-column homepage hero
+- Shorter heading: Build Better Teams / Using Explainable AI
+- Product preview restored on the right-hand side
+- Improved responsive text fitting
+- Dark theme remains the default
+- Light theme remains available in Settings
+- Correct light/dark TypeScript preference type
+- Hydration-safe theme loading
+- Route-aware active navigation retained
+- TeamGuide contrast fixes retained
+- Version badge updated to v6.0
+
+No additional packages are required.
+Firebase, Firestore, Gemini and Vercel environment variables are unchanged.

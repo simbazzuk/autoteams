@@ -13,8 +13,7 @@ const themeScript = `
     const saved = raw ? JSON.parse(raw) : null;
 
     document.documentElement.dataset.theme =
-      saved?.appearance === "light" ||
-      saved?.appearance === "dark"
+      saved?.appearance === "light" || saved?.appearance === "dark"
         ? saved.appearance
         : "dark";
 

@@ -40,7 +40,7 @@ export function Navbar() {
         <Link href="/" className="brand product-brand">
           <RobotLogo />
           <span>AutoTeams</span>
-          <small>v5.0</small>
+          <small>v6.0</small>
         </Link>
 
         <nav className="product-nav-links" aria-label="Primary navigation">
