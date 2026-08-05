@@ -1,268 +1,104 @@
-# AutoTeams Next.js v3
+# AutoTeams v4.0 Page Replacement Bundle
 
-This v3 package is designed for your existing root-level Next.js structure:
+This bundle contains complete replacement page files and the supporting UI
+components required for the AutoTeams v4.0 professional interface.
 
-```text
-autoteams-web/
-├── app/
-├── components/
-├── lib/
-├── public/
-└── package.json
-```
+## Main changes
 
-## Features
+- Lighter and more professional typography
+- Rebuilt Intelligence workspace
+- Rebuilt Team Designer workspace
+- Cleaner homepage
+- Smaller workflow headings
+- Normal-weight textarea and form content
+- Calmer result and empty-state panels
+- Shared product-page header and spacing
+- Responsive mobile layouts
 
-- Firebase email/password registration and login
-- Google sign-in
-- Email verification message
-- Password reset
-- Sign out
-- Protected dashboard
-- Cloud Firestore Team Persona storage
-- Create, view, edit and delete Team Personas
-- User-scoped Firestore security rules
+## Install
 
-## 1. Install Firebase
+Copy the contents of this bundle into your existing:
 
-From `autoteams-web`:
-
-```powershell
-npm install firebase
-```
-
-## 2. Copy the v3 files
-
-Copy these folders/files into `autoteams-web`:
-
-```text
-app/
-components/
-lib/
-.env.local.example
-firestore.rules
-firebase.json
-```
+C:\Users\sukyp\tech\autoteams\autoteams-web
 
 Replace existing files when prompted.
 
-## 3. Create the Firebase project
+Keep your existing `.env.local`, Firebase configuration and Vercel environment
+variables. No new packages are required.
 
-1. Open the Firebase Console.
-2. Create or select a project.
-3. Add a Web App.
-4. Copy the Firebase web configuration.
-5. Enable Authentication providers:
-   - Email/Password
-   - Google
-6. Create a Cloud Firestore database.
-7. Start in Production mode.
+Then run:
 
-## 4. Configure environment variables
-
-Copy:
-
-```text
-.env.local.example
-```
-
-to:
-
-```text
-.env.local
-```
-
-Then enter the values from Firebase.
-
-Do not commit `.env.local`.
-
-## 5. Apply Firestore rules
-
-In the Firebase Console:
-
-```text
-Firestore Database → Rules
-```
-
-Paste the contents of `firestore.rules`, then publish.
-
-Alternatively, after installing and configuring the Firebase CLI:
-
-```powershell
-firebase deploy --only firestore:rules
-```
-
-## 6. Run locally
-
-```powershell
 npm run dev
-```
 
 Test:
 
-```text
-/signup
-/login
-/forgot-password
-/register
+/
 /dashboard
-```
-
-## 7. Add Vercel environment variables
-
-In Vercel:
-
-```text
-Project → Settings → Environment Variables
-```
-
-Add every `NEXT_PUBLIC_FIREBASE_*` value, then redeploy.
-
-## 8. Commit
-
-From the repository root:
-
-```powershell
-git add .
-git commit -m "Add Firebase authentication and Firestore personas"
-git push
-```
-
-## Important
-
-This is an MVP implementation. Before collecting real personal or sensitive data, complete a privacy review, define retention rules, validate security rules, and add appropriate legal notices.
-
-
-# v4 — AI Team Intelligence
-
-## New features
-
-- `/intelligence` — natural-language profile analysis
-- Gemini-powered Team DNA creation
-- Safe deterministic demo fallback when no Gemini key is configured
-- `/matches` — rules-based, explainable team recommendations
-- Candidate compatibility scoring across:
-  - goals
-  - availability
-  - interests or skills
-  - location
-  - complementary Team DNA
-  - trust level
-- Explainable reasons and cautions for each match
-- Dashboard links to Team DNA and matching
-
-## Install the Gemini SDK
-
-```powershell
-npm install @google/genai
-```
-
-Firebase remains required:
-
-```powershell
-npm install firebase
-```
-
-## Gemini configuration
-
-Create a Gemini API key and add this to `.env.local`:
-
-```text
-GEMINI_API_KEY=your_key
-GEMINI_MODEL=gemini-2.5-flash
-```
-
-`GEMINI_API_KEY` is server-side only. Do not prefix it with `NEXT_PUBLIC`.
-
-Add the same server-side variables to Vercel before deploying.
-
-## Test journey
-
-```text
+/teamguide
+/team-designer
+/team-canvas
+/matches
+/intelligence
+/trust-centre
+/settings
+/notifications
 /login
-→ /intelligence
-→ create Team DNA
-→ /matches
-→ change scenario and review recommendations
-```
-
-The matching engine is intentionally deterministic and explainable. Gemini is used
-for profile understanding, not as the final matching decision-maker.
-
-## Production note
-
-The v4 API route is an MVP. Before public launch, validate authenticated Firebase
-ID tokens server-side, add rate limiting, structured audit logs, consent controls,
-model evaluation and abuse protection.
 
 
-# v5 — Product Experience Release
+# AutoTeams v4.0 Complete Edition
 
-New features:
+This is the complete application release, not a page-only patch.
 
-- Redesigned intelligent dashboard
-- Profile completeness and recommended next actions
-- `/teamguide` conversational AI onboarding
-- Team DNA generated from a guided interview
-- `/team-designer` whole-team design prototype
-- Purpose, team size and design-priority controls
-- Explainable roles for each proposed team member
-- Updated homepage actions and navigation
+## Included
 
-No additional npm packages are required beyond v4.
-
-
-# AutoTeams v1.0
-
-This release introduces the approved polished SaaS interface:
-
-- Aligned pill navigation
-- Profile dropdown replacing the oversized Sign out button
-- Product dashboard with sidebar
-- Hero, metrics, activity, Team DNA, TeamGuide and quick-action panels
-- Existing Firebase, Firestore and Gemini functionality preserved
-- No additional packages required
-
-
-# AutoTeams v2.0
-
-Cohesive product-design release.
-
-## Redesigned experiences
-
-- Homepage
-- Dashboard typography and hierarchy
-- TeamGuide conversational interface
-- Team Designer page framing and visual hierarchy
+- v4.0 navigation and version badge
+- Professional homepage
+- Refined dashboard
+- TeamGuide with saved conversation history
+- Team Designer
+- Team Canvas
 - Matches
-- Intelligence
+- Intelligence workspace
+- Notifications
+- Settings and appearance preferences
 - Trust Centre
+- Authentication and registration pages
+- Firebase Authentication and Firestore integration
+- Gemini Team DNA integration
+- Responsive layouts
+- Light and dark appearance support
 
-## Design system
-
-- Larger typography
-- Shared spacing, colour and card system
-- Consistent product-page hero
-- Stronger mobile and tablet layouts
-- Hover and transition polish
-- Existing Firebase, Firestore and Gemini behaviour retained
-
-No additional npm packages are required.
+No additional packages are required beyond the existing project dependencies.
+Keep your current `.env.local` and Vercel environment variables.
 
 
-# AutoTeams v2.1
+# AutoTeams v4.1 Dark Edition
 
-Readability and workflow refinement release.
+## Changes
+
+- Dark theme is now the default experience
+- Light mode remains available under Settings
+- Deep blue-grey workspace rather than pure black
+- Updated homepage, dashboard, workflow pages, forms, cards and navigation
+- Improved dark-mode contrast for TeamGuide, Intelligence, Designer, Canvas,
+  Notifications, Settings and authentication
+- Existing Firebase, Firestore and Gemini configuration is unchanged
+
+No new npm packages are required.
+
+
+# AutoTeams v5.0
 
 ## Improvements
 
-- Larger dashboard labels and supporting text
-- Improved Recent Activity and Team DNA readability
-- Lighter Team Designer typography
-- Lighter Intelligence form and result typography
-- Styled form controls replacing browser-default presentation
-- Reduced empty-state heading dominance
-- Improved mobile workflow typography
+- Navigation now highlights the actual current route
+- Dashboard is no longer permanently highlighted
+- Active navigation state supports nested routes
+- Active item uses the AutoTeams gradient
+- TeamGuide assistant messages use dark text on light message bubbles
+- TeamGuide question preview cards have corrected contrast
+- Dark-mode chat input contrast improved
+- Navigation version badge updated to v5.0
 
 Firebase, Firestore and Gemini configuration are unchanged.
 No additional npm packages are required.

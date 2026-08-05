@@ -42,7 +42,7 @@ export function V10Dashboard() {
             <small>Welcome back, {name} 👋</small>
             <h1>Build better teams.<br /><span>Faster. Smarter. Together.</span></h1>
             <p>AI-powered team intelligence to help you create high-performing, trusted and connected teams.</p>
-            <div className="actions"><Link className="button" href="/team-designer">Create a team</Link><Link className="button secondary" href="/teamguide">Ask TeamGuide</Link></div>
+            <div className="actions"><Link className="button" href="/team-canvas">Open Team Canvas</Link><Link className="button secondary" href="/teamguide">Ask TeamGuide</Link></div>
           </div>
           <div className="hero-robot" aria-hidden="true">
             <div className="hero-robot-antenna" />
@@ -97,7 +97,7 @@ export function V10Dashboard() {
                 <QuickAction href="/team-designer" icon="＋" title="Create" text="New Team" />
                 <QuickAction href="/register" icon="♙" title="Create" text="Persona" />
                 <QuickAction href="/intelligence" icon="▥" title="Run" text="Team DNA" />
-                <QuickAction href="/matches" icon="◎" title="View" text="Matches" />
+                <QuickAction href="/team-canvas" icon="◫" title="Open" text="Team Canvas" />
               </div>
             </div>
           </div>

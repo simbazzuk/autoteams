@@ -9,8 +9,8 @@ export default function TeamDesignerPage() {
       <ProtectedRoute>
         <ProductPage
           eyebrow="AI Team Designer"
-          title="Design the whole team."
-          text="Define the purpose, team size and design priority. AutoTeams proposes a balanced team and explains every role."
+          title="Design the whole team around the outcome."
+          text="Define the purpose, size and priority. AutoTeams proposes a balanced composition and explains every role."
         >
           <TeamDesigner />
         </ProductPage>

@@ -9,8 +9,8 @@ export default function IntelligencePage() {
       <ProtectedRoute>
         <ProductPage
           eyebrow="AutoTeams Intelligence"
-          title="Turn conversation into Team DNA."
-          text="Gemini helps convert natural language into structured signals while the final team logic remains explainable."
+          title="Turn conversation into useful team insight."
+          text="Gemini converts natural language into structured signals while the final matching and team decisions remain explainable."
         >
           <ProfileIntelligence />
         </ProductPage>

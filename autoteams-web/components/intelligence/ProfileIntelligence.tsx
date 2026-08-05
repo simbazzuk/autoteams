@@ -9,10 +9,8 @@ import { TeamDnaChart } from "./TeamDnaChart";
 
 const example =
   "I enjoy solving difficult problems and turning ideas into practical plans. " +
-  "I work well in small collaborative teams, but I also need time to think " +
-  "independently. I value clear ownership, honest communication and reliable " +
-  "follow-through. I enjoy helping others, challenging assumptions constructively " +
-  "and exploring new technology.";
+  "I work well in collaborative teams, but I also need time to think independently. " +
+  "I value clear ownership, honest communication and reliable follow-through.";
 
 export function ProfileIntelligence() {
   const [teamType, setTeamType] = useState("Business");
@@ -58,84 +56,111 @@ export function ProfileIntelligence() {
   }
 
   return (
-    <div className="intelligence-layout">
-      <form className="card intelligence-form" onSubmit={analyse}>
-        <span className="eyebrow">AI conversation input</span>
-        <h2>Tell TeamGuide about yourself.</h2>
-        <p>
-          Describe how you work with others, what energises you and what helps
-          a team succeed.
-        </p>
+    <div className="v4-intelligence-workspace">
+      <form className="v4-workflow-panel" onSubmit={analyse}>
+        <div className="v4-panel-header">
+          <div>
+            <span className="eyebrow">Profile input</span>
+            <h2>Describe how you contribute.</h2>
+            <p>
+              Use natural language. Gemini converts it into structured,
+              reviewable team signals.
+            </p>
+          </div>
+          <span className="v4-status">
+            <i />
+            Gemini connected
+          </span>
+        </div>
 
-        <label>
-          Team context
-          <select
-            value={teamType}
-            onChange={(event) => setTeamType(event.target.value)}
-          >
-            {[
-              "Friendship",
-              "Business",
-              "Sports",
-              "Education",
-              "Events",
-              "Community",
-            ].map((type) => (
-              <option key={type}>{type}</option>
-            ))}
-          </select>
-        </label>
+        <div className="v4-form-stack">
+          <label>
+            Team context
+            <select
+              value={teamType}
+              onChange={(event) => setTeamType(event.target.value)}
+            >
+              {[
+                "Friendship",
+                "Business",
+                "Sports",
+                "Education",
+                "Events",
+                "Community",
+              ].map((type) => (
+                <option key={type}>{type}</option>
+              ))}
+            </select>
+          </label>
 
-        <label>
-          About you
-          <textarea
-            minLength={40}
-            required
-            value={narrative}
-            onChange={(event) => setNarrative(event.target.value)}
-          />
-        </label>
+          <label>
+            About you
+            <textarea
+              minLength={40}
+              required
+              value={narrative}
+              onChange={(event) => setNarrative(event.target.value)}
+            />
+          </label>
+        </div>
 
-        <div className="privacy-note">
-          AutoTeams should not infer sensitive personal characteristics from
-          this conversation.
+        <div className="v4-guidance">
+          <span>◇</span>
+          <p>
+            AutoTeams should use only the information you provide and avoid
+            inferring protected or highly sensitive characteristics.
+          </p>
         </div>
 
         {error && <div className="form-error">{error}</div>}
 
         <button className="button" disabled={working} type="submit">
-          {working ? "Analysing…" : "Create my Team DNA"}
+          {working ? "Analysing profile…" : "Generate Team Intelligence"}
         </button>
       </form>
 
-      <div className="card intelligence-result">
+      <section className="v4-results-panel">
+        <div className="v4-panel-header">
+          <div>
+            <span className="eyebrow">
+              {analysis ? "Analysis complete" : "Intelligence preview"}
+            </span>
+            <h2>
+              {analysis
+                ? "Your collaboration profile"
+                : "Your results will appear here"}
+            </h2>
+          </div>
+
+          {analysis && (
+            <span className="badge">
+              {mode === "gemini" ? "Gemini analysis" : "Analysis"}
+            </span>
+          )}
+        </div>
+
         {!analysis ? (
-          <>
-            <span className="icon">🧠</span>
-            <h2>Your Team DNA will appear here.</h2>
+          <div className="v4-results-empty">
+            <div className="v4-results-icon">◌</div>
             <p>
-              The analysis converts natural language into structured,
-              explainable team attributes.
+              Generate a profile to review Team DNA, preferred roles,
+              strengths, watch points and the recommended team environment.
             </p>
-            <TeamDnaChart dna={defaultDna} />
-          </>
+            <div className="v4-preview-chart">
+              <TeamDnaChart dna={defaultDna} />
+            </div>
+          </div>
         ) : (
           <>
-            <div className="result-heading">
-              <div>
-                <span className="eyebrow">Team DNA created</span>
-                <h2>Your collaboration profile.</h2>
+            <p className="v4-analysis-summary">{analysis.summary}</p>
+
+            <div className="v4-analysis-main">
+              <div className="v4-analysis-dna">
+                <h3>Team DNA</h3>
+                <TeamDnaChart dna={analysis.teamDna} />
               </div>
-              <span className="badge">
-                {mode === "gemini" ? "Gemini analysis" : "Demo analysis"}
-              </span>
-            </div>
 
-            <p className="analysis-summary">{analysis.summary}</p>
-            <TeamDnaChart dna={analysis.teamDna} />
-
-            <div className="analysis-grid">
-              <div>
+              <div className="v4-analysis-profile">
                 <h3>Preferred roles</h3>
                 <div className="chips">
                   {analysis.preferredRoles.map((role) => (
@@ -144,36 +169,42 @@ export function ProfileIntelligence() {
                     </span>
                   ))}
                 </div>
-              </div>
-              <div>
+
                 <h3>Working style</h3>
                 <p>{analysis.workingStyle}</p>
               </div>
-              <div>
-                <h3>Strengths</h3>
-                <ul>
-                  {analysis.strengths.map((strength) => (
-                    <li key={strength}>{strength}</li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3>Potential challenges</h3>
-                <ul>
-                  {analysis.potentialChallenges.map((challenge) => (
-                    <li key={challenge}>{challenge}</li>
-                  ))}
-                </ul>
-              </div>
             </div>
 
-            <div className="notice">
-              <strong>Recommended environment:</strong>{" "}
-              {analysis.recommendedEnvironment}
+            <div className="v4-analysis-cards">
+              <article>
+                <span>↑</span>
+                <h3>Strengths</h3>
+                <ul>
+                  {analysis.strengths.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+
+              <article>
+                <span>△</span>
+                <h3>Watch points</h3>
+                <ul>
+                  {analysis.potentialChallenges.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+
+              <article>
+                <span>◎</span>
+                <h3>Best environment</h3>
+                <p>{analysis.recommendedEnvironment}</p>
+              </article>
             </div>
           </>
         )}
-      </div>
+      </section>
     </div>
   );
 }

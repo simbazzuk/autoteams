@@ -1,9 +1,19 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import type { ProfileAnalysis } from "@/lib/team-intelligence";
 import { TeamDnaChart } from "@/components/intelligence/TeamDnaChart";
+
+type SavedConversation = {
+  id: string;
+  title: string;
+  teamType: string;
+  answers: string[];
+  createdAt: string;
+};
+
+const STORAGE_KEY = "autoteams-teamguide-conversations";
 
 const questions = [
   "What kind of team are you hoping to join or build?",
@@ -13,6 +23,20 @@ const questions = [
   "Describe the best team experience you have had.",
 ];
 
+function loadConversations(): SavedConversation[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveConversations(items: SavedConversation[]) {
+  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+}
+
 export function TeamGuideInterview() {
   const [teamType, setTeamType] = useState("Business");
   const [current, setCurrent] = useState(0);
@@ -21,6 +45,11 @@ export function TeamGuideInterview() {
   const [analysis, setAnalysis] = useState<ProfileAnalysis | null>(null);
   const [working, setWorking] = useState(false);
   const [error, setError] = useState("");
+  const [saved, setSaved] = useState<SavedConversation[]>([]);
+
+  useEffect(() => {
+    setSaved(loadConversations());
+  }, []);
 
   const complete = current >= questions.length;
   const narrative = useMemo(
@@ -47,6 +76,17 @@ export function TeamGuideInterview() {
       const result = (await response.json()) as { analysis?: ProfileAnalysis; error?: string };
       if (!response.ok || !result.analysis) throw new Error(result.error || "Unable to create Team DNA.");
       setAnalysis(result.analysis);
+
+      const conversation: SavedConversation = {
+        id: `${Date.now()}`,
+        title: `${teamType} Team DNA interview`,
+        teamType,
+        answers,
+        createdAt: new Date().toISOString(),
+      };
+      const updated = [conversation, ...saved].slice(0, 8);
+      setSaved(updated);
+      saveConversations(updated);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "TeamGuide failed.");
     } finally {
@@ -54,12 +94,47 @@ export function TeamGuideInterview() {
     }
   }
 
+  function startNew() {
+    setCurrent(0);
+    setDraft("");
+    setAnswers([]);
+    setAnalysis(null);
+    setError("");
+  }
+
+  function openConversation(conversation: SavedConversation) {
+    setTeamType(conversation.teamType);
+    setAnswers(conversation.answers);
+    setCurrent(conversation.answers.length);
+    setAnalysis(null);
+    setError("");
+  }
+
   return (
-    <div className="v2-teamguide-shell">
-      <section className="v2-chat-panel">
+    <div className="v3-teamguide-layout">
+      <aside className="v3-conversation-sidebar">
+        <button className="button v3-new-chat" onClick={startNew} type="button">＋ New interview</button>
+        <span className="sidebar-title">RECENT CONVERSATIONS</span>
+        <div className="v3-conversation-history">
+          {saved.length === 0 ? (
+            <p>No saved interviews yet.</p>
+          ) : saved.map((conversation) => (
+            <button key={conversation.id} onClick={() => openConversation(conversation)} type="button">
+              <span>✦</span>
+              <span><strong>{conversation.title}</strong><small>{new Date(conversation.createdAt).toLocaleDateString("en-GB")}</small></span>
+            </button>
+          ))}
+        </div>
+        <div className="v3-guide-note">
+          <span>◇</span>
+          <p><strong>Privacy reminder</strong>TeamGuide should not infer sensitive characteristics or replace professional assessment.</p>
+        </div>
+      </aside>
+
+      <section className="v2-chat-panel v3-chat-panel">
         <div className="v2-chat-header">
           <div className="v2-guide-avatar">✦</div>
-          <div><strong>TeamGuide</strong><small>AI onboarding assistant</small></div>
+          <div><strong>TeamGuide</strong><small>AI team intelligence assistant</small></div>
           <span className="badge">Gemini live</span>
         </div>
 
@@ -69,8 +144,8 @@ export function TeamGuideInterview() {
 
         <div className="v2-conversation">
           <div className="v2-message assistant">
-            Hi, I’m TeamGuide. I’ll ask five questions to understand how you
-            contribute to teams. You can review the result before using it.
+            Hi, I’m TeamGuide. I’ll ask five focused questions, create an
+            explainable Team DNA profile and save the conversation for later review.
           </div>
 
           {answers.map((answer,index)=>(
@@ -91,9 +166,7 @@ export function TeamGuideInterview() {
               value={draft}
               onChange={(event)=>setDraft(event.target.value)}
             />
-            <button className="button" disabled={draft.trim().length<5} onClick={submitAnswer} type="button">
-              Send
-            </button>
+            <button className="button" disabled={draft.trim().length<5} onClick={submitAnswer} type="button">Send</button>
           </div>
         ) : !analysis ? (
           <div className="v2-generate-row">
@@ -110,12 +183,12 @@ export function TeamGuideInterview() {
         ) : null}
       </section>
 
-      <aside className="v2-intelligence-preview">
+      <aside className="v2-intelligence-preview v3-intelligence-preview">
         {!analysis ? (
           <>
             <span className="eyebrow">Live profile preview</span>
             <h2>Your Team DNA will build as you answer.</h2>
-            <p>Each answer improves the structured profile used by the explainable matching engine.</p>
+            <p>Each response improves the structured profile used by the matching engine.</p>
             <div className="v2-question-list">
               {questions.map((question,index)=>(
                 <div className={index<answers.length ? "done" : ""} key={question}>
@@ -134,7 +207,10 @@ export function TeamGuideInterview() {
             <h3>Preferred roles</h3>
             <div className="chips">{analysis.preferredRoles.map((role)=><span className="chip" key={role}>{role}</span>)}</div>
             <div className="notice"><strong>Recommended environment:</strong> {analysis.recommendedEnvironment}</div>
-            <div className="actions"><Link className="button" href="/matches">Find matches</Link></div>
+            <div className="actions">
+              <Link className="button" href="/team-canvas">Open Team Canvas</Link>
+              <Link className="button secondary" href="/matches">Find matches</Link>
+            </div>
           </>
         )}
       </aside>

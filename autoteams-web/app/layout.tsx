@@ -19,6 +19,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <script
+          id="autoteams-theme-script"
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const raw = localStorage.getItem("autoteams-ui-preferences");
+                const saved = raw ? JSON.parse(raw) : null;
+                document.documentElement.dataset.theme = saved?.appearance || "dark";
+                document.documentElement.dataset.compact = saved?.compactMode ? "true" : "false";
+              } catch {
+                document.documentElement.dataset.theme = "dark";
+              }
+            `,
+          }}
+        />
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
