@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { AccountNav } from "./AccountNav";
 
 export function RobotLogo() {
   return (
@@ -18,15 +19,19 @@ export function Navbar() {
   return (
     <header className="site-header">
       <div className="container nav">
-        <Link href="/" className="brand"><RobotLogo />AutoTeams</Link>
+        <Link href="/" className="brand">
+          <RobotLogo />
+          AutoTeams
+        </Link>
         <nav className="nav-links">
           <Link href="/team-engine">AI Team Engine</Link>
           <Link href="/solutions">Solutions</Link>
           <Link href="/trust-centre">Trust Centre</Link>
           <Link href="/why-this-team">Why This Team?</Link>
-          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/intelligence">Intelligence</Link>
+          <Link href="/matches">Matches</Link>
         </nav>
-        <Link className="button small" href="/register">Build a Team</Link>
+        <AccountNav />
       </div>
     </header>
   );
@@ -37,8 +42,13 @@ export function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div>
-          <div className="brand"><RobotLogo />AutoTeams</div>
-          <p className="muted">AI-powered team formation for life, work and community.</p>
+          <div className="brand">
+            <RobotLogo />
+            AutoTeams
+          </div>
+          <p className="muted">
+            AI-powered team formation for life, work and community.
+          </p>
         </div>
         <div className="footer-links">
           <Link href="/team-engine">AI Team Engine</Link>
@@ -46,6 +56,8 @@ export function Footer() {
           <Link href="/trust-centre">Trust Centre</Link>
           <Link href="/why-this-team">Why This Team?</Link>
           <Link href="/dashboard">Dashboard</Link>
+          <Link href="/intelligence">Intelligence</Link>
+          <Link href="/matches">Matches</Link>
         </div>
       </div>
     </footer>
@@ -53,10 +65,24 @@ export function Footer() {
 }
 
 export function PageShell({ children }: { children: ReactNode }) {
-  return <><Navbar /><main>{children}</main><Footer /></>;
+  return (
+    <>
+      <Navbar />
+      <main>{children}</main>
+      <Footer />
+    </>
+  );
 }
 
-export function PageHero({ eyebrow, title, text }: { eyebrow: string; title: string; text: string }) {
+export function PageHero({
+  eyebrow,
+  title,
+  text,
+}: {
+  eyebrow: string;
+  title: string;
+  text: string;
+}) {
   return (
     <section className="page-hero">
       <div className="container">

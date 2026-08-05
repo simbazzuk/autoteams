@@ -1,0 +1,5 @@
+cd C:\Users\sukyp\tech\autoteams\autoteams-web
+npm install firebase
+npm run dev
+
+npm install @google/genai

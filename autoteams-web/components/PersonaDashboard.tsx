@@ -1,60 +1,65 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-
-export type StoredPersona = {
-  id: string;
-  accountName: string;
-  city: string;
-  teamType: string;
-  values: string[];
-  createdAt: string;
-};
-
-const STORAGE_KEY = "autoteams-personas";
-
-export function loadPersonas(): StoredPersona[] {
-  if (typeof window === "undefined") return [];
-
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-
-    const parsed: unknown = JSON.parse(raw);
-    return Array.isArray(parsed) ? (parsed as StoredPersona[]) : [];
-  } catch {
-    return [];
-  }
-}
-
-export function savePersona(persona: StoredPersona): void {
-  const existing = loadPersonas();
-  const updated = [persona, ...existing.filter((item) => item.id !== persona.id)];
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-}
-
-export function deletePersona(id: string): void {
-  const updated = loadPersonas().filter((persona) => persona.id !== id);
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-}
+import { useCallback, useEffect, useState } from "react";
+import { useAuth } from "./AuthProvider";
+import {
+  TeamPersona,
+  listPersonas,
+  removePersona,
+} from "@/lib/personas";
 
 export function PersonaDashboard() {
-  const [personas, setPersonas] = useState<StoredPersona[]>([]);
-  const [loaded, setLoaded] = useState(false);
+  const { user } = useAuth();
+  const [personas, setPersonas] = useState<TeamPersona[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  const refresh = useCallback(async () => {
+    if (!user) return;
+
+    setLoading(true);
+    setError("");
+    try {
+      setPersonas(await listPersonas(user.uid));
+    } catch (caught) {
+      console.error(caught);
+      setError("Unable to load your Team Personas.");
+    } finally {
+      setLoading(false);
+    }
+  }, [user]);
 
   useEffect(() => {
-    setPersonas(loadPersonas());
-    setLoaded(true);
-  }, []);
+    void refresh();
+  }, [refresh]);
 
-  function removePersona(id: string) {
-    deletePersona(id);
-    setPersonas(loadPersonas());
+  async function deleteItem(id: string) {
+    if (!user || !window.confirm("Delete this Team Persona?")) return;
+
+    try {
+      await removePersona(user.uid, id);
+      await refresh();
+    } catch (caught) {
+      console.error(caught);
+      setError("Unable to delete the Team Persona.");
+    }
   }
 
-  if (!loaded) {
+  if (loading) {
     return <div className="card">Loading your Team Personas…</div>;
+  }
+
+  if (error) {
+    return (
+      <div className="card">
+        <h3>Something went wrong</h3>
+        <p>{error}</p>
+        <button className="button" onClick={() => void refresh()} type="button">
+          Try again
+        </button>
+      </div>
+    );
   }
 
   if (personas.length === 0) {
@@ -79,10 +84,13 @@ export function PersonaDashboard() {
     <>
       <div className="dashboard-toolbar">
         <div>
-          <span className="eyebrow">Saved locally</span>
-          <h2>{personas.length} Team Persona{personas.length === 1 ? "" : "s"}</h2>
+          <span className="eyebrow">Stored securely</span>
+          <h2>
+            {personas.length} Team Persona
+            {personas.length === 1 ? "" : "s"}
+          </h2>
           <p className="lead">
-            These profiles are currently stored only in this browser.
+            Signed in as {user?.email || user?.displayName}.
           </p>
         </div>
         <Link className="button" href="/register">
@@ -117,29 +125,35 @@ export function PersonaDashboard() {
             </div>
 
             <div className="persona-card-meta">
-              Created {new Date(persona.createdAt).toLocaleDateString("en-GB")}
+              Created{" "}
+              {persona.createdAt
+                ? persona.createdAt.toLocaleDateString("en-GB")
+                : "recently"}
             </div>
 
             <div className="persona-card-actions">
-              <Link className="button small" href="/why-this-team">
+              <Link
+                className="button secondary small"
+                href={`/personas/${persona.id}/edit`}
+              >
+                Edit
+              </Link>
+              <Link className="button secondary small" href="/intelligence">
+                Team DNA
+              </Link>
+              <Link className="button small" href="/matches">
                 Find My Team
               </Link>
               <button
-                className="button secondary small"
+                className="button danger small"
+                onClick={() => void deleteItem(persona.id)}
                 type="button"
-                onClick={() => removePersona(persona.id)}
               >
                 Delete
               </button>
             </div>
           </article>
         ))}
-      </div>
-
-      <div className="notice">
-        <strong>Prototype storage:</strong> clearing browser data or using a
-        different device will remove these personas. A future version will save
-        them securely against an authenticated account.
       </div>
     </>
   );
