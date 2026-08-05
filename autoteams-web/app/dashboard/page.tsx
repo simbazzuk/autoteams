@@ -1,7 +1,7 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { SmartDashboard } from "@/components/dashboard/SmartDashboard";
+import { V10Dashboard } from "@/components/dashboard/V10Dashboard";
 
 export default function DashboardPage() {
-  return <PageShell><ProtectedRoute><section className="section dashboard-page"><div className="container"><SmartDashboard /></div></section></ProtectedRoute></PageShell>;
+  return <PageShell><ProtectedRoute><V10Dashboard /></ProtectedRoute></PageShell>;
 }

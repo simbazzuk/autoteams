@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { AccountNav } from "./AccountNav";
+import { AccountMenu } from "./AccountMenu";
 
 export function RobotLogo() {
   return (
@@ -15,25 +15,42 @@ export function RobotLogo() {
   );
 }
 
+const primaryLinks = [
+  { href: "/dashboard", label: "Dashboard", icon: "⌂" },
+  { href: "/teamguide", label: "TeamGuide", icon: "✦" },
+  { href: "/team-designer", label: "Team Designer", icon: "◎" },
+  { href: "/matches", label: "Matches", icon: "◉" },
+  { href: "/intelligence", label: "Intelligence", icon: "◌" },
+];
+
 export function Navbar() {
   return (
     <header className="site-header">
-      <div className="container nav">
-        <Link href="/" className="brand">
+      <div className="container product-nav">
+        <Link href="/" className="brand product-brand">
           <RobotLogo />
-          AutoTeams
+          <span>AutoTeams</span>
+          <small>v1.0</small>
         </Link>
-        <nav className="nav-links">
-          <Link href="/team-engine">AI Team Engine</Link>
-          <Link href="/solutions">Solutions</Link>
-          <Link href="/trust-centre">Trust Centre</Link>
-          <Link href="/why-this-team">Why This Team?</Link>
-          <Link href="/intelligence">Intelligence</Link>
-          <Link href="/matches">Matches</Link>
-          <Link href="/teamguide">TeamGuide</Link>
-          <Link href="/team-designer">Team Designer</Link>
+        <nav className="product-nav-links" aria-label="Primary navigation">
+          {primaryLinks.map((link) => (
+            <Link href={link.href} key={link.href}>
+              <span aria-hidden="true">{link.icon}</span>{link.label}
+            </Link>
+          ))}
         </nav>
-        <AccountNav />
+        <div className="product-nav-actions">
+          <details className="nav-dropdown">
+            <summary>Solutions <span>⌄</span></summary>
+            <div className="nav-dropdown-menu">
+              <Link href="/solutions">All solutions</Link>
+              <Link href="/team-engine">AI Team Engine</Link>
+              <Link href="/why-this-team">Why this team?</Link>
+              <Link href="/trust-centre">Trust Centre</Link>
+            </div>
+          </details>
+          <AccountMenu />
+        </div>
       </div>
     </header>
   );
@@ -44,22 +61,14 @@ export function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div>
-          <div className="brand">
-            <RobotLogo />
-            AutoTeams
-          </div>
-          <p className="muted">
-            AI-powered team formation for life, work and community.
-          </p>
+          <div className="brand"><RobotLogo /><span>AutoTeams</span></div>
+          <p className="muted">AI-powered team intelligence for life, work and community.</p>
         </div>
         <div className="footer-links">
-          <Link href="/team-engine">AI Team Engine</Link>
-          <Link href="/solutions">Solutions</Link>
-          <Link href="/trust-centre">Trust Centre</Link>
-          <Link href="/why-this-team">Why This Team?</Link>
           <Link href="/dashboard">Dashboard</Link>
-          <Link href="/intelligence">Intelligence</Link>
-          <Link href="/matches">Matches</Link>
+          <Link href="/teamguide">TeamGuide</Link>
+          <Link href="/team-designer">Team Designer</Link>
+          <Link href="/trust-centre">Trust Centre</Link>
         </div>
       </div>
     </footer>
@@ -67,31 +76,9 @@ export function Footer() {
 }
 
 export function PageShell({ children }: { children: ReactNode }) {
-  return (
-    <>
-      <Navbar />
-      <main>{children}</main>
-      <Footer />
-    </>
-  );
+  return <><Navbar /><main>{children}</main><Footer /></>;
 }
 
-export function PageHero({
-  eyebrow,
-  title,
-  text,
-}: {
-  eyebrow: string;
-  title: string;
-  text: string;
-}) {
-  return (
-    <section className="page-hero">
-      <div className="container">
-        <span className="eyebrow">{eyebrow}</span>
-        <h1>{title}</h1>
-        <p>{text}</p>
-      </div>
-    </section>
-  );
+export function PageHero({ eyebrow, title, text }: { eyebrow: string; title: string; text: string }) {
+  return <section className="page-hero"><div className="container"><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{text}</p></div></section>;
 }

@@ -210,3 +210,15 @@ New features:
 - Updated homepage actions and navigation
 
 No additional npm packages are required beyond v4.
+
+
+# AutoTeams v1.0
+
+This release introduces the approved polished SaaS interface:
+
+- Aligned pill navigation
+- Profile dropdown replacing the oversized Sign out button
+- Product dashboard with sidebar
+- Hero, metrics, activity, Team DNA, TeamGuide and quick-action panels
+- Existing Firebase, Firestore and Gemini functionality preserved
+- No additional packages required
