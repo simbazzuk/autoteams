@@ -1,15 +1,17 @@
-export type UiPreferences = {
-  appearance: "dark" | "dark";
+export type Appearance = "light" | "dark";
+
+export interface UiPreferences {
+  appearance: Appearance;
   compactMode: boolean;
   emailNotifications: boolean;
   matchNotifications: boolean;
   aiInsightNotifications: boolean;
-};
+}
 
 const STORAGE_KEY = "autoteams-ui-preferences";
 
 export const defaultPreferences: UiPreferences = {
-  appearance: "light",
+  appearance: "dark", // Default theme
   compactMode: false,
   emailNotifications: true,
   matchNotifications: true,
@@ -17,18 +19,37 @@ export const defaultPreferences: UiPreferences = {
 };
 
 export function loadPreferences(): UiPreferences {
-  if (typeof window === "undefined") return defaultPreferences;
+  if (typeof window === "undefined") {
+    return defaultPreferences;
+  }
+
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return defaultPreferences;
-    return { ...defaultPreferences, ...JSON.parse(raw) };
+    const stored = localStorage.getItem(STORAGE_KEY);
+
+    if (!stored) {
+      return defaultPreferences;
+    }
+
+    const parsed = JSON.parse(stored) as Partial<UiPreferences>;
+
+    return {
+      ...defaultPreferences,
+      ...parsed,
+      appearance:
+        parsed.appearance === "light" || parsed.appearance === "dark"
+          ? parsed.appearance
+          : defaultPreferences.appearance,
+    };
   } catch {
     return defaultPreferences;
   }
 }
 
 export function savePreferences(preferences: UiPreferences) {
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
+
   document.documentElement.dataset.theme = preferences.appearance;
-  document.documentElement.dataset.compact = preferences.compactMode ? "true" : "false";
+  document.documentElement.dataset.compact = preferences.compactMode
+    ? "true"
+    : "false";
 }
