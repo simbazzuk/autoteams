@@ -1,137 +1,157 @@
 import Link from "next/link";
 import { PageShell } from "@/components/Site";
 import { AtlasOrb } from "@/components/AtlasOrb";
+import { SectionHeader } from "@/components/ui";
 
 const capabilities = [
   {
     icon: "✦",
-    title: "Understand people",
-    text: "Atlas turns natural conversation into an explainable Team DNA profile.",
+    title: "Create Team DNA",
+    text: "Discover how people communicate, collaborate, lead and contribute.",
+    href: "/team-dna",
   },
   {
     icon: "◎",
-    title: "Build complete teams",
-    text: "Define the purpose, roles and constraints before creating the composition.",
+    title: "Build Better Teams",
+    text: "Assemble balanced teams with explainable Atlas recommendations.",
+    href: "/team-builder",
   },
   {
     icon: "◫",
-    title: "Refine on a canvas",
-    text: "Add or remove people and see the team assessment update immediately.",
+    title: "Visualise on Team Canvas",
+    text: "Refine team compositions and review live balance indicators.",
+    href: "/team-canvas",
   },
   {
     icon: "◇",
-    title: "Explain every outcome",
-    text: "Show the strengths, risks and reasons behind each recommendation.",
+    title: "Understand Team Insights",
+    text: "Explore strengths, gaps, risks and collaboration opportunities.",
+    href: "/insights",
   },
 ];
 
 export default function HomePage() {
   return (
     <PageShell>
-      <section className="v7-home-hero">
-        <div className="container v7-home-layout">
-          <div className="v7-home-copy">
-            <div className="v7-atlas-kicker">
+      <section className="commercial-home-hero">
+        <div className="container commercial-home-layout">
+          <div className="commercial-home-copy">
+            <div className="commercial-atlas-label">
               <AtlasOrb size="md" />
               <span>
-                <strong>Meet Atlas</strong>
+                <strong>Atlas</strong>
                 <small>Your AI Team Strategist</small>
               </span>
             </div>
 
             <h1>
               Build Teams That Work
-              <span>Every Recommendation Explained</span>
+              <span>Powered by Atlas</span>
             </h1>
 
-            <p>
-              AutoTeams combines Atlas, explainable Team DNA and collaborative
-              design to help organisations and communities create balanced,
-              high-performing teams with confidence.
+            <p className="commercial-hero-line">
+              Explainable AI for better team decisions.
+            </p>
+
+            <p className="commercial-hero-support">
+              Helping organisations build stronger teams through explainable AI.
+              Create Team DNA, compare people, build balanced teams and understand
+              the reasoning behind every recommendation.
             </p>
 
             <div className="actions">
-              <Link className="button" href="/atlas">
-                Start with Atlas
-              </Link>
-              <Link className="button secondary" href="/team-canvas">
-                Explore Team Canvas
-              </Link>
+              <Link className="button" href="/atlas">Start with Atlas</Link>
+              <Link className="button secondary" href="/team-canvas">Explore Team Canvas</Link>
             </div>
 
-            <div className="v7-trust-points">
-              <span>Explainable recommendations</span>
-              <span>Human decisions retained</span>
-              <span>Privacy-aware design</span>
+            <div className="commercial-proof-row">
+              <span>✓ Explainable recommendations</span>
+              <span>✓ Human decisions retained</span>
+              <span>✓ Privacy-aware design</span>
             </div>
           </div>
 
-          <div className="v7-atlas-preview">
-            <div className="v7-orb-stage">
-              <AtlasOrb size="xl" state="idle" />
-              <div className="v7-orb-copy">
-                <span className="eyebrow">Atlas is ready</span>
-                <h2>Your AI Team Strategist</h2>
-                <p>
-                  Create Team DNA, build balanced teams and understand every
-                  recommendation.
-                </p>
-              </div>
-            </div>
-
-            <div className="v7-preview-actions">
-              <Link href="/atlas">Create Team DNA <span>→</span></Link>
-              <Link href="/team-builder">Build a team <span>→</span></Link>
-              <Link href="/matches">Compare people <span>→</span></Link>
-            </div>
-
-            <div className="v7-preview-insight">
-              <span>✦</span>
+          <div className="commercial-atlas-showcase">
+            <div className="commercial-atlas-orb-stage">
+              <AtlasOrb size="xl" />
+              <span className="eyebrow">Atlas is ready</span>
+              <h2>Your AI Team Strategist</h2>
               <p>
-                <strong>Atlas suggestion:</strong> add a creative specialist
-                when innovation becomes the main priority.
+                Create Team DNA, build balanced teams and review every recommendation
+                before making a decision.
               </p>
+            </div>
+
+            <div className="commercial-atlas-actions">
+              <Link href="/atlas"><span>✦</span><strong>Create Team DNA</strong><em>→</em></Link>
+              <Link href="/team-builder"><span>◎</span><strong>Build a Team</strong><em>→</em></Link>
+              <Link href="/matches"><span>♡</span><strong>Compare People</strong><em>→</em></Link>
+            </div>
+
+            <div className="commercial-atlas-insight">
+              <AtlasOrb size="sm" state="complete" />
+              <p><strong>Atlas recommendation:</strong> add a creative specialist when innovation becomes the primary outcome.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="v7-capabilities">
-        <div className="container">
-          <div className="v7-section-heading">
-            <span className="eyebrow">One connected workflow</span>
-            <h2>Move from individual insight to a complete team.</h2>
-            <p>
-              Atlas, Team DNA, Team Builder and Team Canvas all use the same
-              profile and explainability model.
-            </p>
-          </div>
 
-          <div className="v7-capability-grid">
-            {capabilities.map((capability) => (
-              <article key={capability.title}>
-                <span>{capability.icon}</span>
-                <h3>{capability.title}</h3>
-                <p>{capability.text}</p>
-              </article>
+      <section className="v8-early-access">
+        <div className="container">
+          <div>
+            <span>EARLY ACCESS</span>
+            <strong>Join our Founding Members programme</strong>
+            <p>Receive Pro features free during Beta and help shape the future of AutoTeams.</p>
+          </div>
+          <Link className="button secondary" href="/founding-members">Learn more</Link>
+        </div>
+      </section>
+
+      <section className="commercial-capability-section">
+        <div className="container">
+          <SectionHeader
+            eyebrow="One connected product"
+            title="Move from individual insight to a complete team."
+            text="Atlas, Team DNA, Team Builder, Team Canvas, Matches and Insights all use the same explainable profile model."
+          />
+
+          <div className="commercial-capability-grid">
+            {capabilities.map((item) => (
+              <Link href={item.href} key={item.title}>
+                <span>{item.icon}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+                <em>Explore →</em>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="v7-home-cta">
+      <section className="commercial-trust-strip">
+        <div className="container">
+          <div>
+            <span className="eyebrow">Designed for responsible decisions</span>
+            <h2>AI should support judgement, not replace it.</h2>
+          </div>
+          <div>
+            <span>Privacy by design</span>
+            <span>Transparent scoring</span>
+            <span>Human review</span>
+            <span>Configurable trust</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="commercial-home-cta">
         <div className="container">
           <div>
             <span className="eyebrow">Start with one conversation</span>
             <h2>Let Atlas create your first Team DNA.</h2>
-            <p>
-              A short guided conversation is enough to begin building an
-              explainable collaboration profile.
-            </p>
+            <p>A short guided conversation is enough to begin building an explainable collaboration profile.</p>
           </div>
-          <Link className="button" href="/atlas">
-            Meet Atlas
-          </Link>
+          <Link className="button" href="/atlas">Meet Atlas</Link>
         </div>
       </section>
     </PageShell>

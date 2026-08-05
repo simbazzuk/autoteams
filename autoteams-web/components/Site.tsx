@@ -27,6 +27,7 @@ const primaryLinks = [
   { href: "/team-canvas", label: "Team Canvas" },
   { href: "/matches", label: "Matches" },
   { href: "/insights", label: "Insights" },
+  { href: "/founding-members", label: "Founding Members" },
 ];
 
 function isActivePath(pathname: string, href: string): boolean {
@@ -41,8 +42,11 @@ export function Navbar() {
       <div className="container product-nav atlas-product-nav">
         <Link href="/" className="brand product-brand">
           <RobotLogo />
-          <span>AutoTeams</span>
-          <small>v7.0</small>
+          <span className="commercial-brand-copy">
+            <strong>AutoTeams</strong>
+            <em>AI Team Intelligence</em>
+          </span>
+          <small>v8.0</small>
         </Link>
 
         <nav className="product-nav-links atlas-nav-links" aria-label="Primary navigation">
@@ -92,7 +96,7 @@ export function Footer() {
             <span>AutoTeams</span>
           </div>
           <p className="muted">
-            Professional AI team intelligence powered by Atlas.
+            Helping organisations build stronger teams through explainable AI.
           </p>
         </div>
 
@@ -101,6 +105,9 @@ export function Footer() {
           <Link href="/team-dna">Team DNA</Link>
           <Link href="/team-builder">Team Builder</Link>
           <Link href="/team-canvas">Team Canvas</Link>
+          <Link href="/founding-members">Founding Members</Link>
+          <Link href="/roadmap">Roadmap</Link>
+          <Link href="/about">About</Link>
         </div>
       </div>
     </footer>

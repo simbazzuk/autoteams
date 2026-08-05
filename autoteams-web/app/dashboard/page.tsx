@@ -1,7 +1,13 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { V10Dashboard } from "@/components/dashboard/V10Dashboard";
+import { CommercialDashboard } from "@/components/dashboard/CommercialDashboard";
 
 export default function DashboardPage() {
-  return <PageShell><ProtectedRoute><V10Dashboard /></ProtectedRoute></PageShell>;
+  return (
+    <PageShell>
+      <ProtectedRoute>
+        <CommercialDashboard />
+      </ProtectedRoute>
+    </PageShell>
+  );
 }

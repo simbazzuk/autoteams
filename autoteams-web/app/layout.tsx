@@ -3,8 +3,8 @@ import "./globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
-  title: "AutoTeams",
-  description: "Explainable AI team intelligence powered by Atlas",
+  title: "AutoTeams | AI Team Intelligence",
+  description: "Build stronger teams with Atlas, Team DNA and explainable AI recommendations.",
 };
 
 const themeScript = `
