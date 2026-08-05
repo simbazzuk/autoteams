@@ -222,3 +222,47 @@ This release introduces the approved polished SaaS interface:
 - Hero, metrics, activity, Team DNA, TeamGuide and quick-action panels
 - Existing Firebase, Firestore and Gemini functionality preserved
 - No additional packages required
+
+
+# AutoTeams v2.0
+
+Cohesive product-design release.
+
+## Redesigned experiences
+
+- Homepage
+- Dashboard typography and hierarchy
+- TeamGuide conversational interface
+- Team Designer page framing and visual hierarchy
+- Matches
+- Intelligence
+- Trust Centre
+
+## Design system
+
+- Larger typography
+- Shared spacing, colour and card system
+- Consistent product-page hero
+- Stronger mobile and tablet layouts
+- Hover and transition polish
+- Existing Firebase, Firestore and Gemini behaviour retained
+
+No additional npm packages are required.
+
+
+# AutoTeams v2.1
+
+Readability and workflow refinement release.
+
+## Improvements
+
+- Larger dashboard labels and supporting text
+- Improved Recent Activity and Team DNA readability
+- Lighter Team Designer typography
+- Lighter Intelligence form and result typography
+- Styled form controls replacing browser-default presentation
+- Reduced empty-state heading dominance
+- Improved mobile workflow typography
+
+Firebase, Firestore and Gemini configuration are unchanged.
+No additional npm packages are required.

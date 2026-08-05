@@ -10,7 +10,7 @@ const questions = [
   "What brings out your best contribution?",
   "What makes someone a great teammate for you?",
   "What tends to frustrate you in a group?",
-  "Describe the best team or group experience you have had.",
+  "Describe the best team experience you have had.",
 ];
 
 export function TeamGuideInterview() {
@@ -55,34 +55,48 @@ export function TeamGuideInterview() {
   }
 
   return (
-    <div className="teamguide-layout">
-      <section className="card teamguide-chat">
-        <div className="teamguide-header">
-          <span className="teamguide-avatar">🤖</span>
+    <div className="v2-teamguide-shell">
+      <section className="v2-chat-panel">
+        <div className="v2-chat-header">
+          <div className="v2-guide-avatar">✦</div>
           <div><strong>TeamGuide</strong><small>AI onboarding assistant</small></div>
-          <span className="badge">Gemini enabled</span>
+          <span className="badge">Gemini live</span>
         </div>
-        <div className="teamguide-progress"><span style={{ width: `${Math.min(100,(current/questions.length)*100)}%` }} /></div>
 
-        <div className="conversation">
-          <div className="message assistant-message">Hi, I’m TeamGuide. I’ll ask a few questions to understand how you contribute to teams.</div>
-          {answers.map((answer,index) => (
-            <div className="message-group" key={index}>
-              <div className="message assistant-message">{questions[index]}</div>
-              <div className="message user-message">{answer}</div>
+        <div className="v2-chat-progress">
+          <span style={{ width: `${Math.min(100,(current/questions.length)*100)}%` }} />
+        </div>
+
+        <div className="v2-conversation">
+          <div className="v2-message assistant">
+            Hi, I’m TeamGuide. I’ll ask five questions to understand how you
+            contribute to teams. You can review the result before using it.
+          </div>
+
+          {answers.map((answer,index)=>(
+            <div className="v2-thread" key={index}>
+              <div className="v2-message assistant">{questions[index]}</div>
+              <div className="v2-message user">{answer}</div>
             </div>
           ))}
-          {!complete && <div className="message assistant-message">{questions[current]}</div>}
-          {complete && !analysis && <div className="message assistant-message">Thank you. I have enough information to create your Team DNA.</div>}
+
+          {!complete && <div className="v2-message assistant">{questions[current]}</div>}
+          {complete && !analysis && <div className="v2-message assistant">Thank you. I have enough information to create your Team DNA.</div>}
         </div>
 
         {!complete ? (
-          <div className="teamguide-input">
-            <textarea placeholder="Type your answer…" value={draft} onChange={(event)=>setDraft(event.target.value)} />
-            <button className="button" disabled={draft.trim().length<5} onClick={submitAnswer} type="button">Send answer</button>
+          <div className="v2-chat-composer">
+            <textarea
+              placeholder="Type your answer here…"
+              value={draft}
+              onChange={(event)=>setDraft(event.target.value)}
+            />
+            <button className="button" disabled={draft.trim().length<5} onClick={submitAnswer} type="button">
+              Send
+            </button>
           </div>
         ) : !analysis ? (
-          <div className="teamguide-complete">
+          <div className="v2-generate-row">
             <label>Team context
               <select value={teamType} onChange={(event)=>setTeamType(event.target.value)}>
                 {["Friendship","Business","Sports","Education","Events","Community"].map((type)=><option key={type}>{type}</option>)}
@@ -90,22 +104,23 @@ export function TeamGuideInterview() {
             </label>
             {error && <div className="form-error">{error}</div>}
             <button className="button" disabled={working} onClick={()=>void createDna()} type="button">
-              {working ? "Creating Team DNA…" : "Create my Team DNA"}
+              {working ? "Creating Team DNA…" : "Create Team DNA"}
             </button>
           </div>
         ) : null}
       </section>
 
-      <aside className="card teamguide-profile">
+      <aside className="v2-intelligence-preview">
         {!analysis ? (
           <>
             <span className="eyebrow">Live profile preview</span>
-            <h2>Your Team DNA will appear here.</h2>
-            <p>TeamGuide combines your answers into a structured profile without inferring sensitive personal characteristics.</p>
-            <div className="interview-checklist">
+            <h2>Your Team DNA will build as you answer.</h2>
+            <p>Each answer improves the structured profile used by the explainable matching engine.</p>
+            <div className="v2-question-list">
               {questions.map((question,index)=>(
                 <div className={index<answers.length ? "done" : ""} key={question}>
-                  <span>{index<answers.length ? "✓" : index+1}</span><small>{question}</small>
+                  <span>{index<answers.length ? "✓" : index+1}</span>
+                  <small>{question}</small>
                 </div>
               ))}
             </div>
@@ -119,7 +134,7 @@ export function TeamGuideInterview() {
             <h3>Preferred roles</h3>
             <div className="chips">{analysis.preferredRoles.map((role)=><span className="chip" key={role}>{role}</span>)}</div>
             <div className="notice"><strong>Recommended environment:</strong> {analysis.recommendedEnvironment}</div>
-            <div className="actions"><Link className="button" href="/matches">Find matching people</Link></div>
+            <div className="actions"><Link className="button" href="/matches">Find matches</Link></div>
           </>
         )}
       </aside>

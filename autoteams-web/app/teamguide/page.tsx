@@ -1,7 +1,20 @@
-import { PageHero, PageShell } from "@/components/Site";
+import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { ProductPage } from "@/components/ProductPage";
 import { TeamGuideInterview } from "@/components/teamguide/TeamGuideInterview";
 
 export default function TeamGuidePage() {
-  return <PageShell><ProtectedRoute><PageHero eyebrow="Conversational onboarding" title="Meet TeamGuide." text="A guided AI interview that turns natural conversation into an explainable Team DNA profile." /><section className="section tight"><div className="container"><TeamGuideInterview /></div></section></ProtectedRoute></PageShell>;
+  return (
+    <PageShell>
+      <ProtectedRoute>
+        <ProductPage
+          eyebrow="Conversational onboarding"
+          title="Meet TeamGuide."
+          text="A guided AI interview that turns natural conversation into an explainable collaboration profile."
+        >
+          <TeamGuideInterview />
+        </ProductPage>
+      </ProtectedRoute>
+    </PageShell>
+  );
 }

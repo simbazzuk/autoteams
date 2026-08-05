@@ -1,21 +1,19 @@
-import { PageHero, PageShell } from "@/components/Site";
+import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { ProductPage } from "@/components/ProductPage";
 import { MatchExplorer } from "@/components/intelligence/MatchExplorer";
 
 export default function MatchesPage() {
   return (
     <PageShell>
       <ProtectedRoute>
-        <PageHero
+        <ProductPage
           eyebrow="Explainable matching"
-          title="Build and understand a recommended team."
-          text="AutoTeams combines goal alignment, availability, interests, location, Team DNA balance and trust into a transparent score."
-        />
-        <section className="section tight">
-          <div className="container">
-            <MatchExplorer />
-          </div>
-        </section>
+          title="Discover people who fit the purpose."
+          text="Compare goal alignment, availability, shared interests, location, Team DNA and trust in one transparent score."
+        >
+          <MatchExplorer />
+        </ProductPage>
       </ProtectedRoute>
     </PageShell>
   );

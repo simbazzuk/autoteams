@@ -1,29 +1,70 @@
-import { PageHero, PageShell } from "@/components/Site";
+import { PageShell } from "@/components/Site";
+import { ProductPage } from "@/components/ProductPage";
+
+const principles = [
+  ["Privacy by design","Collect only the information needed for a clear team purpose.","🔐"],
+  ["Explainable AI","Show the signals, scores and reasons behind recommendations.","🧠"],
+  ["Human control","Users and authorised reviewers can accept, adjust or reject outcomes.","👤"],
+  ["Configurable trust","Apply the appropriate level of verification for each use case.","✓"],
+];
+
+const levels = [
+  ["Level 1","Email authentication","Internal pilots and lower-risk groups"],
+  ["Level 2","Email and phone","Events, clubs and local communities"],
+  ["Level 3","Verified identity","Higher-trust real-world meetups"],
+  ["Level 4","Enterprise identity","Entra ID, Google Workspace or Okta"],
+];
 
 export default function TrustCentrePage() {
-  const levels = [
-    ["📧","Level 1 — Basic","Email verification for internal or lower-risk groups."],
-    ["📱","Level 2 — Trusted","Email and phone verification for events and clubs."],
-    ["🪪","Level 3 — Verified Identity","Government ID, selfie and liveness for real-world meetups."],
-    ["🏢","Level 4 — Enterprise","Corporate identity through Entra ID, Google Workspace or Okta."],
-  ];
-
   return (
     <PageShell>
-      <PageHero eyebrow="AutoTeams Trust Centre" title="Privacy and trust are part of the platform." text="Understand how AutoTeams protects identity, configures verification and explains AI-powered recommendations." />
-      <section className="section tight"><div className="container">
-        <div className="section-heading"><span className="eyebrow">Privacy by design</span><h2>Your identity and matching profile are different.</h2><p>The AI does not need unnecessary identifiers to recommend a strong team.</p></div>
-        <div className="architecture">
-          <div className="card center"><span className="icon">🪪</span><h3>Identity Service</h3><p>Name, email and verification result</p></div><span>→</span>
-          <div className="card center"><span className="icon">🔐</span><h3>Pseudonymisation</h3><p>Internal reference replaces identity</p></div><span>→</span>
-          <div className="card center"><span className="icon">🧠</span><h3>Team Intelligence</h3><p>Relevant traits, skills and constraints</p></div>
+      <ProductPage
+        eyebrow="AutoTeams Trust Centre"
+        title="Trust is part of the product."
+        text="See how AutoTeams approaches privacy, verification, AI explainability and responsible team recommendations."
+      >
+        <div className="v2-trust-grid">
+          {principles.map(([title,text,icon])=>(
+            <article className="v2-trust-card" key={title}>
+              <span>{icon}</span><h3>{title}</h3><p>{text}</p>
+            </article>
+          ))}
         </div>
-      </div></section>
-      <section className="section"><div className="container">
-        <div className="section-heading"><span className="eyebrow">Configurable Trust</span><h2>Choose the appropriate level of assurance.</h2></div>
-        <div className="two-grid">{levels.map(([i,t,x]) => <article className="card" key={t}><span className="icon">{i}</span><h3>{t}</h3><p>{x}</p></article>)}</div>
-        <div className="notice">This prototype describes intended product principles. It is not a final legal privacy notice or security certification.</div>
-      </div></section>
+
+        <section className="v2-trust-architecture">
+          <div>
+            <span className="eyebrow">Privacy architecture</span>
+            <h2>Separate identity from matching wherever possible.</h2>
+            <p>
+              The matching engine should use relevant traits, goals and constraints
+              without exposing unnecessary identity data.
+            </p>
+          </div>
+          <div className="v2-architecture-flow">
+            <div><span>1</span><strong>Identity service</strong><small>Name, email and verification result</small></div>
+            <i>→</i>
+            <div><span>2</span><strong>Pseudonymised profile</strong><small>Internal reference and matching features</small></div>
+            <i>→</i>
+            <div><span>3</span><strong>Team intelligence</strong><small>Explainable matching and recommendations</small></div>
+          </div>
+        </section>
+
+        <section className="v2-trust-levels">
+          <div className="section-heading wide">
+            <span className="eyebrow">Configurable assurance</span>
+            <h2>Choose the right trust level.</h2>
+          </div>
+          <div className="v2-level-grid">
+            {levels.map(([level,title,text])=>(
+              <article key={level}><span>{level}</span><h3>{title}</h3><p>{text}</p></article>
+            ))}
+          </div>
+          <div className="notice">
+            This is an MVP product statement, not a final legal privacy notice,
+            security certification or psychological assessment.
+          </div>
+        </section>
+      </ProductPage>
     </PageShell>
   );
 }
