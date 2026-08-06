@@ -1,0 +1,523 @@
+.page {
+  min-height: 100vh;
+  color: #f5f7fb;
+  background: #0f1420;
+}
+
+.hero {
+  padding: 58px 0 48px;
+  background:
+    radial-gradient(circle at 82% 14%, rgba(79,142,247,.14), transparent 30%),
+    radial-gradient(circle at 12% 8%, rgba(118,95,255,.14), transparent 30%),
+    #0f1420;
+  border-bottom: 1px solid #232c3e;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0,1.2fr) minmax(330px,.8fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.hero h1 {
+  max-width: 880px;
+  margin: 10px 0 14px;
+  font-size: clamp(48px,5vw,68px);
+  line-height: 1.03;
+  letter-spacing: -.047em;
+}
+
+.hero p {
+  max-width: 820px;
+  margin: 0;
+  color: #9ca8bb;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.accountCard {
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 22px;
+  background: #171e2d;
+  border: 1px solid #2a3448;
+  border-radius: 20px;
+}
+
+.avatar {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg,#765fff,#4f8ef7);
+  border-radius: 17px;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.accountCard h2 {
+  margin: 6px 0 3px;
+  color: #f1f4f9;
+  font-size: 20px;
+}
+
+.accountCard p {
+  margin: 0 0 6px;
+  color: #8f9bb0;
+  font-size: 12px;
+}
+
+.verified,
+.unverified {
+  font-size: 11px;
+}
+
+.verified {
+  color: #55d69a;
+}
+
+.unverified {
+  color: #efba5c;
+}
+
+.body {
+  padding: 30px 0 80px;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 11px;
+}
+
+.summaryGrid article {
+  display: grid;
+  gap: 6px;
+  padding: 20px;
+  background: #171e2d;
+  border: 1px solid #2a3448;
+  border-radius: 16px;
+}
+
+.summaryGrid small {
+  color: #7f8ba0;
+  font-size: 13px;
+}
+
+.summaryGrid strong {
+  color: #f1f4f9;
+  font-size: 28px;
+}
+
+.profileSection {
+  padding: 24px;
+  margin-top: 18px;
+  background: #171e2d;
+  border: 1px solid #2a3448;
+  border-radius: 20px;
+}
+
+.sectionHeading {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.sectionHeading h2,
+.panelHeading h2 {
+  margin: 8px 0 6px;
+  color: #f1f4f9;
+  font-size: 29px;
+}
+
+.sectionHeading p {
+  max-width: 780px;
+  margin: 0;
+  color: #8f9bb0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.addPanel {
+  display: grid;
+  grid-template-columns: minmax(240px,.55fr) minmax(0,1.45fr);
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 18px;
+  background:
+    linear-gradient(135deg,rgba(118,95,255,.1),rgba(79,142,247,.06)),
+    #121827;
+  border: 1px solid #433a69;
+  border-radius: 17px;
+}
+
+.addPanel h3 {
+  margin: 8px 0 5px;
+  color: #f1f4f9;
+  font-size: 23px;
+}
+
+.addPanel p {
+  margin: 0;
+  color: #8f9bb0;
+  font-size: 12px;
+}
+
+.contextChoices {
+  display: grid;
+  gap: 8px;
+}
+
+.contextChoices button {
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  gap: 11px;
+  align-items: center;
+  padding: 11px;
+  color: inherit;
+  background: #171e2d;
+  border: 1px solid #293246;
+  border-radius: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.contextChoices button:hover {
+  border-color: #61568d;
+}
+
+.contextChoices button > div {
+  display: grid;
+  gap: 3px;
+}
+
+.contextChoices strong {
+  color: #e8ecf3;
+  font-size: 13px;
+}
+
+.contextChoices small {
+  color: #78859a;
+  font-size: 10px;
+}
+
+.contextChoices em {
+  color: #a99cff;
+  font-size: 11px;
+  font-style: normal;
+}
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 13px;
+}
+
+.profileCard {
+  display: grid;
+  min-height: 360px;
+  padding: 20px;
+  background: #121827;
+  border: 1px solid #293246;
+  border-radius: 17px;
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease;
+}
+
+.profileCard:hover {
+  transform: translateY(-2px);
+  border-color: #514979;
+  box-shadow: 0 22px 52px rgba(0,0,0,.2);
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: start;
+}
+
+.status {
+  padding: 6px 8px;
+  color: #a99cff;
+  background: #292442;
+  border-radius: 999px;
+  font-size: 10px;
+}
+
+.profileCard h3 {
+  margin: 18px 0 7px;
+  color: #f1f4f9;
+  font-size: 22px;
+}
+
+.profileCard > p {
+  margin: 0;
+  color: #8f9bb0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.health {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  padding: 12px;
+  margin: 17px 0 14px;
+  background: #171e2d;
+  border: 1px solid #293246;
+  border-radius: 11px;
+}
+
+.health > div {
+  display: grid;
+  gap: 3px;
+}
+
+.health small {
+  color: #6f7c91;
+  font-size: 10px;
+}
+
+.health strong {
+  color: #e8ecf3;
+  font-size: 12px;
+}
+
+.completion {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.completion > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.completion span {
+  color: #7f8ba0;
+  font-size: 11px;
+}
+
+.completion strong {
+  color: #e8ecf3;
+  font-size: 11px;
+}
+
+.bar {
+  height: 8px;
+  overflow: hidden;
+  background: #293246;
+  border-radius: 999px;
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg,#765fff,#4f8ef7);
+}
+
+.profileCard > .button {
+  align-self: end;
+}
+
+.secondaryActions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.secondaryActions button {
+  padding: 0;
+  color: #8491a5;
+  background: transparent;
+  border: 0;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.secondaryActions button:hover {
+  color: #b5aaff;
+}
+
+.blueIcon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg,#765fff,#5b7cfa 55%,#4f8ef7);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(79,142,247,.3);
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.empty {
+  display: grid;
+  justify-items: center;
+  padding: 44px;
+  text-align: center;
+  background: #121827;
+  border: 1px dashed #344058;
+  border-radius: 17px;
+}
+
+.empty h3 {
+  margin: 15px 0 7px;
+  color: #f1f4f9;
+  font-size: 25px;
+}
+
+.empty p {
+  margin: 0 0 17px;
+  color: #8f9bb0;
+}
+
+.twoColumns {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.panel {
+  padding: 23px;
+  background: #171e2d;
+  border: 1px solid #2a3448;
+  border-radius: 20px;
+}
+
+.panelHeading {
+  margin-bottom: 15px;
+}
+
+.membershipCard {
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  gap: 11px;
+  align-items: center;
+  padding: 14px;
+  background: #121827;
+  border: 1px solid #293246;
+  border-radius: 13px;
+}
+
+.membershipCard > div {
+  display: grid;
+  gap: 3px;
+}
+
+.membershipCard strong {
+  color: #e8ecf3;
+  font-size: 14px;
+}
+
+.membershipCard small {
+  color: #7f8ba0;
+  font-size: 11px;
+}
+
+.membershipCard em {
+  color: #b5aaff;
+  font-size: 11px;
+  font-style: normal;
+}
+
+.panelActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.panelEmpty {
+  padding: 18px;
+  color: #8f9bb0;
+  background: #121827;
+  border: 1px dashed #344058;
+  border-radius: 13px;
+}
+
+.controlList {
+  display: grid;
+  gap: 9px;
+}
+
+.controlList a {
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  gap: 11px;
+  align-items: center;
+  padding: 12px;
+  background: #121827;
+  border: 1px solid #293246;
+  border-radius: 13px;
+}
+
+.controlList a:hover {
+  border-color: #514979;
+}
+
+.controlList a > div {
+  display: grid;
+  gap: 3px;
+}
+
+.controlList strong {
+  color: #e8ecf3;
+  font-size: 13px;
+}
+
+.controlList small {
+  color: #7f8ba0;
+  font-size: 10px;
+}
+
+.controlList em {
+  color: #a99cff;
+  font-style: normal;
+}
+
+@media (max-width: 1050px) {
+  .profileGrid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .heroGrid,
+  .twoColumns,
+  .addPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .summaryGrid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .sectionHeading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .profileGrid,
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+}

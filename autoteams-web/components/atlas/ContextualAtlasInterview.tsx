@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
+import { useAuth } from "@/components/AuthProvider";
 import {
+  ContextMode,
   ContextualProfile,
+  contextLabel,
   loadActiveContextualProfileId,
   loadContextualProfiles,
   saveActiveContextualProfileId,
@@ -16,18 +19,20 @@ import {
 } from "@/lib/atlas-question-packs";
 import {
   AtlasAnswerMap,
-  loadCoreInterview,
-  saveCoreInterview,
-  loadContextInterview,
-  upsertContextInterview,
   interviewProgress,
+  loadContextInterview,
+  loadCoreInterview,
   profileFreshness,
+  saveCoreInterview,
+  upsertContextInterview,
 } from "@/lib/atlas-interview-state";
 import { AtlasOrb } from "@/components/AtlasOrb";
+import styles from "./ContextualAtlasInterview.module.css";
 
 type InterviewStage = "core" | "context" | "complete";
 
 export function ContextualAtlasInterview() {
+  const { user } = useAuth();
   const [profiles, setProfiles] = useState<ContextualProfile[]>([]);
   const [activeId, setActiveId] = useState("");
   const [stage, setStage] = useState<InterviewStage>("core");
@@ -42,12 +47,16 @@ export function ContextualAtlasInterview() {
   useEffect(() => {
     const loadedProfiles = loadContextualProfiles();
     const storedId = loadActiveContextualProfileId();
-    const selectedId =
-      loadedProfiles.find((item) => item.id === storedId)?.id ||
-      loadedProfiles[0]?.id ||
-      "";
-
     const core = loadCoreInterview();
+
+    const own = loadedProfiles.filter((item) =>
+      isCurrentUserProfile(item, user?.displayName, user?.email),
+    );
+
+    const selectedId =
+      own.find((item) => item.id === storedId)?.id ||
+      own[0]?.id ||
+      "";
 
     setProfiles(loadedProfiles);
     setActiveId(selectedId);
@@ -55,15 +64,24 @@ export function ContextualAtlasInterview() {
     setCoreCompletedAt(core.completedAt);
 
     if (selectedId) {
-      const profile = loadedProfiles.find((item) => item.id === selectedId);
-      if (profile) {
-        const context = loadContextInterview(profile.id, profile.mode);
+      const selected = loadedProfiles.find((item) => item.id === selectedId);
+
+      if (selected) {
+        const context = loadContextInterview(selected.id, selected.mode);
         setContextAnswers(context.answers);
         setContextCompletedAt(context.completedAt);
-        setStage(core.completedAt ? "context" : "core");
+        setStage(context.completedAt ? "complete" : core.completedAt ? "context" : "core");
       }
     }
-  }, []);
+  }, [user?.displayName, user?.email]);
+
+  const ownProfiles = useMemo(
+    () =>
+      profiles.filter((item) =>
+        isCurrentUserProfile(item, user?.displayName, user?.email),
+      ),
+    [profiles, user?.displayName, user?.email],
+  );
 
   const profile = useMemo(
     () => profiles.find((item) => item.id === activeId) || null,
@@ -104,7 +122,13 @@ export function ContextualAtlasInterview() {
     setContextAnswers(context.answers);
     setContextCompletedAt(context.completedAt);
     setIndex(0);
-    setStage(coreCompletedAt ? "context" : "core");
+    setStage(
+      context.completedAt
+        ? "complete"
+        : coreCompletedAt
+          ? "context"
+          : "core",
+    );
   }
 
   function updateAnswer(value: string) {
@@ -115,6 +139,7 @@ export function ContextualAtlasInterview() {
         ...coreAnswers,
         [currentQuestion.id]: value,
       };
+
       setCoreAnswers(updated);
       saveCoreInterview({
         answers: updated,
@@ -130,6 +155,7 @@ export function ContextualAtlasInterview() {
       ...contextAnswers,
       [currentQuestion.id]: value,
     };
+
     setContextAnswers(updated);
     upsertContextInterview({
       profileId: profile.id,
@@ -189,9 +215,11 @@ export function ContextualAtlasInterview() {
 
   function refreshContextInterview() {
     if (!profile) return;
+
     setContextCompletedAt(null);
     setStage("context");
     setIndex(0);
+
     upsertContextInterview({
       profileId: profile.id,
       mode: profile.mode,
@@ -203,44 +231,67 @@ export function ContextualAtlasInterview() {
 
   if (!profile) {
     return (
-      <div className="atlas125-empty">
+      <section className={styles.empty}>
         <AtlasOrb size="lg" />
-        <h2>Create a contextual profile first.</h2>
+        <span className="eyebrow">My Atlas Profiles</span>
+        <h2>No personal Atlas Profile is available yet.</h2>
         <p>
-          Atlas needs to know whether this is a business, friendship, community,
-          sports or education context.
+          Atlas does not display other workspace members on this page. Create
+          your own Business, Friendship, Community, Sports or Education profile
+          to begin the interview.
         </p>
-        <Link className="button" href="/onboarding/profile">
-          Create Contextual Profile
-        </Link>
-      </div>
+        <div className="actions">
+          <Link className="button" href="/onboarding/profile">
+            Create My Profile
+          </Link>
+          <Link className="button secondary" href="/people">
+            Browse Workspace People
+          </Link>
+        </div>
+      </section>
     );
   }
 
   return (
-    <div className="atlas126-layout">
-      <aside className="atlas126-sidebar">
-        <span className="eyebrow">Interview context</span>
-        <h2>Choose your Team DNA profile.</h2>
+    <div className={styles.layout}>
+      <aside className={styles.sidebar}>
+        <span className="eyebrow">Atlas Profiles</span>
+        <h2>Choose a profile to complete or review.</h2>
+        <p className={styles.sidebarIntro}>
+          Only profiles belonging to your signed-in account appear here.
+        </p>
 
-        <div className="atlas126-profile-list">
-          {profiles.map((item) => {
+        <div className={styles.personalNotice}>
+          <strong>Your profiles only</strong>
+          <p>
+            Atlas only shows profiles belonging to the signed-in account.
+            Workspace members are available from People and Team Builder.
+          </p>
+        </div>
+
+        <div className={styles.profileList}>
+          {ownProfiles.map((item) => {
             const context = loadContextInterview(item.id, item.mode);
-            const itemFreshness = profileFreshness(context.completedAt);
+            const progress = interviewProgress(
+              contextQuestions[item.mode],
+              context.answers,
+            );
 
             return (
               <button
-                className={item.id === activeId ? "active" : ""}
+                className={item.id === activeId ? styles.activeProfile : ""}
                 key={item.id}
                 onClick={() => selectProfile(item.id)}
                 type="button"
               >
-                <span>{modeIcon(item.mode)}</span>
+                <ProfileIcon mode={item.mode} />
+
                 <div>
-                  <strong>{item.label}</strong>
-                  <small>{itemFreshness.label}</small>
+                  <strong>{contextLabel(item.mode)}</strong>
+                  <span>{statusLabel(progress, context.completedAt)}</span>
                 </div>
-                <em>{itemFreshness.confidence}%</em>
+
+                <em>{progress}%</em>
               </button>
             );
           })}
@@ -250,86 +301,114 @@ export function ContextualAtlasInterview() {
           Manage Profiles
         </Link>
 
-        <div className="atlas126-progress-card">
+        <div className={styles.progressCard}>
           <div>
-            <span>Core Team DNA</span>
+            <span>General Atlas Profile</span>
             <strong>{coreProgress}%</strong>
           </div>
-          <div className="bar"><i style={{ width: `${coreProgress}%` }} /></div>
+          <div className={styles.bar}>
+            <i style={{ width: `${coreProgress}%` }} />
+          </div>
           <small>
-            {coreCompletedAt ? "Completed once and reused" : "Complete once"}
+            {coreCompletedAt
+              ? "Completed once and reused"
+              : "Complete this once"}
           </small>
         </div>
 
-        <div className="atlas126-progress-card">
+        <div className={styles.progressCard}>
           <div>
-            <span>{profile.label}</span>
+            <span>{contextLabel(profile.mode)}</span>
             <strong>{contextProgress}%</strong>
           </div>
-          <div className="bar"><i style={{ width: `${contextProgress}%` }} /></div>
+          <div className={styles.bar}>
+            <i style={{ width: `${contextProgress}%` }} />
+          </div>
           <small>Context-specific questions only</small>
         </div>
       </aside>
 
-      <section className="atlas126-interview">
+      <section className={styles.interview}>
         {stage !== "complete" ? (
           <>
-            <div className="atlas126-stage-banner">
+            <header className={styles.stageBanner}>
               <div>
                 <span className="eyebrow">
                   {stage === "core"
-                    ? "Core interview — asked once"
-                    : `${profile.label} — context questions`}
+                    ? "General Atlas Profile — asked once"
+                    : `${contextLabel(profile.mode)} — context questions`}
                 </span>
+
                 <h2>
                   {stage === "core"
                     ? "Build your reusable collaboration foundation."
-                    : `Add the ${profile.mode} context.`}
+                    : `Complete your ${capitalise(profile.mode)} Atlas Profile.`}
                 </h2>
+
                 <p>
                   {stage === "core"
-                    ? "These answers are shared across all contextual profiles."
-                    : "These answers remain separate and are used only for this profile."}
+                    ? "These answers are securely reused across your contextual profiles."
+                    : contextDescription(profile.mode)}
                 </p>
               </div>
+
               <AtlasOrb size="md" />
-            </div>
+            </header>
 
             {stage === "context" && coreCompletedAt && (
-              <div className="atlas126-reuse-note">
+              <div className={styles.reuseNote}>
                 <span>✓</span>
                 <div>
-                  <strong>Core Team DNA reused</strong>
+                  <strong>
+                    Your general Atlas Profile is already complete.
+                  </strong>
                   <p>
-                    Atlas is not asking the general collaboration questions
-                    again.
+                    Atlas is only asking the {capitalise(profile.mode)}-specific
+                    questions that remain.
                   </p>
                 </div>
               </div>
             )}
 
-            <div className="atlas126-question">
-              <span>
-                Question {index + 1} of {questions.length}
-              </span>
-              <em>{currentQuestion?.category}</em>
+            <section className={styles.question}>
+              <header>
+                <div>
+                  <span>
+                    {capitalise(profile.mode)} Profile
+                  </span>
+                  <strong>
+                    Question {index + 1} of {questions.length}
+                  </strong>
+                </div>
+                <div>
+                  <small>Estimated time</small>
+                  <em>{estimatedMinutes(questions.length - index)} min</em>
+                </div>
+              </header>
+
+              <div className={styles.questionMeta}>
+                <span>{currentQuestion?.category}</span>
+              </div>
+
               <h3>{currentQuestion?.prompt}</h3>
+
               <textarea
                 value={currentAnswer}
                 onChange={(event) => updateAnswer(event.target.value)}
-                placeholder="Describe what you naturally do and give an example where possible."
+                placeholder="Describe what you naturally do and include an example where possible."
               />
-            </div>
+            </section>
 
-            <div className="atlas126-actions">
+            <div className={styles.actions}>
               <button
                 className="button secondary"
                 disabled={index === 0}
                 onClick={previous}
                 type="button"
               >
-                Previous
+                ← Previous
               </button>
+
               <button
                 className="button"
                 disabled={!currentAnswer.trim()}
@@ -338,23 +417,25 @@ export function ContextualAtlasInterview() {
               >
                 {index === questions.length - 1
                   ? stage === "core"
-                    ? "Continue to Context Questions"
-                    : "Complete Profile Interview"
-                  : "Next Question"}
+                    ? "Save & Continue to Context →"
+                    : "Complete Atlas Profile →"
+                  : "Save & Continue →"}
               </button>
             </div>
           </>
         ) : (
-          <div className="atlas126-complete">
+          <section className={styles.complete}>
             <AtlasOrb size="xl" />
-            <span className="eyebrow">Contextual Team DNA complete</span>
-            <h2>{profile.label} is ready.</h2>
+            <span className="eyebrow">
+              {capitalise(profile.mode)} Atlas Profile complete
+            </span>
+            <h2>{contextLabel(profile.mode)} is ready.</h2>
             <p>
-              Atlas reused your core Team DNA and added only the questions
-              relevant to this profile.
+              Atlas reused your general collaboration profile and added only
+              the answers relevant to this context.
             </p>
 
-            <div className="atlas126-health">
+            <div className={styles.health}>
               <article>
                 <small>Freshness</small>
                 <strong>{freshness.label}</strong>
@@ -364,12 +445,12 @@ export function ContextualAtlasInterview() {
                 <strong>{freshness.confidence}%</strong>
               </article>
               <article>
-                <small>Core interview</small>
+                <small>General profile</small>
                 <strong>Reused</strong>
               </article>
             </div>
 
-            <div className="atlas125-role-grid">
+            <div className={styles.roles}>
               {suggestedRoles(profile.mode).map((role) => (
                 <span key={role}>{role}</span>
               ))}
@@ -383,18 +464,29 @@ export function ContextualAtlasInterview() {
               >
                 Refresh This Profile
               </button>
-              <Link className="button" href="/team-dna">
-                View Team DNA
+              <Link className="button secondary" href="/my-atlas-profile">
+                View My Atlas Profile
+              </Link>
+              <Link className="button" href="/team-builder">
+                Build Teams with Atlas →
               </Link>
             </div>
-          </div>
+          </section>
         )}
       </section>
     </div>
   );
 }
 
-function modeIcon(mode: ContextualProfile["mode"]): string {
+function ProfileIcon({ mode }: { mode: ContextMode }) {
+  return (
+    <span className={styles.profileIcon} aria-hidden="true">
+      {modeSymbol(mode)}
+    </span>
+  );
+}
+
+function modeSymbol(mode: ContextMode): string {
   return {
     business: "⌂",
     friendship: "♡",
@@ -402,4 +494,55 @@ function modeIcon(mode: ContextualProfile["mode"]): string {
     sports: "◎",
     education: "▥",
   }[mode];
+}
+
+function statusLabel(progress: number, completedAt: string | null): string {
+  if (completedAt) return "Complete";
+  if (progress > 0) return "In progress";
+  return "Not started";
+}
+
+function contextDescription(mode: ContextMode): string {
+  return {
+    business:
+      "These questions focus on how you contribute in professional and delivery environments.",
+    friendship:
+      "These questions focus on how you connect, plan and spend time in friendship groups.",
+    community:
+      "These questions focus on how you contribute to communities and volunteering.",
+    sports:
+      "These questions focus only on how you collaborate in sporting environments.",
+    education:
+      "These questions focus on how you learn, study and contribute to education groups.",
+  }[mode];
+}
+
+function capitalise(value: string): string {
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function estimatedMinutes(questionsRemaining: number): number {
+  return Math.max(1, Math.ceil(questionsRemaining * 0.5));
+}
+
+function isCurrentUserProfile(
+  profile: ContextualProfile,
+  displayName?: string | null,
+  email?: string | null,
+): boolean {
+  const profileName = normalise(profile.preferredName);
+  const fullName = normalise(displayName);
+  const emailName = normalise(email?.split("@")[0]);
+
+  if (!profileName) return false;
+
+  return (
+    profileName === fullName ||
+    profileName === emailName ||
+    Boolean(fullName && profileName === fullName.split(" ")[0])
+  );
+}
+
+function normalise(value?: string | null): string {
+  return (value || "").trim().toLowerCase();
 }

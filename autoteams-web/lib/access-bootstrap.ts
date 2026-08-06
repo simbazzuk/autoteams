@@ -6,10 +6,13 @@ import {
 } from "@/lib/workspace-access";
 import {
   Workspace,
+  WorkspaceType,
   createWorkspaceId,
+  defaultContextForWorkspace,
   loadWorkspaces,
   saveActiveWorkspaceId,
   saveWorkspaces,
+  workspaceTypeLabel,
 } from "@/lib/workspaces";
 
 const CURRENT_ACCOUNT_KEY = "autoteams-current-account";
@@ -31,15 +34,23 @@ export function loadCurrentAccount(): CurrentAccount {
 
   try {
     const raw = window.localStorage.getItem(CURRENT_ACCOUNT_KEY);
-    return raw ? (JSON.parse(raw) as CurrentAccount) : fallbackAccount;
+    return raw
+      ? (JSON.parse(raw) as CurrentAccount)
+      : fallbackAccount;
   } catch {
     return fallbackAccount;
   }
 }
 
-export function saveCurrentAccount(account: CurrentAccount): void {
+export function saveCurrentAccount(
+  account: CurrentAccount,
+): void {
   if (typeof window === "undefined") return;
-  window.localStorage.setItem(CURRENT_ACCOUNT_KEY, JSON.stringify(account));
+
+  window.localStorage.setItem(
+    CURRENT_ACCOUNT_KEY,
+    JSON.stringify(account),
+  );
 }
 
 export function ensureWorkspaceOwner(
@@ -47,6 +58,7 @@ export function ensureWorkspaceOwner(
   account: CurrentAccount = loadCurrentAccount(),
 ): WorkspaceMembership {
   const memberships = loadMemberships();
+
   const existing = memberships.find(
     (membership) =>
       membership.workspaceId === workspace.id &&
@@ -67,28 +79,30 @@ export function ensureWorkspaceOwner(
   };
 
   saveMemberships([...memberships, membership]);
+
   return membership;
 }
 
 export function createOwnedWorkspace(input: {
   name: string;
-  type: "personal" | "organisation";
+  type: WorkspaceType;
   description: string;
 }): Workspace {
   const workspace: Workspace = {
     id: createWorkspaceId("workspace"),
     name: input.name.trim(),
     type: input.type,
+    defaultContext: defaultContextForWorkspace(input.type),
     description:
       input.description.trim() ||
-      (input.type === "organisation"
-        ? "Organisation workspace"
-        : "Personal group workspace"),
+      `${workspaceTypeLabel(input.type)} workspace`,
   };
 
   const workspaces = loadWorkspaces();
+
   saveWorkspaces([...workspaces, workspace]);
   ensureWorkspaceOwner(workspace);
   saveActiveWorkspaceId(workspace.id);
+
   return workspace;
 }

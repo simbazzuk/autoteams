@@ -2,31 +2,82 @@
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import {
-  AtlasIcon,
-  BusinessIcon,
-  PeopleIcon,
-  PersonalGroupIcon,
-  SuccessIcon,
-  TalentPoolIcon,
-  WorkspaceIcon,
-} from "@/components/ui/AppIcons";
 import { createOwnedWorkspace } from "@/lib/access-bootstrap";
 import {
   Workspace,
+  WorkspaceType,
+  defaultContextForWorkspace,
   loadActiveWorkspaceId,
   loadPeople,
   loadWorkspaces,
   saveActiveWorkspaceId,
+  workspaceContextLabel,
+  workspaceTypeLabel,
 } from "@/lib/workspaces";
 import { useWorkspaceAccess } from "@/components/access/AccessContext";
 import { roleLabel } from "@/lib/workspace-access";
+import {
+  BusinessIcon,
+  CommunityIcon,
+  EducationIcon,
+  FriendshipIcon,
+  SportsIcon,
+  SuccessIcon,
+  WorkspaceIcon,
+} from "@/components/ui/AppIcons";
+import styles from "./WorkspacesPanel.module.css";
+
+const workspaceTypes: Array<{
+  value: Exclude<WorkspaceType, "personal">;
+  title: string;
+  description: string;
+  example: string;
+}> = [
+  {
+    value: "organisation",
+    title: "Organisation",
+    description:
+      "Companies, departments, programmes and professional teams.",
+    example: "Example Company",
+  },
+  {
+    value: "community",
+    title: "Community Group",
+    description:
+      "Volunteers, charities, faith groups and local communities.",
+    example: "Leeds Community Network",
+  },
+  {
+    value: "sports",
+    title: "Sports Club",
+    description:
+      "Clubs, squads, coaching groups and sporting activities.",
+    example: "Leeds Cricket Club",
+  },
+  {
+    value: "education",
+    title: "Education",
+    description:
+      "Schools, universities, study groups and learning programmes.",
+    example: "Engineering Study Cohort",
+  },
+  {
+    value: "friends_family",
+    title: "Friends & Family",
+    description:
+      "Friendship groups, family activities and private social groups.",
+    example: "Weekend Hiking Group",
+  },
+];
 
 export function WorkspacesPanel() {
   const [items, setItems] = useState<Workspace[]>([]);
   const [active, setActive] = useState("");
   const [name, setName] = useState("");
-  const [type, setType] = useState<"personal" | "organisation">("organisation");
+  const [type, setType] =
+    useState<Exclude<WorkspaceType, "personal">>(
+      "organisation",
+    );
   const [description, setDescription] = useState("");
   const [created, setCreated] = useState("");
 
@@ -60,220 +111,256 @@ export function WorkspacesPanel() {
     setDescription("");
   }
 
+  const selectedType =
+    workspaceTypes.find((item) => item.value === type) ||
+    workspaceTypes[0];
+
   return (
-    <main className="v10-workspace-page">
-      <section className="v10-workspace-hero">
+    <main className={styles.page}>
+      <section className={styles.hero}>
         <div className="container">
-          <span className="eyebrow">AutoTeams v10.0</span>
-          <h1>Create a workspace and become its Owner automatically.</h1>
+          <span className="eyebrow">Workspaces</span>
+          <h1>Create the right boundary for your people and teams.</h1>
           <p>
-            New users no longer choose or simulate a role. The person who creates
-            a workspace becomes its Owner; everyone else joins through an
-            invitation with the role assigned by the Owner or Administrator.
+            Choose the kind of group you are creating. AutoTeams uses
+            that choice to recommend the most relevant Atlas Profile
+            context for members.
           </p>
         </div>
       </section>
 
-      <section className="v10-workspace-body">
-        <div className="container v10-workspace-layout">
-          <section className="v10-workspace-list-panel">
-            <div className="v10-workspace-heading">
+      <section className={styles.body}>
+        <div className={`container ${styles.layout}`}>
+          <section className={styles.listPanel}>
+            <div className={styles.heading}>
               <div>
                 <span className="eyebrow">Your workspaces</span>
                 <h2>Select where you are working.</h2>
                 <p>
-                  Team Builder, People and Talent Pools always remain inside the
-                  active workspace.
+                  People, Talent Pools, recommendations and teams remain
+                  inside the active workspace.
                 </p>
               </div>
               <span>{items.length}</span>
             </div>
 
-            <div className="v10-workspace-grid">
+            <div className={styles.grid}>
               {items.map((workspace) => {
                 const count = people.filter(
-                  (person) => person.workspaceId === workspace.id,
+                  (person) =>
+                    person.workspaceId === workspace.id,
                 ).length;
+
                 const isActive = workspace.id === active;
 
                 return (
                   <article
-                    className={
-                      isActive
-                        ? "v10-workspace-card active"
-                        : "v10-workspace-card"
-                    }
+                    className={`${styles.card} ${
+                      isActive ? styles.activeCard : ""
+                    }`}
                     key={workspace.id}
                   >
-                    <div className="v10-workspace-card-top">
-                      {workspace.type === "organisation" ? (
-                        <BusinessIcon size="lg" />
-                      ) : (
-                        <PersonalGroupIcon size="lg" />
-                      )}
+                    <div className={styles.cardTop}>
+                      <WorkspaceTypeIcon
+                        type={workspace.type}
+                        size="lg"
+                      />
                       <em>
-                        {workspace.type === "organisation"
-                          ? "Organisation"
-                          : "Personal group"}
+                        {workspaceTypeLabel(workspace.type)}
                       </em>
                     </div>
 
                     <h3>{workspace.name}</h3>
                     <p>{workspace.description}</p>
 
-                    <div className="v10-workspace-card-meta">
+                    <div className={styles.context}>
+                      <small>Default member profile</small>
+                      <strong>
+                        {workspaceContextLabel(workspace)}
+                      </strong>
+                    </div>
+
+                    <div className={styles.cardMeta}>
                       <span>{count} people</span>
                       {isActive && access.role && (
-                        <span>{roleLabel(access.role, "business")}</span>
+                        <span>
+                          {roleLabel(access.role, "business")}
+                        </span>
                       )}
                     </div>
 
                     <button
-                      className={isActive ? "button secondary" : "button"}
+                      className={
+                        isActive
+                          ? "button secondary"
+                          : "button"
+                      }
                       onClick={() => choose(workspace.id)}
                       type="button"
                     >
-                      {isActive ? "Active workspace" : "Use workspace"}
+                      {isActive
+                        ? "Active workspace"
+                        : "Use workspace"}
                     </button>
                   </article>
                 );
               })}
             </div>
 
-            <div className="v10-workspace-actions">
+            <div className={styles.actions}>
               <Link className="button" href="/members">
                 Invite Members
               </Link>
-              <Link className="button secondary" href="/people">
+              <Link
+                className="button secondary"
+                href="/people"
+              >
                 Manage People
               </Link>
-              <Link className="button secondary" href="/talent-pools">
+              <Link
+                className="button secondary"
+                href="/talent-pools"
+              >
                 Talent Pools
               </Link>
-              <Link className="button secondary" href="/team-builder">
+              <Link
+                className="button secondary"
+                href="/team-builder"
+              >
                 Team Builder
               </Link>
             </div>
           </section>
 
-          <aside className="v10-create-panel">
-            <div className="v10-create-heading">
+          <aside className={styles.createPanel}>
+            <div className={styles.createHeading}>
               <WorkspaceIcon size="lg" />
               <div>
                 <span className="eyebrow">Create workspace</span>
-                <h2>Start a company or personal group.</h2>
+                <h2>What kind of group are you creating?</h2>
               </div>
             </div>
 
-            <p className="v10-create-intro">
-              You will automatically become the Workspace Owner and can then
+            <p className={styles.createIntro}>
+              You become the Workspace Owner automatically and can
               invite Team Leaders and Team Members.
             </p>
 
             {created && (
-              <div className="v10-created-message">
+              <div className={styles.createdMessage}>
                 <SuccessIcon size="md" />
                 <div>
                   <strong>{created} created</strong>
-                  <p>You are now the Workspace Owner.</p>
+                  <p>
+                    You are now the Workspace Owner. Atlas will use the
+                    recommended profile context for this workspace.
+                  </p>
                 </div>
               </div>
             )}
 
-            <form className="v10-create-form" onSubmit={add}>
+            <form className={styles.form} onSubmit={add}>
               <label>
                 Workspace name
                 <input
                   required
                   value={name}
-                  onChange={(event) => setName(event.target.value)}
-                  placeholder={
-                    type === "organisation"
-                      ? "Example Company"
-                      : "Weekend Hiking Group"
+                  onChange={(event) =>
+                    setName(event.target.value)
                   }
+                  placeholder={selectedType.example}
                 />
               </label>
 
               <fieldset>
                 <legend>Workspace type</legend>
 
-                <label
-                  className={
-                    type === "organisation"
-                      ? "v10-type-option selected"
-                      : "v10-type-option"
-                  }
-                >
-                  <input
-                    type="radio"
-                    name="workspace-type"
-                    checked={type === "organisation"}
-                    onChange={() => setType("organisation")}
-                  />
-                  <BusinessIcon size="md" />
-                  <div>
-                    <strong>Organisation</strong>
-                    <small>
-                      Employees, departments, Team Leaders and company teams.
-                    </small>
-                  </div>
-                </label>
+                <div className={styles.typeGrid}>
+                  {workspaceTypes.map((option) => (
+                    <label
+                      className={`${styles.typeOption} ${
+                        type === option.value
+                          ? styles.selected
+                          : ""
+                      }`}
+                      key={option.value}
+                    >
+                      <input
+                        checked={type === option.value}
+                        name="workspace-type"
+                        onChange={() => setType(option.value)}
+                        type="radio"
+                      />
 
-                <label
-                  className={
-                    type === "personal"
-                      ? "v10-type-option selected"
-                      : "v10-type-option"
-                  }
-                >
-                  <input
-                    type="radio"
-                    name="workspace-type"
-                    checked={type === "personal"}
-                    onChange={() => setType("personal")}
-                  />
-                  <PersonalGroupIcon size="md" />
-                  <div>
-                    <strong>Personal or friendship group</strong>
-                    <small>
-                      Friends, community members, activities and social groups.
-                    </small>
-                  </div>
-                </label>
+                      <WorkspaceTypeIcon
+                        type={option.value}
+                        size="md"
+                      />
+
+                      <div>
+                        <strong>{option.title}</strong>
+                        <small>{option.description}</small>
+                      </div>
+                    </label>
+                  ))}
+                </div>
               </fieldset>
+
+              <div className={styles.atlasDefault}>
+                <span className="eyebrow">
+                  Recommended Atlas Profile
+                </span>
+                <div>
+                  <WorkspaceTypeIcon type={type} size="md" />
+                  <div>
+                    <strong>
+                      {contextName(
+                        defaultContextForWorkspace(type),
+                      )}
+                    </strong>
+                    <p>
+                      Members will be guided to this profile first.
+                      They can still create other contextual profiles.
+                    </p>
+                  </div>
+                </div>
+              </div>
 
               <label>
                 Description
                 <textarea
                   value={description}
-                  onChange={(event) => setDescription(event.target.value)}
-                  placeholder={
-                    type === "organisation"
-                      ? "Describe the company, department or programme."
-                      : "Describe the friendship, community or activity group."
+                  onChange={(event) =>
+                    setDescription(event.target.value)
                   }
+                  placeholder={`Describe the ${selectedType.title.toLowerCase()}, its members and the teams or groups you expect to create.`}
                 />
                 <small>
-                  Explain who the workspace is for and what teams or groups you
-                  expect to create.
+                  Explain who the workspace is for and what outcomes
+                  its members are working towards.
                 </small>
               </label>
 
-              <button className="button v10-create-button" type="submit">
+              <button className="button" type="submit">
                 Create Workspace and Become Owner
               </button>
             </form>
 
-            <div className="v10-owner-explanation">
+            <div className={styles.nextSteps}>
               <WorkspaceIcon size="md" />
               <div>
                 <strong>What happens next?</strong>
                 <ol>
                   <li>You become Workspace Owner.</li>
                   <li>You invite people and assign their roles.</li>
-                  <li>Members complete their Atlas Profile and give consent.</li>
-                  <li>Team Leaders build teams from eligible members.</li>
+                  <li>
+                    Members complete the recommended Atlas Profile and
+                    give consent.
+                  </li>
+                  <li>
+                    Team Leaders build teams from eligible members.
+                  </li>
+                  <li>Atlas calculates the combined Team DNA.</li>
                 </ol>
               </div>
             </div>
@@ -282,4 +369,47 @@ export function WorkspacesPanel() {
       </section>
     </main>
   );
+}
+
+function WorkspaceTypeIcon({
+  type,
+  size,
+}: {
+  type: WorkspaceType;
+  size: "md" | "lg";
+}) {
+  if (type === "organisation") {
+    return <BusinessIcon size={size} />;
+  }
+
+  if (type === "community") {
+    return <CommunityIcon size={size} />;
+  }
+
+  if (type === "sports") {
+    return <SportsIcon size={size} />;
+  }
+
+  if (type === "education") {
+    return <EducationIcon size={size} />;
+  }
+
+  return <FriendshipIcon size={size} />;
+}
+
+function contextName(
+  context:
+    | "business"
+    | "community"
+    | "sports"
+    | "education"
+    | "friendship",
+): string {
+  return {
+    business: "Business Atlas Profile",
+    community: "Community Atlas Profile",
+    sports: "Sports Atlas Profile",
+    education: "Education Atlas Profile",
+    friendship: "Friendship Atlas Profile",
+  }[context];
 }

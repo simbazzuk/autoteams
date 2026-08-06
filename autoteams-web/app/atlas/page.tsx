@@ -8,9 +8,9 @@ export default function AtlasPage() {
     <PageShell>
       <ProtectedRoute>
         <ProductPage
-          eyebrow="Atlas Contextual Interview"
-          title="Complete the core interview once, then add each context."
-          text="Atlas reuses your core collaboration answers and asks only the business, friendship, community, sports or education questions needed for the selected profile."
+          eyebrow="Atlas Interview"
+          title="Build and maintain your individual Atlas Profiles."
+          text="Complete the reusable collaboration interview once, then answer only the Business, Friendship, Community, Sports or Education questions relevant to each contextual profile."
         >
           <ContextualAtlasInterview />
         </ProductPage>

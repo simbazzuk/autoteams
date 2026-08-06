@@ -1,6 +1,5 @@
 "use client";
 
-import type { ReactNode } from "react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/AuthProvider";
@@ -18,6 +17,8 @@ import {
   profileFreshness,
 } from "@/lib/atlas-interview-state";
 import {
+  WorkspaceContext,
+  defaultContextForWorkspace,
   loadActiveWorkspaceId,
   loadWorkspaces,
 } from "@/lib/workspaces";
@@ -25,6 +26,7 @@ import {
   loadMemberships,
   roleLabel,
 } from "@/lib/workspace-access";
+import styles from "./MyProfileDashboard.module.css";
 
 const allModes: ContextMode[] = [
   "business",
@@ -34,40 +36,20 @@ const allModes: ContextMode[] = [
   "education",
 ];
 
-const blueIconStyle = {
-  display: "grid",
-  placeItems: "center",
-  width: "48px",
-  height: "48px",
-  flex: "0 0 auto",
-  color: "#ffffff",
-  background:
-    "linear-gradient(135deg, #765fff 0%, #5b7cfa 55%, #4f8ef7 100%)",
-  border: "1px solid rgba(255,255,255,.10)",
-  borderRadius: "14px",
-  boxShadow:
-    "0 12px 28px rgba(79,142,247,.30), inset 0 1px 0 rgba(255,255,255,.14)",
-  fontSize: "19px",
-  fontWeight: 800,
-  lineHeight: 1,
-} as const;
-
-const smallBlueIconStyle = {
-  ...blueIconStyle,
-  width: "42px",
-  height: "42px",
-  borderRadius: "13px",
-  fontSize: "17px",
-} as const;
-
 export function MyProfileDashboard() {
   const { user } = useAuth();
-  const [profiles, setProfiles] = useState<ContextualProfile[]>([]);
+  const [allProfiles, setAllProfiles] = useState<ContextualProfile[]>([]);
   const [activeWorkspaceId, setActiveWorkspaceId] = useState("");
+  const [showAddProfile, setShowAddProfile] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setProfiles(loadContextualProfiles());
-    setActiveWorkspaceId(loadActiveWorkspaceId());
+    const loadedProfiles = loadContextualProfiles();
+    const workspaceId = loadActiveWorkspaceId();
+
+    setAllProfiles(loadedProfiles);
+    setActiveWorkspaceId(workspaceId);
+    setReady(true);
   }, []);
 
   const workspaces = loadWorkspaces();
@@ -84,31 +66,88 @@ export function MyProfileDashboard() {
       membership.status === "active",
   );
 
+  const myProfiles = useMemo(
+    () =>
+      allProfiles.filter((profile) =>
+        belongsToCurrentUser(
+          profile,
+          user?.displayName,
+          user?.email,
+        ),
+      ),
+    [allProfiles, user?.displayName, user?.email],
+  );
+
+  useEffect(() => {
+    if (!ready || !currentWorkspace || myProfiles.length > 0) {
+      return;
+    }
+
+    const defaultMode = workspaceContextToMode(
+      currentWorkspace.defaultContext ||
+        defaultContextForWorkspace(currentWorkspace.type),
+    );
+
+    const created = createContextualProfile(
+      defaultMode,
+      user?.displayName || emailDisplayName(user?.email),
+    );
+
+    const updated = [...allProfiles, created];
+
+    saveContextualProfiles(updated);
+    saveActiveContextualProfileId(created.id);
+    setAllProfiles(updated);
+  }, [
+    ready,
+    currentWorkspace,
+    myProfiles.length,
+    allProfiles,
+    user?.displayName,
+    user?.email,
+  ]);
+
+  const availableModes = allModes.filter(
+    (mode) =>
+      !myProfiles.some((profile) => profile.mode === mode),
+  );
+
   const profileStats = useMemo(() => {
-    const completed = profiles.filter((profile) => {
-      const interview = loadContextInterview(profile.id, profile.mode);
+    const completed = myProfiles.filter((profile) => {
+      const interview = loadContextInterview(
+        profile.id,
+        profile.mode,
+      );
+
       return Boolean(interview.completedAt);
     }).length;
 
     const averageConfidence =
-      profiles.length === 0
+      myProfiles.length === 0
         ? 0
         : Math.round(
-            profiles.reduce((total, profile) => {
+            myProfiles.reduce((total, profile) => {
               const interview = loadContextInterview(
                 profile.id,
                 profile.mode,
               );
+
               return (
                 total +
                 profileFreshness(interview.completedAt).confidence
               );
-            }, 0) / profiles.length,
+            }, 0) / myProfiles.length,
           );
 
-    const stale = profiles.filter((profile) => {
-      const interview = loadContextInterview(profile.id, profile.mode);
-      return profileFreshness(interview.completedAt).status === "stale";
+    const stale = myProfiles.filter((profile) => {
+      const interview = loadContextInterview(
+        profile.id,
+        profile.mode,
+      );
+
+      return (
+        profileFreshness(interview.completedAt).status === "stale"
+      );
     }).length;
 
     return {
@@ -116,18 +155,25 @@ export function MyProfileDashboard() {
       averageConfidence,
       stale,
     };
-  }, [profiles]);
+  }, [myProfiles]);
 
   function createProfile(mode: ContextMode) {
+    if (myProfiles.some((profile) => profile.mode === mode)) {
+      return;
+    }
+
     const created = createContextualProfile(
       mode,
-      user?.displayName || "",
+      user?.displayName || emailDisplayName(user?.email),
     );
-    const updated = [...profiles, created];
+
+    const updated = [...allProfiles, created];
 
     saveContextualProfiles(updated);
     saveActiveContextualProfileId(created.id);
-    setProfiles(updated);
+    setAllProfiles(updated);
+    setShowAddProfile(false);
+    window.location.href = "/atlas";
   }
 
   function openProfile(
@@ -139,21 +185,21 @@ export function MyProfileDashboard() {
   }
 
   return (
-    <main className="profile130-page">
-      <section className="profile130-hero">
-        <div className="container profile130-hero-grid">
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <div className={`container ${styles.heroGrid}`}>
           <div>
-            <span className="eyebrow">My Profile</span>
-            <h1>Manage every part of your AutoTeams identity.</h1>
+            <span className="eyebrow">My Atlas Profiles</span>
+            <h1>Manage how Atlas understands you.</h1>
             <p>
-              Update personal information, create contextual profiles,
-              review Atlas Profile health and continue Atlas interviews
-              without returning to onboarding.
+              Each Atlas Profile is separate. Your Business,
+              Friendship, Community, Sports and Education answers are
+              only used in the relevant setting.
             </p>
           </div>
 
-          <aside className="profile130-account-card">
-            <div className="profile130-avatar">
+          <aside className={styles.accountCard}>
+            <div className={styles.avatar}>
               {(user?.displayName || user?.email || "U")
                 .charAt(0)
                 .toUpperCase()}
@@ -165,7 +211,9 @@ export function MyProfileDashboard() {
               <p>{user?.email}</p>
               <span
                 className={
-                  user?.emailVerified ? "verified" : "unverified"
+                  user?.emailVerified
+                    ? styles.verified
+                    : styles.unverified
                 }
               >
                 {user?.emailVerified
@@ -177,197 +225,125 @@ export function MyProfileDashboard() {
         </div>
       </section>
 
-      <section className="profile130-body">
+      <section className={styles.body}>
         <div className="container">
-          <section className="profile130-summary-grid">
-            <article>
-              <small>Context profiles</small>
-              <strong>{profiles.length}</strong>
-            </article>
-
-            <article>
-              <small>Completed Atlas Profiles</small>
-              <strong>{profileStats.completed}</strong>
-            </article>
-
-            <article>
-              <small>Average confidence</small>
-              <strong>{profileStats.averageConfidence}%</strong>
-            </article>
-
-            <article>
-              <small>Refresh recommended</small>
-              <strong>{profileStats.stale}</strong>
-            </article>
+          <section className={styles.summaryGrid}>
+            <Metric
+              label="My profiles"
+              value={myProfiles.length}
+            />
+            <Metric
+              label="Completed"
+              value={profileStats.completed}
+            />
+            <Metric
+              label="Average confidence"
+              value={`${profileStats.averageConfidence}%`}
+            />
+            <Metric
+              label="Refresh recommended"
+              value={profileStats.stale}
+            />
           </section>
 
-          <section className="profile130-section">
-            <div className="profile130-section-heading">
+          <section className={styles.profileSection}>
+            <div className={styles.sectionHeading}>
               <div>
-                <span className="eyebrow">Context profiles</span>
-                <h2>Your Atlas Profile for different contexts.</h2>
+                <span className="eyebrow">My profiles</span>
+                <h2>Only the profiles you have created appear here.</h2>
                 <p>
-                  Editing profile information does not restart the Atlas
-                  interview. Refresh your Atlas Profile only when you
-                  choose to.
+                  Your active workspace recommends the first context.
+                  Add another profile only when you need Atlas in a
+                  different setting.
                 </p>
               </div>
 
-              <Link
-                className="button secondary"
-                href="/onboarding/profile"
-              >
-                Manage All Profiles
-              </Link>
+              {availableModes.length > 0 && (
+                <button
+                  className="button"
+                  onClick={() =>
+                    setShowAddProfile((current) => !current)
+                  }
+                  type="button"
+                >
+                  + Add Atlas Profile
+                </button>
+              )}
             </div>
 
-            <div className="profile130-profile-grid">
-              {allModes.map((mode) => {
-                const profile = profiles.find(
-                  (item) => item.mode === mode,
-                );
-
-                if (!profile) {
-                  return (
-                    <article
-                      className="profile130-context-card empty"
-                      key={mode}
-                    >
-                      <div className="profile130-card-top">
-                        <ProfileIcon mode={mode} />
-                        <em>Not created</em>
-                      </div>
-
-                      <h3>{contextLabel(mode)}</h3>
-
-                      <p>
-                        Create a separate profile for your {mode} context.
-                      </p>
-
-                      <button
-                        className="button secondary"
-                        onClick={() => createProfile(mode)}
-                        type="button"
-                      >
-                        Create Profile
-                      </button>
-                    </article>
-                  );
-                }
-
-                const interview = loadContextInterview(
-                  profile.id,
-                  profile.mode,
-                );
-
-                const freshness = profileFreshness(
-                  interview.completedAt,
-                );
-
-                return (
-                  <article
-                    className="profile130-context-card"
-                    key={profile.id}
-                  >
-                    <div className="profile130-card-top">
-                      <ProfileIcon mode={profile.mode} />
-                      <em>{freshness.status}</em>
-                    </div>
-
-                    <h3>{profile.label}</h3>
-
-                    <p>
-                      Separate Atlas Profile for your {profile.mode} context.
-                    </p>
-
-                    <div
-                      className={`profile130-health ${freshness.status}`}
-                    >
-                      <div>
-                        <small>Confidence</small>
-                        <strong>{freshness.confidence}%</strong>
-                      </div>
-
-                      <div>
-                        <small>Last updated</small>
-                        <strong>{freshness.label}</strong>
-                      </div>
-                    </div>
-
-                    <div className="profile130-completion">
-                      <div>
-                        <span>Profile completion</span>
-                        <strong>
-                          {profileCompletion(profile)}%
-                        </strong>
-                      </div>
-
-                      <div className="bar">
-                        <i
-                          style={{
-                            width: `${profileCompletion(profile)}%`,
-                          }}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="profile130-card-actions">
-                      <button
-                        className="button secondary"
-                        onClick={() =>
-                          openProfile(
-                            profile,
-                            "/onboarding/profile",
-                          )
-                        }
-                        type="button"
-                      >
-                        Edit
-                      </button>
-
-                      <button
-                        className="button secondary"
-                        onClick={() =>
-                          openProfile(profile, "/atlas")
-                        }
-                        type="button"
-                      >
-                        Atlas
-                      </button>
-
-                      <button
-                        className="button"
-                        onClick={() =>
-                          openProfile(
-                            profile,
-                            "/my-atlas-profile",
-                          )
-                        }
-                        type="button"
-                      >
-                        Atlas Profile
-                      </button>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </section>
-
-          <section className="profile130-two-column">
-            <article className="profile130-panel">
-              <div className="profile130-section-heading compact">
+            {showAddProfile && (
+              <section className={styles.addPanel}>
                 <div>
                   <span className="eyebrow">
-                    Workspace membership
+                    Create another Atlas Profile
                   </span>
-                  <h2>Where you currently belong.</h2>
+                  <h3>Choose a context.</h3>
+                  <p>
+                    Existing contexts are hidden to prevent duplicate
+                    profiles.
+                  </p>
                 </div>
+
+                <div className={styles.contextChoices}>
+                  {availableModes.map((mode) => (
+                    <button
+                      key={mode}
+                      onClick={() => createProfile(mode)}
+                      type="button"
+                    >
+                      <ContextIcon mode={mode} />
+                      <div>
+                        <strong>{contextLabel(mode)}</strong>
+                        <small>{contextDescription(mode)}</small>
+                      </div>
+                      <em>Create →</em>
+                    </button>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {myProfiles.length > 0 ? (
+              <div className={styles.profileGrid}>
+                {myProfiles.map((profile) => (
+                  <ProfileCard
+                    key={profile.id}
+                    profile={profile}
+                    onOpen={openProfile}
+                  />
+                ))}
+              </div>
+            ) : (
+              <section className={styles.empty}>
+                <ContextIcon mode="business" />
+                <h3>No Atlas Profile is available yet.</h3>
+                <p>
+                  Create your first profile to begin the Atlas
+                  Interview.
+                </p>
+                <button
+                  className="button"
+                  onClick={() => setShowAddProfile(true)}
+                  type="button"
+                >
+                  Create My Atlas Profile
+                </button>
+              </section>
+            )}
+          </section>
+
+          <section className={styles.twoColumns}>
+            <article className={styles.panel}>
+              <div className={styles.panelHeading}>
+                <span className="eyebrow">
+                  Workspace membership
+                </span>
+                <h2>Where you currently belong.</h2>
               </div>
 
               {currentWorkspace ? (
-                <div className="profile130-membership-card">
-                  <BlueIcon symbol="◇" label="Workspace" small />
+                <div className={styles.membershipCard}>
+                  <BlueIcon symbol="◇" />
 
                   <div>
                     <strong>{currentWorkspace.name}</strong>
@@ -384,7 +360,7 @@ export function MyProfileDashboard() {
                   </em>
                 </div>
               ) : (
-                <div className="profile130-empty-state">
+                <div className={styles.panelEmpty}>
                   <p>You are not currently using a workspace.</p>
                   <Link className="button" href="/workspaces">
                     Choose Workspace
@@ -392,7 +368,7 @@ export function MyProfileDashboard() {
                 </div>
               )}
 
-              <div className="profile130-panel-actions">
+              <div className={styles.panelActions}>
                 <Link
                   className="button secondary"
                   href="/profile/membership"
@@ -409,38 +385,31 @@ export function MyProfileDashboard() {
               </div>
             </article>
 
-            <article className="profile130-panel">
-              <div className="profile130-section-heading compact">
-                <div>
-                  <span className="eyebrow">Profile controls</span>
-                  <h2>
-                    Privacy, security and account settings.
-                  </h2>
-                </div>
+            <article className={styles.panel}>
+              <div className={styles.panelHeading}>
+                <span className="eyebrow">Profile controls</span>
+                <h2>Privacy, security and account settings.</h2>
               </div>
 
-              <div className="profile130-control-list">
+              <div className={styles.controlList}>
                 <ControlLink
                   href="/profile/privacy"
                   icon="◇"
                   title="Privacy Centre"
                   text="Consent, visibility, export and deletion."
                 />
-
                 <ControlLink
                   href="/profile/security"
                   icon="✓"
                   title="Account Security"
                   text="Email verification, sessions and MFA readiness."
                 />
-
                 <ControlLink
                   href="/notifications"
                   icon="◔"
                   title="Notifications"
                   text="Reminders, invitations and security updates."
                 />
-
                 <ControlLink
                   href="/settings"
                   icon="⚙"
@@ -456,40 +425,111 @@ export function MyProfileDashboard() {
   );
 }
 
-function ProfileIcon({ mode }: { mode: ContextMode }) {
-  const symbols: Record<ContextMode, string> = {
-    business: "⌂",
-    friendship: "♡",
-    community: "♙",
-    sports: "◎",
-    education: "▥",
-  };
+function ProfileCard({
+  profile,
+  onOpen,
+}: {
+  profile: ContextualProfile;
+  onOpen: (
+    profile: ContextualProfile,
+    href: string,
+  ) => void;
+}) {
+  const interview = loadContextInterview(
+    profile.id,
+    profile.mode,
+  );
+
+  const freshness = profileFreshness(interview.completedAt);
+  const completion = profileCompletion(profile);
+
+  const action = profileAction(
+    completion,
+    Boolean(interview.completedAt),
+  );
 
   return (
-    <BlueIcon
-      symbol={symbols[mode]}
-      label={`${contextLabel(mode)} icon`}
-    />
+    <article className={styles.profileCard}>
+      <div className={styles.cardTop}>
+        <ContextIcon mode={profile.mode} />
+        <span className={styles.status}>
+          {statusText(
+            completion,
+            Boolean(interview.completedAt),
+          )}
+        </span>
+      </div>
+
+      <h3>{contextLabel(profile.mode)}</h3>
+      <p>{contextDescription(profile.mode)}</p>
+
+      <div className={styles.health}>
+        <div>
+          <small>Confidence</small>
+          <strong>{freshness.confidence}%</strong>
+        </div>
+        <div>
+          <small>Last updated</small>
+          <strong>{freshness.label}</strong>
+        </div>
+      </div>
+
+      <div className={styles.completion}>
+        <div>
+          <span>Profile completion</span>
+          <strong>{completion}%</strong>
+        </div>
+
+        <div className={styles.bar}>
+          <i style={{ width: `${completion}%` }} />
+        </div>
+      </div>
+
+      <button
+        className="button"
+        onClick={() => onOpen(profile, action.href)}
+        type="button"
+      >
+        {action.label}
+      </button>
+
+      <div className={styles.secondaryActions}>
+        <button
+          onClick={() =>
+            onOpen(profile, "/onboarding/profile")
+          }
+          type="button"
+        >
+          Edit details
+        </button>
+
+        {interview.completedAt && (
+          <button
+            onClick={() =>
+              onOpen(profile, "/my-atlas-profile")
+            }
+            type="button"
+          >
+            View profile
+          </button>
+        )}
+      </div>
+    </article>
   );
 }
 
-function BlueIcon({
-  symbol,
+function Metric({
   label,
-  small = false,
+  value,
 }: {
-  symbol: ReactNode;
   label: string;
-  small?: boolean;
+  value: string | number;
 }) {
   return (
-    <div
-      aria-label={label}
-      role="img"
-      style={small ? smallBlueIconStyle : blueIconStyle}
-    >
-      {symbol}
-    </div>
+    <article>
+      <small>{label}</small>
+      <strong>{value}</strong>
+    </article>
   );
 }
 
@@ -506,16 +546,137 @@ function ControlLink({
 }) {
   return (
     <Link href={href}>
-      <BlueIcon symbol={icon} label={title} small />
-
+      <BlueIcon symbol={icon} />
       <div>
         <strong>{title}</strong>
         <small>{text}</small>
       </div>
-
       <em>→</em>
     </Link>
   );
+}
+
+function ContextIcon({ mode }: { mode: ContextMode }) {
+  return <BlueIcon symbol={modeSymbol(mode)} />;
+}
+
+function BlueIcon({ symbol }: { symbol: string }) {
+  return (
+    <span className={styles.blueIcon} aria-hidden="true">
+      {symbol}
+    </span>
+  );
+}
+
+function profileAction(
+  completion: number,
+  completed: boolean,
+): {
+  label: string;
+  href: string;
+} {
+  if (completed) {
+    return {
+      label: "View Atlas Profile →",
+      href: "/my-atlas-profile",
+    };
+  }
+
+  if (completion > 15) {
+    return {
+      label: "Continue Interview →",
+      href: "/atlas",
+    };
+  }
+
+  return {
+    label: "Start Atlas Interview →",
+    href: "/atlas",
+  };
+}
+
+function statusText(
+  completion: number,
+  completed: boolean,
+): string {
+  if (completed) return "Complete";
+  if (completion > 15) return "In progress";
+  return "Not started";
+}
+
+function modeSymbol(mode: ContextMode): string {
+  return {
+    business: "⌂",
+    friendship: "♡",
+    community: "♙",
+    sports: "◎",
+    education: "▥",
+  }[mode];
+}
+
+function contextDescription(mode: ContextMode): string {
+  return {
+    business:
+      "How you collaborate in professional and delivery environments.",
+    friendship:
+      "How you connect, plan and contribute in friendship groups.",
+    community:
+      "How you contribute to communities and volunteering.",
+    sports:
+      "How you collaborate in clubs, teams and sporting activities.",
+    education:
+      "How you learn, study and contribute to education groups.",
+  }[mode];
+}
+
+function workspaceContextToMode(
+  context: WorkspaceContext,
+): ContextMode {
+  const modeByContext: Record<WorkspaceContext, ContextMode> = {
+    business: "business",
+    community: "community",
+    sports: "sports",
+    education: "education",
+    friendship: "friendship",
+  };
+
+  return modeByContext[context];
+}
+
+function belongsToCurrentUser(
+  profile: ContextualProfile,
+  displayName?: string | null,
+  email?: string | null,
+): boolean {
+  const profileName = normalise(profile.preferredName);
+  const fullName = normalise(displayName);
+  const emailName = normalise(emailDisplayName(email));
+
+  if (!profileName) return false;
+
+  return (
+    profileName === fullName ||
+    profileName === emailName ||
+    Boolean(
+      fullName &&
+        profileName === normalise(fullName.split(" ")[0]),
+    )
+  );
+}
+
+function emailDisplayName(
+  email?: string | null,
+): string {
+  return (email || "")
+    .split("@")[0]
+    .replace(/[._-]+/g, " ")
+    .trim();
+}
+
+function normalise(
+  value?: string | null,
+): string {
+  return (value || "").trim().toLowerCase();
 }
 
 function profileCompletion(
