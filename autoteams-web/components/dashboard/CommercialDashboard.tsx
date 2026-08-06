@@ -89,6 +89,15 @@ export function CommercialDashboard() {
           </div>
         </section>
 
+        <section className="v11-progress">
+          <div><span className="eyebrow">Workspace progress</span><h2>Complete setup before building your first team.</h2></div>
+          <strong>{personas.length ? "62%" : "25%"}</strong>
+          <div className="bar"><span style={{width: personas.length ? "62%" : "25%"}} /></div>
+          <div className="steps">
+            <Link className="done" href="/workspaces">✓ Workspace</Link><Link href="/members">Members</Link><Link href="/team-dna">Team DNA</Link><Link href="/talent">Talent</Link><Link href="/talent-pools">Talent Pools</Link><Link href="/team-builder">First Team</Link><Link href="/insights">Insights</Link>
+          </div>
+          <Link className="button" href={personas.length ? "/talent" : "/atlas"}>Continue Setup</Link>
+        </section>
         <section className="commercial-dashboard-metrics">
           {loading ? (
             <>

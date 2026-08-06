@@ -4,35 +4,32 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const sections = [
-  {
-    title: "",
-    links: [{ href: "/dashboard", icon: "⌂", label: "Overview" }],
-  },
-  {
-    title: "BUILD",
-    links: [
-      { href: "/team-builder", icon: "◎", label: "Team Builder" },
-      { href: "/team-canvas", icon: "◫", label: "Team Canvas" },
-      { href: "/register", icon: "♙", label: "Team Personas" },
-    ],
-  },
-  {
-    title: "INTELLIGENCE",
-    links: [
-      { href: "/atlas", icon: "✦", label: "Atlas" },
-      { href: "/team-dna", icon: "◌", label: "Team DNA" },
-      { href: "/matches", icon: "♡", label: "Matches" },
-      { href: "/insights", icon: "▥", label: "Insights" },
-    ],
-  },
-  {
-    title: "WORKSPACE",
-    links: [
-      { href: "/notifications", icon: "◔", label: "Notifications" },
-      { href: "/settings", icon: "⚙", label: "Settings" },
-      { href: "/trust-centre", icon: "◇", label: "Trust Centre" },
-    ],
-  },
+  { title: "", links: [
+    { href: "/dashboard", icon: "⌂", label: "Overview" },
+    { href: "/getting-started", icon: "↗", label: "Get Started" },
+  ]},
+  { title: "WORKSPACE", links: [
+    { href: "/workspaces", icon: "◇", label: "Workspaces" },
+    { href: "/members", icon: "♙", label: "Members" },
+    { href: "/talent", icon: "◌", label: "Talent" },
+    { href: "/talent-pools", icon: "◎", label: "Talent Pools" },
+  ]},
+  { title: "TEAMS", links: [
+    { href: "/teams", icon: "▥", label: "Teams" },
+    { href: "/team-builder", icon: "✦", label: "Build with Atlas" },
+    { href: "/team-canvas", icon: "◫", label: "Team Canvas" },
+  ]},
+  { title: "INTELLIGENCE", links: [
+    { href: "/atlas", icon: "✦", label: "Atlas" },
+    { href: "/team-dna", icon: "◌", label: "Team DNA" },
+    { href: "/matches", icon: "♡", label: "Matches" },
+    { href: "/insights", icon: "▥", label: "Atlas Insights" },
+  ]},
+  { title: "ACCOUNT", links: [
+    { href: "/notifications", icon: "◔", label: "Notifications" },
+    { href: "/settings", icon: "⚙", label: "Settings" },
+    { href: "/trust-centre", icon: "◇", label: "Trust Centre" },
+  ]},
 ];
 
 function activePath(pathname: string, href: string): boolean {

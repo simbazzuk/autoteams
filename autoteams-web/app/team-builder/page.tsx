@@ -8,9 +8,9 @@ export default function TeamBuilderPage() {
     <PageShell>
       <ProtectedRoute>
         <ProductPage
-          eyebrow="Team Builder"
-          title="Build the whole team around the outcome."
-          text="Define the purpose, size and priority. AutoTeams proposes a balanced composition and explains every role."
+          eyebrow="Build Teams with Atlas"
+          title="Build from the right people, not the whole platform."
+          text="Choose a private workspace, define the eligible Talent population and let Atlas recommend a balanced team from only those people."
         >
           <TeamDesigner />
         </ProductPage>

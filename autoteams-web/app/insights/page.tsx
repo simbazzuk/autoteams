@@ -8,7 +8,7 @@ export default function InsightsPage() {
     <PageShell>
       <ProtectedRoute>
         <ProductPage
-          eyebrow="Team Insights"
+          eyebrow="Atlas Insights"
           title="Turn Team DNA into useful decisions."
           text="Review strengths, watch points, preferred roles and the team environment most likely to support success."
         >

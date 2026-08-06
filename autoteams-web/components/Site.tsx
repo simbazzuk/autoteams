@@ -21,14 +21,14 @@ export function RobotLogo() {
 
 const primaryLinks = [
   { href: "/dashboard", label: "Dashboard" },
-  { href: "/getting-started", label: "Getting Started" },
+  { href: "/getting-started", label: "Get Started" },
+  { href: "/workspaces", label: "Workspaces" },
+  { href: "/members", label: "Members" },
+  { href: "/talent", label: "Talent" },
+  { href: "/talent-pools", label: "Talent Pools" },
+  { href: "/teams", label: "Teams" },
   { href: "/atlas", label: "Atlas", atlas: true },
-  { href: "/team-dna", label: "Team DNA" },
-  { href: "/team-builder", label: "Team Builder" },
-  { href: "/team-canvas", label: "Team Canvas" },
-  { href: "/matches", label: "Matches" },
   { href: "/insights", label: "Insights" },
-  { href: "/founding-members", label: "Founding Members" },
 ];
 
 function isActivePath(pathname: string, href: string): boolean {
@@ -47,7 +47,7 @@ export function Navbar() {
             <strong>AutoTeams</strong>
             <em>AI Team Intelligence</em>
           </span>
-          <small>v8.0</small>
+          <small>v11.0</small>
         </Link>
 
         <nav className="product-nav-links atlas-nav-links" aria-label="Primary navigation">
@@ -74,6 +74,10 @@ export function Navbar() {
               Platform <span>⌄</span>
             </summary>
             <div className="nav-dropdown-menu">
+              <Link href="/workspaces">Workspaces</Link>
+              <Link href="/talent">Talent</Link>
+              <Link href="/members">Members & Roles</Link>
+              <Link href="/talent-pools">Talent Pools</Link>
               <Link href="/solutions">Solutions</Link>
               <Link href="/trust-centre">Trust Centre</Link>
               <Link href="/why-this-team">Explainability</Link>
@@ -104,8 +108,9 @@ export function Footer() {
         <div className="footer-links">
           <Link href="/atlas">Atlas</Link>
           <Link href="/team-dna">Team DNA</Link>
-          <Link href="/team-builder">Team Builder</Link>
+          <Link href="/team-builder">Build with Atlas</Link>
           <Link href="/team-canvas">Team Canvas</Link>
+          <Link href="/members">Members & Roles</Link>
           <Link href="/founding-members">Founding Members</Link>
           <Link href="/roadmap">Roadmap</Link>
           <Link href="/about">About</Link>
