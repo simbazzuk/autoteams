@@ -28,6 +28,10 @@ type SignUpInput = {
   email: string;
   password: string;
   city?: string;
+  ageConfirmed: boolean;
+  termsAccepted: boolean;
+  privacyAccepted: boolean;
+  marketingConsent: boolean;
 };
 
 type AuthContextValue = {
@@ -37,6 +41,8 @@ type AuthContextValue = {
   signIn: (email: string, password: string) => Promise<void>;
   signInWithGoogle: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
+  resendVerification: () => Promise<void>;
+  reloadUser: () => Promise<void>;
   logout: () => Promise<void>;
 };
 
@@ -44,7 +50,14 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 async function upsertUserProfile(
   user: User,
-  extras: { displayName?: string; city?: string } = {}
+  extras: {
+    displayName?: string;
+    city?: string;
+    ageConfirmed?: boolean;
+    termsAccepted?: boolean;
+    privacyAccepted?: boolean;
+    marketingConsent?: boolean;
+  } = {}
 ) {
   await setDoc(
     doc(db, "users", user.uid),
@@ -55,6 +68,11 @@ async function upsertUserProfile(
       city: extras.city || "",
       photoURL: user.photoURL || "",
       providerIds: user.providerData.map((provider) => provider.providerId),
+      ageConfirmed: extras.ageConfirmed ?? true,
+      termsAccepted: extras.termsAccepted ?? true,
+      privacyAccepted: extras.privacyAccepted ?? true,
+      marketingConsent: extras.marketingConsent ?? false,
+      registrationVersion: "11.5",
       updatedAt: serverTimestamp(),
       createdAt: serverTimestamp(),
     },
@@ -78,7 +96,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       user,
       loading,
 
-      async signUp({ displayName, email, password, city }) {
+      async signUp({
+        displayName,
+        email,
+        password,
+        city,
+        ageConfirmed,
+        termsAccepted,
+        privacyAccepted,
+        marketingConsent,
+      }) {
         const credential = await createUserWithEmailAndPassword(
           auth,
           email,
@@ -86,7 +113,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         );
 
         await updateProfile(credential.user, { displayName });
-        await upsertUserProfile(credential.user, { displayName, city });
+        await upsertUserProfile(credential.user, {
+          displayName,
+          city,
+          ageConfirmed,
+          termsAccepted,
+          privacyAccepted,
+          marketingConsent,
+        });
         await sendEmailVerification(credential.user);
       },
 
@@ -108,6 +142,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       async resetPassword(email) {
         await sendPasswordResetEmail(auth, email);
+      },
+
+      async resendVerification() {
+        if (!auth.currentUser) {
+          throw new Error("No authenticated user.");
+        }
+        await sendEmailVerification(auth.currentUser);
+      },
+
+      async reloadUser() {
+        if (!auth.currentUser) return;
+        await auth.currentUser.reload();
+        setUser(auth.currentUser);
       },
 
       async logout() {

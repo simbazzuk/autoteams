@@ -1,20 +1,18 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { ProductPage } from "@/components/ProductPage";
-import { AtlasInterview } from "@/components/atlas/AtlasInterview";
-import { AtlasOrb } from "@/components/AtlasOrb";
+import { ContextualAtlasInterview } from "@/components/atlas/ContextualAtlasInterview";
 
 export default function AtlasPage() {
   return (
     <PageShell>
       <ProtectedRoute>
         <ProductPage
-          eyebrow="Atlas"
-          title="Your AI Team Strategist."
-          text="Atlas learns how you collaborate, creates your Team DNA and helps you build balanced teams with every recommendation explained."
-          actions={<AtlasOrb size="lg" />}
+          eyebrow="Atlas Contextual Interview"
+          title="Complete the core interview once, then add each context."
+          text="Atlas reuses your core collaboration answers and asks only the business, friendship, community, sports or education questions needed for the selected profile."
         >
-          <AtlasInterview />
+          <ContextualAtlasInterview />
         </ProductPage>
       </ProtectedRoute>
     </PageShell>

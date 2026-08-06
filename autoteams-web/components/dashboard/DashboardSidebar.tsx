@@ -21,7 +21,9 @@ const sections = [
   ]},
   { title: "INTELLIGENCE", links: [
     { href: "/atlas", icon: "✦", label: "Atlas" },
-    { href: "/team-dna", icon: "◌", label: "Team DNA" },
+    { href: "/team-dna", icon: "◌", label: "My Team DNA" },
+      { href: "/profile", icon: "♙", label: "My Profile" },
+      { href: "/profile/membership", icon: "◇", label: "Membership" },
     { href: "/matches", icon: "♡", label: "Matches" },
     { href: "/insights", icon: "▥", label: "Atlas Insights" },
   ]},

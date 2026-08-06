@@ -36,3 +36,43 @@ Pro features at no cost during Beta.
 
 Firebase Authentication, Firestore personas, Gemini analysis, dark/light
 appearance, route-aware navigation and compatibility redirects remain unchanged.
+
+
+## v11.5
+
+Registration, privacy, consent, email-verification and MFA-readiness experience added.
+
+
+## v12.0
+
+Unified Trust Centre, Security Centre and Privacy Centre design.
+
+
+## v12.5
+
+Contextual profiles and Atlas question packs for Business, Friendship, Community, Sports and Education.
+
+
+## v12.6
+
+Core Atlas interview reused across profiles; contextual interviews and Team DNA freshness added.
+
+
+## v13.0a
+
+Permanent My Profile dashboard, contextual profile cards and quick actions.
+
+
+## v13.0b
+
+Dedicated contextual Profile Privacy and Profile Security dashboards.
+
+
+## v13.0c
+
+Team DNA Dashboard, contextual comparison and Atlas Health added.
+
+
+## v13.0d
+
+Notifications Centre, Workspace Membership dashboard and readability improvements.

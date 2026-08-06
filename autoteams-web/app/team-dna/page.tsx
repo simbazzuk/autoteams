@@ -1,18 +1,18 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { ProductPage } from "@/components/ProductPage";
-import { ProfileIntelligence } from "@/components/intelligence/ProfileIntelligence";
+import { TeamDnaDashboard } from "@/components/team-dna/TeamDnaDashboard";
 
 export default function TeamDnaPage() {
   return (
     <PageShell>
       <ProtectedRoute>
         <ProductPage
-          eyebrow="Team DNA"
-          title="Understand how someone contributes."
-          text="Turn natural language into an explainable profile covering collaboration, communication, leadership, planning, creativity and reliability."
+          eyebrow="My Team DNA"
+          title="Understand how you collaborate in each context."
+          text="Review confidence, freshness, strengths and development themes, then compare how your Team DNA changes between work, friendship, community, sports and education."
         >
-          <ProfileIntelligence />
+          <TeamDnaDashboard />
         </ProductPage>
       </ProtectedRoute>
     </PageShell>

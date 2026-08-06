@@ -1,12 +1,12 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { NotificationsCentre } from "@/components/notifications/NotificationsCentre";
+import { ProfilePrivacyDashboard } from "@/components/profile/ProfilePrivacyDashboard";
 
-export default function NotificationsPage() {
+export default function ProfilePrivacyPage() {
   return (
     <PageShell>
       <ProtectedRoute>
-        <NotificationsCentre />
+        <ProfilePrivacyDashboard />
       </ProtectedRoute>
     </PageShell>
   );

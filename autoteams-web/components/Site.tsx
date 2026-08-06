@@ -28,6 +28,8 @@ const primaryLinks = [
   { href: "/talent-pools", label: "Talent Pools" },
   { href: "/teams", label: "Teams" },
   { href: "/atlas", label: "Atlas", atlas: true },
+  { href: "/team-dna", label: "My Team DNA" },
+  { href: "/profile", label: "My Profile" },
   { href: "/insights", label: "Insights" },
 ];
 
@@ -47,7 +49,7 @@ export function Navbar() {
             <strong>AutoTeams</strong>
             <em>AI Team Intelligence</em>
           </span>
-          <small>v11.0</small>
+          <small>v13.0d</small>
         </Link>
 
         <nav className="product-nav-links atlas-nav-links" aria-label="Primary navigation">
@@ -81,7 +83,14 @@ export function Navbar() {
               <Link href="/solutions">Solutions</Link>
               <Link href="/trust-centre">Trust Centre</Link>
               <Link href="/why-this-team">Explainability</Link>
+              <Link href="/profile">My Profile</Link>
+              <Link href="/profile/privacy">Profile Privacy</Link>
+              <Link href="/profile/security">Profile Security</Link>
+              <Link href="/profile/membership">Workspace Membership</Link>
+              <Link href="/notifications">Notifications</Link>
               <Link href="/settings">Settings</Link>
+              <Link href="/security">Security</Link>
+              <Link href="/privacy">Privacy Centre</Link>
             </div>
           </details>
           <AccountMenu />
@@ -114,6 +123,8 @@ export function Footer() {
           <Link href="/founding-members">Founding Members</Link>
           <Link href="/roadmap">Roadmap</Link>
           <Link href="/about">About</Link>
+          <Link href="/security">Security</Link>
+          <Link href="/privacy">Privacy</Link>
         </div>
       </div>
     </footer>

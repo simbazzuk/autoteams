@@ -1,12 +1,12 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { NotificationsCentre } from "@/components/notifications/NotificationsCentre";
+import { WorkspaceMembershipDashboard } from "@/components/profile/WorkspaceMembershipDashboard";
 
-export default function NotificationsPage() {
+export default function WorkspaceMembershipPage() {
   return (
     <PageShell>
       <ProtectedRoute>
-        <NotificationsCentre />
+        <WorkspaceMembershipDashboard />
       </ProtectedRoute>
     </PageShell>
   );

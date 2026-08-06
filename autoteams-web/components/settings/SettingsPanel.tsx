@@ -8,6 +8,7 @@ import {
   savePreferences,
 } from "@/lib/ui-preferences";
 import { useAuth } from "@/components/AuthProvider";
+import Link from "next/link";
 
 export function SettingsPanel() {
   const { user } = useAuth();
@@ -104,6 +105,26 @@ export function SettingsPanel() {
             checked={preferences.aiInsightNotifications}
             onChange={(checked) => update("aiInsightNotifications", checked)}
           />
+        </div>
+
+        <div className="settings-card">
+          <div className="settings-heading">
+            <div>
+              <h3>Privacy and security</h3>
+              <p>Review your workspace profile, consent and account protection.</p>
+            </div>
+          </div>
+          <div className="actions">
+            <Link className="button secondary" href="/profile">
+              My Profile
+            </Link>
+            <Link className="button secondary" href="/profile/security">
+              Account Security
+            </Link>
+            <Link className="button secondary" href="/profile/privacy">
+              Privacy Centre
+            </Link>
+          </div>
         </div>
 
         <div className="settings-save">

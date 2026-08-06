@@ -1,12 +1,12 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { NotificationsCentre } from "@/components/notifications/NotificationsCentre";
+import { RegistrationProfilePanel } from "@/components/onboarding/RegistrationProfilePanel";
 
-export default function NotificationsPage() {
+export default function RegistrationProfilePage() {
   return (
     <PageShell>
       <ProtectedRoute>
-        <NotificationsCentre />
+        <RegistrationProfilePanel />
       </ProtectedRoute>
     </PageShell>
   );
