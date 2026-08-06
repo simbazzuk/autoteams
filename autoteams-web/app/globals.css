@@ -12348,3 +12348,67 @@ h1, h2, h3, h4 {
 p {
   color: var(--at-text-muted);
 }
+
+.profile130-context-card,
+.profile130-panel,
+.v10-workspace-card,
+.v10-workspace-list-panel,
+.v10-create-panel {
+  border-radius: 20px !important;
+  border-color: #2a3448 !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.14);
+}
+
+.profile130-context-card,
+.v10-workspace-card {
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.profile130-context-card:hover,
+.v10-workspace-card:hover {
+  transform: translateY(-2px);
+  border-color: #514979 !important;
+  box-shadow: 0 24px 58px rgba(0, 0, 0, 0.2);
+}
+
+.profile130-card-top,
+.v10-workspace-card-top,
+.v10-create-heading {
+  align-items: center;
+}
+
+.profile130-control-list a,
+.profile130-membership-card,
+.v10-type-option,
+.v10-owner-explanation,
+.v10-created-message {
+  border-radius: 14px !important;
+}
+
+.profile130-control-list a {
+  min-height: 68px;
+}
+
+.profile130-summary-grid article {
+  padding: 20px !important;
+  border-radius: 16px !important;
+}
+
+.v10-workspace-hero h1,
+.profile130-hero h1 {
+  font-size: clamp(46px, 5vw, 66px) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -0.045em !important;
+}
+
+.v10-workspace-card h3,
+.profile130-context-card h3 {
+  font-size: 21px !important;
+}
+
+.v10-type-option > span[role="img"] {
+  margin-top: 1px;
+}

@@ -2,6 +2,15 @@
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import {
+  AtlasIcon,
+  BusinessIcon,
+  PeopleIcon,
+  PersonalGroupIcon,
+  SuccessIcon,
+  TalentPoolIcon,
+  WorkspaceIcon,
+} from "@/components/ui/AppIcons";
 import { createOwnedWorkspace } from "@/lib/access-bootstrap";
 import {
   Workspace,
@@ -97,7 +106,11 @@ export function WorkspacesPanel() {
                     key={workspace.id}
                   >
                     <div className="v10-workspace-card-top">
-                      <span>{workspace.type === "organisation" ? "⌂" : "♙"}</span>
+                      {workspace.type === "organisation" ? (
+                        <BusinessIcon size="lg" />
+                      ) : (
+                        <PersonalGroupIcon size="lg" />
+                      )}
                       <em>
                         {workspace.type === "organisation"
                           ? "Organisation"
@@ -145,7 +158,7 @@ export function WorkspacesPanel() {
 
           <aside className="v10-create-panel">
             <div className="v10-create-heading">
-              <span className="v10-create-icon">＋</span>
+              <WorkspaceIcon size="lg" />
               <div>
                 <span className="eyebrow">Create workspace</span>
                 <h2>Start a company or personal group.</h2>
@@ -159,7 +172,7 @@ export function WorkspacesPanel() {
 
             {created && (
               <div className="v10-created-message">
-                <span>✓</span>
+                <SuccessIcon size="md" />
                 <div>
                   <strong>{created} created</strong>
                   <p>You are now the Workspace Owner.</p>
@@ -198,7 +211,7 @@ export function WorkspacesPanel() {
                     checked={type === "organisation"}
                     onChange={() => setType("organisation")}
                   />
-                  <span>⌂</span>
+                  <BusinessIcon size="md" />
                   <div>
                     <strong>Organisation</strong>
                     <small>
@@ -220,7 +233,7 @@ export function WorkspacesPanel() {
                     checked={type === "personal"}
                     onChange={() => setType("personal")}
                   />
-                  <span>♙</span>
+                  <PersonalGroupIcon size="md" />
                   <div>
                     <strong>Personal or friendship group</strong>
                     <small>
@@ -253,13 +266,13 @@ export function WorkspacesPanel() {
             </form>
 
             <div className="v10-owner-explanation">
-              <span>◇</span>
+              <WorkspaceIcon size="md" />
               <div>
                 <strong>What happens next?</strong>
                 <ol>
                   <li>You become Workspace Owner.</li>
                   <li>You invite people and assign their roles.</li>
-                  <li>Members complete Team DNA and give consent.</li>
+                  <li>Members complete their Atlas Profile and give consent.</li>
                   <li>Team Leaders build teams from eligible members.</li>
                 </ol>
               </div>

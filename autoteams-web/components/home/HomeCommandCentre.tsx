@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/AuthProvider";
@@ -24,10 +25,20 @@ import {
   loadMemberships,
 } from "@/lib/workspace-access";
 import { AtlasAssistant } from "@/components/atlas-assistant/AtlasAssistant";
+import {
+  AtlasIcon,
+  DnaIcon,
+  PeopleIcon,
+  TalentPoolIcon,
+  WorkspaceIcon,
+  RecommendationIcon,
+  TeamIcon,
+  NotificationIcon,
+} from "@/components/ui/AppIcons";
 import styles from "./HomeCommandCentre.module.css";
 
 type ActivityItem = {
-  icon: string;
+  icon: ReactNode;
   title: string;
   text: string;
   href: string;
@@ -67,23 +78,29 @@ export function HomeCommandCentre() {
   const workspacePeople = people.filter(
     (item) => item.workspaceId === workspaceId,
   );
+
   const workspacePools = talentPools.filter(
     (item) => item.workspaceId === workspaceId,
   );
+
   const activeMembers = memberships.filter(
     (item) =>
       item.workspaceId === workspaceId &&
       item.status === "active",
   );
+
   const pendingInvites = invitations.filter(
     (item) =>
       item.workspaceId === workspaceId &&
       item.status === "pending",
   );
+
   const unread = notifications.filter((item) => !item.read);
+
   const completeProfiles = insights.filter(
     ({ insight }) => insight.interviewComplete,
   );
+
   const staleProfiles = insights.filter(
     ({ insight }) =>
       insight.freshnessStatus === "stale" ||
@@ -105,7 +122,7 @@ export function HomeCommandCentre() {
     peopleReady,
   );
 
-  const activities: ActivityItem[] = buildActivities({
+  const activities = buildActivities({
     workspaceName: workspace?.name,
     teams: teams.length,
     recommendations: recommendations.length,
@@ -120,7 +137,9 @@ export function HomeCommandCentre() {
         <div className={`container ${styles.heroGrid}`}>
           <div>
             <span className="eyebrow">Home</span>
-            <h1>Good {dayPart()}, {firstName(user?.displayName || user?.email)}.</h1>
+            <h1>
+              Good {dayPart()}, {firstName(user?.displayName || user?.email)}.
+            </h1>
             <p>
               Continue your work, review Atlas readiness and manage the active
               workspace from one place.
@@ -157,7 +176,9 @@ export function HomeCommandCentre() {
             <Metric
               label="Workspace members"
               value={activeMembers.length}
-              detail={`${pendingInvites.length} invitation${pendingInvites.length === 1 ? "" : "s"} pending`}
+              detail={`${pendingInvites.length} invitation${
+                pendingInvites.length === 1 ? "" : "s"
+              } pending`}
               href="/profile/membership"
             />
             <Metric
@@ -192,26 +213,26 @@ export function HomeCommandCentre() {
 
                 <div className={styles.actionGrid}>
                   <QuickAction
-                    icon="✦"
+                    icon={<AtlasIcon size="lg" />}
                     title="Build a Team"
                     text="Describe a requirement and let Atlas recommend a balanced team."
                     href="/team-builder"
                     primary
                   />
                   <QuickAction
-                    icon="♙"
+                    icon={<PeopleIcon size="lg" />}
                     title="Invite Members"
                     text="Add people to the active workspace and assign roles."
                     href="/profile/membership"
                   />
                   <QuickAction
-                    icon="◎"
+                    icon={<TalentPoolIcon size="lg" />}
                     title="Create Talent Pool"
                     text="Define the eligible population Atlas may consider."
                     href="/talent-pools"
                   />
                   <QuickAction
-                    icon="◌"
+                    icon={<DnaIcon size="lg" />}
                     title="Review My Atlas Profile"
                     text="Check confidence, freshness and collaboration traits."
                     href="/my-atlas-profile"
@@ -271,7 +292,7 @@ export function HomeCommandCentre() {
                 <div className={styles.activityList}>
                   {activities.map((item) => (
                     <Link href={item.href} key={`${item.title}-${item.text}`}>
-                      <span>{item.icon}</span>
+                      {item.icon}
                       <div>
                         <strong>{item.title}</strong>
                         <small>{item.text}</small>
@@ -328,7 +349,7 @@ function QuickAction({
   href,
   primary = false,
 }: {
-  icon: string;
+  icon: ReactNode;
   title: string;
   text: string;
   href: string;
@@ -339,7 +360,7 @@ function QuickAction({
       className={primary ? styles.primaryAction : ""}
       href={href}
     >
-      <span>{icon}</span>
+      {icon}
       <h3>{title}</h3>
       <p>{text}</p>
       <footer>Continue →</footer>
@@ -386,7 +407,7 @@ function buildActivities({
 
   if (workspaceName) {
     items.push({
-      icon: "◇",
+      icon: <WorkspaceIcon size="sm" />,
       title: workspaceName,
       text: "This is your active workspace.",
       href: "/workspaces",
@@ -395,34 +416,40 @@ function buildActivities({
 
   if (recommendations > 0) {
     items.push({
-      icon: "◎",
+      icon: <RecommendationIcon size="sm" />,
       title: "Atlas recommendations available",
-      text: `${recommendations} recommendation${recommendations === 1 ? "" : "s"} can be reviewed.`,
+      text: `${recommendations} recommendation${
+        recommendations === 1 ? "" : "s"
+      } can be reviewed.`,
       href: "/matches",
     });
   }
 
   if (staleProfiles > 0) {
     items.push({
-      icon: "◌",
+      icon: <DnaIcon size="sm" />,
       title: "Atlas Profiles need review",
-      text: `${staleProfiles} profile${staleProfiles === 1 ? "" : "s"} are aging or stale.`,
+      text: `${staleProfiles} profile${
+        staleProfiles === 1 ? "" : "s"
+      } are aging or stale.`,
       href: "/my-atlas-profile",
     });
   }
 
   if (pendingInvites > 0) {
     items.push({
-      icon: "♙",
+      icon: <PeopleIcon size="sm" />,
       title: "Workspace invitations pending",
-      text: `${pendingInvites} invitation${pendingInvites === 1 ? "" : "s"} are waiting for a response.`,
+      text: `${pendingInvites} invitation${
+        pendingInvites === 1 ? "" : "s"
+      } are waiting for a response.`,
       href: "/profile/membership",
     });
   }
 
   if (unread > 0) {
     items.push({
-      icon: "◔",
+      icon: <NotificationIcon size="sm" />,
       title: "Unread notifications",
       text: `${unread} update${unread === 1 ? "" : "s"} require attention.`,
       href: "/notifications",
@@ -431,7 +458,7 @@ function buildActivities({
 
   if (teams > 0) {
     items.push({
-      icon: "▥",
+      icon: <TeamIcon size="sm" />,
       title: "Teams ready for review",
       text: `${teams} team${teams === 1 ? "" : "s"} can be opened or analysed.`,
       href: "/teams",
@@ -449,6 +476,7 @@ function calculateAtlasHealth(
 ): number {
   const readiness = people ? (peopleReady / people) * 100 : 0;
   const freshnessPenalty = Math.min(25, staleProfiles * 7);
+
   return Math.max(
     0,
     Math.min(
@@ -465,7 +493,9 @@ function firstName(value?: string | null): string {
 
 function dayPart(): string {
   const hour = new Date().getHours();
+
   if (hour < 12) return "morning";
   if (hour < 18) return "afternoon";
+
   return "evening";
 }

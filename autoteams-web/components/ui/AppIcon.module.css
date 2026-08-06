@@ -1,0 +1,58 @@
+.icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  color: #ffffff;
+  background: linear-gradient(135deg, #765fff 0%, #5b7cfa 55%, #4f8ef7 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 12px 28px rgba(79, 142, 247, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  font-weight: 800;
+  line-height: 1;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    filter 0.18s ease;
+}
+
+.icon:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 16px 34px rgba(79, 142, 247, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  filter: saturate(1.1);
+}
+
+.sm {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.md {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  font-size: 17px;
+}
+
+.lg {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  font-size: 19px;
+}
+
+.subtle {
+  color: #d2ccff;
+  background: linear-gradient(
+    135deg,
+    rgba(118, 95, 255, 0.2),
+    rgba(79, 142, 247, 0.18)
+  );
+  border-color: rgba(164, 148, 255, 0.22);
+  box-shadow: none;
+}

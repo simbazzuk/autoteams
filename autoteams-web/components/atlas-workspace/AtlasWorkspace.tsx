@@ -18,6 +18,8 @@ import {
 } from "@/lib/notifications";
 import styles from "./AtlasWorkspace.module.css";
 import { AtlasAssistant } from "@/components/atlas-assistant/AtlasAssistant";
+import type { ReactNode } from "react";
+import { AtlasIcon, DnaIcon, InsightIcon, PeopleIcon, RecommendationIcon, TeamIcon } from "@/components/ui/AppIcons";
 
 type AtlasAction = {
   href: string;
