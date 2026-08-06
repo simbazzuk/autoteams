@@ -118,6 +118,9 @@ export function SettingsPanel() {
             <Link className="button secondary" href="/profile">
               My Profile
             </Link>
+            <Link className="button secondary" href="/demo">
+              Demo Environment
+            </Link>
             <Link className="button secondary" href="/profile/security">
               Account Security
             </Link>

@@ -76,3 +76,23 @@ Team DNA Dashboard, contextual comparison and Atlas Health added.
 ## v13.0d
 
 Notifications Centre, Workspace Membership dashboard and readability improvements.
+
+
+## v13.5
+
+Selectable local Demo Environment for Business, Friendship, Community and Sports testing.
+
+
+## v14.0
+
+Atlas Recommendation Studio redesign for explainable candidate and team selection.
+
+
+## v14.1
+
+UX Foundation: new Home, Product Guide, grouped navigation, larger typography and next-step guidance.
+
+
+## v14.1 Hotfix
+
+Corrected HomeExperience to use the existing `loadTalentPools` export.

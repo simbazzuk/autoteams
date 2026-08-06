@@ -8,9 +8,9 @@ export default function MatchesPage() {
     <PageShell>
       <ProtectedRoute>
         <ProductPage
-          eyebrow="Explainable matching"
-          title="Discover people who fit the purpose."
-          text="Compare goal alignment, availability, shared interests, location, Team DNA and trust in one transparent score."
+          eyebrow="Atlas Recommendation Studio"
+          title="Design teams with evidence, balance and explanation."
+          text="Compare candidates, understand every matching signal and see how each person changes the overall Team DNA before creating the team."
         >
           <MatchExplorer />
         </ProductPage>

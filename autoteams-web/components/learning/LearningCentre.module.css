@@ -1,0 +1,58 @@
+.page { min-height: 100vh; color: #f6f8fc; background: #0f1420; }
+.hero { padding: 64px 0 52px; background: radial-gradient(circle at 82% 16%, rgba(79,142,247,.15), transparent 29%), radial-gradient(circle at 13% 10%, rgba(124,92,255,.14), transparent 29%), #0f1420; border-bottom: 1px solid #232c3e; }
+.hero h1 { max-width: 970px; margin: 10px 0 14px; font-size: clamp(48px,5vw,68px); font-weight: 660; line-height: 1.03; letter-spacing: -.047em; }
+.hero p { max-width: 850px; margin: 0; color: #9ca8bb; font-size: 17px; line-height: 1.68; }
+.body { padding: 30px 0 80px; }
+.tabs button {
+  min-height: 48px;
+  padding: 0 20px;
+  color: #aab4c4;
+  background: #121827;
+  border: 1px solid #354158;
+  border-radius: 13px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform .18s ease,
+    background .18s ease,
+    border-color .18s ease,
+    color .18s ease,
+    box-shadow .18s ease;
+}
+
+.tabs button:hover {
+  color: #ffffff;
+  background: #20293a;
+  border-color: #655b91;
+  transform: translateY(-1px);
+}
+
+.tabs .activeTab {
+  color: #ffffff;
+  background: linear-gradient(135deg, #765fff, #4f8ef7);
+  border-color: transparent;
+  box-shadow: 0 14px 34px rgba(79,104,247,.32);
+}
+.panel { padding: 25px; background: #171e2d; border: 1px solid #2a3448; border-radius: 20px; }
+.heading { max-width: 830px; margin-bottom: 20px; }
+.heading h2 { margin: 8px 0; color: #f1f4f9; font-size: 34px; line-height: 1.15; }
+.heading p { margin: 0; color: #8f9bb0; font-size: 15px; line-height: 1.6; }
+.steps, .featureList, .faqList { display: grid; gap: 10px; }
+.steps a { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 13px; align-items: center; padding: 16px; color: inherit; background: #121827; border: 1px solid #293246; border-radius: 13px; }
+.steps a > span { display: grid; place-items: center; width: 41px; height: 41px; color: white; background: linear-gradient(135deg,#7868ff,#4f8ef7); border-radius: 11px; font-size: 11px; font-weight: 850; }
+.steps a > div, .featureList a > div { display: grid; gap: 4px; }
+.steps strong, .featureList strong { color: #e8ecf3; font-size: 16px; }
+.steps small, .featureList small { color: #7f8ba0; font-size: 13px; line-height: 1.45; }
+.steps em { color: #a99cff; font-size: 13px; font-style: normal; }
+.cardGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 13px; margin-bottom: 18px; }
+.cardGrid article { padding: 20px; background: #121827; border: 1px solid #293246; border-radius: 14px; }
+.cardGrid article > span { display: grid; place-items: center; width: 41px; height: 41px; color: #b5aaff; background: #292442; border-radius: 11px; }
+.cardGrid h3 { margin: 15px 0 7px; color: #e8ecf3; font-size: 19px; }
+.cardGrid p { margin: 0; color: #8f9bb0; font-size: 14px; line-height: 1.55; }
+.featureList a { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 16px; color: inherit; background: #121827; border: 1px solid #293246; border-radius: 13px; }
+.featureList a > span { color: #a99cff; font-size: 17px; }
+.faqList details { padding: 16px; background: #121827; border: 1px solid #293246; border-radius: 12px; }
+.faqList summary { color: #e8ecf3; font-size: 16px; font-weight: 650; cursor: pointer; }
+.faqList p { margin: 10px 0 0; color: #8f9bb0; font-size: 14px; line-height: 1.6; }
+@media (max-width: 820px) { .cardGrid { grid-template-columns: 1fr; } .steps a { grid-template-columns: auto 1fr; } .steps em { grid-column: 2; } }
