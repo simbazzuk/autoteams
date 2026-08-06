@@ -44,9 +44,9 @@ export function WorkspaceMembershipDashboard() {
   const grouped = useMemo(() => {
     const roles: WorkspaceRole[] = [
       "owner",
-      "administrator",
-      "team_leader",
-      "team_member",
+      "admin",
+      "leader",
+      "member",
     ];
     return roles.map((role) => ({
       role,
@@ -70,11 +70,7 @@ export function WorkspaceMembershipDashboard() {
   }
 
   function removeMember(memberId: string) {
-    const updated = memberships.map((member) =>
-      member.id === memberId
-        ? { ...member, status: "removed" as const }
-        : member,
-    );
+    const updated = memberships.filter((member) => member.id !== memberId);
     setMemberships(updated);
     saveMemberships(updated);
     setSaved("Member removed from the workspace.");
@@ -143,7 +139,7 @@ export function WorkspaceMembershipDashboard() {
                 <strong>
                   {
                     workspaceMembers.filter(
-                      (member) => member.role === "team_leader",
+                      (member) => member.role === "leader",
                     ).length
                   }
                 </strong>
@@ -197,9 +193,9 @@ export function WorkspaceMembershipDashboard() {
                             disabled={member.role === "owner"}
                           >
                             <option value="owner">Owner</option>
-                            <option value="administrator">Administrator</option>
-                            <option value="team_leader">Team Leader</option>
-                            <option value="team_member">Team Member</option>
+                            <option value="admin">Administrator</option>
+                            <option value="leader">Team Leader</option>
+                            <option value="member">Team Member</option>
                           </select>
 
                           <button
@@ -269,17 +265,17 @@ export function WorkspaceMembershipDashboard() {
 function roleIcon(role: WorkspaceRole): string {
   return {
     owner: "★",
-    administrator: "✓",
-    team_leader: "♙",
-    team_member: "◌",
+    admin: "✓",
+    leader: "♙",
+    member: "◌",
   }[role];
 }
 
 function roleDescription(role: WorkspaceRole): string {
   return {
     owner: "Full control of the workspace, roles and membership.",
-    administrator: "Manages members, invitations and workspace settings.",
-    team_leader: "Creates and reviews teams from eligible Talent.",
-    team_member: "Manages their own profile and participates in teams.",
+    admin: "Manages members, invitations and workspace settings.",
+    leader: "Creates and reviews teams from eligible Talent.",
+    member: "Manages their own profile and participates in teams.",
   }[role];
 }

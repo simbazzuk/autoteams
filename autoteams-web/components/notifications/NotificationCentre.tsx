@@ -2,20 +2,21 @@
 
 import { useEffect, useMemo, useState } from "react";
 import {
-  AppNotification,
+  NotificationRecord,
   loadNotifications,
   saveNotifications,
 } from "@/lib/notifications";
 
-const icons: Record<AppNotification["type"], string> = {
-  match: "◎",
-  insight: "✦",
+const icons: Record<NotificationRecord["type"], string> = {
+  atlas: "✦",
+  workspace: "◇",
+  team: "▥",
+  security: "✓",
   profile: "♙",
-  system: "◌",
 };
 
 export function NotificationCentre() {
-  const [notifications, setNotifications] = useState<AppNotification[]>([]);
+  const [notifications, setNotifications] = useState<NotificationRecord[]>([]);
 
   useEffect(() => {
     setNotifications(loadNotifications());
@@ -67,9 +68,9 @@ export function NotificationCentre() {
             </span>
             <span>
               <strong>{notification.title}</strong>
-              <small>{notification.text}</small>
+              <small>{notification.message}</small>
             </span>
-            <em>{notification.time}</em>
+            <em>{new Date(notification.createdAt).toLocaleString()}</em>
           </button>
         ))}
       </div>
