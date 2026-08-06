@@ -23,7 +23,7 @@ const primaryLinks = [
   { href: "/home", label: "Home" },
   { href: "/profile", label: "People" },
   { href: "/workspaces", label: "Workspace" },
-  { href: "/team-builder", label: "Atlas", atlas: true },
+  { href: "/atlas-workspace", label: "Atlas", atlas: true },
   { href: "/learning-centre", label: "Learn" },
 ];
 

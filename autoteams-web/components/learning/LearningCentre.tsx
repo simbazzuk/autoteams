@@ -128,10 +128,11 @@ function FeatureGuides() {
   const guides = [
     ["My Profile", "Create and maintain contextual profiles.", "/profile"],
     ["Atlas Interview", "Understand core and context-specific questions.", "/atlas"],
-    ["My Team DNA", "Review confidence, freshness and strengths.", "/team-dna"],
+    ["My Atlas Profile", "Review your individual collaboration profile, confidence and freshness.", "/my-atlas-profile"],
     ["Talent Directory", "Understand who is eligible inside a workspace.", "/talent"],
     ["Talent Pools", "Narrow the population Atlas may consider.", "/talent-pools"],
     ["Recommendation Studio", "Review explanations and live team balance.", "/matches"],
+    ["Team DNA", "Review the combined strengths, balance and gaps of a selected team.", "/team-dna"],
   ];
 
   return (

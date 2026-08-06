@@ -1,0 +1,77 @@
+.assistant {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(79,142,247,.12), transparent 30%),
+    #171e2d;
+  border: 1px solid #3a4560;
+  border-radius: 20px;
+  box-shadow: 0 22px 60px rgba(0,0,0,.19);
+}
+.assistant header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 11px;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #2a3448;
+}
+.orb {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  color: white;
+  background: linear-gradient(135deg,#765fff,#4f8ef7);
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(79,104,247,.28);
+}
+.assistant header > div { display: grid; gap: 3px; }
+.assistant header small { color: #8f9bb0; font-size: 11px; }
+.assistant header strong { color: #f1f4f9; font-size: 18px; }
+.message {
+  display: grid;
+  gap: 15px;
+  padding: 20px;
+  background: #121827;
+}
+.message p {
+  margin: 0;
+  color: #b0bac9;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.message a { width: 100%; }
+.prompts {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+}
+.prompts button {
+  min-height: 42px;
+  padding: 9px 11px;
+  color: #9ca8bb;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+.prompts button:hover {
+  color: #f1f4f9;
+  background: #20293a;
+}
+.prompts .active {
+  color: #f1edff;
+  background: #282442;
+  border-color: #514979;
+}
+.assistant footer {
+  display: grid;
+  gap: 6px;
+  padding: 14px 20px;
+  background: #141b29;
+  border-top: 1px solid #2a3448;
+}
+.assistant footer span { color: #69768a; font-size: 10px; line-height: 1.4; }
+.assistant footer a { color: #a99cff; font-size: 11px; }

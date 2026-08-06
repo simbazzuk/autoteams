@@ -43,7 +43,7 @@ function buildSections(role: NavigationRole): NavigationSection[] {
       links: [
         { href: "/profile", icon: "♙", label: "My Profile" },
         { href: "/atlas", icon: "✦", label: "Atlas Interview" },
-        { href: "/team-dna", icon: "◌", label: "My Team DNA" },
+        { href: "/my-atlas-profile", icon: "◌", label: "My Atlas Profile" },
         { href: "/teams", icon: "▥", label: "My Teams" },
       ],
     },
@@ -72,6 +72,7 @@ function buildSections(role: NavigationRole): NavigationSection[] {
       links: [
         { href: "/team-builder", icon: "✦", label: "Build Team" },
         { href: "/matches", icon: "♡", label: "Recommendations" },
+        { href: "/team-dna", icon: "◌", label: "Team DNA" },
         { href: "/team-canvas", icon: "◫", label: "Team Canvas" },
         { href: "/insights", icon: "▥", label: "Atlas Insights" },
       ],
@@ -131,7 +132,6 @@ export function DashboardSidebar() {
   }, [user?.email, pathname]);
 
   const sections = useMemo(() => buildSections(role), [role]);
-
   const [openSection, setOpenSection] = useState("home");
 
   useEffect(() => {
@@ -175,7 +175,6 @@ export function DashboardSidebar() {
                 <div className="compact-nav-children">
                   {section.links.map((link) => {
                     const active = activePath(pathname, link.href);
-
                     return (
                       <Link
                         aria-current={active ? "page" : undefined}

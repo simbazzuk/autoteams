@@ -1,0 +1,116 @@
+.page { min-height: 100vh; color: #f6f8fc; background: #0f1420; }
+.hero {
+  padding: 64px 0 54px;
+  background:
+    radial-gradient(circle at 82% 16%, rgba(79,142,247,.18), transparent 30%),
+    radial-gradient(circle at 13% 10%, rgba(124,92,255,.16), transparent 30%),
+    #0f1420;
+  border-bottom: 1px solid #232c3e;
+}
+.heroGrid {
+  display: grid; grid-template-columns: minmax(0,1.3fr) minmax(330px,.7fr);
+  gap: 24px; align-items: center;
+}
+.hero h1 {
+  max-width: 980px; margin: 10px 0 14px;
+  font-size: clamp(50px,5vw,70px); font-weight: 660;
+  line-height: 1.02; letter-spacing: -.05em;
+}
+.hero p { max-width: 850px; margin: 0; color: #9ca8bb; font-size: 17px; line-height: 1.68; }
+.health {
+  padding: 25px; background: #171e2d; border: 1px solid #2a3448; border-radius: 20px;
+}
+.health > strong { display: block; margin: 10px 0; color: #a8d2f6; font-size: 50px; line-height: 1; }
+.healthBar { height: 10px; overflow: hidden; background: #293246; border-radius: 999px; }
+.healthBar i { display: block; height: 100%; background: linear-gradient(90deg,#765fff,#4f8ef7); }
+.health p { margin: 10px 0 0; color: #8f9bb0; font-size: 13px; }
+.body { padding: 34px 0 80px; }
+.nextStep, .guidance {
+  display: flex; justify-content: space-between; gap: 24px; align-items: center;
+  padding: 27px 30px; background: linear-gradient(125deg,#241153,#5a3ac7 65%,#3e88ee);
+  border-radius: 22px;
+}
+.nextStep h2, .guidance h2 { margin: 7px 0; color: white; font-size: 30px; }
+.nextStep p, .guidance p { max-width: 780px; margin: 0; color: #ded9f2; font-size: 15px; }
+.metrics { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 11px; margin-top: 18px; }
+.metrics article {
+  display: grid; gap: 6px; padding: 20px; background: #171e2d;
+  border: 1px solid #2a3448; border-radius: 16px;
+}
+.metrics small { color: #7f8ba0; font-size: 13px; }
+.metrics strong { color: #f1f4f9; font-size: 28px; }
+.metrics span { color: #9aa6b8; font-size: 12px; line-height: 1.45; }
+.sectionHeading { margin: 32px 0 17px; }
+.sectionHeading h2, .flow h2 { margin: 8px 0; color: #f1f4f9; font-size: 34px; }
+.sectionHeading p { margin: 0; color: #8f9bb0; font-size: 15px; }
+.actionGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.actionGrid > a {
+  display: grid; min-height: 235px; padding: 22px; color: inherit;
+  background: #171e2d; border: 1px solid #2a3448; border-radius: 19px;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.actionGrid > a:hover {
+  transform: translateY(-2px); border-color: #514979;
+  box-shadow: 0 22px 55px rgba(0,0,0,.19);
+}
+.actionGrid .primaryCard {
+  background: linear-gradient(145deg,#211d3b,#171e2d 65%);
+  border-color: #5b507f;
+}
+.actionGrid header { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.actionGrid header > span {
+  display: grid; place-items: center; width: 44px; height: 44px;
+  color: #b5aaff; background: #292442; border-radius: 13px; font-size: 18px;
+}
+.actionGrid header small {
+  padding: 7px 9px; color: #a99cff; background: #292442;
+  border-radius: 999px; font-size: 11px;
+}
+.actionGrid h3 { margin: 20px 0 8px; color: #f1f4f9; font-size: 22px; }
+.actionGrid p { margin: 0; color: #8f9bb0; font-size: 14px; line-height: 1.55; }
+.actionGrid footer { align-self: end; margin-top: 20px; color: #a99cff; font-size: 13px; }
+.flow {
+  padding: 25px; margin-top: 18px; background: #171e2d;
+  border: 1px solid #2a3448; border-radius: 20px;
+}
+.flowSteps { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 10px; margin-top: 18px; }
+.flowSteps article { padding: 17px; background: #121827; border: 1px solid #293246; border-radius: 13px; }
+.flowSteps span {
+  display: grid; place-items: center; width: 36px; height: 36px;
+  color: white; background: linear-gradient(135deg,#765fff,#4f8ef7);
+  border-radius: 10px; font-size: 10px; font-weight: 850;
+}
+.flowSteps h3 { margin: 14px 0 7px; color: #e8ecf3; font-size: 16px; }
+.flowSteps p { margin: 0; color: #7f8ba0; font-size: 12px; line-height: 1.5; }
+.guidance { margin-top: 18px; }
+@media (max-width: 1000px) {
+  .heroGrid { grid-template-columns: 1fr; }
+  .metrics, .actionGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .flowSteps { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 680px) {
+  .nextStep, .guidance { align-items: stretch; flex-direction: column; }
+  .metrics, .actionGrid, .flowSteps { grid-template-columns: 1fr; }
+}
+.workspaceGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 24px;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.assistantPanel {
+  position: sticky;
+  top: 90px;
+}
+
+@media (max-width: 1100px) {
+  .workspaceGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .assistantPanel {
+    position: static;
+  }
+}

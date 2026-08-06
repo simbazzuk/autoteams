@@ -1,12 +1,12 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { HomeCommandCentre } from "@/components/home/HomeCommandCentre";
+import { AtlasWorkspace } from "@/components/atlas-workspace/AtlasWorkspace";
 
-export default function HomePage() {
+export default function AtlasWorkspacePage() {
   return (
     <PageShell>
       <ProtectedRoute>
-        <HomeCommandCentre />
+        <AtlasWorkspace />
       </ProtectedRoute>
     </PageShell>
   );
