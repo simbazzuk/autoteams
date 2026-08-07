@@ -9,47 +9,47 @@ export function AcademyLanding() {
       style={{
         minHeight: "80vh",
         background:
-          "radial-gradient(circle at 15% 0%, rgba(120,104,255,.18), transparent 32%), #0f1420",
+          "radial-gradient(circle at 15% 0%, rgba(120,104,255,.20), transparent 34%), radial-gradient(circle at 88% 18%, rgba(34,197,94,.09), transparent 28%), #0f1420",
         color: "#f5f7fb",
       }}
     >
       <section
         style={{
-          padding: "68px 0 42px",
+          padding: "72px 0 44px",
         }}
       >
         <div className="container">
           <span className="eyebrow">
-            AutoTeams Academy
+            Team Science Academy
           </span>
 
           <h1
             style={{
               margin: "12px 0 14px",
-              maxWidth: 900,
+              maxWidth: 980,
               fontSize:
                 "clamp(44px,7vw,72px)",
               lineHeight: 1,
               letterSpacing: "-.05em",
             }}
           >
-            Learn the science behind better teams.
+            Learn why better teams work.
           </h1>
 
           <p
             style={{
-              maxWidth: 850,
+              maxWidth: 900,
               margin: 0,
               color: "#a6b1c2",
               fontSize: 17,
               lineHeight: 1.7,
             }}
           >
-            Team Science Academy explains the principles
-            Atlas uses to support balanced, explainable
-            recommendations. Learn how teams work, why
-            different strengths matter and where human
-            judgement remains essential.
+            Explore the Team Science principles behind
+            AutoTeams and Atlas. Learn how purpose,
+            complementary strengths, communication,
+            explainability and human judgement can help
+            people build stronger groups.
           </p>
 
           <div
@@ -64,7 +64,7 @@ export function AcademyLanding() {
               className="button"
               href="/academy/foundations"
             >
-              Start Learning
+              Start with Foundations
             </Link>
 
             <Link
@@ -79,7 +79,7 @@ export function AcademyLanding() {
 
       <section
         style={{
-          padding: "22px 0 58px",
+          padding: "18px 0 58px",
         }}
       >
         <div className="container">
@@ -87,50 +87,118 @@ export function AcademyLanding() {
             style={{
               display: "grid",
               gridTemplateColumns:
-                "repeat(auto-fit,minmax(250px,1fr))",
+                "repeat(2,minmax(0,1fr))",
               gap: 14,
             }}
+            className="v682-academy-grid"
           >
             {academyPaths.map(
-              (path) => (
+              (path, index) => (
                 <article
                   key={path.slug}
                   style={{
                     display: "grid",
                     gap: 13,
-                    padding: 22,
-                    minHeight: 300,
+                    padding: 24,
+                    minHeight: 330,
                     background: path.accent,
                     border:
                       "1px solid rgba(255,255,255,.09)",
-                    borderRadius: 20,
+                    borderRadius: 22,
                   }}
                 >
-                  <span
-                    aria-hidden="true"
+                  <div
                     style={{
-                      fontSize: 42,
+                      display: "flex",
+                      justifyContent:
+                        "space-between",
+                      alignItems: "center",
                     }}
                   >
-                    {path.icon}
-                  </span>
+                    <span
+                      aria-hidden="true"
+                      style={{
+                        fontSize: 44,
+                      }}
+                    >
+                      {path.icon}
+                    </span>
 
-                  <h2
-                    style={{
-                      margin: 0,
-                      fontSize: 23,
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {path.title}
-                  </h2>
+                    <small
+                      style={{
+                        color: "#d2dae6",
+                        fontSize: 9,
+                        fontWeight: 900,
+                      }}
+                    >
+                      PATH {index + 1}
+                    </small>
+                  </div>
+
+                  <div>
+                    <h2
+                      style={{
+                        margin:
+                          "0 0 8px",
+                        fontSize: 24,
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      {path.title}
+                    </h2>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: 8,
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      <span
+                        style={{
+                          padding:
+                            "5px 8px",
+                          background:
+                            "rgba(15,20,32,.35)",
+                          borderRadius: 999,
+                          fontSize: 9,
+                        }}
+                      >
+                        {path.level}
+                      </span>
+                      <span
+                        style={{
+                          padding:
+                            "5px 8px",
+                          background:
+                            "rgba(15,20,32,.35)",
+                          borderRadius: 999,
+                          fontSize: 9,
+                        }}
+                      >
+                        {path.duration}
+                      </span>
+                      <span
+                        style={{
+                          padding:
+                            "5px 8px",
+                          background:
+                            "rgba(15,20,32,.35)",
+                          borderRadius: 999,
+                          fontSize: 9,
+                        }}
+                      >
+                        {path.lessons.length} lessons
+                      </span>
+                    </div>
+                  </div>
 
                   <p
                     style={{
                       margin: 0,
-                      color: "#b2bdcc",
+                      color: "#b5c0cf",
                       fontSize: 13,
-                      lineHeight: 1.6,
+                      lineHeight: 1.65,
                     }}
                   >
                     {path.description}
@@ -142,34 +210,35 @@ export function AcademyLanding() {
                       gap: 5,
                     }}
                   >
-                    {path.topics
+                    {path.lessons
                       .slice(0, 4)
                       .map(
-                        (topic) => (
+                        (lesson) => (
                           <small
-                            key={topic}
+                            key={
+                              lesson.title
+                            }
                             style={{
                               color:
                                 "#d6dce6",
                               fontSize: 10,
                             }}
                           >
-                            ✓ {topic}
+                            ✓ {lesson.title}
                           </small>
                         ),
                       )}
                   </div>
 
                   <Link
+                    className="button secondary"
                     href={`/academy/${path.slug}`}
                     style={{
                       marginTop: "auto",
-                      color: "#d7d2ff",
-                      fontSize: 11,
-                      fontWeight: 800,
+                      width: "fit-content",
                     }}
                   >
-                    Explore learning path →
+                    Open Learning Path
                   </Link>
                 </article>
               ),
@@ -180,26 +249,20 @@ export function AcademyLanding() {
 
       <section
         style={{
-          padding: "52px 0",
+          padding: "54px 0",
           background: "#121827",
-          borderTop: "1px solid #222b3c",
-          borderBottom:
+          borderTop:
             "1px solid #222b3c",
         }}
       >
-        <div
-          className="container"
-          style={{
-            display: "grid",
-            gridTemplateColumns:
-              "minmax(0,.8fr) minmax(0,1.2fr)",
-            gap: 28,
-            alignItems: "center",
-          }}
-        >
-          <div>
+        <div className="container">
+          <div
+            style={{
+              maxWidth: 820,
+            }}
+          >
             <span className="eyebrow">
-              Team Science + Atlas
+              How to use the Academy
             </span>
 
             <h2
@@ -210,7 +273,7 @@ export function AcademyLanding() {
                 lineHeight: 1.12,
               }}
             >
-              Learn it in the Academy. See it applied by Atlas.
+              Learn. Apply. Review. Improve.
             </h2>
 
             <p
@@ -221,57 +284,22 @@ export function AcademyLanding() {
                 lineHeight: 1.65,
               }}
             >
-              AutoTeams connects learning and
-              recommendations. The Academy explains
-              concepts such as complementary skills,
-              leadership balance and human review;
-              Atlas can then surface those ideas when
-              it explains a recommendation.
+              The Academy is not separate from AutoTeams.
+              Learn a principle here, see Atlas use that
+              principle when it explains a recommendation,
+              and then apply your own human judgement.
             </p>
-          </div>
-
-          <div
-            style={{
-              display: "grid",
-              gap: 10,
-            }}
-          >
-            {[
-              "Evidence before intuition",
-              "Explain why, not only who",
-              "Balance strengths and gaps",
-              "Keep humans accountable",
-            ].map(
-              (item) => (
-                <div
-                  key={item}
-                  style={{
-                    display: "flex",
-                    gap: 10,
-                    padding: 14,
-                    background: "#171e2d",
-                    border:
-                      "1px solid #2a3448",
-                    borderRadius: 12,
-                    color: "#cbd3df",
-                    fontSize: 13,
-                  }}
-                >
-                  <span
-                    style={{
-                      color: "#9d91ff",
-                      fontWeight: 900,
-                    }}
-                  >
-                    ✓
-                  </span>
-                  {item}
-                </div>
-              ),
-            )}
           </div>
         </div>
       </section>
+
+      <style>{`
+        @media (max-width: 760px) {
+          .v682-academy-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </main>
   );
 }
