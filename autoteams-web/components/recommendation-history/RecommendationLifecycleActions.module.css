@@ -1,0 +1,49 @@
+.wrapper {
+  display: grid;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid #222c3e;
+}
+
+.wrapper textarea {
+  width: 100%;
+  padding: 10px;
+  resize: vertical;
+  color: #eef2f7;
+  background: #171e2d;
+  border: 1px solid #334057;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 10px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.actions button {
+  padding: 8px 11px;
+  color: #eef2f7;
+  background: #20293a;
+  border: 1px solid #37445d;
+  border-radius: 9px;
+  font-size: 9px;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background: #293348;
+}
+
+.actions button:disabled {
+  cursor: default;
+  opacity: .55;
+}
+
+.error {
+  margin: 0;
+  color: #e2b267;
+  font-size: 9px;
+}

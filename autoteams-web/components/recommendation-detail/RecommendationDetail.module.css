@@ -1,0 +1,253 @@
+.page {
+  display: grid;
+  gap: 18px;
+}
+
+.state {
+  padding: 24px;
+  color: #8f9bb0;
+  background: #171e2d;
+  border: 1px solid #2a3448;
+  border-radius: 18px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns:
+    minmax(0,1fr) auto;
+  gap: 20px;
+  padding: 24px;
+  color: #f5f7fb;
+  background:
+    linear-gradient(
+      135deg,
+      #1b2233,
+      #242144
+    );
+  border: 1px solid #343f59;
+  border-radius: 20px;
+}
+
+.hero h1 {
+  margin: 9px 0 8px;
+  font-size: 36px;
+  letter-spacing: -.035em;
+}
+
+.hero p {
+  max-width: 900px;
+  margin: 0;
+  color: #c9d0df;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.badges {
+  display: flex;
+  gap: 6px;
+}
+
+.badges span {
+  padding: 5px 8px;
+  color: #cfc9ff;
+  background: rgba(120,104,255,.13);
+  border-radius: 999px;
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+
+.confidence {
+  display: grid;
+  min-width: 120px;
+  place-items: center;
+  align-content: center;
+  padding: 16px;
+  background: rgba(255,255,255,.06);
+  border-radius: 16px;
+}
+
+.confidence small {
+  color: #9ca7bb;
+  font-size: 9px;
+}
+
+.confidence strong {
+  font-size: 30px;
+}
+
+.metadata,
+.healthGrid {
+  display: grid;
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+  gap: 9px;
+}
+
+.metadata article,
+.healthGrid article {
+  display: grid;
+  gap: 5px;
+  padding: 13px;
+  color: #eef2f7;
+  background: #171e2d;
+  border: 1px solid #293246;
+  border-radius: 12px;
+}
+
+.metadata small,
+.healthGrid small {
+  color: #738095;
+  font-size: 8px;
+}
+
+.metadata strong,
+.healthGrid strong {
+  font-size: 13px;
+}
+
+.health,
+.team,
+.lifecycle {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  color: #f5f7fb;
+  background: #171e2d;
+  border: 1px solid #2a3448;
+  border-radius: 18px;
+}
+
+.health h2,
+.team h2,
+.lifecycle h2 {
+  margin: 7px 0 0;
+  font-size: 24px;
+}
+
+.healthGrid {
+  grid-template-columns:
+    repeat(5,minmax(0,1fr));
+}
+
+.healthGrid article > div {
+  height: 5px;
+  overflow: hidden;
+  background: #252e40;
+  border-radius: 999px;
+}
+
+.healthGrid article > div > span {
+  display: block;
+  height: 100%;
+  background: #7868ff;
+  border-radius: 999px;
+}
+
+.people {
+  display: grid;
+  gap: 9px;
+}
+
+.people > article {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  background: #121827;
+  border: 1px solid #293246;
+  border-radius: 12px;
+}
+
+.people header {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.people header > div {
+  display: grid;
+  gap: 3px;
+}
+
+.people strong {
+  font-size: 14px;
+}
+
+.people small {
+  color: #8090a5;
+  font-size: 9px;
+}
+
+.people header > span {
+  color: #a99cff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.reason,
+.concern {
+  margin: 4px 0;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.reason {
+  color: #9ee1bc;
+}
+
+.concern {
+  color: #e2b267;
+}
+
+.evidence {
+  display: grid;
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+  gap: 9px;
+}
+
+.evidence article {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  padding: 15px;
+  background: #171e2d;
+  border: 1px solid #2a3448;
+  border-radius: 13px;
+}
+
+.evidence strong {
+  color: #eef2f7;
+  font-size: 12px;
+}
+
+.evidence span {
+  color: #98a5b8;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.lifecycle blockquote {
+  margin: 0;
+  padding: 12px;
+  color: #aeb8c8;
+  background: #121827;
+  border-left: 3px solid #7868ff;
+  border-radius: 8px;
+  font-size: 11px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .metadata,
+  .healthGrid,
+  .evidence {
+    grid-template-columns: 1fr;
+  }
+}

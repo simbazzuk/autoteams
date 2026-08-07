@@ -18,9 +18,6 @@ import {
 import type {
   GeminiTeamRecommendation,
 } from "@/lib/ai/recommendation-types";
-import type {
-  RecommendationStatus,
-} from "@/lib/firebase/recommendation-management";
 
 export type RecommendationRequirementSnapshot = {
   name: string;
@@ -64,19 +61,9 @@ export type RecommendationHistoryRecord = {
   source: "gemini" | "fallback";
   model?: string;
   telemetry?: GeminiTeamRecommendation["telemetry"];
-  status: RecommendationStatus;
-  reviewerNote?: string;
-  reviewedBy?: string;
-  reviewedAt?: unknown;
-  approvedBy?: string;
-  approvedAt?: unknown;
-  rejectedBy?: string;
-  rejectedAt?: unknown;
-  archivedBy?: string;
-  archivedAt?: unknown;
   createdAt?: unknown;
   createdAtIso: string;
-  schemaVersion: "v6.0.0";
+  schemaVersion: "v5.0.0";
 };
 
 export async function persistRecommendation(
@@ -140,14 +127,12 @@ export async function persistRecommendation(
       sanitiseTelemetry(
         input.result.telemetry,
       ),
-    status:
-      "draft",
     createdAtIso:
       new Date().toISOString(),
     createdAt:
       serverTimestamp(),
     schemaVersion:
-      "v6.0.0",
+      "v5.0.0",
   };
 
   await setDoc(
@@ -173,6 +158,11 @@ export async function listRecommendationsForWorkspace(
   const db =
     getFirebaseFirestore();
 
+  /*
+   * v5.0.1:
+   * Query only by workspaceId so development does not require
+   * a composite Firestore index. Sort in the browser instead.
+   */
   const snapshot =
     await getDocs(
       query(
@@ -192,14 +182,6 @@ export async function listRecommendationsForWorkspace(
     .map(
       (item) =>
         item.data() as RecommendationHistoryRecord,
-    )
-    .map(
-      (record) => ({
-        ...record,
-        status:
-          record.status ||
-          "draft",
-      }),
     )
     .sort(
       (a, b) =>

@@ -339,7 +339,7 @@ function RecommendationCard({
       >
         <Link
           className="button secondary"
-          href={`/recommendation-detail?id=${record.id}`}
+          href={`/recommendation-history/${record.id}`}
         >
           View Details
         </Link>

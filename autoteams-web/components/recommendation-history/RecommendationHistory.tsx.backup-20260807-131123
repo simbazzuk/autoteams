@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   useEffect,
   useState,
@@ -19,20 +18,37 @@ import {
 import styles from "./RecommendationHistory.module.css";
 
 export function RecommendationHistory() {
-  const [records, setRecords] =
-    useState<RecommendationHistoryRecord[]>([]);
-  const [workspaceId, setWorkspaceId] =
-    useState("");
-  const [workspaceName, setWorkspaceName] =
-    useState("");
-  const [mounted, setMounted] =
-    useState(false);
-  const [loading, setLoading] =
-    useState(true);
-  const [error, setError] =
-    useState("");
-  const [compareIds, setCompareIds] =
-    useState<string[]>([]);
+  const [
+    records,
+    setRecords,
+  ] = useState<
+    RecommendationHistoryRecord[]
+  >([]);
+
+  const [
+    workspaceId,
+    setWorkspaceId,
+  ] = useState("");
+
+  const [
+    workspaceName,
+    setWorkspaceName,
+  ] = useState("");
+
+  const [
+    mounted,
+    setMounted,
+  ] = useState(false);
+
+  const [
+    loading,
+    setLoading,
+  ] = useState(true);
+
+  const [
+    error,
+    setError,
+  ] = useState("");
 
   useEffect(() => {
     const activeId =
@@ -44,19 +60,31 @@ export function RecommendationHistory() {
           item.id === activeId,
       );
 
-    setWorkspaceId(activeId || "");
+    setWorkspaceId(
+      activeId || "",
+    );
+
     setWorkspaceName(
       workspace?.name ||
         activeId ||
         "",
     );
+
     setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
-    void refresh(workspaceId);
-  }, [mounted, workspaceId]);
+    if (!mounted) {
+      return;
+    }
+
+    void refresh(
+      workspaceId,
+    );
+  }, [
+    mounted,
+    workspaceId,
+  ]);
 
   async function refresh(
     targetWorkspaceId =
@@ -78,6 +106,7 @@ export function RecommendationHistory() {
       );
     } catch (error) {
       setRecords([]);
+
       setError(
         error instanceof Error
           ? error.message
@@ -87,30 +116,6 @@ export function RecommendationHistory() {
       setLoading(false);
     }
   }
-
-  function toggleCompare(
-    id: string,
-  ) {
-    setCompareIds(
-      (current) =>
-        current.includes(id)
-          ? current.filter(
-              (item) =>
-                item !== id,
-            )
-          : current.length < 2
-            ? [...current, id]
-            : [
-                current[1],
-                id,
-              ],
-    );
-  }
-
-  const compareHref =
-    compareIds.length === 2
-      ? `/recommendation-compare?left=${compareIds[0]}&right=${compareIds[1]}`
-      : "";
 
   return (
     <section className={styles.card}>
@@ -123,42 +128,25 @@ export function RecommendationHistory() {
             Recommendation management.
           </h2>
           <p>
-            Review recommendations, understand why each
-            team was selected and compare alternatives
-            before making a final decision.
+            Review recommendations, progress them through
+            a controlled lifecycle and retain the decision
+            evidence for audit.
           </p>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            gap: 8,
-            flexWrap: "wrap",
-          }}
+        <button
+          className="button secondary"
+          disabled={
+            loading ||
+            !mounted
+          }
+          onClick={() =>
+            void refresh()
+          }
+          type="button"
         >
-          {compareIds.length === 2 && (
-            <Link
-              className="button"
-              href={compareHref}
-            >
-              Compare Selected
-            </Link>
-          )}
-
-          <button
-            className="button secondary"
-            disabled={
-              loading ||
-              !mounted
-            }
-            onClick={() =>
-              void refresh()
-            }
-            type="button"
-          >
-            Refresh
-          </button>
-        </div>
+          Refresh
+        </button>
       </div>
 
       <div className={styles.workspace}>
@@ -198,16 +186,6 @@ export function RecommendationHistory() {
               <RecommendationCard
                 key={record.id}
                 record={record}
-                selectedForCompare={
-                  compareIds.includes(
-                    record.id,
-                  )
-                }
-                onToggleCompare={() =>
-                  toggleCompare(
-                    record.id,
-                  )
-                }
                 onChanged={() =>
                   void refresh()
                 }
@@ -222,13 +200,9 @@ export function RecommendationHistory() {
 
 function RecommendationCard({
   record,
-  selectedForCompare,
-  onToggleCompare,
   onChanged,
 }: {
   record: RecommendationHistoryRecord;
-  selectedForCompare: boolean;
-  onToggleCompare: () => void;
   onChanged: () => void;
 }) {
   return (
@@ -328,37 +302,6 @@ function RecommendationCard({
             {record.status}
           </strong>
         </span>
-      </div>
-
-      <div
-        style={{
-          display: "flex",
-          gap: 8,
-          flexWrap: "wrap",
-        }}
-      >
-        <Link
-          className="button secondary"
-          href={`/recommendation-detail?id=${record.id}`}
-        >
-          View Details
-        </Link>
-
-        <button
-          className={
-            selectedForCompare
-              ? "button"
-              : "button secondary"
-          }
-          onClick={
-            onToggleCompare
-          }
-          type="button"
-        >
-          {selectedForCompare
-            ? "Selected for Compare"
-            : "Compare"}
-        </button>
       </div>
 
       {record.reviewerNote && (

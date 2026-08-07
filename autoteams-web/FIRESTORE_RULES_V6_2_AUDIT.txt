@@ -1,0 +1,195 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function membershipId(workspaceId) {
+      return workspaceId + "_" + request.auth.uid;
+    }
+
+    function hasActiveMembership(workspaceId) {
+      return signedIn()
+        && exists(
+          /databases/$(database)/documents/workspaceMemberships/$(membershipId(workspaceId))
+        )
+        && get(
+          /databases/$(database)/documents/workspaceMemberships/$(membershipId(workspaceId))
+        ).data.status == "active";
+    }
+
+    function isOwner(workspaceId) {
+      return signedIn()
+        && exists(
+          /databases/$(database)/documents/workspaceMemberships/$(membershipId(workspaceId))
+        )
+        && get(
+          /databases/$(database)/documents/workspaceMemberships/$(membershipId(workspaceId))
+        ).data.role == "owner"
+        && get(
+          /databases/$(database)/documents/workspaceMemberships/$(membershipId(workspaceId))
+        ).data.status == "active";
+    }
+
+    match /users/{userId} {
+      allow read, create, update:
+        if signedIn()
+        && request.auth.uid == userId;
+
+      allow delete: if false;
+
+      match /personas/{personaId} {
+        allow read, create, update, delete:
+          if signedIn()
+          && request.auth.uid == userId;
+      }
+    }
+
+    match /userPreferences/{userId} {
+      allow read, create, update:
+        if signedIn()
+        && request.auth.uid == userId;
+
+      allow delete: if false;
+    }
+
+    match /migrationStatus/{userId} {
+      allow read, create, update:
+        if signedIn()
+        && request.auth.uid == userId;
+
+      allow delete: if false;
+    }
+
+    match /workspaces/{workspaceId} {
+      allow read:
+        if hasActiveMembership(workspaceId);
+
+      allow create:
+        if signedIn()
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow update, delete:
+        if isOwner(workspaceId);
+    }
+
+    match /workspaceMemberships/{membershipId} {
+      allow read:
+        if signedIn()
+        && resource.data.userId == request.auth.uid;
+
+      allow create:
+        if signedIn()
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.role == "owner";
+
+      allow update:
+        if signedIn()
+        && resource.data.userId == request.auth.uid
+        && request.resource.data.userId == request.auth.uid;
+
+      allow delete: if false;
+    }
+
+    match /people/{personId} {
+      allow read:
+        if hasActiveMembership(
+          resource.data.workspaceId
+        );
+
+      allow create:
+        if signedIn()
+        && hasActiveMembership(
+          request.resource.data.workspaceId
+        );
+
+      allow update:
+        if signedIn()
+        && hasActiveMembership(
+          resource.data.workspaceId
+        )
+        && request.resource.data.workspaceId ==
+           resource.data.workspaceId;
+
+      allow delete:
+        if isOwner(
+          resource.data.workspaceId
+        );
+    }
+
+    match /recommendations/{recommendationId} {
+      allow read:
+        if hasActiveMembership(
+          resource.data.workspaceId
+        );
+
+      allow create:
+        if signedIn()
+        && request.resource.data.createdBy ==
+           request.auth.uid
+        && request.resource.data.status ==
+           "draft"
+        && hasActiveMembership(
+          request.resource.data.workspaceId
+        );
+
+      allow update:
+        if hasActiveMembership(
+          resource.data.workspaceId
+        )
+        && request.resource.data.workspaceId ==
+           resource.data.workspaceId
+        && request.resource.data.createdBy ==
+           resource.data.createdBy
+        && request.resource.data.requirement ==
+           resource.data.requirement
+        && request.resource.data.candidates ==
+           resource.data.candidates
+        && request.resource.data.recommendedPersonIds ==
+           resource.data.recommendedPersonIds
+        && request.resource.data.summary ==
+           resource.data.summary
+        && request.resource.data.confidence ==
+           resource.data.confidence
+        && request.resource.data.rankedPeople ==
+           resource.data.rankedPeople
+        && request.resource.data.teamStrengths ==
+           resource.data.teamStrengths
+        && request.resource.data.skillGaps ==
+           resource.data.skillGaps
+        && request.resource.data.risks ==
+           resource.data.risks
+        && request.resource.data.source ==
+           resource.data.source
+        && request.resource.data.model ==
+           resource.data.model;
+
+      allow delete: if false;
+    }
+
+    match /recommendationEvents/{eventId} {
+      allow read:
+        if hasActiveMembership(
+          resource.data.workspaceId
+        );
+
+      allow create:
+        if signedIn()
+        && request.resource.data.actorId ==
+           request.auth.uid
+        && hasActiveMembership(
+          request.resource.data.workspaceId
+        );
+
+      allow update, delete:
+        if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

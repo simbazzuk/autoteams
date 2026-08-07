@@ -1,0 +1,149 @@
+"use client";
+
+import {
+  doc,
+  getDoc,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
+import {
+  getFirebaseFirestore,
+} from "@/lib/firebase/client";
+import {
+  waitForFirebaseUser,
+} from "@/lib/firebase/auth-ready";
+
+export type RecommendationStatus =
+  | "draft"
+  | "submitted"
+  | "approved"
+  | "rejected"
+  | "archived";
+
+export type RecommendationDecision = {
+  status: RecommendationStatus;
+  reviewerNote?: string;
+};
+
+export async function updateRecommendationDecision(
+  recommendationId: string,
+  decision: RecommendationDecision,
+): Promise<void> {
+  const user =
+    await waitForFirebaseUser();
+
+  if (!user) {
+    throw new Error(
+      "A Firebase-authenticated user is required to review recommendations.",
+    );
+  }
+
+  const db =
+    getFirebaseFirestore();
+
+  const ref =
+    doc(
+      db,
+      "recommendations",
+      recommendationId,
+    );
+
+  const snapshot =
+    await getDoc(ref);
+
+  if (!snapshot.exists()) {
+    throw new Error(
+      "Recommendation not found.",
+    );
+  }
+
+  const current =
+    snapshot.data();
+
+  const nextStatus =
+    decision.status;
+
+  validateTransition(
+    current.status || "draft",
+    nextStatus,
+  );
+
+  await updateDoc(
+    ref,
+    {
+      status:
+        nextStatus,
+      reviewerNote:
+        decision.reviewerNote || "",
+      reviewedBy:
+        user.uid,
+      reviewedAt:
+        serverTimestamp(),
+      updatedAt:
+        serverTimestamp(),
+      ...(nextStatus === "approved"
+        ? {
+            approvedBy:
+              user.uid,
+            approvedAt:
+              serverTimestamp(),
+          }
+        : {}),
+      ...(nextStatus === "rejected"
+        ? {
+            rejectedBy:
+              user.uid,
+            rejectedAt:
+              serverTimestamp(),
+          }
+        : {}),
+      ...(nextStatus === "archived"
+        ? {
+            archivedBy:
+              user.uid,
+            archivedAt:
+              serverTimestamp(),
+          }
+        : {}),
+    },
+  );
+}
+
+export function validateTransition(
+  current: RecommendationStatus,
+  next: RecommendationStatus,
+): void {
+  const allowed:
+    Record<
+      RecommendationStatus,
+      RecommendationStatus[]
+    > = {
+      draft: [
+        "submitted",
+        "archived",
+      ],
+      submitted: [
+        "approved",
+        "rejected",
+        "archived",
+      ],
+      approved: [
+        "archived",
+      ],
+      rejected: [
+        "submitted",
+        "archived",
+      ],
+      archived: [],
+    };
+
+  if (
+    !allowed[current].includes(
+      next,
+    )
+  ) {
+    throw new Error(
+      `Recommendation cannot move from ${current} to ${next}.`,
+    );
+  }
+}
