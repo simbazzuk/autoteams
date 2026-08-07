@@ -1,12 +1,12 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { HomeCommandCentre } from "@/components/home/HomeCommandCentre";
+import { AiFirstHome } from "@/components/home/AiFirstHome";
 
 export default function HomePage() {
   return (
     <PageShell>
       <ProtectedRoute>
-        <HomeCommandCentre />
+        <AiFirstHome />
       </ProtectedRoute>
     </PageShell>
   );

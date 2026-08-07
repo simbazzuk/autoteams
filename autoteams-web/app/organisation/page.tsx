@@ -1,12 +1,12 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { AtlasTeamBuilder } from "@/components/playbooks/AtlasTeamBuilder";
+import { MyGroupDashboard } from "@/components/organisation/MyGroupDashboard";
 
-export default function PlaybooksPage() {
+export default function OrganisationPage() {
   return (
     <PageShell>
       <ProtectedRoute>
-        <AtlasTeamBuilder />
+        <MyGroupDashboard />
       </ProtectedRoute>
     </PageShell>
   );

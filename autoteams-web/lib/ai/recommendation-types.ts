@@ -1,0 +1,60 @@
+export type RecommendationCandidate = {
+  id: string;
+  name: string;
+  jobTitle: string;
+  department: string;
+  location: string;
+  strengths: string[];
+  profileReady: boolean;
+};
+
+export type RecommendationRequirement = {
+  name: string;
+  purpose: string;
+  size: number;
+  skills: string[];
+  location: string;
+  workingStyle: string;
+};
+
+export type RankedRecommendationPerson = {
+  personId: string;
+  score: number;
+  reasons: string[];
+  concerns: string[];
+};
+
+export type AiUsage = {
+  promptTokens?: number;
+  responseTokens?: number;
+  totalTokens?: number;
+};
+
+export type AiTelemetry = {
+  provider: "google-vertex-ai";
+  source: "gemini" | "fallback";
+  model?: string;
+  location?: string;
+  responseTimeMs: number;
+  usage?: AiUsage;
+  generatedAt: string;
+};
+
+export type GeminiTeamRecommendation = {
+  recommendedPersonIds: string[];
+  confidence: number;
+  summary: string;
+  rankedPeople: RankedRecommendationPerson[];
+  teamStrengths: string[];
+  skillGaps: string[];
+  risks: string[];
+  source: "gemini" | "fallback";
+  model?: string;
+  telemetry?: AiTelemetry;
+};
+
+export type RecommendationApiRequest = {
+  workspaceId: string;
+  requirement: RecommendationRequirement;
+  candidates: RecommendationCandidate[];
+};

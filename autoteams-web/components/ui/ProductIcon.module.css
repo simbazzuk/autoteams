@@ -1,0 +1,46 @@
+.icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    #765fff 0%,
+    #5b7cfa 55%,
+    #4f8ef7 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 12px 28px rgba(79, 142, 247, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.sm {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  font-size: 14px;
+}
+
+.md {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  font-size: 18px;
+}
+
+.lg {
+  width: 58px;
+  height: 58px;
+  border-radius: 17px;
+  font-size: 22px;
+}
+
+.subtle {
+  color: #b8c5d8;
+  background: #20293a;
+  border-color: #334057;
+  box-shadow: none;
+}

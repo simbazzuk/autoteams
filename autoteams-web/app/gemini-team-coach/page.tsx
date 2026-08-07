@@ -1,12 +1,12 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { AtlasTeamBuilder } from "@/components/playbooks/AtlasTeamBuilder";
+import { GeminiTeamCoach } from "@/components/gemini-team-coach/GeminiTeamCoach";
 
-export default function PlaybooksPage() {
+export default function GeminiTeamCoachPage() {
   return (
     <PageShell>
       <ProtectedRoute>
-        <AtlasTeamBuilder />
+        <GeminiTeamCoach />
       </ProtectedRoute>
     </PageShell>
   );

@@ -1,0 +1,549 @@
+.page {
+  min-height: 100vh;
+  color: #f5f7fb;
+  background: #0f1420;
+}
+
+.hero {
+  padding: 58px 0 48px;
+  background:
+    radial-gradient(circle at 84% 14%, rgba(79, 142, 247, 0.16), transparent 30%),
+    radial-gradient(circle at 12% 8%, rgba(118, 95, 255, 0.14), transparent 30%),
+    #0f1420;
+  border-bottom: 1px solid #232c3e;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.hero h1 {
+  max-width: 900px;
+  margin: 10px 0 14px;
+  font-size: clamp(50px, 5vw, 70px);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+}
+
+.hero p {
+  max-width: 810px;
+  margin: 0;
+  color: #9ca8bb;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.accountCard {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 23px;
+  background: #171e2d;
+  border: 1px solid #2e3950;
+  border-radius: 20px;
+}
+
+.avatar {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, #765fff, #4f8ef7);
+  border-radius: 17px;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.accountCard > div {
+  display: grid;
+  gap: 4px;
+}
+
+.accountCard small {
+  color: #8d99ac;
+  font-size: 10px;
+}
+
+.accountCard strong {
+  color: #f1f4f9;
+  font-size: 18px;
+}
+
+.accountCard p {
+  margin: 0;
+  color: #7f8ba0;
+  font-size: 11px;
+}
+
+.verified,
+.unverified {
+  font-size: 10px;
+}
+
+.verified {
+  color: #55d69a;
+}
+
+.unverified {
+  color: #efba5c;
+}
+
+.body {
+  padding: 28px 0 80px;
+}
+
+.message {
+  padding: 14px;
+  margin-bottom: 14px;
+  color: #bdebd4;
+  background: rgba(45, 166, 112, 0.09);
+  border: 1px solid rgba(73, 196, 139, 0.22);
+  border-radius: 13px;
+  font-size: 12px;
+}
+
+.emptyProfile {
+  display: grid;
+  justify-items: center;
+  padding: 52px 24px;
+  text-align: center;
+  background: #171e2d;
+  border: 1px solid #2a3448;
+  border-radius: 20px;
+}
+
+.emptyProfile h2 {
+  margin: 14px 0 8px;
+  color: #f1f4f9;
+  font-size: 31px;
+}
+
+.emptyProfile > p {
+  max-width: 680px;
+  margin: 0 0 18px;
+  color: #8f9bb0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.contextHint {
+  display: grid;
+  gap: 4px;
+  min-width: min(100%, 430px);
+  padding: 15px;
+  margin-bottom: 18px;
+  background: #121827;
+  border: 1px solid #293246;
+  border-radius: 13px;
+}
+
+.contextHint small {
+  color: #7f8ba0;
+  font-size: 9px;
+}
+
+.contextHint strong {
+  color: #e8ecf3;
+  font-size: 14px;
+}
+
+.contextHint span {
+  color: #a99cff;
+  font-size: 10px;
+}
+
+.primarySection,
+.controls,
+.advanced {
+  padding: 23px;
+  background: #171e2d;
+  border: 1px solid #2a3448;
+  border-radius: 19px;
+}
+
+.controls,
+.advanced {
+  margin-top: 16px;
+}
+
+.sectionHeading {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: start;
+  margin-bottom: 17px;
+}
+
+.sectionHeading h2 {
+  margin: 8px 0 6px;
+  color: #f1f4f9;
+  font-size: 29px;
+}
+
+.sectionHeading p {
+  max-width: 760px;
+  margin: 0;
+  color: #8f9bb0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.statusBadge {
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.complete {
+  color: #55d69a;
+  background: rgba(45, 166, 112, 0.12);
+}
+
+.inProgress {
+  color: #a99cff;
+  background: #292442;
+}
+
+.primaryGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+  gap: 14px;
+}
+
+.profileCard,
+.explanationCard {
+  padding: 20px;
+  background: #121827;
+  border: 1px solid #293246;
+  border-radius: 16px;
+}
+
+.profileCard > header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 13px;
+  align-items: center;
+}
+
+.profileCard header > div {
+  display: grid;
+  gap: 4px;
+}
+
+.profileCard header small {
+  color: #8d99ac;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.profileCard header strong {
+  color: #f1f4f9;
+  font-size: 21px;
+}
+
+.profileCard header p {
+  margin: 0;
+  color: #7f8ba0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  margin: 18px 0 12px;
+}
+
+.metrics article {
+  display: grid;
+  gap: 5px;
+  padding: 12px;
+  background: #171e2d;
+  border: 1px solid #293246;
+  border-radius: 11px;
+}
+
+.metrics small {
+  color: #6f7c91;
+  font-size: 9px;
+}
+
+.metrics strong {
+  color: #e8ecf3;
+  font-size: 13px;
+}
+
+.progressBar {
+  height: 8px;
+  overflow: hidden;
+  background: #293246;
+  border-radius: 999px;
+}
+
+.progressBar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #765fff, #4f8ef7);
+}
+
+.primaryActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 17px;
+}
+
+.explanationCard {
+  display: grid;
+  align-content: start;
+  gap: 11px;
+  background:
+    radial-gradient(circle at 90% 8%, rgba(79, 142, 247, 0.1), transparent 28%),
+    linear-gradient(145deg, #211d3b, #171e2d);
+  border-color: #514979;
+}
+
+.explanationCard h3 {
+  margin: 0;
+  color: #f1f4f9;
+  font-size: 21px;
+}
+
+.explanationList {
+  display: grid;
+  gap: 7px;
+}
+
+.explanationList span {
+  padding: 9px;
+  color: #c9d0db;
+  background: #121827;
+  border: 1px solid #293246;
+  border-radius: 9px;
+  font-size: 10px;
+}
+
+.explanationCard p {
+  margin: 0;
+  color: #8f9bb0;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.explanationCard a {
+  color: #a99cff;
+  font-size: 10px;
+}
+
+.controlGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.controlGrid > a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 14px;
+  background: #121827;
+  border: 1px solid #293246;
+  border-radius: 13px;
+}
+
+.controlGrid > a:hover {
+  border-color: #514979;
+}
+
+.controlGrid > a > div {
+  display: grid;
+  gap: 3px;
+}
+
+.controlGrid strong {
+  color: #e8ecf3;
+  font-size: 12px;
+}
+
+.controlGrid p {
+  margin: 0;
+  color: #7f8ba0;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.controlGrid > a > span:last-child {
+  grid-column: 1 / -1;
+  color: #a99cff;
+  font-size: 9px;
+}
+
+.advanced {
+  padding: 0;
+  overflow: hidden;
+}
+
+.advancedToggle {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  padding: 21px 23px;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.advancedToggle > div {
+  display: grid;
+  gap: 4px;
+}
+
+.advancedToggle strong {
+  color: #e8ecf3;
+  font-size: 16px;
+}
+
+.advancedToggle p {
+  margin: 0;
+  color: #7f8ba0;
+  font-size: 10px;
+}
+
+.advancedToggle > span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  color: #a99cff;
+  background: #292442;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.advancedContent {
+  display: grid;
+  gap: 18px;
+  padding: 21px 23px;
+  border-top: 1px solid #293246;
+}
+
+.advancedContent > div {
+  display: grid;
+  gap: 10px;
+}
+
+.secondaryGrid,
+.addGrid {
+  display: grid;
+  gap: 8px;
+}
+
+.secondaryGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.secondaryGrid article,
+.addGrid button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  background: #121827;
+  border: 1px solid #293246;
+  border-radius: 12px;
+}
+
+.secondaryGrid article > div,
+.addGrid button > div {
+  display: grid;
+  gap: 3px;
+}
+
+.secondaryGrid strong,
+.addGrid strong {
+  color: #e8ecf3;
+  font-size: 11px;
+}
+
+.secondaryGrid small,
+.addGrid small {
+  color: #7f8ba0;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.secondaryGrid button,
+.addGrid button {
+  color: inherit;
+  cursor: pointer;
+}
+
+.secondaryGrid button {
+  padding: 7px 9px;
+  color: #a99cff;
+  background: #292442;
+  border: 0;
+  border-radius: 8px;
+  font-size: 9px;
+}
+
+.addGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.addGrid button {
+  text-align: left;
+}
+
+.addGrid button:hover {
+  border-color: #514979;
+}
+
+.addGrid button > span:last-child {
+  color: #a99cff;
+  font-size: 9px;
+}
+
+.loading {
+  padding: 48px;
+  color: #9ca8bb;
+  text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .heroGrid,
+  .primaryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .controlGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .metrics,
+  .controlGrid,
+  .secondaryGrid,
+  .addGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionHeading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

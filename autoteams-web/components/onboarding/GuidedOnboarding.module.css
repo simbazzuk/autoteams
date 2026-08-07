@@ -1,0 +1,502 @@
+.page {
+  min-height: 100vh;
+  color: #f5f7fb;
+  background: #0f1420;
+}
+
+.hero {
+  padding: 58px 0 48px;
+  background:
+    radial-gradient(circle at 84% 14%, rgba(79, 142, 247, 0.16), transparent 30%),
+    radial-gradient(circle at 12% 8%, rgba(118, 95, 255, 0.14), transparent 30%),
+    #0f1420;
+  border-bottom: 1px solid #232c3e;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(310px, 0.75fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.hero h1 {
+  max-width: 900px;
+  margin: 10px 0 14px;
+  font-size: clamp(50px, 5vw, 70px);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+}
+
+.hero p {
+  max-width: 800px;
+  margin: 0;
+  color: #9ca8bb;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.progressCard {
+  display: grid;
+  gap: 11px;
+  padding: 23px;
+  background: #171e2d;
+  border: 1px solid #2e3950;
+  border-radius: 20px;
+}
+
+.progressCard > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.progressCard small {
+  color: #8d99ac;
+  font-size: 11px;
+}
+
+.progressCard strong {
+  color: #f1f4f9;
+  font-size: 34px;
+}
+
+.progressCard p {
+  margin: 0;
+  color: #7f8ba0;
+  font-size: 11px;
+}
+
+.progressBar {
+  height: 9px;
+  overflow: hidden;
+  background: #293246;
+  border-radius: 999px;
+}
+
+.progressBar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #765fff, #4f8ef7);
+}
+
+.body {
+  padding: 28px 0 80px;
+}
+
+.message {
+  padding: 14px;
+  margin-bottom: 14px;
+  color: #bdebd4;
+  background: rgba(45, 166, 112, 0.09);
+  border: 1px solid rgba(73, 196, 139, 0.22);
+  border-radius: 13px;
+  font-size: 12px;
+}
+
+.nextAction {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 15px;
+  align-items: center;
+  padding: 22px;
+  margin-bottom: 16px;
+  background: linear-gradient(125deg, #241153, #5a3ac7 65%, #3e88ee);
+  border-radius: 20px;
+}
+
+.nextAction h2 {
+  margin: 7px 0 5px;
+  color: #fff;
+  font-size: 27px;
+}
+
+.nextAction p {
+  max-width: 780px;
+  margin: 0;
+  color: #ded9f2;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.steps {
+  display: grid;
+  gap: 13px;
+}
+
+.stepCard {
+  padding: 22px;
+  background: #171e2d;
+  border: 1px solid #2a3448;
+  border-radius: 19px;
+}
+
+.activeStep {
+  border-color: #61568d;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.16);
+}
+
+.completeCard {
+  background:
+    radial-gradient(circle at 96% 5%, rgba(45, 166, 112, 0.07), transparent 25%),
+    #171e2d;
+}
+
+.lockedCard {
+  opacity: 0.72;
+}
+
+.stepCard > header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 13px;
+  align-items: start;
+}
+
+.completeNumber,
+.activeNumber,
+.pendingNumber {
+  display: grid;
+  width: 43px;
+  height: 43px;
+  place-items: center;
+  border-radius: 13px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.completeNumber {
+  color: #55d69a;
+  background: rgba(45, 166, 112, 0.12);
+}
+
+.activeNumber {
+  color: #fff;
+  background: linear-gradient(135deg, #765fff, #4f8ef7);
+}
+
+.pendingNumber {
+  color: #9ca8bb;
+  background: #252e40;
+}
+
+.stepCard header > div {
+  display: grid;
+  gap: 3px;
+}
+
+.stepCard header small {
+  color: #a99cff;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.stepCard header h2 {
+  margin: 3px 0;
+  color: #f1f4f9;
+  font-size: 24px;
+}
+
+.stepCard header p {
+  max-width: 840px;
+  margin: 0;
+  color: #8f9bb0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.stepContent {
+  margin-top: 17px;
+}
+
+.createLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(270px, 0.75fr);
+  gap: 15px;
+  align-items: start;
+}
+
+.form {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  background: #121827;
+  border: 1px solid #293246;
+  border-radius: 15px;
+}
+
+.form > label {
+  display: grid;
+  gap: 7px;
+  color: #b4bdcc;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.form input,
+.form textarea,
+.selectLabel select {
+  width: 100%;
+  color: #f1f4f9;
+  background: #111725;
+  border: 1px solid #354158;
+  border-radius: 11px;
+  font-size: 13px;
+}
+
+.form input,
+.selectLabel select {
+  min-height: 46px;
+  padding: 0 12px;
+}
+
+.form textarea {
+  min-height: 90px;
+  padding: 12px;
+  resize: vertical;
+}
+
+.form input:focus,
+.form textarea:focus,
+.selectLabel select:focus {
+  outline: none;
+  border-color: #7868ff;
+  box-shadow: 0 0 0 4px rgba(118, 95, 255, 0.12);
+}
+
+.form fieldset {
+  padding: 0;
+  border: 0;
+}
+
+.form legend {
+  margin-bottom: 8px;
+  color: #b4bdcc;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.typeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.typeOption {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  padding: 10px;
+  background: #171e2d;
+  border: 1px solid #293246;
+  border-radius: 11px;
+  cursor: pointer;
+}
+
+.selectedType {
+  background: linear-gradient(135deg, #282442, #202641);
+  border-color: #61568d;
+}
+
+.typeOption input {
+  width: 16px;
+  min-height: auto;
+  height: 16px;
+  accent-color: #765fff;
+}
+
+.typeOption > span {
+  display: grid;
+  width: 33px;
+  height: 33px;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, #765fff, #4f8ef7);
+  border-radius: 10px;
+}
+
+.typeOption strong {
+  color: #e8ecf3;
+  font-size: 11px;
+}
+
+.existing,
+.demo {
+  display: grid;
+  gap: 11px;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 90% 8%, rgba(79, 142, 247, 0.1), transparent 28%),
+    linear-gradient(145deg, #211d3b, #171e2d);
+  border: 1px solid #514979;
+  border-radius: 15px;
+}
+
+.existing h3,
+.demo h3 {
+  margin: 0;
+  color: #f1f4f9;
+  font-size: 20px;
+}
+
+.existing > div {
+  display: grid;
+  gap: 7px;
+}
+
+.existing button {
+  display: grid;
+  gap: 3px;
+  padding: 10px;
+  color: inherit;
+  background: #121827;
+  border: 1px solid #354158;
+  border-radius: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.existing button:hover {
+  border-color: #61568d;
+}
+
+.existing strong {
+  color: #e8ecf3;
+  font-size: 12px;
+}
+
+.existing small {
+  color: #7f8ba0;
+  font-size: 9px;
+}
+
+.demo p {
+  margin: 0;
+  color: #8f9bb0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.completedSummary,
+.actionPanel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 15px;
+  background: #121827;
+  border: 1px solid #293246;
+  border-radius: 13px;
+}
+
+.completedSummary > div,
+.actionPanel > div {
+  display: grid;
+  gap: 4px;
+}
+
+.completedSummary strong,
+.actionPanel strong {
+  color: #e8ecf3;
+  font-size: 14px;
+}
+
+.completedSummary small {
+  color: #7f8ba0;
+  font-size: 10px;
+}
+
+.actionPanel p {
+  margin: 0;
+  color: #7f8ba0;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.selectLabel {
+  display: grid;
+  min-width: 220px;
+  gap: 6px;
+  color: #8f9bb0;
+  font-size: 10px;
+}
+
+.lockedMessage {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  padding: 14px;
+  color: #7f8ba0;
+  background: #121827;
+  border: 1px dashed #354158;
+  border-radius: 12px;
+}
+
+.lockedMessage p {
+  margin: 0;
+  font-size: 11px;
+}
+
+.help {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  align-items: center;
+  padding: 24px;
+  margin-top: 17px;
+  background: #171e2d;
+  border: 1px solid #2a3448;
+  border-radius: 19px;
+}
+
+.help h2 {
+  margin: 8px 0 6px;
+  color: #f1f4f9;
+  font-size: 25px;
+}
+
+.help p {
+  max-width: 760px;
+  margin: 0;
+  color: #8f9bb0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.loading {
+  padding: 48px;
+  color: #9ca8bb;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .heroGrid,
+  .createLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .nextAction,
+  .completedSummary,
+  .actionPanel {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .nextAction > a,
+  .completedSummary > :last-child,
+  .actionPanel > a {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 650px) {
+  .typeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .help {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { AccountMenu } from "@/components/navigation/AccountMenu";
-import { AtlasOrb } from "./AtlasOrb";
 
 export function RobotLogo() {
   return (
@@ -21,14 +20,81 @@ export function RobotLogo() {
 
 const primaryLinks = [
   { href: "/home", label: "Home" },
-  { href: "/profile", label: "People" },
-  { href: "/workspaces", label: "Workspace" },
-  { href: "/atlas-workspace", label: "Atlas", atlas: true },
+  { href: "/people", label: "People" },
+  { href: "/team-builder", label: "Build Team" },
+  {
+    href: "/gemini-team-coach",
+    label: "Gemini Team Coach",
+    ai: true,
+  },
+  { href: "/teams", label: "Teams" },
   { href: "/learning-centre", label: "Learn" },
 ];
 
-function isActivePath(pathname: string, href: string): boolean {
-  return pathname === href || pathname.startsWith(`${href}/`);
+function isActivePath(
+  pathname: string,
+  href: string,
+): boolean {
+  if (href === "/people") {
+    return [
+      "/people",
+      "/talent",
+      "/members",
+      "/talent-pools",
+    ].some(
+      (route) =>
+        pathname === route ||
+        pathname.startsWith(`${route}/`),
+    );
+  }
+
+  if (href === "/team-builder") {
+    return (
+      pathname === "/team-builder" ||
+      pathname.startsWith("/team-builder/")
+    );
+  }
+
+  if (href === "/gemini-team-coach") {
+    return [
+      "/gemini-team-coach",
+      "/team-coach",
+      "/atlas",
+      "/my-atlas-profile",
+    ].some(
+      (route) =>
+        pathname === route ||
+        pathname.startsWith(`${route}/`),
+    );
+  }
+
+  if (href === "/teams") {
+    return [
+      "/teams",
+      "/matches",
+    ].some(
+      (route) =>
+        pathname === route ||
+        pathname.startsWith(`${route}/`),
+    );
+  }
+
+  if (href === "/learning-centre") {
+    return [
+      "/learning-centre",
+      "/getting-started",
+      "/playbooks",
+    ].some(
+      (route) =>
+        pathname === route ||
+        pathname.startsWith(`${route}/`),
+    );
+  }
+
+  return (
+    pathname === href ||
+    pathname.startsWith(`${href}/`)
+  );
 }
 
 export function Navbar() {
@@ -37,16 +103,18 @@ export function Navbar() {
   return (
     <header className="site-header">
       <div className="container product-nav atlas-product-nav">
-
-        <Link href="/" className="brand product-brand">
+        <Link
+          href="/home"
+          className="brand product-brand"
+        >
           <RobotLogo />
 
           <span className="commercial-brand-copy">
             <strong>AutoTeams</strong>
-            <em>AI Team Intelligence</em>
+            <em>AI-powered team intelligence</em>
           </span>
 
-          <small>v15.1</small>
+          <small>3.1</small>
         </Link>
 
         <nav
@@ -54,27 +122,101 @@ export function Navbar() {
           aria-label="Primary navigation"
         >
           {primaryLinks.map((link) => {
-            const active = isActivePath(pathname, link.href);
+            const active = isActivePath(
+              pathname,
+              link.href,
+            );
 
             return (
               <Link
-                key={link.href}
-                href={link.href}
+                aria-current={
+                  active ? "page" : undefined
+                }
                 className={active ? "active" : undefined}
-                aria-current={active ? "page" : undefined}
+                href={link.href}
+                key={link.href}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 7,
+                }}
               >
-                {link.atlas && <AtlasOrb size="sm" />}
+                {link.ai && (
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      display: "inline-grid",
+                      width: 24,
+                      height: 24,
+                      placeItems: "center",
+                      borderRadius: 8,
+                      background:
+                        "linear-gradient(135deg, #a855f7, #4f8ef7)",
+                      color: "#fff",
+                      fontSize: 10,
+                      boxShadow:
+                        "0 8px 20px rgba(79,142,247,.25)",
+                    }}
+                  >
+                    ✦
+                  </span>
+                )}
+
                 <span>{link.label}</span>
               </Link>
             );
           })}
         </nav>
 
-        {/* User Account */}
         <div className="product-nav-actions">
+          <details className="nav-dropdown">
+            <summary>
+              My AutoTeams <span>⌄</span>
+            </summary>
+
+            <div className="nav-dropdown-menu">
+              <Link href="/getting-started">
+                Get Started
+              </Link>
+
+              <Link href="/organisation">
+                My Group
+              </Link>
+
+              <Link href="/gemini-team-coach">
+                Gemini Team Coach
+              </Link>
+
+              <Link href="/profile/privacy">
+                Profile Privacy
+              </Link>
+
+              <Link href="/notifications">
+                Notifications
+              </Link>
+
+              <Link href="/settings">
+                Settings
+              </Link>
+
+              <hr />
+
+              <Link href="/talent-pools">
+                Saved People Groups
+              </Link>
+
+              <Link href="/trust-centre">
+                Trust Centre
+              </Link>
+
+              <Link href="/demo">
+                Demo Environment
+              </Link>
+            </div>
+          </details>
+
           <AccountMenu />
         </div>
-
       </div>
     </header>
   );
@@ -84,7 +226,6 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-grid">
-
         <div>
           <div className="brand">
             <RobotLogo />
@@ -92,23 +233,25 @@ export function Footer() {
           </div>
 
           <p className="muted">
-            Helping organisations build stronger teams through explainable AI.
+            AI-powered team intelligence with human
+            review at the centre.
           </p>
         </div>
 
         <div className="footer-links">
-          <Link href="/atlas">Atlas</Link>
-          <Link href="/team-dna">Team DNA</Link>
-          <Link href="/team-builder">Build with Atlas</Link>
-          <Link href="/team-canvas">Team Canvas</Link>
-          <Link href="/members">Members & Roles</Link>
-          <Link href="/learning-centre">Learning Centre</Link>
-          <Link href="/roadmap">Roadmap</Link>
-          <Link href="/about">About</Link>
-          <Link href="/security">Security</Link>
+          <Link href="/people">People</Link>
+          <Link href="/team-builder">
+            Build Team
+          </Link>
+          <Link href="/gemini-team-coach">
+            Gemini Team Coach
+          </Link>
+          <Link href="/teams">Teams</Link>
+          <Link href="/trust-centre">
+            Trust Centre
+          </Link>
           <Link href="/privacy">Privacy</Link>
         </div>
-
       </div>
     </footer>
   );
