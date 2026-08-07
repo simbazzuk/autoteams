@@ -19,7 +19,7 @@ export function RobotLogo() {
 }
 
 const primaryLinks = [
-  { href: "/home", label: "Dashboard" },
+  { href: "/home", label: "Home" },
 { href: "/get-started", label: "Get Started" },
   { href: "/people", label: "People" },
   { href: "/team-builder", label: "Build Team" },
@@ -36,14 +36,7 @@ function isActivePath(
   pathname: string,
   href: string,
 ): boolean {
-  if (href === "/home") {
-return (
-pathname === "/home" ||
-pathname.startsWith("/home/")
-);
-}
-
-if (href === "/get-started") {
+  if (href === "/get-started") {
 return (
 pathname === "/get-started" ||
 pathname.startsWith("/get-started/")
@@ -118,7 +111,7 @@ export function Navbar() {
     <header className="site-header">
       <div className="container product-nav atlas-product-nav">
         <Link
-          href="/"
+          href="/home"
           className="brand product-brand"
         >
           <RobotLogo />
@@ -253,7 +246,6 @@ export function Footer() {
         </div>
 
         <div className="footer-links">
-      <Link href="/">Product Overview</Link>
           <Link href="/get-started">
             Get Started
           </Link>
