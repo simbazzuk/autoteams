@@ -1,0 +1,148 @@
+"use client";
+
+import {
+  GoogleAuthProvider,
+  User,
+  browserLocalPersistence,
+  onAuthStateChanged,
+  setPersistence,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import {
+  doc,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
+import {
+  getFirebaseAuth,
+  getFirebaseFirestore,
+} from "@/lib/firebase/client";
+
+export type FirebaseSessionUser = {
+  uid: string;
+  displayName: string;
+  email: string;
+  photoURL?: string;
+};
+
+export async function signInWithGoogle(): Promise<FirebaseSessionUser> {
+  const auth = getFirebaseAuth();
+
+  await setPersistence(
+    auth,
+    browserLocalPersistence,
+  );
+
+  const provider =
+    new GoogleAuthProvider();
+
+  provider.setCustomParameters({
+    prompt: "select_account",
+  });
+
+  const result =
+    await signInWithPopup(
+      auth,
+      provider,
+    );
+
+  await bootstrapFirebaseUser(
+    result.user,
+  );
+
+  return mapFirebaseUser(
+    result.user,
+  );
+}
+
+export async function signOutFirebase(): Promise<void> {
+  await signOut(
+    getFirebaseAuth(),
+  );
+}
+
+export function subscribeToFirebaseAuth(
+  listener: (
+    user: FirebaseSessionUser | null,
+  ) => void,
+): () => void {
+  return onAuthStateChanged(
+    getFirebaseAuth(),
+    async (user) => {
+      if (!user) {
+        listener(null);
+        return;
+      }
+
+      await bootstrapFirebaseUser(
+        user,
+      );
+
+      listener(
+        mapFirebaseUser(user),
+      );
+    },
+  );
+}
+
+async function bootstrapFirebaseUser(
+  user: User,
+): Promise<void> {
+  const db =
+    getFirebaseFirestore();
+
+  await setDoc(
+    doc(
+      db,
+      "users",
+      user.uid,
+    ),
+    {
+      uid: user.uid,
+      displayName:
+        user.displayName ||
+        emailDisplayName(
+          user.email,
+        ),
+      email:
+        user.email || "",
+      photoURL:
+        user.photoURL || null,
+      provider: "firebase",
+      updatedAt:
+        serverTimestamp(),
+      createdAt:
+        serverTimestamp(),
+    },
+    {
+      merge: true,
+    },
+  );
+}
+
+function mapFirebaseUser(
+  user: User,
+): FirebaseSessionUser {
+  return {
+    uid: user.uid,
+    displayName:
+      user.displayName ||
+      emailDisplayName(
+        user.email,
+      ),
+    email:
+      user.email || "",
+    photoURL:
+      user.photoURL || undefined,
+  };
+}
+
+function emailDisplayName(
+  email?: string | null,
+): string {
+  return (email || "")
+    .split("@")[0]
+    .replace(/[._-]+/g, " ")
+    .trim();
+}

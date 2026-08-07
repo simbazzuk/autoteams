@@ -1,125 +1,401 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { useAuth } from "@/components/AuthProvider";
 import {
-  NavigationRole,
-  canAccessAdministration,
-  resolveNavigationRole,
-  roleDisplayName,
-} from "@/lib/navigation-role";
+  useEffect,
+  useState,
+} from "react";
+import {
+  readAuthProvider,
+} from "@/lib/config/autoteams-config";
+import {
+  signInWithConfiguredProvider,
+  signOutConfiguredProvider,
+  subscribeToConfiguredAuth,
+  type AutoTeamsAuthUser,
+} from "@/lib/auth/auth-adapter";
+import {
+  useAuth,
+} from "@/components/AuthProvider";
 import styles from "./AccountMenu.module.css";
 
 export function AccountMenu() {
-  const { user, logout } = useAuth();
-  const [open, setOpen] = useState(false);
-  const [role, setRole] = useState<NavigationRole>("member");
-  const menuRef = useRef<HTMLDivElement>(null);
+  const provider =
+    readAuthProvider();
+
+  if (provider === "firebase") {
+    return <FirebaseAccountMenu />;
+  }
+
+  return <LocalAccountMenu />;
+}
+
+function FirebaseAccountMenu() {
+  const [user, setUser] =
+    useState<AutoTeamsAuthUser | null>(
+      null,
+    );
+  const [ready, setReady] =
+    useState(false);
+  const [error, setError] =
+    useState("");
 
   useEffect(() => {
-    setRole(resolveNavigationRole(user?.email));
-  }, [user?.email]);
-
-  useEffect(() => {
-    function closeMenu(event: MouseEvent) {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", closeMenu);
-    return () => document.removeEventListener("mousedown", closeMenu);
+    return subscribeToConfiguredAuth(
+      (nextUser) => {
+        setUser(nextUser);
+        setReady(true);
+      },
+    );
   }, []);
 
-  const name =
-    user?.displayName?.trim() ||
-    user?.email?.split("@")[0] ||
-    "Account";
+  async function login() {
+    setError("");
 
-  const initial = name.charAt(0).toUpperCase();
+    try {
+      const nextUser =
+        await signInWithConfiguredProvider();
 
-  return (
-    <div className={styles.menu} ref={menuRef}>
+      setUser(nextUser);
+    } catch (error) {
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Unable to sign in.",
+      );
+    }
+  }
+
+  async function logout() {
+    setError("");
+
+    try {
+      await signOutConfiguredProvider();
+      setUser(null);
+    } catch (error) {
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Unable to sign out.",
+      );
+    }
+  }
+
+  if (!ready) {
+    return (
+      <div
+        className={
+          styles.loading
+        }
+        aria-label="Loading account"
+      >
+        <span />
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
       <button
-        aria-expanded={open}
-        aria-haspopup="menu"
-        className={styles.trigger}
-        onClick={() => setOpen((current) => !current)}
+        className={
+          styles.signInButton
+        }
+        onClick={login}
         type="button"
       >
-        <span className={styles.avatar}>{initial}</span>
-
-        <span className={styles.identity}>
-          <strong>{name}</strong>
-          <small>{roleDisplayName(role)}</small>
+        <span
+          className={
+            styles.googleMark
+          }
+          aria-hidden="true"
+        >
+          G
         </span>
 
-        <em aria-hidden="true">{open ? "⌃" : "⌄"}</em>
+        <span>
+          Sign in with Google
+        </span>
       </button>
+    );
+  }
 
-      {open && (
-        <div className={styles.dropdown} role="menu">
-          <header className={styles.header}>
-            <span className={styles.largeAvatar}>{initial}</span>
-            <div>
-              <strong>{name}</strong>
-              <small>{roleDisplayName(role)}</small>
-            </div>
-          </header>
+  return (
+    <details
+      className={
+        styles.menu
+      }
+    >
+      <summary
+        className={
+          styles.trigger
+        }
+      >
+        <AccountAvatar
+          displayName={
+            user.displayName
+          }
+          photoURL={
+            user.photoURL
+          }
+        />
 
-          <nav className={styles.links}>
-            <Link href="/profile" onClick={() => setOpen(false)}>
-              My Profile
-            </Link>
-            <Link href="/notifications" onClick={() => setOpen(false)}>
-              Notifications
-            </Link>
-            <Link href="/settings" onClick={() => setOpen(false)}>
-              Account Settings
-            </Link>
-            <Link href="/profile/privacy" onClick={() => setOpen(false)}>
-              Privacy
-            </Link>
-            <Link href="/profile/security" onClick={() => setOpen(false)}>
-              Security
-            </Link>
-          </nav>
+        <span
+          className={
+            styles.identity
+          }
+        >
+          <strong>
+            {user.displayName}
+          </strong>
+          <small>
+            Firebase Account
+          </small>
+        </span>
 
-          {canAccessAdministration(role) && (
-            <>
-              <div className={styles.divider} />
-              <nav className={styles.links}>
-                <Link
-                  href="/profile/membership"
-                  onClick={() => setOpen(false)}
-                >
-                  Workspace Membership
-                </Link>
-                <Link href="/demo" onClick={() => setOpen(false)}>
-                  Demo Environment
-                </Link>
-              </nav>
-            </>
-          )}
+        <span
+          className={
+            styles.chevron
+          }
+          aria-hidden="true"
+        >
+          ⌄
+        </span>
+      </summary>
 
-          <div className={styles.divider} />
+      <div
+        className={
+          styles.dropdown
+        }
+      >
+        <div
+          className={
+            styles.profile
+          }
+        >
+          <AccountAvatar
+            displayName={
+              user.displayName
+            }
+            photoURL={
+              user.photoURL
+            }
+            large
+          />
 
-          <button
-            className={styles.signOut}
-            onClick={() => {
-              setOpen(false);
-              logout();
-            }}
-            type="button"
-          >
-            Sign Out
-          </button>
+          <div>
+            <strong>
+              {user.displayName}
+            </strong>
+            <small>
+              {user.email}
+            </small>
+            <span>
+              Signed in with Google
+            </span>
+          </div>
         </div>
-      )}
-    </div>
+
+        <div
+          className={
+            styles.divider
+          }
+        />
+
+        <Link href="/gemini-team-coach">
+          Gemini Team Coach
+        </Link>
+
+        <Link href="/profile/privacy">
+          Profile Privacy
+        </Link>
+
+        <Link href="/settings">
+          Settings
+        </Link>
+
+        <div
+          className={
+            styles.divider
+          }
+        />
+
+        <button
+          onClick={logout}
+          type="button"
+        >
+          Sign Out
+        </button>
+
+        {error && (
+          <p
+            className={
+              styles.error
+            }
+            role="alert"
+          >
+            {error}
+          </p>
+        )}
+      </div>
+    </details>
   );
+}
+
+function LocalAccountMenu() {
+  const { user } = useAuth();
+
+  const displayName =
+    user?.displayName ||
+    emailDisplayName(
+      user?.email,
+    ) ||
+    "AutoTeams User";
+
+  const email =
+    user?.email || "";
+
+  return (
+    <details
+      className={
+        styles.menu
+      }
+    >
+      <summary
+        className={
+          styles.trigger
+        }
+      >
+        <AccountAvatar
+          displayName={
+            displayName
+          }
+        />
+
+        <span
+          className={
+            styles.identity
+          }
+        >
+          <strong>
+            {displayName}
+          </strong>
+          <small>
+            Team Member
+          </small>
+        </span>
+
+        <span
+          className={
+            styles.chevron
+          }
+          aria-hidden="true"
+        >
+          ⌄
+        </span>
+      </summary>
+
+      <div
+        className={
+          styles.dropdown
+        }
+      >
+        <div
+          className={
+            styles.profile
+          }
+        >
+          <AccountAvatar
+            displayName={
+              displayName
+            }
+            large
+          />
+
+          <div>
+            <strong>
+              {displayName}
+            </strong>
+
+            {email && (
+              <small>
+                {email}
+              </small>
+            )}
+
+            <span>
+              Local development account
+            </span>
+          </div>
+        </div>
+
+        <div
+          className={
+            styles.divider
+          }
+        />
+
+        <Link href="/gemini-team-coach">
+          Gemini Team Coach
+        </Link>
+
+        <Link href="/profile/privacy">
+          Profile Privacy
+        </Link>
+
+        <Link href="/settings">
+          Settings
+        </Link>
+      </div>
+    </details>
+  );
+}
+
+function AccountAvatar({
+  displayName,
+  photoURL,
+  large = false,
+}: {
+  displayName: string;
+  photoURL?: string;
+  large?: boolean;
+}) {
+  const className =
+    large
+      ? `${styles.avatar} ${styles.largeAvatar}`
+      : styles.avatar;
+
+  if (photoURL) {
+    return (
+      <img
+        alt=""
+        className={
+          className
+        }
+        referrerPolicy="no-referrer"
+        src={photoURL}
+      />
+    );
+  }
+
+  return (
+    <span
+      className={
+        className
+      }
+      aria-hidden="true"
+    >
+      {displayName
+        .charAt(0)
+        .toUpperCase()}
+    </span>
+  );
+}
+
+function emailDisplayName(
+  email?: string | null,
+): string {
+  return (email || "")
+    .split("@")[0]
+    .replace(/[._-]+/g, " ")
+    .trim();
 }

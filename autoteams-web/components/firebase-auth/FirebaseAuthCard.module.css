@@ -1,0 +1,46 @@
+.card {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  color: #f5f7fb;
+  background: #171e2d;
+  border: 1px solid #2a3448;
+  border-radius: 18px;
+}
+
+.badge {
+  justify-self: start;
+  padding: 6px 9px;
+  color: #a99cff;
+  background: #292442;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.card h2 {
+  margin: 0;
+  color: #f1f4f9;
+  font-size: 25px;
+}
+
+.card p {
+  margin: 0;
+  color: #8f9bb0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.card code {
+  margin: 0 4px;
+  color: #c9c0ff;
+}
+
+.error {
+  padding: 10px;
+  color: #e2b267;
+  background: rgba(226,178,103,.08);
+  border: 1px solid rgba(226,178,103,.24);
+  border-radius: 10px;
+  font-size: 10px;
+}
