@@ -20,7 +20,6 @@ export function RobotLogo() {
 
 const primaryLinks = [
   { href: "/home", label: "Home" },
-{ href: "/get-started", label: "Get Started" },
   { href: "/people", label: "People" },
   { href: "/team-builder", label: "Build Team" },
   {
@@ -36,14 +35,7 @@ function isActivePath(
   pathname: string,
   href: string,
 ): boolean {
-  if (href === "/get-started") {
-return (
-pathname === "/get-started" ||
-pathname.startsWith("/get-started/")
-);
-}
-
-if (href === "/people") {
+  if (href === "/people") {
     return [
       "/people",
       "/talent",
@@ -90,7 +82,8 @@ if (href === "/people") {
   if (href === "/learning-centre") {
     return [
       "/learning-centre",
-            "/playbooks",
+      "/getting-started",
+      "/playbooks",
     ].some(
       (route) =>
         pathname === route ||
@@ -182,7 +175,7 @@ export function Navbar() {
             </summary>
 
             <div className="nav-dropdown-menu">
-              <Link href="/get-started">
+              <Link href="/getting-started">
                 Get Started
               </Link>
 
@@ -246,9 +239,6 @@ export function Footer() {
         </div>
 
         <div className="footer-links">
-          <Link href="/get-started">
-            Get Started
-          </Link>
           <Link href="/people">People</Link>
           <Link href="/team-builder">
             Build Team

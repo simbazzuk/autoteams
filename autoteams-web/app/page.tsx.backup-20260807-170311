@@ -1,0 +1,577 @@
+import Link from "next/link";
+import { PageShell } from "@/components/Site";
+
+const capabilities = [
+  {
+    title: "Build balanced teams",
+    text:
+      "Create teams around a clear outcome, the people available and the strengths that matter.",
+    href: "/team-builder",
+    action: "Build a Team",
+  },
+  {
+    title: "Understand your people",
+    text:
+      "Use profiles and Team DNA to understand strengths, working styles and collaboration patterns.",
+    href: "/people",
+    action: "Explore People",
+  },
+  {
+    title: "Get explainable recommendations",
+    text:
+      "See confidence, strengths, gaps, risks and why individual people were recommended.",
+    href: "/recommendation-history",
+    action: "View Recommendations",
+  },
+  {
+    title: "Govern the decision",
+    text:
+      "Review, compare, approve or reject recommendations with a permanent audit trail.",
+    href: "/recommendation-history",
+    action: "Review Decisions",
+  },
+];
+
+const process = [
+  {
+    number: "01",
+    title: "Create a workspace",
+    text:
+      "Set up the group or organisation where the team belongs.",
+  },
+  {
+    number: "02",
+    title: "Add people",
+    text:
+      "Add the authorised people AutoTeams can consider.",
+  },
+  {
+    number: "03",
+    title: "Describe the team",
+    text:
+      "Define the outcome, size, location and important strengths.",
+  },
+  {
+    number: "04",
+    title: "Atlas analyses",
+    text:
+      "Atlas applies AutoTeams intelligence to create an explainable recommendation.",
+  },
+  {
+    number: "05",
+    title: "Human review",
+    text:
+      "A person reviews the recommendation, evidence and risks.",
+  },
+  {
+    number: "06",
+    title: "Record the decision",
+    text:
+      "Approve, reject or archive the outcome with a full audit history.",
+  },
+];
+
+const objectives = [
+  "Use existing talent more effectively.",
+  "Make team selection more consistent and explainable.",
+  "Reduce manual effort when forming teams.",
+  "Support human decisions with evidence rather than replace them.",
+];
+
+export default function HomePage() {
+  return (
+    <PageShell>
+      <main
+        style={{
+          background:
+            "radial-gradient(circle at 20% 0%, rgba(120,104,255,.16), transparent 35%), #0f1420",
+          color: "#f5f7fb",
+        }}
+      >
+        <section
+          style={{
+            padding: "76px 0 54px",
+            borderBottom: "1px solid #222b3c",
+          }}
+        >
+          <div
+            className="container"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(0,1.35fr) minmax(280px,.65fr)",
+              gap: 34,
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <span className="eyebrow">
+                AI-powered team intelligence
+              </span>
+
+              <h1
+                style={{
+                  margin: "14px 0 16px",
+                  maxWidth: 900,
+                  fontSize: "clamp(48px,7vw,78px)",
+                  lineHeight: .98,
+                  letterSpacing: "-.055em",
+                }}
+              >
+                Build better teams with explainable AI.
+              </h1>
+
+              <p
+                style={{
+                  margin: 0,
+                  maxWidth: 820,
+                  color: "#a8b3c4",
+                  fontSize: 18,
+                  lineHeight: 1.7,
+                }}
+              >
+                AutoTeams helps organisations create balanced,
+                high-performing teams from the people they already
+                have. It combines team objectives, skills, strengths
+                and explainable recommendations while keeping people
+                responsible for the final decision.
+              </p>
+
+              <div
+                style={{
+                  display: "flex",
+                  gap: 10,
+                  flexWrap: "wrap",
+                  marginTop: 26,
+                }}
+              >
+                <Link
+                  className="button"
+                  href="/get-started"
+                >
+                  Get Started
+                </Link>
+
+                <Link
+                  className="button secondary"
+                  href="/team-builder"
+                >
+                  Build a Team
+                </Link>
+              </div>
+            </div>
+
+            <aside
+              style={{
+                display: "grid",
+                gap: 14,
+                padding: 22,
+                background: "rgba(23,30,45,.86)",
+                border: "1px solid #303a50",
+                borderRadius: 20,
+                boxShadow: "0 24px 70px rgba(0,0,0,.22)",
+              }}
+            >
+              <span className="eyebrow">
+                Meet Atlas
+              </span>
+
+              <div
+                aria-hidden="true"
+                style={{
+                  display: "grid",
+                  width: 58,
+                  height: 58,
+                  placeItems: "center",
+                  background:
+                    "linear-gradient(135deg,#7868ff,#4f8cff)",
+                  borderRadius: "50%",
+                  fontSize: 22,
+                  fontWeight: 900,
+                }}
+              >
+                A
+              </div>
+
+              <h2
+                style={{
+                  margin: 0,
+                  fontSize: 24,
+                  letterSpacing: "-.025em",
+                }}
+              >
+                Atlas is the intelligence inside AutoTeams.
+              </h2>
+
+              <p
+                style={{
+                  margin: 0,
+                  color: "#98a5b8",
+                  fontSize: 13,
+                  lineHeight: 1.65,
+                }}
+              >
+                Atlas analyses team requirements and available
+                evidence to help AutoTeams explain who may fit,
+                where gaps exist and what risks a human reviewer
+                should consider.
+              </p>
+
+              <div
+                style={{
+                  padding: 12,
+                  color: "#c8d0dd",
+                  background: "#121827",
+                  borderRadius: 12,
+                  fontSize: 11,
+                  lineHeight: 1.55,
+                }}
+              >
+                AI recommends. People decide.
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section
+          style={{
+            padding: "54px 0",
+          }}
+        >
+          <div className="container">
+            <SectionHeading
+              eyebrow="What AutoTeams does"
+              title="One place to understand, build and govern teams."
+              text="AutoTeams brings people information, team requirements, explainable AI and human decision-making into one workflow."
+            />
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns:
+                  "repeat(auto-fit,minmax(230px,1fr))",
+                gap: 12,
+                marginTop: 24,
+              }}
+            >
+              {capabilities.map(
+                (capability) => (
+                  <article
+                    key={capability.title}
+                    style={{
+                      display: "grid",
+                      alignContent: "start",
+                      gap: 10,
+                      padding: 20,
+                      background: "#171e2d",
+                      border: "1px solid #2a3448",
+                      borderRadius: 16,
+                    }}
+                  >
+                    <strong
+                      style={{
+                        fontSize: 17,
+                      }}
+                    >
+                      {capability.title}
+                    </strong>
+
+                    <p
+                      style={{
+                        margin: 0,
+                        color: "#8f9bb0",
+                        fontSize: 13,
+                        lineHeight: 1.6,
+                      }}
+                    >
+                      {capability.text}
+                    </p>
+
+                    <Link
+                      href={capability.href}
+                      style={{
+                        marginTop: 4,
+                        color: "#ada5ff",
+                        fontSize: 11,
+                        fontWeight: 800,
+                      }}
+                    >
+                      {capability.action} →
+                    </Link>
+                  </article>
+                ),
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section
+          style={{
+            padding: "54px 0",
+            background: "#121827",
+            borderTop: "1px solid #222b3c",
+            borderBottom: "1px solid #222b3c",
+          }}
+        >
+          <div className="container">
+            <SectionHeading
+              eyebrow="How it works"
+              title="From team requirement to recorded decision."
+              text="AutoTeams keeps the process simple while making the reasoning and governance visible."
+            />
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns:
+                  "repeat(auto-fit,minmax(220px,1fr))",
+                gap: 12,
+                marginTop: 24,
+              }}
+            >
+              {process.map(
+                (step) => (
+                  <article
+                    key={step.number}
+                    style={{
+                      display: "grid",
+                      gap: 9,
+                      padding: 18,
+                      background: "#171e2d",
+                      border: "1px solid #2a3448",
+                      borderRadius: 15,
+                    }}
+                  >
+                    <span
+                      style={{
+                        display: "grid",
+                        width: 34,
+                        height: 34,
+                        placeItems: "center",
+                        color: "#cfc9ff",
+                        background: "rgba(120,104,255,.12)",
+                        borderRadius: 10,
+                        fontSize: 9,
+                        fontWeight: 900,
+                      }}
+                    >
+                      {step.number}
+                    </span>
+
+                    <strong
+                      style={{
+                        fontSize: 15,
+                      }}
+                    >
+                      {step.title}
+                    </strong>
+
+                    <p
+                      style={{
+                        margin: 0,
+                        color: "#8f9bb0",
+                        fontSize: 12,
+                        lineHeight: 1.55,
+                      }}
+                    >
+                      {step.text}
+                    </p>
+                  </article>
+                ),
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section
+          style={{
+            padding: "54px 0",
+          }}
+        >
+          <div
+            className="container"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(0,.9fr) minmax(0,1.1fr)",
+              gap: 24,
+              alignItems: "start",
+            }}
+          >
+            <SectionHeading
+              eyebrow="Our objectives"
+              title="Better team decisions, not automated people decisions."
+              text="AutoTeams is designed to augment human judgement with structured evidence and explainable intelligence."
+            />
+
+            <div
+              style={{
+                display: "grid",
+                gap: 9,
+              }}
+            >
+              {objectives.map(
+                (objective, index) => (
+                  <div
+                    key={objective}
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "36px minmax(0,1fr)",
+                      gap: 10,
+                      alignItems: "center",
+                      padding: 14,
+                      background: "#171e2d",
+                      border: "1px solid #2a3448",
+                      borderRadius: 13,
+                    }}
+                  >
+                    <span
+                      style={{
+                        display: "grid",
+                        width: 30,
+                        height: 30,
+                        placeItems: "center",
+                        color: "#cfc9ff",
+                        background: "rgba(120,104,255,.12)",
+                        borderRadius: 9,
+                        fontSize: 9,
+                        fontWeight: 900,
+                      }}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span
+                      style={{
+                        color: "#c7cfdb",
+                        fontSize: 13,
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {objective}
+                    </span>
+                  </div>
+                ),
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section
+          style={{
+            padding: "0 0 72px",
+          }}
+        >
+          <div
+            className="container"
+          >
+            <div
+              style={{
+                display: "grid",
+                gap: 14,
+                padding: 26,
+                textAlign: "center",
+                background:
+                  "linear-gradient(135deg,rgba(120,104,255,.16),rgba(79,140,255,.08))",
+                border: "1px solid #343f59",
+                borderRadius: 20,
+              }}
+            >
+              <span className="eyebrow">
+                Ready to begin?
+              </span>
+
+              <h2
+                style={{
+                  margin: 0,
+                  fontSize: "clamp(28px,4vw,42px)",
+                  letterSpacing: "-.035em",
+                }}
+              >
+                Create your next team with AutoTeams.
+              </h2>
+
+              <p
+                style={{
+                  margin: "0 auto",
+                  maxWidth: 700,
+                  color: "#a3afc0",
+                  fontSize: 14,
+                  lineHeight: 1.6,
+                }}
+              >
+                Start with a workspace, add your people and
+                build your first explainable recommendation.
+              </p>
+
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: 10,
+                  flexWrap: "wrap",
+                }}
+              >
+                <Link
+                  className="button"
+                  href="/get-started"
+                >
+                  Get Started
+                </Link>
+
+                <Link
+                  className="button secondary"
+                  href="/learn"
+                >
+                  Learn About AutoTeams
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </PageShell>
+  );
+}
+
+function SectionHeading({
+  eyebrow,
+  title,
+  text,
+}: {
+  eyebrow: string;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div
+      style={{
+        maxWidth: 820,
+      }}
+    >
+      <span className="eyebrow">
+        {eyebrow}
+      </span>
+
+      <h2
+        style={{
+          margin: "9px 0 8px",
+          fontSize: "clamp(28px,4vw,40px)",
+          lineHeight: 1.12,
+          letterSpacing: "-.035em",
+        }}
+      >
+        {title}
+      </h2>
+
+      <p
+        style={{
+          margin: 0,
+          color: "#8f9bb0",
+          fontSize: 14,
+          lineHeight: 1.65,
+        }}
+      >
+        {text}
+      </p>
+    </div>
+  );
+}

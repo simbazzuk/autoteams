@@ -241,7 +241,11 @@ export function ContextualAtlasInterview() {
           to begin the interview.
         </p>
         <div className="actions">
-          <Link className="button" href="/onboarding/profile">
+          
+          <Link href="/get-started">
+            Get Started
+          </Link>
+<Link className="button" href="/onboarding/profile">
             Create My Profile
           </Link>
           <Link className="button secondary" href="/people">
