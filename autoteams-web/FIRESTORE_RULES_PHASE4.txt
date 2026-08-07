@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function signedIn(){return request.auth != null;}
+  function membershipId(workspaceId){return workspaceId + "_" + request.auth.uid;}
+  function hasActiveMembership(workspaceId){return signedIn() && exists(/databases/$(database)/documents/workspaceMemberships/$(membershipId(workspaceId))) && get(/databases/$(database)/documents/workspaceMemberships/$(membershipId(workspaceId))).data.status == "active";}
+  function isOwner(workspaceId){return hasActiveMembership(workspaceId) && get(/databases/$(database)/documents/workspaceMemberships/$(membershipId(workspaceId))).data.role == "owner";}
+  match /users/{userId}{allow read,create,update: if signedIn() && request.auth.uid == userId;allow delete: if false;match /personas/{personaId}{allow read,create,update,delete: if signedIn() && request.auth.uid == userId;}}
+  match /userPreferences/{userId}{allow read,create,update: if signedIn() && request.auth.uid == userId;allow delete: if false;}
+  match /migrationStatus/{userId}{allow read,create,update: if signedIn() && request.auth.uid == userId;allow delete: if false;}
+  match /workspaces/{workspaceId}{allow read: if hasActiveMembership(workspaceId);allow create: if signedIn() && request.resource.data.ownerId == request.auth.uid;allow update,delete: if isOwner(workspaceId);}
+  match /workspaceMemberships/{membershipId}{allow read: if signedIn() && resource.data.userId == request.auth.uid;allow create: if signedIn() && request.resource.data.userId == request.auth.uid && request.resource.data.role == "owner";allow update: if signedIn() && resource.data.userId == request.auth.uid && request.resource.data.userId == request.auth.uid;allow delete: if false;}
+  match /people/{personId}{allow read: if hasActiveMembership(resource.data.workspaceId);allow create: if signedIn() && hasActiveMembership(request.resource.data.workspaceId);allow update: if signedIn() && hasActiveMembership(resource.data.workspaceId) && request.resource.data.workspaceId == resource.data.workspaceId;allow delete: if isOwner(resource.data.workspaceId);}
+  match /{document=**}{allow read,write: if false;}
+ }
+}
