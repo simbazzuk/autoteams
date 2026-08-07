@@ -1218,7 +1218,7 @@ function GroupStep({
           Start a new group.
         </h2>
 
-        <form data-autoteams-team-builder="true"
+        <form
           className={styles.form}
           onSubmit={onCreate}
         >
@@ -1619,10 +1619,6 @@ function RequirementStep({
   return (
     <section
       className={styles.panel}
-      data-autoteams-v633={"AUTOTEAMS_V633_INLINE_READABILITY"}
-      style={{
-        padding: 30,
-      }}
     >
       <div
         className={
@@ -1633,23 +1629,10 @@ function RequirementStep({
           <span className="eyebrow">
             Step 3
           </span>
-          <h2
-            style={{
-              fontSize: 32,
-              lineHeight: 1.18,
-              letterSpacing: "-0.03em",
-              marginBottom: 8,
-            }}
-          >
+          <h2>
             Describe the team you need.
           </h2>
-          <p
-            style={{
-              fontSize: 14,
-              lineHeight: 1.6,
-              maxWidth: 760,
-            }}
-          >
+          <p>
             Gemini will analyse the
             authorised candidate
             population and explain
@@ -1669,19 +1652,8 @@ function RequirementStep({
           styles.requirementForm
         }
         onSubmit={onSubmit}
-        style={{
-          gap: 18,
-          marginTop: 22,
-        }}
       >
-        <label
-          style={{
-            fontSize: 14,
-            fontWeight: 700,
-            lineHeight: 1.4,
-            gap: 8,
-          }}
-        >
+        <label>
           Team name
           <input
             required
@@ -1699,12 +1671,6 @@ function RequirementStep({
               )
             }
             placeholder="Cloud Migration Team"
-            style={{
-              minHeight: 52,
-              padding: "13px 15px",
-              fontSize: 16,
-              lineHeight: 1.45,
-            }}
           />
         </label>
 
@@ -1712,12 +1678,6 @@ function RequirementStep({
           className={
             styles.fullWidth
           }
-          style={{
-            fontSize: 14,
-            fontWeight: 700,
-            lineHeight: 1.4,
-            gap: 8,
-          }}
         >
           What outcome should this team achieve?
           <textarea
@@ -1736,24 +1696,10 @@ function RequirementStep({
               )
             }
             placeholder="Create a five-person team to migrate customer services to the cloud within six months."
-            style={{
-              minHeight: 122,
-              padding: "14px 15px",
-              fontSize: 16,
-              lineHeight: 1.55,
-              resize: "vertical",
-            }}
           />
         </label>
 
-        <label
-          style={{
-            fontSize: 14,
-            fontWeight: 700,
-            lineHeight: 1.4,
-            gap: 8,
-          }}
-        >
+        <label>
           Team size
           <input
             min={1}
@@ -1776,22 +1722,10 @@ function RequirementStep({
                 }),
               )
             }
-            style={{
-              minHeight: 52,
-              padding: "13px 15px",
-              fontSize: 16,
-            }}
           />
         </label>
 
-        <label
-          style={{
-            fontSize: 14,
-            fontWeight: 700,
-            lineHeight: 1.4,
-            gap: 8,
-          }}
-        >
+        <label>
           Location preference
           <select
             value={
@@ -1807,11 +1741,6 @@ function RequirementStep({
                 }),
               )
             }
-            style={{
-              minHeight: 52,
-              padding: "13px 15px",
-              fontSize: 16,
-            }}
           >
             <option>Any</option>
             <option>
@@ -1822,14 +1751,7 @@ function RequirementStep({
           </select>
         </label>
 
-        <label
-          style={{
-            fontSize: 14,
-            fontWeight: 700,
-            lineHeight: 1.4,
-            gap: 8,
-          }}
-        >
+        <label>
           Team style
           <select
             value={
@@ -1845,11 +1767,6 @@ function RequirementStep({
                 }),
               )
             }
-            style={{
-              minHeight: 52,
-              padding: "13px 15px",
-              fontSize: 16,
-            }}
           >
             <option>
               Balanced
@@ -1874,13 +1791,7 @@ function RequirementStep({
             styles.fullWidth
           }
         >
-          <legend
-            style={{
-              fontSize: 14,
-              fontWeight: 700,
-              marginBottom: 10,
-            }}
-          >
+          <legend>
             Important skills or strengths
           </legend>
 
@@ -1900,14 +1811,6 @@ function RequirementStep({
                       : ""
                   }
                   key={skill}
-                  style={{
-                    minHeight: 50,
-                    padding: "12px 14px",
-                    gap: 10,
-                    fontSize: 13,
-                    fontWeight: 650,
-                    alignItems: "center",
-                  }}
                 >
                   <input
                     checked={requirement.skills.includes(
@@ -1919,12 +1822,6 @@ function RequirementStep({
                       )
                     }
                     type="checkbox"
-                    style={{
-                      width: 18,
-                      height: 18,
-                      minWidth: 18,
-                      minHeight: 18,
-                    }}
                   />
                   {skill}
                 </label>
@@ -1962,12 +1859,6 @@ function RequirementStep({
             onClick={onBack}
             type="button"
             disabled={isGenerating}
-            style={{
-              minHeight: 50,
-              padding: "12px 20px",
-              fontSize: 15,
-              fontWeight: 800,
-            }}
           >
             ← Back
           </button>
@@ -1979,12 +1870,6 @@ function RequirementStep({
               isGenerating ||
               availablePeople === 0
             }
-            style={{
-              minHeight: 50,
-              padding: "12px 20px",
-              fontSize: 15,
-              fontWeight: 800,
-            }}
           >
             {isGenerating
               ? "Gemini is analysing…"
