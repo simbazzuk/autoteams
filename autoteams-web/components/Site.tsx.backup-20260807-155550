@@ -168,10 +168,10 @@ export function Navbar() {
           })}
         </nav>
 
-        <div data-autoteams-workspace-trigger="true" className="product-nav-actions">
+        <div className="product-nav-actions">
           <details className="nav-dropdown">
             <summary>
-              Workspace <span>⌄</span>
+              My AutoTeams <span>⌄</span>
             </summary>
 
             <div className="nav-dropdown-menu">

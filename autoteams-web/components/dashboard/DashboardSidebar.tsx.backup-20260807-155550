@@ -38,7 +38,7 @@ function buildSections(role: NavigationRole): NavigationSection[] {
     },
     {
       id: "me",
-      title: "Workspace",
+      title: "My AutoTeams",
       icon: "♙",
       links: [
         { href: "/profile", icon: "♙", label: "My Profile" },
