@@ -725,7 +725,7 @@ export function GuidedTeamBuilder() {
       <section
         className={styles.loading}
       >
-        Preparing Team Builder…
+        Preparing Team Builderâ€¦
       </section>
     );
   }
@@ -781,7 +781,7 @@ export function GuidedTeamBuilder() {
                 {activeWorkspace
                   ? `${workspaceTypeLabel(
                       activeWorkspace.type,
-                    )} · ${
+                    )} Â· ${
                       activePeople.length
                     } active people`
                   : "Create or choose a group in Step 1."}
@@ -1079,7 +1079,7 @@ function StepNavigation({
           >
             <span>
               {complete
-                ? "✓"
+                ? "âœ“"
                 : step.number}
             </span>
             <div>
@@ -1194,7 +1194,7 @@ function GroupStep({
                   </div>
 
                   <span>
-                    Use group →
+                    Use group â†’
                   </span>
                 </button>
               ),
@@ -1416,7 +1416,7 @@ function PeopleStep({
                       {
                         person.jobTitle
                       }{" "}
-                      ·{" "}
+                      Â·{" "}
                       {
                         person.department
                       }
@@ -1428,7 +1428,7 @@ function PeopleStep({
                         ? person.strengths
                             .slice(0, 2)
                             .join(
-                              " · ",
+                              " Â· ",
                             )
                         : "Profile not completed"}
                     </em>
@@ -1460,7 +1460,7 @@ function PeopleStep({
             onClick={onContinue}
             type="button"
           >
-            Continue with Available People →
+            Continue with Available People â†’
           </button>
         </div>
       </article>
@@ -1562,7 +1562,7 @@ function PeopleStep({
             label="Demo people"
             size="md"
           >
-            ✦
+            âœ¦
           </ProductIcon>
           <h3>
             Need people for testing?
@@ -1860,7 +1860,7 @@ function RequirementStep({
             type="button"
             disabled={isGenerating}
           >
-            ← Back
+            â† Back
           </button>
 
           <button
@@ -1872,8 +1872,8 @@ function RequirementStep({
             }
           >
             {isGenerating
-              ? "Gemini is analysing…"
-              : "Generate Recommendation →"}
+              ? "Gemini is analysingâ€¦"
+              : "Generate Recommendation â†’"}
           </button>
         </div>
       </form>
@@ -1962,7 +1962,7 @@ function RecommendationStep({
           label="Recommendation"
           size="lg"
         >
-          ✦
+          âœ¦
         </ProductIcon>
 
         <div>
@@ -2067,7 +2067,7 @@ function RecommendationStep({
                           item.person
                             .jobTitle
                         }{" "}
-                        ·{" "}
+                        Â·{" "}
                         {
                           item.person
                             .department
@@ -2089,7 +2089,7 @@ function RecommendationStep({
                             reason
                           }
                         >
-                          ✓ {reason}
+                          âœ“ {reason}
                         </span>
                       ),
                     )}
@@ -2103,7 +2103,7 @@ function RecommendationStep({
                             concern
                           }
                         >
-                          △{" "}
+                          â–³{" "}
                           {
                             concern
                           }
@@ -2142,7 +2142,7 @@ function RecommendationStep({
           onClick={onBack}
           type="button"
         >
-          ← Edit Requirement
+          â† Edit Requirement
         </button>
 
         <button
@@ -2153,7 +2153,7 @@ function RecommendationStep({
           onClick={onContinue}
           type="button"
         >
-          Review Final Team →
+          Review Final Team â†’
         </button>
       </div>
     </section>
@@ -2264,7 +2264,7 @@ function ConfirmStep({
                     {
                       person.jobTitle
                     }{" "}
-                    ·{" "}
+                    Â·{" "}
                     {
                       person.department
                     }
@@ -2284,7 +2284,7 @@ function ConfirmStep({
             label="Human review"
             size="md"
           >
-            ✓
+            âœ“
           </ProductIcon>
           <span className="eyebrow">
             Human reviewed
@@ -2295,21 +2295,21 @@ function ConfirmStep({
 
           <div>
             <span>
-              ✓ Team size matches
+              âœ“ Team size matches
               the requirement
             </span>
             <span>
-              ✓ Authorised
+              âœ“ Authorised
               candidate population
               used
             </span>
             <span>
-              ✓ Skills and
+              âœ“ Skills and
               collaboration evidence
               considered
             </span>
             <span>
-              ✓ Final selection
+              âœ“ Final selection
               reviewed by a person
             </span>
           </div>
@@ -2332,7 +2332,7 @@ function ConfirmStep({
           onClick={onBack}
           type="button"
         >
-          ← Adjust Selection
+          â† Adjust Selection
         </button>
 
         <button
@@ -2394,7 +2394,7 @@ function AiTelemetryBanner({
     >
       <div className={styles.aiSourceMain}>
         <span className={styles.aiSourceStatus}>
-          {live ? "✓" : developmentMode ? "â—‡" : "△"}
+          {live ? "âœ“" : developmentMode ? "â—‡" : "â–³"}
         </span>
 
         <div>
@@ -2428,7 +2428,7 @@ function AiTelemetryBanner({
             <strong>
               {telemetry
                 ? `${telemetry.responseTimeMs} ms`
-                : "—"}
+                : "â€”"}
             </strong>
           </span>
 
@@ -2477,7 +2477,7 @@ function AiEvidenceList({
                 }
                 key={item}
               >
-                {attention ? "△" : "✓"} {item}
+                {attention ? "â–³" : "âœ“"} {item}
               </span>
             ))}
         </div>

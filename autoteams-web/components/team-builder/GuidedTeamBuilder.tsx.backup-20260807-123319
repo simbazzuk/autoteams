@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import {
@@ -22,7 +22,6 @@ import {
 } from "@/lib/workspaces";
 import { ProductIcon } from "@/components/ui/ProductIcon";
 import { requestTeamRecommendation } from "@/lib/ai/recommendation-client";
-import { persistRecommendation } from "@/lib/firebase/recommendation-persistence";
 import type { GeminiTeamRecommendation } from "@/lib/ai/recommendation-types";
 import styles from "./GuidedTeamBuilder.module.css";
 
@@ -85,27 +84,27 @@ const groupTypes: Array<{
   {
     value: "organisation",
     label: "Organisation",
-    icon: "âŒ‚",
+    icon: "⌂",
   },
   {
     value: "community",
     label: "Community Group",
-    icon: "â™™",
+    icon: "♙",
   },
   {
     value: "sports",
     label: "Sports Club",
-    icon: "â—Ž",
+    icon: "◎",
   },
   {
     value: "education",
     label: "Education Group",
-    icon: "â–¤",
+    icon: "▤",
   },
   {
     value: "friends_family",
     label: "Friends & Family",
-    icon: "â™¡",
+    icon: "♡",
   },
 ];
 
@@ -571,31 +570,6 @@ export function GuidedTeamBuilder() {
       }
 
       setAiResult(result);
-
-      try {
-        await persistRecommendation({
-          workspaceId: activeWorkspaceId,
-          requirement,
-          candidates: candidatePeople.map(
-            (person) => ({
-              id: person.id,
-              name: person.name,
-              jobTitle: person.jobTitle,
-              department: person.department,
-              location: person.location,
-              strengths: person.strengths,
-              profileReady:
-                person.teamDnaStatus === "ready",
-            }),
-          ),
-          result,
-        });
-      } catch (persistenceError) {
-        console.warn(
-          "Recommendation generated successfully but cloud history could not be saved.",
-          persistenceError,
-        );
-      }
       setRankedPeople(ranked);
       setFinalPeople(
         result.recommendedPersonIds,
@@ -765,7 +739,7 @@ export function GuidedTeamBuilder() {
               label="Current group"
               size="lg"
             >
-              â—‡
+              ◇
             </ProductIcon>
 
             <div>
@@ -2394,7 +2368,7 @@ function AiTelemetryBanner({
     >
       <div className={styles.aiSourceMain}>
         <span className={styles.aiSourceStatus}>
-          {live ? "✓" : developmentMode ? "â—‡" : "△"}
+          {live ? "✓" : developmentMode ? "◇" : "△"}
         </span>
 
         <div>
@@ -2506,7 +2480,7 @@ function EmptyState({
         size="md"
         subtle
       >
-        â—‹
+        ○
       </ProductIcon>
       <h3>{title}</h3>
       <p>{text}</p>
@@ -2609,12 +2583,12 @@ function groupIcon(
     WorkspaceType,
     string
   > = {
-    organisation: "âŒ‚",
-    community: "â™™",
-    sports: "â—Ž",
-    education: "â–¤",
-    friends_family: "â™¡",
-    personal: "â™¡",
+    organisation: "⌂",
+    community: "♙",
+    sports: "◎",
+    education: "▤",
+    friends_family: "♡",
+    personal: "♡",
   };
 
   return icons[type];
@@ -2822,4 +2796,3 @@ function demoPeople(
     jobTitle: "Group Member",
   }));
 }
-
