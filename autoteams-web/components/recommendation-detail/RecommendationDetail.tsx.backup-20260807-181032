@@ -1,6 +1,5 @@
-"use client";
-
 import { TeamSciencePrinciples } from "@/components/recommendation-detail/TeamSciencePrinciples";
+"use client";
 
 import Link from "next/link";
 import {

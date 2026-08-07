@@ -25,11 +25,11 @@ const primaryLinks = [
   { href: "/team-builder", label: "Build Team" },
   {
     href: "/gemini-team-coach",
-    label: "Atlas Coach",
+    label: "Gemini Team Coach",
     ai: true,
   },
   { href: "/teams", label: "Teams" },
-  { href: "/academy", label: "Academy" },
+  { href: "/learning-centre", label: "Learn" },
 ];
 
 function isActivePath(
@@ -94,9 +94,9 @@ if (href === "/people") {
     );
   }
 
-  if (href === "/academy") {
+  if (href === "/learning-centre") {
     return [
-      "/academy",
+      "/learning-centre",
             "/playbooks",
     ].some(
       (route) =>

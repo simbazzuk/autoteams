@@ -165,7 +165,7 @@ export default function HomePage() {
               }}
             >
               <span className="eyebrow">
-                The Team Science Platform
+                People Intelligence Platform
               </span>
 
               <h1
@@ -692,111 +692,6 @@ export default function HomePage() {
             }
           }
         `}</style>
-
-
-        <section
-          style={{
-            padding: "54px 0",
-            background:
-              "linear-gradient(135deg,rgba(120,104,255,.10),rgba(79,140,255,.04))",
-            borderTop: "1px solid #222b3c",
-          }}
-        >
-          <div
-            className="container"
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                "minmax(0,.85fr) minmax(0,1.15fr)",
-              gap: 24,
-              alignItems: "center",
-            }}
-          >
-            <div>
-              <span className="eyebrow">
-                Team Science Academy
-              </span>
-
-              <h2
-                style={{
-                  margin: "9px 0",
-                  fontSize:
-                    "clamp(30px,4vw,42px)",
-                  lineHeight: 1.12,
-                  letterSpacing: "-.035em",
-                }}
-              >
-                Learn why better teams work.
-              </h2>
-
-              <p
-                style={{
-                  margin: 0,
-                  color: "#98a5b7",
-                  fontSize: 14,
-                  lineHeight: 1.65,
-                }}
-              >
-                Explore Team Science foundations,
-                building balanced teams, explainable AI
-                and team health. Learn the principles
-                Atlas uses to support every explainable
-                recommendation.
-              </p>
-
-              <Link
-                className="button"
-                href="/academy"
-                style={{
-                  marginTop: 18,
-                  width: "fit-content",
-                }}
-              >
-                Explore Academy
-              </Link>
-            </div>
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns:
-                  "repeat(2,minmax(0,1fr))",
-                gap: 10,
-              }}
-            >
-              {[
-                ["🧠", "Foundations"],
-                ["👥", "Building Teams"],
-                ["🤖", "Explainable AI"],
-                ["📈", "Team Health"],
-              ].map(([icon, label]) => (
-                <div
-                  key={label}
-                  style={{
-                    display: "grid",
-                    gap: 7,
-                    padding: 17,
-                    background: "#171e2d",
-                    border: "1px solid #2a3448",
-                    borderRadius: 14,
-                  }}
-                >
-                  <span
-                    aria-hidden="true"
-                    style={{ fontSize: 28 }}
-                  >
-                    {icon}
-                  </span>
-                  <strong
-                    style={{ fontSize: 13 }}
-                  >
-                    {label}
-                  </strong>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         <section
           style={{
