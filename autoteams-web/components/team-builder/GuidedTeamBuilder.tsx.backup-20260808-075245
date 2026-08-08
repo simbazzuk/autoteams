@@ -1,7 +1,5 @@
 ﻿"use client";
 
-import { ContextAwareSkills } from "@/components/team-builder/ContextAwareSkills";
-
 import Link from "next/link";
 import {
   FormEvent,
@@ -1870,13 +1868,6 @@ function RequirementStep({
             </option>
           </select>
         </label>
-
-        <ContextAwareSkills
-          outcome={requirement.purpose}
-          teamName={requirement.name}
-          selectedSkills={requirement.skills}
-          onToggleSkill={onToggleSkill}
-        />
 
         <fieldset
           className={

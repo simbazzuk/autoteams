@@ -1,0 +1,339 @@
+"use client";
+
+import { useMemo } from "react";
+
+export type TeamContext =
+  | "work"
+  | "sports"
+  | "friendships"
+  | "community"
+  | "education"
+  | "volunteering";
+
+type ContextAwareSkillsProps = {
+  outcome: string;
+  teamName?: string;
+  selectedSkills: string[];
+  onToggleSkill: (skill: string) => void;
+};
+
+const CORE_SKILLS = [
+  "Communication",
+  "Collaboration",
+  "Adaptability",
+];
+
+const CONTEXT_SKILLS: Record<
+  TeamContext,
+  string[]
+> = {
+  work: [
+    "Leadership",
+    "Planning",
+    "Delivery",
+    "Problem solving",
+    "Organisation",
+    "Stakeholder management",
+  ],
+  sports: [
+    "Teamwork",
+    "Resilience",
+    "Decision making",
+    "Discipline",
+    "Coachability",
+    "Leadership",
+  ],
+  friendships: [
+    "Empathy",
+    "Shared interests",
+    "Reliability",
+    "Sociability",
+    "Openness",
+    "Listening",
+  ],
+  community: [
+    "Empathy",
+    "Organisation",
+    "Initiative",
+    "Reliability",
+    "Community engagement",
+    "Facilitation",
+  ],
+  education: [
+    "Knowledge sharing",
+    "Mentoring",
+    "Curiosity",
+    "Organisation",
+    "Critical thinking",
+    "Collaboration",
+  ],
+  volunteering: [
+    "Empathy",
+    "Reliability",
+    "Initiative",
+    "Organisation",
+    "Communication",
+    "Service mindset",
+  ],
+};
+
+const CONTEXT_LABELS: Record<
+  TeamContext,
+  string
+> = {
+  work: "Work & Organisations",
+  sports: "Sports & Clubs",
+  friendships: "Friendships & Social",
+  community: "Community",
+  education: "Education & Learning",
+  volunteering: "Volunteering",
+};
+
+function inferContext(
+  text: string,
+): TeamContext {
+  const value =
+    text.toLowerCase();
+
+  if (
+    /(sport|football|rugby|cricket|squad|coach|match|player|club)/.test(
+      value,
+    )
+  ) {
+    return "sports";
+  }
+
+  if (
+    /(friend|social|activity partner|meet people|social circle)/.test(
+      value,
+    )
+  ) {
+    return "friendships";
+  }
+
+  if (
+    /(volunteer|charity|fundrais|nonprofit|non-profit|service project)/.test(
+      value,
+    )
+  ) {
+    return "volunteering";
+  }
+
+  if (
+    /(student|study|education|learning|mentor|school|university|college)/.test(
+      value,
+    )
+  ) {
+    return "education";
+  }
+
+  if (
+    /(community|local group|neighbour|neighborhood|faith group|community project)/.test(
+      value,
+    )
+  ) {
+    return "community";
+  }
+
+  return "work";
+}
+
+export function ContextAwareSkills({
+  outcome,
+  teamName = "",
+  selectedSkills,
+  onToggleSkill,
+}: ContextAwareSkillsProps) {
+  const context =
+    useMemo(
+      () =>
+        inferContext(
+          `${teamName} ${outcome}`,
+        ),
+      [
+        teamName,
+        outcome,
+      ],
+    );
+
+  const suggestions =
+    useMemo(
+      () =>
+        Array.from(
+          new Set([
+            ...CORE_SKILLS,
+            ...CONTEXT_SKILLS[
+              context
+            ],
+          ]),
+        ),
+      [context],
+    );
+
+  return (
+    <section
+      data-autoteams-context-skills-full-width="true"
+      style={{
+        gridColumn: "1 / -1",
+        width: "100%",
+        maxWidth: "none",
+        display: "grid",
+        gap: 12,
+        marginTop: 10,
+        padding: 20,
+        background:
+          "rgba(120,104,255,.06)",
+        border:
+          "1px solid rgba(120,104,255,.18)",
+        borderRadius: 14,
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent:
+            "space-between",
+          gap: 12,
+          flexWrap: "wrap",
+          alignItems: "center",
+        }}
+      >
+        <div>
+          <span
+            style={{
+              display: "block",
+              color: "#a69cff",
+              fontSize: 10,
+              fontWeight: 900,
+              textTransform:
+                "uppercase",
+              letterSpacing:
+                ".08em",
+            }}
+          >
+            Team Science suggestion
+          </span>
+
+          <strong
+            style={{
+              display: "block",
+              marginTop: 4,
+              fontSize: 15,
+            }}
+          >
+            Suggested for{" "}
+            {
+              CONTEXT_LABELS[
+                context
+              ]
+            }
+          </strong>
+        </div>
+
+        <span
+          style={{
+            padding: "6px 9px",
+            color: "#d8d3ff",
+            background:
+              "rgba(120,104,255,.12)",
+            borderRadius: 999,
+            fontSize: 9,
+            fontWeight: 900,
+          }}
+        >
+          Context inferred
+        </span>
+      </div>
+
+      <p
+        style={{
+          margin: 0,
+          color: "#95a2b5",
+          fontSize: 12,
+          lineHeight: 1.55,
+        }}
+      >
+        AutoTeams has inferred the
+        team context from the name
+        and outcome. Select the
+        strengths that matter for
+        this specific team. You can
+        accept or remove any
+        suggestion before Atlas
+        generates a recommendation.
+      </p>
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 10,
+          width: "100%",
+          alignItems: "center",
+        }}
+      >
+        {suggestions.map(
+          (skill) => {
+            const selected =
+              selectedSkills.includes(
+                skill,
+              );
+
+            return (
+              <button
+                key={skill}
+                type="button"
+                onClick={() =>
+                  onToggleSkill(
+                    skill,
+                  )
+                }
+                style={{
+                  padding:
+                    "8px 11px",
+                  color: selected
+                    ? "#ffffff"
+                    : "#c4ccda",
+                  background:
+                    selected
+                      ? "linear-gradient(135deg,#7868ff,#4f8cff)"
+                      : "#121827",
+                  border:
+                    selected
+                      ? "1px solid rgba(160,150,255,.55)"
+                      : "1px solid #2b354a",
+                  borderRadius: 999,
+                  cursor:
+                    "pointer",
+                  fontSize: 11,
+                  fontWeight: 750,
+                  boxShadow:
+                    selected
+                      ? "0 8px 20px rgba(79,140,255,.16)"
+                      : "none",
+                }}
+              >
+                {selected
+                  ? "✓ "
+                  : "+ "}
+                {skill}
+              </button>
+            );
+          },
+        )}
+      </div>
+
+      <small
+        style={{
+          color: "#728097",
+          fontSize: 9,
+          lineHeight: 1.45,
+        }}
+      >
+        Universal Team Science core:
+        Communication, Collaboration
+        and Adaptability.
+      </small>
+    </section>
+  );
+}
