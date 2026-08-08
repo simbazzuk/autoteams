@@ -14,24 +14,7 @@ export function CourseExperience({course}:{course:AcademyCourse}){
  const pct=Math.round(done.length/course.modules.length*100);
  function complete(){if(done.includes(selected))return;const n=[...done,selected],p=read();p[course.slug]=n;localStorage.setItem(KEY,JSON.stringify(p));setDone(n)}
  function next(){const i=course.modules.findIndex(m=>m.id===selected);if(course.modules[i+1])setSelected(course.modules[i+1].id)}
- return <main className={styles.page}><Link
-        href="/academy"
-        data-autoteams-academy-back-button="true"
-        className="button secondary"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 8,
-          width: "fit-content",
-          marginBottom: 26,
-          padding: "10px 16px",
-          borderRadius: 12,
-          textDecoration: "none",
-        }}
-      >
-        <span aria-hidden="true">←</span>
-        <span>Back to Academy</span>
-      </Link>
+ return <main className={styles.page}><Link href="/academy">← Team Science Academy</Link>
  <header><b>{course.icon}</b><div><small>{course.level} · {course.minutes} mins</small><h1>{course.title}</h1><p>{course.summary}</p></div></header>
  <div className={styles.topProgress}>Course progress <strong>{pct}%</strong><div><i style={{width:`${pct}%`}}/></div></div>
  <section className={styles.layout}><aside><strong>Course modules</strong>{course.modules.map((m,i)=><button key={m.id} className={selected===m.id?styles.active:""} onClick={()=>setSelected(m.id)}><span>{done.includes(m.id)?"✓":i+1}</span><div><strong>{m.title}</strong><small>{m.minutes} mins</small></div></button>)}</aside>
