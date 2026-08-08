@@ -271,10 +271,6 @@ export function Footer() {
       <Link href="/trust-centre">
             Trust Centre
           </Link>
-
-          <Link href="/pricing">
-            Pricing
-          </Link>
           <Link href="/privacy">Privacy</Link>
         </div>
       </div>

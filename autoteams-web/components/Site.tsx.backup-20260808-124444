@@ -267,13 +267,8 @@ export function Footer() {
             Gemini Team Coach
           </Link>
           <Link href="/teams">Teams</Link>
-          <Link href="/pricing">Pricing</Link>
-      <Link href="/trust-centre">
+          <Link href="/trust-centre">
             Trust Centre
-          </Link>
-
-          <Link href="/pricing">
-            Pricing
           </Link>
           <Link href="/privacy">Privacy</Link>
         </div>
