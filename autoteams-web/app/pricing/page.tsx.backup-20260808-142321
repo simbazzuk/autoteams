@@ -1,4 +1,6 @@
 import {
+  Footer,
+  Navbar,
   PageShell,
 } from "@/components/Site";
 import { PricingPlans } from "@/components/pricing/PricingPlans";
@@ -11,8 +13,14 @@ export const metadata = {
 
 export default function PricingPage() {
   return (
-    <PageShell>
-      <PricingPlans />
-    </PageShell>
+    <>
+      <Navbar />
+
+      <PageShell>
+        <PricingPlans />
+      </PageShell>
+
+      <Footer />
+    </>
   );
 }
