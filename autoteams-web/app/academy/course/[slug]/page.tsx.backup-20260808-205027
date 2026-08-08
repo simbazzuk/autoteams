@@ -1,7 +1,6 @@
 import {
   notFound,
 } from "next/navigation";
-import { PageShell } from "@/components/Site";
 import { CourseExperience } from "@/components/academy/CourseExperience";
 import { getAcademyCourse } from "@/lib/academy/course-catalogue";
 
@@ -26,10 +25,8 @@ export default async function AcademyCoursePage({
   }
 
   return (
-    <PageShell>
-      <CourseExperience
-        course={course}
-      />
-    </PageShell>
+    <CourseExperience
+      course={course}
+    />
   );
 }

@@ -1,0 +1,13 @@
+import { Footer, Navbar, PageShell } from "@/components/Site";
+import {CourseCatalogue} from "@/components/academy/CourseCatalogue";
+export default function AcademyPage(){return (
+    <div data-autoteams-academy-shell="true">
+      <Navbar />
+
+      <PageShell>
+        <CourseCatalogue />
+      </PageShell>
+
+      <Footer />
+    </div>
+  );}

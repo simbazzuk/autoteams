@@ -1,11 +1,10 @@
 import {
   notFound,
 } from "next/navigation";
-import { PageShell } from "@/components/Site";
-import { CourseExperience } from "@/components/academy/CourseExperience";
+import { CourseCertificate } from "@/components/academy/CourseCertificate";
 import { getAcademyCourse } from "@/lib/academy/course-catalogue";
 
-export default async function AcademyCoursePage({
+export default async function AcademyCertificatePage({
   params,
 }: {
   params: Promise<{
@@ -25,11 +24,5 @@ export default async function AcademyCoursePage({
     notFound();
   }
 
-  return (
-    <PageShell>
-      <CourseExperience
-        course={course}
-      />
-    </PageShell>
-  );
+  return <CourseCertificate course={course} />;
 }

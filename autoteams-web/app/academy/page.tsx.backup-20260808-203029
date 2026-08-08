@@ -1,0 +1,2 @@
+import {CourseCatalogue} from "@/components/academy/CourseCatalogue";
+export default function AcademyPage(){return <CourseCatalogue/>}

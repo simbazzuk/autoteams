@@ -1,0 +1,26 @@
+import type {
+  ReactNode,
+} from "react";
+import {
+  Footer,
+  Navbar,
+  PageShell,
+} from "@/components/Site";
+
+export default function AcademyLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  return (
+    <>
+      <Navbar />
+
+      <PageShell>
+        {children}
+      </PageShell>
+
+      <Footer />
+    </>
+  );
+}
