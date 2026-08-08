@@ -164,24 +164,8 @@ export default function HomePage() {
                 maxWidth: 1000,
               }}
             >
-              <span
-                className="eyebrow"
-                data-autoteams-team-science-platform="true"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  width: "fit-content",
-                  padding: "8px 14px",
-                  background: "#F97316",
-                  color: "#FFFFFF",
-                  border: "1px solid #FB923C",
-                  borderRadius: 999,
-                  boxShadow: "0 8px 22px rgba(249,115,22,.26)",
-                  fontWeight: 900,
-                  letterSpacing: ".025em",
-                }}
-              >
-                Team Science Platform
+              <span className="eyebrow">
+                The Team Science Platform
               </span>
 
               <h1
