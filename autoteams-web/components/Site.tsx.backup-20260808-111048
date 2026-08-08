@@ -1,7 +1,5 @@
 "use client";
 
-import { AtlasSupport } from "@/components/support/AtlasSupport";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
@@ -285,9 +283,7 @@ export function PageShell({
   return (
     <>
       <Navbar />
-      <main>{children}
-
-      <AtlasSupport /></main>
+      <main>{children}</main>
       <Footer />
     </>
   );
