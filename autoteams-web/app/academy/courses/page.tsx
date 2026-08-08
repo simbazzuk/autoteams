@@ -1,2 +1,2 @@
 import {CourseCatalogue} from "@/components/academy/CourseCatalogue";
-export default function AcademyPage(){return <CourseCatalogue/>}
+export default function Page(){return <CourseCatalogue/>}

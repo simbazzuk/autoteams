@@ -1,0 +1,234 @@
+.assessment {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+  padding: 24px;
+  background: #111927;
+  border: 1px solid #303a50;
+  border-radius: 20px;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.heading span,
+.questions article > small,
+.passed > span,
+.failed > span {
+  color: #ff9f43;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .1em;
+}
+
+.heading h2 {
+  margin: 7px 0;
+  font-size: 28px;
+}
+
+.heading p {
+  max-width: 680px;
+  margin: 0;
+  color: #929fb2;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.heading > strong {
+  padding: 7px 10px;
+  color: #b7c1d0;
+  background: #1a2333;
+  border-radius: 999px;
+  font-size: 9px;
+}
+
+.locked {
+  padding: 15px;
+  color: #9aa7b9;
+  background: #171f2e;
+  border: 1px solid #2b3548;
+  border-radius: 13px;
+  font-size: 12px;
+}
+
+.questions {
+  display: grid;
+  gap: 15px;
+}
+
+.questions article {
+  padding: 18px;
+  background: #151e2d;
+  border: 1px solid #2b364a;
+  border-radius: 15px;
+}
+
+.questions h3 {
+  margin: 7px 0 14px;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.options {
+  display: grid;
+  gap: 8px;
+}
+
+.options button {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 11px;
+  color: #b4bfce;
+  text-align: left;
+  background: #111826;
+  border: 1px solid #293448;
+  border-radius: 11px;
+  cursor: pointer;
+}
+
+.options button span {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  color: #b9b2ff;
+  background: rgba(120, 104, 255, .1);
+  border-radius: 8px;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.options button.selected {
+  color: #fff;
+  background: rgba(120, 104, 255, .12);
+  border-color: rgba(120, 104, 255, .48);
+}
+
+.submit {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.submit span {
+  color: #7f8da2;
+  font-size: 10px;
+}
+
+.submit button,
+.resultActions button,
+.resultActions a {
+  padding: 10px 13px;
+  color: #fff;
+  background: linear-gradient(135deg, #7868ff, #4f8cff);
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.submit button:disabled {
+  opacity: .4;
+  cursor: default;
+}
+
+.passed,
+.failed {
+  display: grid;
+  gap: 8px;
+  padding: 22px;
+  border-radius: 16px;
+}
+
+.passed {
+  background: rgba(48, 190, 120, .06);
+  border: 1px solid rgba(48, 190, 120, .22);
+}
+
+.failed {
+  background: rgba(255, 159, 67, .05);
+  border: 1px solid rgba(255, 159, 67, .22);
+}
+
+.passed > strong,
+.failed > strong {
+  font-size: 42px;
+}
+
+.passed h3,
+.failed h3 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.passed p,
+.failed p {
+  margin: 0;
+  color: #98a5b7;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.resultActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 7px;
+  flex-wrap: wrap;
+}
+
+.resultActions button {
+  background: #202a3c;
+  border: 1px solid #344159;
+}
+
+.atlas {
+  display: flex;
+  gap: 12px;
+  padding: 15px;
+  background: rgba(120, 104, 255, .06);
+  border: 1px solid rgba(120, 104, 255, .18);
+  border-radius: 13px;
+}
+
+.atlas > span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  color: #fff;
+  background: #7868ff;
+  border-radius: 10px;
+}
+
+.atlas strong {
+  font-size: 11px;
+}
+
+.atlas p {
+  margin: 4px 0 0;
+  color: #8795a9;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+@media (max-width: 640px) {
+  .assessment {
+    padding: 17px;
+  }
+
+  .heading,
+  .submit {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
