@@ -1,6 +1,10 @@
 "use client";
 
-import { useMemo } from "react";
+import {
+  useMemo,
+  useState,
+} from "react";
+import styles from "./TeamScienceEngine.module.css";
 
 export type TeamContext =
   | "work"
@@ -17,77 +21,148 @@ type ContextAwareSkillsProps = {
   onToggleSkill: (skill: string) => void;
 };
 
+type ContextDefinition = {
+  label: string;
+  icon: string;
+  description: string;
+  skills: string[];
+  watchouts: string[];
+};
+
 const CORE_SKILLS = [
   "Communication",
   "Collaboration",
   "Adaptability",
 ];
 
-const CONTEXT_SKILLS: Record<
+const CONTEXTS: Record<
   TeamContext,
-  string[]
+  ContextDefinition
 > = {
-  work: [
-    "Leadership",
-    "Planning",
-    "Delivery",
-    "Problem solving",
-    "Organisation",
-    "Stakeholder management",
-  ],
-  sports: [
-    "Teamwork",
-    "Resilience",
-    "Decision making",
-    "Discipline",
-    "Coachability",
-    "Leadership",
-  ],
-  friendships: [
-    "Empathy",
-    "Shared interests",
-    "Reliability",
-    "Sociability",
-    "Openness",
-    "Listening",
-  ],
-  community: [
-    "Empathy",
-    "Organisation",
-    "Initiative",
-    "Reliability",
-    "Community engagement",
-    "Facilitation",
-  ],
-  education: [
-    "Knowledge sharing",
-    "Mentoring",
-    "Curiosity",
-    "Organisation",
-    "Critical thinking",
-    "Collaboration",
-  ],
-  volunteering: [
-    "Empathy",
-    "Reliability",
-    "Initiative",
-    "Organisation",
-    "Communication",
-    "Service mindset",
-  ],
+  work: {
+    label: "Work & Organisations",
+    icon: "◫",
+    description:
+      "Teams formed to deliver outcomes, solve problems and coordinate work.",
+    skills: [
+      "Leadership",
+      "Planning",
+      "Delivery",
+      "Problem solving",
+      "Organisation",
+      "Stakeholder management",
+    ],
+    watchouts: [
+      "Leadership concentrated in one person",
+      "Strong delivery with weak stakeholder communication",
+      "Too much similarity in working style",
+    ],
+  },
+  sports: {
+    label: "Sports & Clubs",
+    icon: "◉",
+    description:
+      "Teams that need coordination, resilience and role clarity under pressure.",
+    skills: [
+      "Teamwork",
+      "Resilience",
+      "Decision making",
+      "Discipline",
+      "Coachability",
+      "Leadership",
+    ],
+    watchouts: [
+      "Too many similar playing or leadership styles",
+      "Low resilience under pressure",
+      "Weak communication between roles",
+    ],
+  },
+  friendships: {
+    label: "Friendships & Social",
+    icon: "♡",
+    description:
+      "Groups built around compatibility, reliability, openness and shared interests.",
+    skills: [
+      "Empathy",
+      "Shared interests",
+      "Reliability",
+      "Sociability",
+      "Openness",
+      "Listening",
+    ],
+    watchouts: [
+      "Low reliability",
+      "Very different expectations of the group",
+      "Poor listening or low openness",
+    ],
+  },
+  community: {
+    label: "Community",
+    icon: "◎",
+    description:
+      "Groups that bring people together around shared community outcomes.",
+    skills: [
+      "Empathy",
+      "Organisation",
+      "Initiative",
+      "Reliability",
+      "Community engagement",
+      "Facilitation",
+    ],
+    watchouts: [
+      "Strong ideas but weak organisation",
+      "Low facilitation coverage",
+      "Over-reliance on one organiser",
+    ],
+  },
+  education: {
+    label: "Education & Learning",
+    icon: "◇",
+    description:
+      "Learning teams that benefit from curiosity, mentoring and knowledge sharing.",
+    skills: [
+      "Knowledge sharing",
+      "Mentoring",
+      "Curiosity",
+      "Organisation",
+      "Critical thinking",
+      "Collaboration",
+    ],
+    watchouts: [
+      "Knowledge concentrated in one person",
+      "Low confidence challenging ideas",
+      "Weak mentoring or knowledge sharing",
+    ],
+  },
+  volunteering: {
+    label: "Volunteering",
+    icon: "✦",
+    description:
+      "Purpose-led groups that depend on reliability, initiative and service mindset.",
+    skills: [
+      "Empathy",
+      "Reliability",
+      "Initiative",
+      "Organisation",
+      "Communication",
+      "Service mindset",
+    ],
+    watchouts: [
+      "Too much dependency on a small number of volunteers",
+      "Unclear ownership",
+      "Strong motivation but weak organisation",
+    ],
+  },
 };
 
-const CONTEXT_LABELS: Record<
-  TeamContext,
-  string
-> = {
-  work: "Work & Organisations",
-  sports: "Sports & Clubs",
-  friendships: "Friendships & Social",
-  community: "Community",
-  education: "Education & Learning",
-  volunteering: "Volunteering",
-};
+const CONTEXT_ORDER: TeamContext[] = [
+  "work",
+  "sports",
+  "friendships",
+  "community",
+  "education",
+  "volunteering",
+];
 
 function inferContext(
   text: string,
@@ -96,7 +171,7 @@ function inferContext(
     text.toLowerCase();
 
   if (
-    /(sport|football|rugby|cricket|squad|coach|match|player|club)/.test(
+    /(sport|football|rugby|cricket|squad|coach|match|player|club|training)/.test(
       value,
     )
   ) {
@@ -104,7 +179,7 @@ function inferContext(
   }
 
   if (
-    /(friend|social|activity partner|meet people|social circle)/.test(
+    /(friend|social|activity partner|meet people|social circle|friendship)/.test(
       value,
     )
   ) {
@@ -120,7 +195,7 @@ function inferContext(
   }
 
   if (
-    /(student|study|education|learning|mentor|school|university|college)/.test(
+    /(student|study|education|learning|mentor|school|university|college|course)/.test(
       value,
     )
   ) {
@@ -138,13 +213,21 @@ function inferContext(
   return "work";
 }
 
+function unique(
+  values: string[],
+) {
+  return Array.from(
+    new Set(values),
+  );
+}
+
 export function ContextAwareSkills({
   outcome,
   teamName = "",
   selectedSkills,
   onToggleSkill,
 }: ContextAwareSkillsProps) {
-  const context =
+  const inferred =
     useMemo(
       () =>
         inferContext(
@@ -156,184 +239,469 @@ export function ContextAwareSkills({
       ],
     );
 
-  const suggestions =
+  const [
+    contextOverride,
+    setContextOverride,
+  ] = useState<
+    TeamContext | null
+  >(null);
+
+  const context =
+    contextOverride ||
+    inferred;
+
+  const definition =
+    CONTEXTS[context];
+
+  const suggestedSkills =
     useMemo(
       () =>
-        Array.from(
-          new Set([
-            ...CORE_SKILLS,
-            ...CONTEXT_SKILLS[
-              context
-            ],
-          ]),
-        ),
-      [context],
+        unique([
+          ...CORE_SKILLS,
+          ...definition.skills,
+        ]),
+      [definition],
     );
+
+  const selectedSuggested =
+    suggestedSkills.filter(
+      (skill) =>
+        selectedSkills.includes(
+          skill,
+        ),
+    );
+
+  const coverage =
+    suggestedSkills.length
+      ? Math.round(
+          (selectedSuggested.length /
+            suggestedSkills.length) *
+            100,
+        )
+      : 0;
+
+  const missingCore =
+    CORE_SKILLS.filter(
+      (skill) =>
+        !selectedSkills.includes(
+          skill,
+        ),
+    );
+
+  const reasoning = useMemo(
+    () => {
+      if (
+        !teamName.trim() &&
+        !outcome.trim()
+      ) {
+        return "Add a team name or desired outcome so AutoTeams can infer a more meaningful Team Science context.";
+      }
+
+      if (
+        coverage >= 80
+      ) {
+        return "Your selected strengths provide broad coverage for this context. Atlas can now evaluate whether the people you choose provide complementary coverage across them.";
+      }
+
+      if (
+        coverage >= 45
+      ) {
+        return "You have selected some relevant strengths. Review the remaining suggestions and keep only those that genuinely matter for this team's purpose.";
+      }
+
+      return "The current requirement has limited Team Science coverage. Consider the suggested strengths before generating a recommendation.";
+    },
+    [
+      coverage,
+      outcome,
+      teamName,
+    ],
+  );
+
+  function addAll() {
+    suggestedSkills.forEach(
+      (skill) => {
+        if (
+          !selectedSkills.includes(
+            skill,
+          )
+        ) {
+          onToggleSkill(
+            skill,
+          );
+        }
+      },
+    );
+  }
 
   return (
     <section
-      data-autoteams-context-skills-full-width="true"
-      style={{
-        gridColumn: "1 / -1",
-        width: "100%",
-        maxWidth: "none",
-        display: "grid",
-        gap: 12,
-        marginTop: 10,
-        padding: 20,
-        background:
-          "rgba(120,104,255,.06)",
-        border:
-          "1px solid rgba(120,104,255,.18)",
-        borderRadius: 14,
-      }}
+      className={
+        styles.engine
+      }
+      data-autoteams-team-science-engine="v7.5"
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent:
-            "space-between",
-          gap: 12,
-          flexWrap: "wrap",
-          alignItems: "center",
-        }}
+      <header
+        className={
+          styles.header
+        }
       >
         <div>
           <span
-            style={{
-              display: "block",
-              color: "#a69cff",
-              fontSize: 10,
-              fontWeight: 900,
-              textTransform:
-                "uppercase",
-              letterSpacing:
-                ".08em",
-            }}
+            className={
+              styles.eyebrow
+            }
           >
-            Team Science suggestion
+            TEAM SCIENCE ENGINE
           </span>
 
-          <strong
-            style={{
-              display: "block",
-              marginTop: 4,
-              fontSize: 15,
-            }}
-          >
-            Suggested for{" "}
-            {
-              CONTEXT_LABELS[
-                context
-              ]
-            }
-          </strong>
+          <h3>
+            Design the strengths this
+            team needs.
+          </h3>
+
+          <p>
+            AutoTeams uses the team
+            name and desired outcome
+            to infer a starting
+            context. Review the
+            suggested strengths before
+            Atlas generates a
+            recommendation.
+          </p>
         </div>
 
-        <span
-          style={{
-            padding: "6px 9px",
-            color: "#d8d3ff",
-            background:
-              "rgba(120,104,255,.12)",
-            borderRadius: 999,
-            fontSize: 9,
-            fontWeight: 900,
-          }}
+        <div
+          className={
+            styles.contextBadge
+          }
         >
-          Context inferred
-        </span>
-      </div>
+          <span>
+            {
+              definition.icon
+            }
+          </span>
 
-      <p
-        style={{
-          margin: 0,
-          color: "#95a2b5",
-          fontSize: 12,
-          lineHeight: 1.55,
-        }}
-      >
-        AutoTeams has inferred the
-        team context from the name
-        and outcome. Select the
-        strengths that matter for
-        this specific team. You can
-        accept or remove any
-        suggestion before Atlas
-        generates a recommendation.
-      </p>
+          <div>
+            <small>
+              {contextOverride
+                ? "Selected context"
+                : "Inferred context"}
+            </small>
+            <strong>
+              {
+                definition.label
+              }
+            </strong>
+          </div>
+        </div>
+      </header>
 
       <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 10,
-          width: "100%",
-          alignItems: "center",
-        }}
+        className={
+          styles.contextSelector
+        }
       >
-        {suggestions.map(
-          (skill) => {
-            const selected =
-              selectedSkills.includes(
-                skill,
-              );
+        {CONTEXT_ORDER.map(
+          (item) => {
+            const itemDefinition =
+              CONTEXTS[
+                item
+              ];
+
+            const active =
+              item ===
+              context;
 
             return (
               <button
-                key={skill}
                 type="button"
+                key={item}
+                className={
+                  active
+                    ? styles.contextActive
+                    : ""
+                }
                 onClick={() =>
-                  onToggleSkill(
-                    skill,
+                  setContextOverride(
+                    item ===
+                      inferred
+                      ? null
+                      : item,
                   )
                 }
-                style={{
-                  padding:
-                    "8px 11px",
-                  color: selected
-                    ? "#ffffff"
-                    : "#c4ccda",
-                  background:
-                    selected
-                      ? "linear-gradient(135deg,#7868ff,#4f8cff)"
-                      : "#121827",
-                  border:
-                    selected
-                      ? "1px solid rgba(160,150,255,.55)"
-                      : "1px solid #2b354a",
-                  borderRadius: 999,
-                  cursor:
-                    "pointer",
-                  fontSize: 11,
-                  fontWeight: 750,
-                  boxShadow:
-                    selected
-                      ? "0 8px 20px rgba(79,140,255,.16)"
-                      : "none",
-                }}
               >
-                {selected
-                  ? "✓ "
-                  : "+ "}
-                {skill}
+                <span>
+                  {
+                    itemDefinition.icon
+                  }
+                </span>
+                {
+                  itemDefinition.label
+                }
               </button>
             );
           },
         )}
       </div>
 
-      <small
-        style={{
-          color: "#728097",
-          fontSize: 9,
-          lineHeight: 1.45,
-        }}
+      <div
+        className={
+          styles.explanation
+        }
       >
-        Universal Team Science core:
-        Communication, Collaboration
-        and Adaptability.
-      </small>
+        <strong>
+          Why this context?
+        </strong>
+        <p>
+          {
+            definition.description
+          }
+        </p>
+
+        {contextOverride && (
+          <button
+            type="button"
+            onClick={() =>
+              setContextOverride(
+                null,
+              )
+            }
+          >
+            Use inferred context:{" "}
+            {
+              CONTEXTS[
+                inferred
+              ].label
+            }
+          </button>
+        )}
+      </div>
+
+      <div
+        className={
+          styles.coverage
+        }
+      >
+        <div
+          className={
+            styles.coverageHeader
+          }
+        >
+          <div>
+            <span>
+              Requirement coverage
+            </span>
+            <strong>
+              {
+                selectedSuggested.length
+              }
+              /
+              {
+                suggestedSkills.length
+              }{" "}
+              suggested strengths
+            </strong>
+          </div>
+
+          <b>
+            {coverage}%
+          </b>
+        </div>
+
+        <div
+          className={
+            styles.coverageBar
+          }
+        >
+          <i
+            style={{
+              width: `${coverage}%`,
+            }}
+          />
+        </div>
+
+        <p>
+          {reasoning}
+        </p>
+      </div>
+
+      <div
+        className={
+          styles.sectionHeading
+        }
+      >
+        <div>
+          <span>
+            Suggested strengths
+          </span>
+          <small>
+            Click to add or remove
+          </small>
+        </div>
+
+        <button
+          type="button"
+          onClick={
+            addAll
+          }
+        >
+          Add all suggested
+        </button>
+      </div>
+
+      <div
+        className={
+          styles.skills
+        }
+      >
+        {suggestedSkills.map(
+          (skill) => {
+            const selected =
+              selectedSkills.includes(
+                skill,
+              );
+
+            const core =
+              CORE_SKILLS.includes(
+                skill,
+              );
+
+            return (
+              <button
+                key={
+                  skill
+                }
+                type="button"
+                className={
+                  selected
+                    ? styles.skillSelected
+                    : ""
+                }
+                onClick={() =>
+                  onToggleSkill(
+                    skill,
+                  )
+                }
+              >
+                <span>
+                  {selected
+                    ? "✓"
+                    : "+"}
+                </span>
+
+                {
+                  skill
+                }
+
+                {core && (
+                  <small>
+                    CORE
+                  </small>
+                )}
+              </button>
+            );
+          },
+        )}
+      </div>
+
+      <div
+        className={
+          styles.insightGrid
+        }
+      >
+        <article
+          className={
+            styles.core
+          }
+        >
+          <span>
+            UNIVERSAL CORE
+          </span>
+
+          <h4>
+            Team Science foundations
+          </h4>
+
+          <p>
+            Communication,
+            Collaboration and
+            Adaptability are useful
+            across almost every team
+            context.
+          </p>
+
+          {missingCore.length >
+          0 ? (
+            <small>
+              Still to consider:{" "}
+              {missingCore.join(
+                ", ",
+              )}
+            </small>
+          ) : (
+            <small>
+              ✓ Universal core covered
+            </small>
+          )}
+        </article>
+
+        <article
+          className={
+            styles.watchouts
+          }
+        >
+          <span>
+            TEAM DESIGN WATCH-OUTS
+          </span>
+
+          <h4>
+            What Atlas should examine
+          </h4>
+
+          <ul>
+            {definition.watchouts.map(
+              (
+                watchout,
+              ) => (
+                <li
+                  key={
+                    watchout
+                  }
+                >
+                  <b>
+                    !
+                  </b>
+                  {
+                    watchout
+                  }
+                </li>
+              ),
+            )}
+          </ul>
+        </article>
+      </div>
+
+      <footer
+        className={
+          styles.footer
+        }
+      >
+        <span>
+          ✦
+        </span>
+
+        <p>
+          <strong>
+            AI recommends. Humans
+            decide.
+          </strong>{" "}
+          These suggestions shape the
+          requirement; they do not
+          automatically decide who
+          belongs in the team.
+        </p>
+      </footer>
     </section>
   );
 }
