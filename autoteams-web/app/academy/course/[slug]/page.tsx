@@ -27,9 +27,11 @@ export default async function AcademyCoursePage({
 
   return (
     <PageShell>
+      <div className="academy-readable">
       <CourseExperience
         course={course}
       />
+          </div>
     </PageShell>
   );
 }

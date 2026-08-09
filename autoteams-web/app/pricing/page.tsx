@@ -12,7 +12,9 @@ export const metadata = {
 export default function PricingPage() {
   return (
     <PageShell>
+      <div data-pricing-page="true">
       <PricingPlans />
+          </div>
     </PageShell>
   );
 }

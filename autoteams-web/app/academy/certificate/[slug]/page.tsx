@@ -27,9 +27,11 @@ export default async function AcademyCertificatePage({
 
   return (
     <PageShell>
+      <div className="academy-readable">
       <CourseCertificate
         course={course}
       />
+          </div>
     </PageShell>
   );
 }

@@ -1,0 +1,6 @@
+/* AutoTeams v7.4.0 */
+[data-pricing-page] p, .academy-readable p {font-size:clamp(1.08rem,1rem + .22vw,1.2rem);line-height:1.7}
+[data-pricing-page] li, .academy-readable li {font-size:clamp(1.02rem,.98rem + .16vw,1.12rem);line-height:1.65}
+[data-pricing-page] small, .academy-readable small {font-size:.95rem;line-height:1.5}
+.academy-readable label,.academy-readable button,.academy-readable a,[data-pricing-page] button,[data-pricing-page] a{font-size:max(1rem,16px)}
+@media(max-width:720px){[data-pricing-page] p,.academy-readable p{font-size:1.08rem;line-height:1.65}[data-pricing-page] li,.academy-readable li{font-size:1rem;line-height:1.6}}
