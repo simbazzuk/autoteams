@@ -1,5 +1,7 @@
 ﻿"use client";
 
+import { filterCandidatesForRequirement } from "@/lib/team-builder/context-candidate-filter";
+import { SportsTeamRequirements } from "@/components/team-builder/SportsTeamRequirements";
 import { ContextAwareSkills } from "@/components/team-builder/ContextAwareSkills";
 
 import Link from "next/link";
@@ -502,13 +504,25 @@ export function GuidedTeamBuilder() {
         );
       }
 
+      const contextCandidates =
+        filterCandidatesForRequirement(
+          candidatePeople,
+          requirement,
+        );
+
+      if (contextCandidates.length === 0) {
+        throw new Error(
+          "No selected people match this team context. Review the selected people or choose profiles that match the requirement.",
+        );
+      }
+
       const result =
         await requestTeamRecommendation({
           workspaceId:
             activeWorkspaceId,
           requirement,
           candidates:
-            candidatePeople.map(
+            contextCandidates.map(
               (person) => ({
                 id: person.id,
                 name: person.name,
@@ -529,7 +543,7 @@ export function GuidedTeamBuilder() {
 
       const personById =
         new Map(
-          candidatePeople.map(
+          contextCandidates.map(
             (person) => [
               person.id,
               person,
@@ -578,7 +592,7 @@ export function GuidedTeamBuilder() {
         await persistRecommendation({
           workspaceId: activeWorkspaceId,
           requirement,
-          candidates: candidatePeople.map(
+          candidates: contextCandidates.map(
             (person) => ({
               id: person.id,
               name: person.name,
@@ -1877,6 +1891,8 @@ function RequirementStep({
           selectedSkills={requirement.skills}
           onToggleSkill={onToggleSkill}
         />
+
+          <SportsTeamRequirements teamName={requirement.name} outcome={requirement.purpose} />
 
         <fieldset
           className={

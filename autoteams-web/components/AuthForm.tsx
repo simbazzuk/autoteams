@@ -62,8 +62,8 @@ export function AuthForm({ mode }: { mode: Mode }) {
       nextPath?.startsWith("/")
         ? nextPath
         : fromSignup
-          ? "/onboarding/profile"
-          : "/dashboard",
+        ? "/onboarding"
+        : "/dashboard",
     );
   }
 

@@ -1,12 +1,12 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { RegistrationProfilePanel } from "@/components/onboarding/RegistrationProfilePanel";
+import { ProfileContextSelection } from "@/components/onboarding/ProfileContextSelection";
 
-export default function RegistrationProfilePage() {
+export default function OnboardingProfilePage() {
   return (
     <PageShell>
       <ProtectedRoute>
-        <RegistrationProfilePanel />
+        <ProfileContextSelection />
       </ProtectedRoute>
     </PageShell>
   );
