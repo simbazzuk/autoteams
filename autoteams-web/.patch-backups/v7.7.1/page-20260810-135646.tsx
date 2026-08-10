@@ -1,4 +1,4 @@
-import { SocialMediaFooter } from "@/components/landing/SocialMediaFooter";
+import { BrownfaceProject } from "@/components/landing/BrownfaceProject";
 import Link from "next/link";
 import { PageShell } from "@/components/Site";
 
@@ -888,7 +888,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-<SocialMediaFooter />
+      
+      <BrownfaceProject />
 </main>
     </PageShell>
   );
