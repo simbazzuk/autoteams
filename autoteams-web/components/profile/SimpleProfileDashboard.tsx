@@ -82,18 +82,45 @@ export function SimpleProfileDashboard() {
     [allProfiles, user?.displayName, user?.email],
   );
 
+  const effectiveRequestedMode =
+    manualMode ?? requestedMode;
+
   const primaryProfile = selectPrimaryProfile(
     myProfiles,
     activeWorkspace,
-    manualMode ?? requestedMode,
+    effectiveRequestedMode,
   );
+
+  const requestedProfile =
+    effectiveRequestedMode
+      ? myProfiles.find(
+          (profile) =>
+            profile.mode === effectiveRequestedMode,
+        )
+      : undefined;
+
+  // v7.13.23: an explicit URL/manual profile context is authoritative
+  // for what the page displays, even when that profile has not yet
+  // been created. This prevents ?context=sport from falling back to
+  // Friendship merely because Friendship is the first saved profile.
+  const displayMode =
+    effectiveRequestedMode ??
+    primaryProfile?.mode;
+
+  const displayProfile =
+    requestedProfile ??
+    (
+      !effectiveRequestedMode
+        ? primaryProfile
+        : undefined
+    );
 
   const secondaryProfiles = myProfiles.filter(
-    (profile) => profile.id !== primaryProfile?.id,
+    (profile) => profile.id !== displayProfile?.id,
   );
 
-  const primaryState = primaryProfile
-    ? getProfileState(primaryProfile)
+  const primaryState = displayProfile
+    ? getProfileState(displayProfile)
     : undefined;
 
   function chooseProfileMode(mode: ContextMode) {
@@ -117,6 +144,37 @@ export function SimpleProfileDashboard() {
     const url = new URL(window.location.href);
     url.searchParams.set("context", queryValue);
     window.history.replaceState({}, "", url.toString());
+  }
+
+  function createProfileForMode(mode: ContextMode) {
+    const existing = myProfiles.find(
+      (profile) => profile.mode === mode,
+    );
+
+    if (existing) {
+      openProfile(existing, "/onboarding/profile");
+      return;
+    }
+
+    const profile = createContextualProfile(
+      mode,
+      user?.displayName,
+      user?.email,
+      activeWorkspace,
+    );
+
+    const updated = [
+      ...allProfiles,
+      profile,
+    ];
+
+    saveContextualProfiles(updated);
+    saveActiveContextualProfileId(profile.id);
+    setAllProfiles(updated);
+    setManualMode(mode);
+    setMessage(
+      `${friendlyProfileName(mode)} was created.`,
+    );
   }
 
   function createPrimaryProfile() {
@@ -215,7 +273,7 @@ export function SimpleProfileDashboard() {
   }
 
   return (
-    <main className={styles.page} data-autoteams-profile="v7.13.21">
+    <main className={styles.page} data-autoteams-profile="v7.13.23">
       <section className={`${styles.hero} ${refresh.hero}`}>
         <div className={`container ${styles.heroGrid} ${refresh.heroGrid}`}>
           <div>
@@ -262,7 +320,7 @@ export function SimpleProfileDashboard() {
             <div className={styles.message}>{message}</div>
           )}
 
-          {!primaryProfile ? (
+          {!displayMode ? (
             <section className={styles.emptyProfile}>
               <ProductIcon label="My Profile" size="lg">
                 ♡
@@ -307,13 +365,13 @@ export function SimpleProfileDashboard() {
             <>
               <section
                 className={`${styles.primarySection} ${refresh.dashboard}`}
-                data-profile-mode={primaryProfile.mode}
+                data-profile-mode={displayMode}
               >
                 <div className={refresh.dashboardHeader}>
                   <div>
                     <span className="eyebrow">PROFILE DASHBOARD</span>
-                    <h2>{friendlyProfileName(primaryProfile.mode)}</h2>
-                    <p>{profileDescription(primaryProfile.mode)}</p>
+                    <h2>{friendlyProfileName(displayMode!)}</h2>
+                    <p>{profileDescription(displayMode!)}</p>
                   </div>
 
                   <div className={refresh.headerControls}>
@@ -321,19 +379,30 @@ export function SimpleProfileDashboard() {
                       <label className={refresh.profileSelector}>
                         <span>Profile</span>
                         <select
-                          value={primaryProfile.mode}
+                          value={displayMode}
                           onChange={(event) =>
                             chooseProfileMode(
                               event.target.value as ContextMode,
                             )
                           }
                         >
-                          {myProfiles.map((profile) => (
+                          {(
+                            [
+                              ...new Set<ContextMode>([
+                                ...myProfiles.map(
+                                  (profile) => profile.mode,
+                                ),
+                                ...(displayMode
+                                  ? [displayMode]
+                                  : []),
+                              ]),
+                            ]
+                          ).map((mode) => (
                             <option
-                              key={profile.id}
-                              value={profile.mode}
+                              key={mode}
+                              value={mode}
                             >
-                              {friendlyProfileName(profile.mode)}
+                              {friendlyProfileName(mode)}
                             </option>
                           ))}
                         </select>
@@ -343,6 +412,18 @@ export function SimpleProfileDashboard() {
                     <ProfileStatusBadge state={primaryState} />
                   </div>
                 </div>
+
+                {!displayProfile && (
+                  <div className={refresh.missingProfileNotice}>
+                    <strong>
+                      {friendlyProfileName(displayMode!)} has not been created yet.
+                    </strong>
+                    <span>
+                      Create this profile to give Atlas the right context for
+                      team recommendations and matching.
+                    </span>
+                  </div>
+                )}
 
                 <div className={refresh.metricGrid}>
                   <ProfileMetric
@@ -381,11 +462,11 @@ export function SimpleProfileDashboard() {
                       <div className={refresh.iconShell}>
                         <ProductIcon
                           label={friendlyProfileName(
-                            primaryProfile.mode,
+                            displayMode!,
                           )}
                           size="lg"
                         >
-                          {profileIcon(primaryProfile.mode)}
+                          {profileIcon(displayMode!)}
                         </ProductIcon>
                       </div>
 
@@ -393,11 +474,11 @@ export function SimpleProfileDashboard() {
                         <small>Selected profile</small>
                         <strong>
                           {friendlyProfileName(
-                            primaryProfile.mode,
+                            displayMode!,
                           )}
                         </strong>
                         <p>
-                          {profileDescription(primaryProfile.mode)}
+                          {profileDescription(displayMode!)}
                         </p>
                       </div>
                     </header>
@@ -442,49 +523,63 @@ export function SimpleProfileDashboard() {
                     </div>
 
                     <div className={`${styles.primaryActions} ${refresh.primaryActions}`}>
-                      <button
-                        className="button"
-                        onClick={() =>
-                          openProfile(
-                            primaryProfile,
-                            primaryState?.completed
-                              ? "/my-atlas-profile"
-                              : "/atlas",
-                          )
-                        }
-                        type="button"
-                      >
-                        {primaryState?.completed
-                          ? "View Atlas Profile"
-                          : primaryState &&
-                              primaryState.completion > 15
-                            ? "Continue Profile"
-                            : "Start Profile"}{" "}
-                        →
-                      </button>
+                      {displayProfile ? (
+                        <>
+                          <button
+                            className="button"
+                            onClick={() =>
+                              openProfile(
+                                displayProfile,
+                                primaryState?.completed
+                                  ? "/my-atlas-profile"
+                                  : "/atlas",
+                              )
+                            }
+                            type="button"
+                          >
+                            {primaryState?.completed
+                              ? "View Atlas Profile"
+                              : primaryState &&
+                                  primaryState.completion > 15
+                                ? "Continue Profile"
+                                : "Start Profile"}{" "}
+                            →
+                          </button>
 
-                      <button
-                        className="button secondary"
-                        onClick={() =>
-                          openProfile(
-                            primaryProfile,
-                            "/onboarding/profile",
-                          )
-                        }
-                        type="button"
-                      >
-                        Edit Details
-                      </button>
+                          <button
+                            className="button secondary"
+                            onClick={() =>
+                              openProfile(
+                                displayProfile,
+                                "/onboarding/profile",
+                              )
+                            }
+                            type="button"
+                          >
+                            Edit Details
+                          </button>
 
-                      {primaryState?.completed && (
+                          {primaryState?.completed && (
+                            <button
+                              className="button secondary"
+                              onClick={() =>
+                                openProfile(displayProfile, "/atlas")
+                              }
+                              type="button"
+                            >
+                              Refresh Profile
+                            </button>
+                          )}
+                        </>
+                      ) : (
                         <button
-                          className="button secondary"
+                          className="button"
                           onClick={() =>
-                            openProfile(primaryProfile, "/atlas")
+                            createProfileForMode(displayMode!)
                           }
                           type="button"
                         >
-                          Refresh Profile
+                          Create {friendlyProfileName(displayMode!)} →
                         </button>
                       )}
                     </div>
@@ -514,7 +609,7 @@ export function SimpleProfileDashboard() {
                     <div className={refresh.contextCard}>
                       <small>Current context</small>
                       <strong>
-                        {friendlyProfileName(primaryProfile.mode)}
+                        {friendlyProfileName(displayMode!)}
                       </strong>
                       <p>
                         Atlas will use this profile when the selected

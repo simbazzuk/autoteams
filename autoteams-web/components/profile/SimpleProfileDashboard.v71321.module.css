@@ -299,3 +299,37 @@
   .profileSelector { width: 100%; }
   .profileSelector select { width: 100%; }
 }
+
+
+.missingProfileNotice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(var(--profile-accent), .28);
+  border-radius: 14px;
+  background: rgba(var(--profile-accent), .08);
+}
+
+.missingProfileNotice strong {
+  color: #f8fafc;
+}
+
+.missingProfileNotice span {
+  color: #9aa8bf;
+  font-size: .86rem;
+  text-align: right;
+}
+
+@media (max-width: 720px) {
+  .missingProfileNotice {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .missingProfileNotice span {
+    text-align: left;
+  }
+}
