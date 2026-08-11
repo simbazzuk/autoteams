@@ -122,7 +122,7 @@ export function MyAutoTeamsSummary({
   return (
     <section
       className={styles.summary}
-      data-autoteams-summary="v7.13.0"
+      data-autoteams-summary="v7.12.6"
     >
       <header className={styles.header}>
         <div>
@@ -293,7 +293,7 @@ export function MyAutoTeamsSummary({
           <div className={styles.empty}>
             <span>✦</span>
             <div>
-              <strong>No teams yet</strong>
+              <strong>No owned teams yet</strong>
               <p>
                 Teams you own, lead or participate in will appear here for quick access to Team
                 Insights.

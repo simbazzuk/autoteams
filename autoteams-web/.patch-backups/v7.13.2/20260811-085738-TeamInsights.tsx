@@ -469,16 +469,48 @@ export function TeamInsights() {
   return (
     <main
       className={styles.page}
-      data-autoteams-team-insights="v7.13.2"
+      data-autoteams-team-insights="v7.13.1"
     >
       <div
         className={`container ${styles.container}`}
       >
-        
+        <section
+          className={styles.hero}
+        >
+          <div>
+            <span
+              className={
+                styles.eyebrow
+              }
+            >
+              TEAM INSIGHTS
+            </span>
+
+            <h1>
+              Understand your
+              team.
+            </h1>
+
+            <p>
+              Choose the profile
+              context and team you
+              want Atlas to
+              analyse.
+            </p>
+          </div>
+
+          <div
+            className={
+              styles.atlasBadge
+            }
+          >
+            ✦ Powered by Atlas
+          </div>
+        </section>
 
         <section
           className={styles.hero}
-          data-autoteams-v7132-hero="true"
+          data-autoteams-v7131-hero="true"
         >
           <div>
             <span className={styles.eyebrow}>

@@ -1,4 +1,3 @@
-import { TeamPersistenceBridge } from "@/components/team-insights/TeamPersistenceBridge";
 import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
@@ -46,10 +45,7 @@ export default function RootLayout({
       </head>
 
       <body>
-        <AuthProvider>
-          <TeamPersistenceBridge />
-          {children}
-        </AuthProvider>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

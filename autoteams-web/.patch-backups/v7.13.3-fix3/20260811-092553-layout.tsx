@@ -46,10 +46,8 @@ export default function RootLayout({
       </head>
 
       <body>
-        <AuthProvider>
-          <TeamPersistenceBridge />
-          {children}
-        </AuthProvider>
+        <TeamPersistenceBridge />
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
