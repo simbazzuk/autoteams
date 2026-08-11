@@ -608,20 +608,6 @@ async function persistRawValue(
         "[AutoTeams] Firebase team persistence failed:",
         error,
       );
-
-      window.dispatchEvent(
-        new CustomEvent(
-          "autoteams:firebase-team-persist-failed",
-          {
-            detail: {
-              message:
-                error instanceof Error
-                  ? error.message
-                  : "Couldn’t save this team. Please try again.",
-            },
-          },
-        ),
-      );
     }
   }
 }

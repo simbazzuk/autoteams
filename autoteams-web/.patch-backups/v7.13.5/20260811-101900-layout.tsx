@@ -1,4 +1,3 @@
-import { TeamSaveFeedback } from "@/components/team-builder/TeamSaveFeedback";
 import { TeamPersistenceBridge } from "@/components/team-insights/TeamPersistenceBridge";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -49,7 +48,6 @@ export default function RootLayout({
       <body>
         <AuthProvider>
           <TeamPersistenceBridge />
-          <TeamSaveFeedback />
           {children}
         </AuthProvider>
       </body>
