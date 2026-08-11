@@ -1,0 +1,301 @@
+.hero {
+  padding-top: 42px !important;
+  padding-bottom: 42px !important;
+  background:
+    radial-gradient(circle at 78% 20%, rgba(99,102,241,.16), transparent 32%),
+    radial-gradient(circle at 18% 30%, rgba(59,130,246,.08), transparent 28%);
+}
+
+.hero h1 {
+  max-width: 720px;
+  font-size: clamp(2.4rem, 5vw, 4.7rem) !important;
+  line-height: .96 !important;
+  letter-spacing: -.045em;
+  margin-bottom: 18px !important;
+}
+
+.hero p {
+  max-width: 720px;
+  font-size: 1.05rem;
+}
+
+.heroGrid {
+  align-items: center !important;
+}
+
+.dashboard {
+  --profile-accent: 139, 92, 246;
+  border: 1px solid rgba(var(--profile-accent), .24);
+  border-radius: 24px;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 90% 0%, rgba(var(--profile-accent), .12), transparent 32%),
+    linear-gradient(145deg, rgba(20,28,48,.96), rgba(12,18,32,.98));
+  box-shadow: 0 24px 80px rgba(0,0,0,.18);
+}
+
+.dashboard[data-profile-mode="sports"] { --profile-accent: 59, 130, 246; }
+.dashboard[data-profile-mode="community"] { --profile-accent: 20, 184, 166; }
+.dashboard[data-profile-mode="friendship"] { --profile-accent: 168, 85, 247; }
+.dashboard[data-profile-mode="business"] { --profile-accent: 99, 102, 241; }
+.dashboard[data-profile-mode="education"] { --profile-accent: 245, 158, 11; }
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.dashboardHeader h2 {
+  margin: 5px 0 7px;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.dashboardHeader p {
+  margin: 0;
+  max-width: 660px;
+  color: #aebbd3;
+}
+
+.headerControls {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.profileSelector {
+  display: grid;
+  gap: 7px;
+  min-width: 220px;
+}
+
+.profileSelector > span {
+  color: #92a1bd;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.profileSelector select {
+  min-height: 44px;
+  border: 1px solid rgba(var(--profile-accent), .36);
+  border-radius: 12px;
+  padding: 0 38px 0 13px;
+  background: rgba(8,14,27,.88);
+  color: #f8fafc;
+  font-weight: 750;
+  outline: none;
+}
+
+.profileSelector select:focus {
+  border-color: rgba(var(--profile-accent), .8);
+  box-shadow: 0 0 0 3px rgba(var(--profile-accent), .12);
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.profileMetric {
+  position: relative;
+  overflow: hidden;
+  min-height: 128px;
+  border: 1px solid rgba(148,163,184,.16);
+  border-radius: 18px;
+  padding: 17px;
+  background: rgba(8,15,29,.7);
+}
+
+.profileMetric::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: currentColor;
+  opacity: .8;
+}
+
+.profileMetric > span {
+  display: block;
+  color: #a8b5cd;
+  font-size: .8rem;
+  font-weight: 750;
+}
+
+.profileMetric strong {
+  display: block;
+  margin: 9px 0 5px;
+  color: #fff;
+  font-size: 1.9rem;
+  line-height: 1;
+}
+
+.profileMetric small { color: #7f8da7; }
+.violet { color: #a78bfa; border-color: rgba(167,139,250,.27); }
+.blue { color: #60a5fa; border-color: rgba(96,165,250,.27); }
+.teal { color: #2dd4bf; border-color: rgba(45,212,191,.27); }
+.amber { color: #fbbf24; border-color: rgba(251,191,36,.27); }
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: minmax(0,1.45fr) minmax(300px,.75fr);
+  gap: 18px;
+}
+
+.profileCard {
+  border-color: rgba(var(--profile-accent), .22) !important;
+  background:
+    linear-gradient(145deg, rgba(var(--profile-accent), .07), transparent 45%),
+    rgba(10,17,31,.7) !important;
+}
+
+.profileIdentity {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.profileIdentity small,
+.profileIdentity strong,
+.profileIdentity p { display: block; }
+
+.profileIdentity strong {
+  margin: 3px 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.profileIdentity p {
+  margin: 0;
+  color: #91a0bb;
+}
+
+.iconShell {
+  filter: drop-shadow(0 10px 20px rgba(var(--profile-accent), .18));
+}
+
+.signalGrid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.signal {
+  display: flex;
+  gap: 11px;
+  min-height: 98px;
+  padding: 13px;
+  border: 1px solid rgba(148,163,184,.13);
+  border-radius: 14px;
+  background: rgba(7,12,24,.54);
+}
+
+.signal > span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(var(--profile-accent), .14);
+  color: rgb(var(--profile-accent));
+  font-weight: 900;
+}
+
+.signal strong {
+  color: #f8fafc;
+  font-size: .9rem;
+}
+
+.signal p {
+  margin: 4px 0 0;
+  color: #8290aa;
+  font-size: .82rem;
+  line-height: 1.45;
+}
+
+.progressWrap {
+  margin-top: 18px;
+  padding-top: 17px;
+  border-top: 1px solid rgba(148,163,184,.12);
+}
+
+.progressWrap > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 9px;
+  color: #a9b5ca;
+  font-size: .82rem;
+}
+
+.progressWrap strong { color: #fff; }
+.progressBar i { background: linear-gradient(90deg, rgb(var(--profile-accent)), #60a5fa) !important; }
+
+.primaryActions {
+  margin-top: 18px !important;
+}
+
+.atlasCard {
+  border-color: rgba(var(--profile-accent), .2) !important;
+  background:
+    radial-gradient(circle at 15% 5%, rgba(var(--profile-accent), .12), transparent 28%),
+    rgba(8,15,28,.74) !important;
+}
+
+.atlasHeading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.atlasHeading h3 {
+  margin: 4px 0 0;
+}
+
+.contextCard {
+  margin: 18px 0;
+  padding: 14px;
+  border: 1px solid rgba(var(--profile-accent), .22);
+  border-radius: 14px;
+  background: rgba(var(--profile-accent), .07);
+}
+
+.contextCard small {
+  display: block;
+  color: #8e9cb6;
+}
+
+.contextCard strong {
+  display: block;
+  margin: 4px 0;
+  color: #fff;
+}
+
+.contextCard p {
+  margin: 0;
+  color: #95a3bb;
+  font-size: .84rem;
+}
+
+@media (max-width: 980px) {
+  .metricGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .contentGrid { grid-template-columns: 1fr; }
+  .dashboardHeader { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 620px) {
+  .dashboard { padding: 16px; border-radius: 18px; }
+  .metricGrid, .signalGrid { grid-template-columns: 1fr; }
+  .profileSelector { width: 100%; }
+  .profileSelector select { width: 100%; }
+}

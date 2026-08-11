@@ -28,6 +28,7 @@ import {
 } from "@/lib/workspaces";
 import { ProductIcon } from "@/components/ui/ProductIcon";
 import styles from "./SimpleProfileDashboard.module.css";
+import refresh from "./SimpleProfileDashboard.v71321.module.css";
 
 type ProfileState = {
   completion: number;
@@ -35,6 +36,9 @@ type ProfileState = {
   confidence: number;
   freshnessLabel: string;
   freshnessStatus: string;
+  answeredFields: number;
+  totalFields: number;
+  readinessLabel: string;
 };
 
 export function SimpleProfileDashboard() {
@@ -47,6 +51,8 @@ export function SimpleProfileDashboard() {
   const [ready, setReady] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [message, setMessage] = useState("");
+  const [manualMode, setManualMode] =
+    useState<ContextMode | undefined>(undefined);
 
   const searchParams = useSearchParams();
   const requestedMode = contextQueryToMode(
@@ -79,7 +85,7 @@ export function SimpleProfileDashboard() {
   const primaryProfile = selectPrimaryProfile(
     myProfiles,
     activeWorkspace,
-    requestedMode,
+    manualMode ?? requestedMode,
   );
 
   const secondaryProfiles = myProfiles.filter(
@@ -89,6 +95,29 @@ export function SimpleProfileDashboard() {
   const primaryState = primaryProfile
     ? getProfileState(primaryProfile)
     : undefined;
+
+  function chooseProfileMode(mode: ContextMode) {
+    setManualMode(mode);
+
+    const matching = myProfiles.find(
+      (profile) => profile.mode === mode,
+    );
+
+    if (matching) {
+      saveActiveContextualProfileId(matching.id);
+    }
+
+    const queryValue =
+      mode === "sports"
+        ? "sport"
+        : mode === "business"
+          ? "work"
+          : mode;
+
+    const url = new URL(window.location.href);
+    url.searchParams.set("context", queryValue);
+    window.history.replaceState({}, "", url.toString());
+  }
 
   function createPrimaryProfile() {
     const mode = activeWorkspace
@@ -186,16 +215,15 @@ export function SimpleProfileDashboard() {
   }
 
   return (
-    <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={`container ${styles.heroGrid}`}>
+    <main className={styles.page} data-autoteams-profile="v7.13.21">
+      <section className={`${styles.hero} ${refresh.hero}`}>
+        <div className={`container ${styles.heroGrid} ${refresh.heroGrid}`}>
           <div>
             <span className="eyebrow">My Profile</span>
-            <h1>Help AutoTeams understand how you work.</h1>
+            <h1>Your AutoTeams Profile</h1>
             <p>
-              Your profile captures how you prefer to communicate,
-              collaborate and contribute. It belongs to you and is
-              separate from your group and its members.
+              Help Atlas understand how you communicate, collaborate
+              and contribute across different settings.
             </p>
           </div>
 
@@ -277,34 +305,92 @@ export function SimpleProfileDashboard() {
             </section>
           ) : (
             <>
-              <section className={styles.primarySection}>
-                <div className={styles.sectionHeading}>
+              <section
+                className={`${styles.primarySection} ${refresh.dashboard}`}
+                data-profile-mode={primaryProfile.mode}
+              >
+                <div className={refresh.dashboardHeader}>
                   <div>
-                    <span className="eyebrow">My Profile</span>
+                    <span className="eyebrow">PROFILE DASHBOARD</span>
                     <h2>{friendlyProfileName(primaryProfile.mode)}</h2>
-                    <p>
-                      This is the profile AutoTeams currently uses for
-                      your active group and team recommendations.
-                    </p>
+                    <p>{profileDescription(primaryProfile.mode)}</p>
                   </div>
 
-                  <ProfileStatusBadge state={primaryState} />
+                  <div className={refresh.headerControls}>
+                    {myProfiles.length > 1 && (
+                      <label className={refresh.profileSelector}>
+                        <span>Profile</span>
+                        <select
+                          value={primaryProfile.mode}
+                          onChange={(event) =>
+                            chooseProfileMode(
+                              event.target.value as ContextMode,
+                            )
+                          }
+                        >
+                          {myProfiles.map((profile) => (
+                            <option
+                              key={profile.id}
+                              value={profile.mode}
+                            >
+                              {friendlyProfileName(profile.mode)}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    )}
+
+                    <ProfileStatusBadge state={primaryState} />
+                  </div>
                 </div>
 
-                <div className={styles.primaryGrid}>
-                  <article className={styles.profileCard}>
-                    <header>
-                      <ProductIcon
-                        label={friendlyProfileName(
-                          primaryProfile.mode,
-                        )}
-                        size="lg"
-                      >
-                        {profileIcon(primaryProfile.mode)}
-                      </ProductIcon>
+                <div className={refresh.metricGrid}>
+                  <ProfileMetric
+                    label="Profile Strength"
+                    value={`${primaryState?.completion || 0}%`}
+                    detail="Profile information completed"
+                    tone="violet"
+                  />
+                  <ProfileMetric
+                    label="Atlas Readiness"
+                    value={primaryState?.readinessLabel || "Low"}
+                    detail={`${primaryState?.confidence || 0}% confidence`}
+                    tone="blue"
+                  />
+                  <ProfileMetric
+                    label="Profile Fields"
+                    value={`${primaryState?.answeredFields || 0}/${primaryState?.totalFields || 0}`}
+                    detail="Useful signals available"
+                    tone="teal"
+                  />
+                  <ProfileMetric
+                    label="Freshness"
+                    value={primaryState?.freshnessLabel || "Not started"}
+                    detail={
+                      primaryState?.completed
+                        ? "Based on latest Atlas interview"
+                        : "Complete Atlas to improve freshness"
+                    }
+                    tone="amber"
+                  />
+                </div>
+
+                <div className={refresh.contentGrid}>
+                  <article className={`${styles.profileCard} ${refresh.profileCard}`}>
+                    <header className={refresh.profileIdentity}>
+                      <div className={refresh.iconShell}>
+                        <ProductIcon
+                          label={friendlyProfileName(
+                            primaryProfile.mode,
+                          )}
+                          size="lg"
+                        >
+                          {profileIcon(primaryProfile.mode)}
+                        </ProductIcon>
+                      </div>
 
                       <div>
-                        <small>Current profile</small>
+                        <small>Selected profile</small>
                         <strong>
                           {friendlyProfileName(
                             primaryProfile.mode,
@@ -316,35 +402,46 @@ export function SimpleProfileDashboard() {
                       </div>
                     </header>
 
-                    <div className={styles.metrics}>
-                      <Metric
-                        label="Profile completion"
-                        value={`${primaryState?.completion || 0}%`}
+                    <div className={refresh.signalGrid}>
+                      <ProfileSignal
+                        icon="◉"
+                        title="Communication"
+                        text="How you prefer to communicate and share information."
                       />
-                      <Metric
-                        label="Confidence"
-                        value={`${primaryState?.confidence || 0}%`}
+                      <ProfileSignal
+                        icon="◇"
+                        title="Collaboration"
+                        text="How you work with others and contribute to a group."
                       />
-                      <Metric
-                        label="Last updated"
-                        value={
-                          primaryState?.freshnessLabel ||
-                          "Not completed"
-                        }
+                      <ProfileSignal
+                        icon="✦"
+                        title="Strengths"
+                        text="Signals Atlas can use when explaining team fit."
                       />
-                    </div>
-
-                    <div className={styles.progressBar}>
-                      <i
-                        style={{
-                          width: `${
-                            primaryState?.completion || 0
-                          }%`,
-                        }}
+                      <ProfileSignal
+                        icon="↗"
+                        title="Development"
+                        text="Missing information that could improve recommendations."
                       />
                     </div>
 
-                    <div className={styles.primaryActions}>
+                    <div className={refresh.progressWrap}>
+                      <div>
+                        <span>Profile completion</span>
+                        <strong>{primaryState?.completion || 0}%</strong>
+                      </div>
+                      <div className={`${styles.progressBar} ${refresh.progressBar}`}>
+                        <i
+                          style={{
+                            width: `${
+                              primaryState?.completion || 0
+                            }%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className={`${styles.primaryActions} ${refresh.primaryActions}`}>
                       <button
                         className="button"
                         onClick={() =>
@@ -358,11 +455,11 @@ export function SimpleProfileDashboard() {
                         type="button"
                       >
                         {primaryState?.completed
-                          ? "View My Profile"
+                          ? "View Atlas Profile"
                           : primaryState &&
                               primaryState.completion > 15
-                            ? "Continue My Profile"
-                            : "Start My Profile"}{" "}
+                            ? "Continue Profile"
+                            : "Start Profile"}{" "}
                         →
                       </button>
 
@@ -376,7 +473,7 @@ export function SimpleProfileDashboard() {
                         }
                         type="button"
                       >
-                        Edit Personal Details
+                        Edit Details
                       </button>
 
                       {primaryState?.completed && (
@@ -387,35 +484,25 @@ export function SimpleProfileDashboard() {
                           }
                           type="button"
                         >
-                          Refresh My Profile
+                          Refresh Profile
                         </button>
                       )}
-
-                      <button
-                        className="button secondary"
-                        onClick={() => deleteProfile(primaryProfile)}
-                        type="button"
-                      >
-                        Delete Profile
-                      </button>
                     </div>
                   </article>
 
-                  <aside className={styles.explanationCard}>
-                    <ProductIcon
-                      label="How your profile is used"
-                      size="md"
-                    >
-                      ✦
-                    </ProductIcon>
-
-                    <span className="eyebrow">
-                      How your profile is used
-                    </span>
-                    <h3>
-                      It supports recommendations. It does not make the
-                      decision.
-                    </h3>
+                  <aside className={`${styles.explanationCard} ${refresh.atlasCard}`}>
+                    <div className={refresh.atlasHeading}>
+                      <ProductIcon
+                        label="How Atlas uses your profile"
+                        size="md"
+                      >
+                        ✦
+                      </ProductIcon>
+                      <div>
+                        <span className="eyebrow">ATLAS</span>
+                        <h3>How this profile helps.</h3>
+                      </div>
+                    </div>
 
                     <div className={styles.explanationList}>
                       <span>✓ Understand collaboration preferences</span>
@@ -424,13 +511,19 @@ export function SimpleProfileDashboard() {
                       <span>✓ Support human review</span>
                     </div>
 
-                    <p>
-                      AutoTeams should only use your profile where the
-                      relevant permission and group access allow it.
-                    </p>
+                    <div className={refresh.contextCard}>
+                      <small>Current context</small>
+                      <strong>
+                        {friendlyProfileName(primaryProfile.mode)}
+                      </strong>
+                      <p>
+                        Atlas will use this profile when the selected
+                        team or workflow uses the same context.
+                      </p>
+                    </div>
 
                     <Link href="/trust-centre">
-                      Read about trust and explainability →
+                      Trust & explainability →
                     </Link>
                   </aside>
                 </div>
@@ -677,6 +770,48 @@ function Metric({
   );
 }
 
+function ProfileMetric({
+  label,
+  value,
+  detail,
+  tone,
+}: {
+  label: string;
+  value: string;
+  detail: string;
+  tone: "violet" | "blue" | "teal" | "amber";
+}) {
+  return (
+    <article
+      className={`${refresh.profileMetric} ${refresh[tone]}`}
+    >
+      <span>{label}</span>
+      <strong>{value}</strong>
+      <small>{detail}</small>
+    </article>
+  );
+}
+
+function ProfileSignal({
+  icon,
+  title,
+  text,
+}: {
+  icon: string;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className={refresh.signal}>
+      <span>{icon}</span>
+      <div>
+        <strong>{title}</strong>
+        <p>{text}</p>
+      </div>
+    </div>
+  );
+}
+
 function ControlCard({
   icon,
   title,
@@ -712,13 +847,24 @@ function getProfileState(
     profile.mode,
   );
   const freshness = profileFreshness(interview.completedAt);
+  const progress = profileFieldProgress(profile);
+  const completed = Boolean(interview.completedAt);
+  const confidence = freshness.confidence;
 
   return {
     completion: profileCompletion(profile),
-    completed: Boolean(interview.completedAt),
-    confidence: freshness.confidence,
+    completed,
+    confidence,
     freshnessLabel: freshness.label,
     freshnessStatus: freshness.status,
+    answeredFields: progress.answered,
+    totalFields: progress.total,
+    readinessLabel:
+      completed && confidence >= 80
+        ? "High"
+        : progress.answered / Math.max(progress.total, 1) >= 0.5
+          ? "Medium"
+          : "Low",
   };
 }
 
@@ -825,9 +971,9 @@ function belongsToCurrentUser(
   );
 }
 
-function profileCompletion(
+function profileFieldProgress(
   profile: ContextualProfile,
-): number {
+) {
   const commonValues = [
     profile.preferredName,
     profile.generalLocation,
@@ -845,12 +991,23 @@ function profileCompletion(
   );
 
   const values = [...commonValues, ...contextValues];
-  const completed = values.filter(
+  const answered = values.filter(
     (value) => value.trim().length > 0,
   ).length;
 
+  return {
+    answered,
+    total: Math.max(values.length, 1),
+  };
+}
+
+function profileCompletion(
+  profile: ContextualProfile,
+): number {
+  const progress = profileFieldProgress(profile);
+
   return Math.round(
-    (completed / Math.max(values.length, 1)) * 100,
+    (progress.answered / progress.total) * 100,
   );
 }
 
