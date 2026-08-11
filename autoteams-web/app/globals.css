@@ -13227,3 +13227,1614 @@ html[data-autoteams-invite-register="true"]
 .wizard.invite-mode [class*="icon"] {
   color: initial !important;
 }
+
+/* AutoTeams v7.13.38 - People Directory */
+.people38-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 78% 2%, rgba(99,102,241,.13), transparent 27%),
+    #0b1220;
+  color: #f8fafc;
+}
+
+.people38-hero {
+  padding: 52px 0 34px;
+  border-bottom: 1px solid rgba(148,163,184,.1);
+}
+
+.people38-hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: 26px;
+  align-items: stretch;
+}
+
+.people38-hero h1 {
+  max-width: 760px;
+  margin: 8px 0 14px;
+  font-size: clamp(2.8rem,6vw,5.4rem);
+  line-height: .96;
+  letter-spacing: -.055em;
+}
+
+.people38-hero p,
+.people38-controls p,
+.people38-atlas-card p,
+.people38-empty p {
+  color: #94a3b8;
+  line-height: 1.65;
+}
+
+.people38-hero-actions,
+.people38-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.people38-hero-actions { margin-top: 24px; }
+
+.people38-atlas-card,
+.people38-controls,
+.people38-directory,
+.people38-explainer {
+  border: 1px solid rgba(129,140,248,.18);
+  border-radius: 20px;
+  background: linear-gradient(145deg,rgba(30,41,59,.62),rgba(15,23,42,.88));
+}
+
+.people38-atlas-card { padding: 24px; }
+
+.people38-atlas-card h2,
+.people38-controls h2,
+.people38-directory h2,
+.people38-explainer h2 {
+  margin: 5px 0 8px;
+  color: #f8fafc;
+}
+
+.people38-atlas-card > div {
+  display: grid;
+  gap: 9px;
+  margin-top: 18px;
+  color: #c7d2fe;
+  font-size: .82rem;
+  font-weight: 750;
+}
+
+.people38-body { padding: 28px 0 60px; }
+
+.people38-stats {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.people38-stats article {
+  display: grid;
+  gap: 7px;
+  padding: 17px 18px;
+  border: 1px solid rgba(148,163,184,.13);
+  border-radius: 16px;
+  background: rgba(15,23,42,.7);
+}
+
+.people38-stats small { color: #7787a2; }
+.people38-stats strong { font-size: 1.75rem; }
+
+.people38-controls {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px,430px);
+  gap: 24px;
+  align-items: end;
+  padding: 22px;
+}
+
+.people38-search {
+  display: grid;
+  gap: 7px;
+  color: #94a3b8;
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.people38-search input {
+  min-height: 50px;
+  padding: 0 14px;
+  border: 1px solid rgba(148,163,184,.22);
+  border-radius: 13px;
+  background: #0f172a;
+  color: #f8fafc;
+  font: inherit;
+}
+
+.people38-contexts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+.people38-contexts button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  border: 1px solid rgba(148,163,184,.16);
+  border-radius: 999px;
+  background: rgba(15,23,42,.72);
+  color: #94a3b8;
+  font: inherit;
+  font-size: .78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.people38-contexts button.active {
+  border-color: rgba(129,140,248,.55);
+  background: rgba(99,102,241,.14);
+  color: #e0e7ff;
+}
+
+.people38-directory { padding: 22px; }
+
+.people38-directory-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.people38-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 14px;
+}
+
+.people38-card {
+  padding: 17px;
+  border: 1px solid rgba(148,163,184,.14);
+  border-radius: 17px;
+  background: rgba(7,13,27,.48);
+}
+
+.people38-card:hover {
+  border-color: rgba(129,140,248,.36);
+  background: rgba(15,23,42,.78);
+}
+
+.people38-card-top {
+  display: grid;
+  grid-template-columns: 46px 1fr auto;
+  gap: 11px;
+  align-items: center;
+}
+
+.people38-avatar {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg,#6366f1,#8b5cf6);
+  color: white;
+  font-weight: 900;
+}
+
+.people38-person-title h3 { margin: 0; color: #f8fafc; }
+.people38-person-title p { margin: 3px 0 0; color: #7f8fa9; font-size: .76rem; }
+
+.people38-ready {
+  padding: 5px 7px;
+  border-radius: 999px;
+  background: rgba(148,163,184,.08);
+  color: #8492a8;
+  font-size: .65rem;
+  font-weight: 850;
+}
+
+.people38-ready.ready {
+  background: rgba(34,197,94,.09);
+  color: #86efac;
+}
+
+.people38-meta {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+
+.people38-meta span,
+.people38-strengths span {
+  padding: 5px 7px;
+  border-radius: 999px;
+  background: rgba(99,102,241,.08);
+  color: #b8c5da;
+  font-size: .68rem;
+}
+
+.people38-strengths { min-height: 75px; }
+.people38-strengths small { color: #65758f; font-weight: 850; }
+.people38-strengths > div { display:flex;gap:6px;flex-wrap:wrap;margin-top:8px; }
+.people38-strengths em { color:#64748b;font-size:.74rem; }
+
+.people38-actions { margin-top: 14px; }
+
+.people38-empty {
+  display: grid;
+  justify-items: center;
+  padding: 45px 20px;
+  text-align: center;
+}
+
+.people38-empty > div { font-size: 2.6rem; color:#818cf8; }
+.people38-empty h3 { margin: 10px 0 0; }
+
+.people38-explainer {
+  display: grid;
+  grid-template-columns: .7fr 1.3fr;
+  gap: 22px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 22px;
+}
+
+.people38-flow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.people38-flow > span {
+  display: grid;
+  gap: 2px;
+  padding: 9px 11px;
+  border-radius: 12px;
+  background: rgba(99,102,241,.07);
+}
+
+.people38-flow strong { color:#f8fafc;font-size:.78rem; }
+.people38-flow small { color:#75859f;font-size:.65rem; }
+.people38-flow b { color:#6366f1; }
+
+@media (max-width: 950px) {
+  .people38-hero-grid,
+  .people38-controls,
+  .people38-explainer {
+    grid-template-columns: 1fr;
+  }
+
+  .people38-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .people38-flow { justify-content:flex-start; }
+}
+
+@media (max-width: 650px) {
+  .people38-stats,
+  .people38-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .people38-directory-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .people38-card-top {
+    grid-template-columns: 46px 1fr;
+  }
+
+  .people38-ready {
+    grid-column: 1 / -1;
+    width: max-content;
+  }
+}
+
+
+/* AutoTeams v7.13.38 - People Directory */
+.people38-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 78% 2%, rgba(99,102,241,.13), transparent 27%),
+    #0b1220;
+  color: #f8fafc;
+}
+
+.people38-hero {
+  padding: 52px 0 34px;
+  border-bottom: 1px solid rgba(148,163,184,.1);
+}
+
+.people38-hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: 26px;
+  align-items: stretch;
+}
+
+.people38-hero h1 {
+  max-width: 760px;
+  margin: 8px 0 14px;
+  font-size: clamp(2.8rem,6vw,5.4rem);
+  line-height: .96;
+  letter-spacing: -.055em;
+}
+
+.people38-hero p,
+.people38-controls p,
+.people38-atlas-card p,
+.people38-empty p {
+  color: #94a3b8;
+  line-height: 1.65;
+}
+
+.people38-hero-actions,
+.people38-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.people38-hero-actions { margin-top: 24px; }
+
+.people38-atlas-card,
+.people38-controls,
+.people38-directory,
+.people38-explainer {
+  border: 1px solid rgba(129,140,248,.18);
+  border-radius: 20px;
+  background: linear-gradient(145deg,rgba(30,41,59,.62),rgba(15,23,42,.88));
+}
+
+.people38-atlas-card { padding: 24px; }
+
+.people38-atlas-card h2,
+.people38-controls h2,
+.people38-directory h2,
+.people38-explainer h2 {
+  margin: 5px 0 8px;
+  color: #f8fafc;
+}
+
+.people38-atlas-card > div {
+  display: grid;
+  gap: 9px;
+  margin-top: 18px;
+  color: #c7d2fe;
+  font-size: .82rem;
+  font-weight: 750;
+}
+
+.people38-body { padding: 28px 0 60px; }
+
+.people38-stats {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.people38-stats article {
+  display: grid;
+  gap: 7px;
+  padding: 17px 18px;
+  border: 1px solid rgba(148,163,184,.13);
+  border-radius: 16px;
+  background: rgba(15,23,42,.7);
+}
+
+.people38-stats small { color: #7787a2; }
+.people38-stats strong { font-size: 1.75rem; }
+
+.people38-controls {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px,430px);
+  gap: 24px;
+  align-items: end;
+  padding: 22px;
+}
+
+.people38-search {
+  display: grid;
+  gap: 7px;
+  color: #94a3b8;
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.people38-search input {
+  min-height: 50px;
+  padding: 0 14px;
+  border: 1px solid rgba(148,163,184,.22);
+  border-radius: 13px;
+  background: #0f172a;
+  color: #f8fafc;
+  font: inherit;
+}
+
+.people38-contexts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+.people38-contexts button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  border: 1px solid rgba(148,163,184,.16);
+  border-radius: 999px;
+  background: rgba(15,23,42,.72);
+  color: #94a3b8;
+  font: inherit;
+  font-size: .78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.people38-contexts button.active {
+  border-color: rgba(129,140,248,.55);
+  background: rgba(99,102,241,.14);
+  color: #e0e7ff;
+}
+
+.people38-directory { padding: 22px; }
+
+.people38-directory-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.people38-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 14px;
+}
+
+.people38-card {
+  padding: 17px;
+  border: 1px solid rgba(148,163,184,.14);
+  border-radius: 17px;
+  background: rgba(7,13,27,.48);
+}
+
+.people38-card:hover {
+  border-color: rgba(129,140,248,.36);
+  background: rgba(15,23,42,.78);
+}
+
+.people38-card-top {
+  display: grid;
+  grid-template-columns: 46px 1fr auto;
+  gap: 11px;
+  align-items: center;
+}
+
+.people38-avatar {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg,#6366f1,#8b5cf6);
+  color: white;
+  font-weight: 900;
+}
+
+.people38-person-title h3 { margin: 0; color: #f8fafc; }
+.people38-person-title p { margin: 3px 0 0; color: #7f8fa9; font-size: .76rem; }
+
+.people38-ready {
+  padding: 5px 7px;
+  border-radius: 999px;
+  background: rgba(148,163,184,.08);
+  color: #8492a8;
+  font-size: .65rem;
+  font-weight: 850;
+}
+
+.people38-ready.ready {
+  background: rgba(34,197,94,.09);
+  color: #86efac;
+}
+
+.people38-meta {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+
+.people38-meta span,
+.people38-strengths span {
+  padding: 5px 7px;
+  border-radius: 999px;
+  background: rgba(99,102,241,.08);
+  color: #b8c5da;
+  font-size: .68rem;
+}
+
+.people38-strengths { min-height: 75px; }
+.people38-strengths small { color: #65758f; font-weight: 850; }
+.people38-strengths > div { display:flex;gap:6px;flex-wrap:wrap;margin-top:8px; }
+.people38-strengths em { color:#64748b;font-size:.74rem; }
+
+.people38-actions { margin-top: 14px; }
+
+.people38-empty {
+  display: grid;
+  justify-items: center;
+  padding: 45px 20px;
+  text-align: center;
+}
+
+.people38-empty > div { font-size: 2.6rem; color:#818cf8; }
+.people38-empty h3 { margin: 10px 0 0; }
+
+.people38-explainer {
+  display: grid;
+  grid-template-columns: .7fr 1.3fr;
+  gap: 22px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 22px;
+}
+
+.people38-flow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.people38-flow > span {
+  display: grid;
+  gap: 2px;
+  padding: 9px 11px;
+  border-radius: 12px;
+  background: rgba(99,102,241,.07);
+}
+
+.people38-flow strong { color:#f8fafc;font-size:.78rem; }
+.people38-flow small { color:#75859f;font-size:.65rem; }
+.people38-flow b { color:#6366f1; }
+
+@media (max-width: 950px) {
+  .people38-hero-grid,
+  .people38-controls,
+  .people38-explainer {
+    grid-template-columns: 1fr;
+  }
+
+  .people38-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .people38-flow { justify-content:flex-start; }
+}
+
+@media (max-width: 650px) {
+  .people38-stats,
+  .people38-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .people38-directory-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .people38-card-top {
+    grid-template-columns: 46px 1fr;
+  }
+
+  .people38-ready {
+    grid-column: 1 / -1;
+    width: max-content;
+  }
+}
+
+
+/* AutoTeams v7.13.39 - People Directory visual polish */
+
+/* Give the page a more connected visual rhythm */
+.people38-page {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(56, 189, 248, .10), transparent 24%),
+    radial-gradient(circle at 82% 4%, rgba(139, 92, 246, .16), transparent 28%),
+    linear-gradient(180deg, #0a1020 0%, #0b1220 44%, #0a1020 100%) !important;
+}
+
+.people38-hero {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 42px !important;
+}
+
+.people38-hero::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(1120px, calc(100% - 32px));
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56, 189, 248, .42),
+    rgba(139, 92, 246, .50),
+    transparent
+  );
+}
+
+/* Stronger hero colour */
+.people38-hero h1 {
+  background: linear-gradient(110deg, #f8fafc 12%, #c4b5fd 55%, #7dd3fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+.people38-atlas-card {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(129, 140, 248, .32) !important;
+  background:
+    linear-gradient(145deg, rgba(76, 29, 149, .20), rgba(15, 23, 42, .90) 50%),
+    rgba(15, 23, 42, .88) !important;
+}
+
+.people38-atlas-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: linear-gradient(180deg, #8b5cf6, #38bdf8);
+}
+
+/* Turn metrics into one joined strip instead of four floating cards */
+.people38-stats {
+  gap: 0 !important;
+  overflow: hidden;
+  border: 1px solid rgba(129, 140, 248, .18);
+  border-radius: 18px;
+  background:
+    linear-gradient(90deg, rgba(99, 102, 241, .06), rgba(56, 189, 248, .035));
+}
+
+.people38-stats article {
+  border: 0 !important;
+  border-right: 1px solid rgba(148, 163, 184, .12) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  min-height: 96px;
+  justify-content: center;
+}
+
+.people38-stats article:last-child {
+  border-right: 0 !important;
+}
+
+.people38-stats article:nth-child(1) strong { color: #c4b5fd; }
+.people38-stats article:nth-child(2) strong { color: #86efac; }
+.people38-stats article:nth-child(3) strong { color: #7dd3fc; }
+.people38-stats article:nth-child(4) strong { color: #f9a8d4; }
+
+/* Pull controls and directory into one visual system */
+.people38-controls {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-color: transparent !important;
+  background:
+    linear-gradient(145deg, rgba(30, 41, 59, .72), rgba(15, 23, 42, .92)) !important;
+}
+
+.people38-contexts {
+  margin: 0 !important;
+  padding: 14px 18px;
+  border-left: 1px solid rgba(129, 140, 248, .18);
+  border-right: 1px solid rgba(129, 140, 248, .18);
+  background: rgba(15, 23, 42, .72);
+}
+
+.people38-directory {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-top-color: transparent !important;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, .86), rgba(7, 13, 27, .90)) !important;
+}
+
+/* Colour-coded profile pills */
+.people38-contexts button {
+  transition: .18s ease;
+}
+
+.people38-contexts button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(129, 140, 248, .40);
+}
+
+.people38-contexts button:nth-child(2).active {
+  background: rgba(59, 130, 246, .15) !important;
+  border-color: rgba(96, 165, 250, .55) !important;
+  color: #bfdbfe !important;
+}
+
+.people38-contexts button:nth-child(3).active {
+  background: rgba(34, 197, 94, .12) !important;
+  border-color: rgba(74, 222, 128, .45) !important;
+  color: #bbf7d0 !important;
+}
+
+.people38-contexts button:nth-child(4).active {
+  background: rgba(236, 72, 153, .12) !important;
+  border-color: rgba(244, 114, 182, .45) !important;
+  color: #fbcfe8 !important;
+}
+
+.people38-contexts button:nth-child(5).active {
+  background: rgba(245, 158, 11, .11) !important;
+  border-color: rgba(251, 191, 36, .42) !important;
+  color: #fde68a !important;
+}
+
+.people38-contexts button:nth-child(6).active {
+  background: rgba(168, 85, 247, .13) !important;
+  border-color: rgba(192, 132, 252, .45) !important;
+  color: #e9d5ff !important;
+}
+
+/* Person cards feel more connected and less boxy */
+.people38-grid {
+  gap: 12px !important;
+}
+
+.people38-card {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(148, 163, 184, .12) !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(145deg, rgba(15, 23, 42, .80), rgba(7, 13, 27, .72)) !important;
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    background .18s ease;
+}
+
+.people38-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #38bdf8);
+  opacity: .72;
+}
+
+.people38-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(129, 140, 248, .34) !important;
+  background:
+    linear-gradient(145deg, rgba(30, 41, 59, .92), rgba(15, 23, 42, .82)) !important;
+}
+
+.people38-avatar {
+  box-shadow: 0 10px 24px rgba(99, 102, 241, .18);
+}
+
+/* Make the flow explainer feel like part of the page rather than another box */
+.people38-explainer {
+  border-color: rgba(56, 189, 248, .16) !important;
+  background:
+    linear-gradient(90deg, rgba(14, 116, 144, .08), rgba(76, 29, 149, .08)) !important;
+}
+
+.people38-flow > span {
+  border: 1px solid rgba(129, 140, 248, .12);
+  background: rgba(15, 23, 42, .62) !important;
+}
+
+/* A little more breathing space */
+.people38-body {
+  padding-top: 24px !important;
+}
+
+.people38-directory-heading {
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(148, 163, 184, .09);
+}
+
+/* Search becomes a more obvious interaction */
+.people38-search input:focus {
+  outline: none;
+  border-color: rgba(96, 165, 250, .70);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, .13);
+}
+
+@media (max-width: 650px) {
+  .people38-stats {
+    border-radius: 16px;
+  }
+
+  .people38-stats article {
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(148, 163, 184, .12) !important;
+  }
+
+  .people38-stats article:last-child {
+    border-bottom: 0 !important;
+  }
+
+  .people38-contexts {
+    border-radius: 0;
+  }
+}
+
+
+/* AutoTeams v7.13.38 - People Directory */
+.people38-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 78% 2%, rgba(99,102,241,.13), transparent 27%),
+    #0b1220;
+  color: #f8fafc;
+}
+
+.people38-hero {
+  padding: 52px 0 34px;
+  border-bottom: 1px solid rgba(148,163,184,.1);
+}
+
+.people38-hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: 26px;
+  align-items: stretch;
+}
+
+.people38-hero h1 {
+  max-width: 760px;
+  margin: 8px 0 14px;
+  font-size: clamp(2.8rem,6vw,5.4rem);
+  line-height: .96;
+  letter-spacing: -.055em;
+}
+
+.people38-hero p,
+.people38-controls p,
+.people38-atlas-card p,
+.people38-empty p {
+  color: #94a3b8;
+  line-height: 1.65;
+}
+
+.people38-hero-actions,
+.people38-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.people38-hero-actions { margin-top: 24px; }
+
+.people38-atlas-card,
+.people38-controls,
+.people38-directory,
+.people38-explainer {
+  border: 1px solid rgba(129,140,248,.18);
+  border-radius: 20px;
+  background: linear-gradient(145deg,rgba(30,41,59,.62),rgba(15,23,42,.88));
+}
+
+.people38-atlas-card { padding: 24px; }
+
+.people38-atlas-card h2,
+.people38-controls h2,
+.people38-directory h2,
+.people38-explainer h2 {
+  margin: 5px 0 8px;
+  color: #f8fafc;
+}
+
+.people38-atlas-card > div {
+  display: grid;
+  gap: 9px;
+  margin-top: 18px;
+  color: #c7d2fe;
+  font-size: .82rem;
+  font-weight: 750;
+}
+
+.people38-body { padding: 28px 0 60px; }
+
+.people38-stats {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.people38-stats article {
+  display: grid;
+  gap: 7px;
+  padding: 17px 18px;
+  border: 1px solid rgba(148,163,184,.13);
+  border-radius: 16px;
+  background: rgba(15,23,42,.7);
+}
+
+.people38-stats small { color: #7787a2; }
+.people38-stats strong { font-size: 1.75rem; }
+
+.people38-controls {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px,430px);
+  gap: 24px;
+  align-items: end;
+  padding: 22px;
+}
+
+.people38-search {
+  display: grid;
+  gap: 7px;
+  color: #94a3b8;
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.people38-search input {
+  min-height: 50px;
+  padding: 0 14px;
+  border: 1px solid rgba(148,163,184,.22);
+  border-radius: 13px;
+  background: #0f172a;
+  color: #f8fafc;
+  font: inherit;
+}
+
+.people38-contexts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+.people38-contexts button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  border: 1px solid rgba(148,163,184,.16);
+  border-radius: 999px;
+  background: rgba(15,23,42,.72);
+  color: #94a3b8;
+  font: inherit;
+  font-size: .78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.people38-contexts button.active {
+  border-color: rgba(129,140,248,.55);
+  background: rgba(99,102,241,.14);
+  color: #e0e7ff;
+}
+
+.people38-directory { padding: 22px; }
+
+.people38-directory-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.people38-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 14px;
+}
+
+.people38-card {
+  padding: 17px;
+  border: 1px solid rgba(148,163,184,.14);
+  border-radius: 17px;
+  background: rgba(7,13,27,.48);
+}
+
+.people38-card:hover {
+  border-color: rgba(129,140,248,.36);
+  background: rgba(15,23,42,.78);
+}
+
+.people38-card-top {
+  display: grid;
+  grid-template-columns: 46px 1fr auto;
+  gap: 11px;
+  align-items: center;
+}
+
+.people38-avatar {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg,#6366f1,#8b5cf6);
+  color: white;
+  font-weight: 900;
+}
+
+.people38-person-title h3 { margin: 0; color: #f8fafc; }
+.people38-person-title p { margin: 3px 0 0; color: #7f8fa9; font-size: .76rem; }
+
+.people38-ready {
+  padding: 5px 7px;
+  border-radius: 999px;
+  background: rgba(148,163,184,.08);
+  color: #8492a8;
+  font-size: .65rem;
+  font-weight: 850;
+}
+
+.people38-ready.ready {
+  background: rgba(34,197,94,.09);
+  color: #86efac;
+}
+
+.people38-meta {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+
+.people38-meta span,
+.people38-strengths span {
+  padding: 5px 7px;
+  border-radius: 999px;
+  background: rgba(99,102,241,.08);
+  color: #b8c5da;
+  font-size: .68rem;
+}
+
+.people38-strengths { min-height: 75px; }
+.people38-strengths small { color: #65758f; font-weight: 850; }
+.people38-strengths > div { display:flex;gap:6px;flex-wrap:wrap;margin-top:8px; }
+.people38-strengths em { color:#64748b;font-size:.74rem; }
+
+.people38-actions { margin-top: 14px; }
+
+.people38-empty {
+  display: grid;
+  justify-items: center;
+  padding: 45px 20px;
+  text-align: center;
+}
+
+.people38-empty > div { font-size: 2.6rem; color:#818cf8; }
+.people38-empty h3 { margin: 10px 0 0; }
+
+.people38-explainer {
+  display: grid;
+  grid-template-columns: .7fr 1.3fr;
+  gap: 22px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 22px;
+}
+
+.people38-flow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.people38-flow > span {
+  display: grid;
+  gap: 2px;
+  padding: 9px 11px;
+  border-radius: 12px;
+  background: rgba(99,102,241,.07);
+}
+
+.people38-flow strong { color:#f8fafc;font-size:.78rem; }
+.people38-flow small { color:#75859f;font-size:.65rem; }
+.people38-flow b { color:#6366f1; }
+
+@media (max-width: 950px) {
+  .people38-hero-grid,
+  .people38-controls,
+  .people38-explainer {
+    grid-template-columns: 1fr;
+  }
+
+  .people38-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .people38-flow { justify-content:flex-start; }
+}
+
+@media (max-width: 650px) {
+  .people38-stats,
+  .people38-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .people38-directory-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .people38-card-top {
+    grid-template-columns: 46px 1fr;
+  }
+
+  .people38-ready {
+    grid-column: 1 / -1;
+    width: max-content;
+  }
+}
+
+
+/* AutoTeams v7.13.39 - People Directory visual polish */
+
+/* Give the page a more connected visual rhythm */
+.people38-page {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(56, 189, 248, .10), transparent 24%),
+    radial-gradient(circle at 82% 4%, rgba(139, 92, 246, .16), transparent 28%),
+    linear-gradient(180deg, #0a1020 0%, #0b1220 44%, #0a1020 100%) !important;
+}
+
+.people38-hero {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 42px !important;
+}
+
+.people38-hero::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(1120px, calc(100% - 32px));
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56, 189, 248, .42),
+    rgba(139, 92, 246, .50),
+    transparent
+  );
+}
+
+/* Stronger hero colour */
+.people38-hero h1 {
+  background: linear-gradient(110deg, #f8fafc 12%, #c4b5fd 55%, #7dd3fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+.people38-atlas-card {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(129, 140, 248, .32) !important;
+  background:
+    linear-gradient(145deg, rgba(76, 29, 149, .20), rgba(15, 23, 42, .90) 50%),
+    rgba(15, 23, 42, .88) !important;
+}
+
+.people38-atlas-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: linear-gradient(180deg, #8b5cf6, #38bdf8);
+}
+
+/* Turn metrics into one joined strip instead of four floating cards */
+.people38-stats {
+  gap: 0 !important;
+  overflow: hidden;
+  border: 1px solid rgba(129, 140, 248, .18);
+  border-radius: 18px;
+  background:
+    linear-gradient(90deg, rgba(99, 102, 241, .06), rgba(56, 189, 248, .035));
+}
+
+.people38-stats article {
+  border: 0 !important;
+  border-right: 1px solid rgba(148, 163, 184, .12) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  min-height: 96px;
+  justify-content: center;
+}
+
+.people38-stats article:last-child {
+  border-right: 0 !important;
+}
+
+.people38-stats article:nth-child(1) strong { color: #c4b5fd; }
+.people38-stats article:nth-child(2) strong { color: #86efac; }
+.people38-stats article:nth-child(3) strong { color: #7dd3fc; }
+.people38-stats article:nth-child(4) strong { color: #f9a8d4; }
+
+/* Pull controls and directory into one visual system */
+.people38-controls {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-color: transparent !important;
+  background:
+    linear-gradient(145deg, rgba(30, 41, 59, .72), rgba(15, 23, 42, .92)) !important;
+}
+
+.people38-contexts {
+  margin: 0 !important;
+  padding: 14px 18px;
+  border-left: 1px solid rgba(129, 140, 248, .18);
+  border-right: 1px solid rgba(129, 140, 248, .18);
+  background: rgba(15, 23, 42, .72);
+}
+
+.people38-directory {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-top-color: transparent !important;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, .86), rgba(7, 13, 27, .90)) !important;
+}
+
+/* Colour-coded profile pills */
+.people38-contexts button {
+  transition: .18s ease;
+}
+
+.people38-contexts button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(129, 140, 248, .40);
+}
+
+.people38-contexts button:nth-child(2).active {
+  background: rgba(59, 130, 246, .15) !important;
+  border-color: rgba(96, 165, 250, .55) !important;
+  color: #bfdbfe !important;
+}
+
+.people38-contexts button:nth-child(3).active {
+  background: rgba(34, 197, 94, .12) !important;
+  border-color: rgba(74, 222, 128, .45) !important;
+  color: #bbf7d0 !important;
+}
+
+.people38-contexts button:nth-child(4).active {
+  background: rgba(236, 72, 153, .12) !important;
+  border-color: rgba(244, 114, 182, .45) !important;
+  color: #fbcfe8 !important;
+}
+
+.people38-contexts button:nth-child(5).active {
+  background: rgba(245, 158, 11, .11) !important;
+  border-color: rgba(251, 191, 36, .42) !important;
+  color: #fde68a !important;
+}
+
+.people38-contexts button:nth-child(6).active {
+  background: rgba(168, 85, 247, .13) !important;
+  border-color: rgba(192, 132, 252, .45) !important;
+  color: #e9d5ff !important;
+}
+
+/* Person cards feel more connected and less boxy */
+.people38-grid {
+  gap: 12px !important;
+}
+
+.people38-card {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(148, 163, 184, .12) !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(145deg, rgba(15, 23, 42, .80), rgba(7, 13, 27, .72)) !important;
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    background .18s ease;
+}
+
+.people38-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #38bdf8);
+  opacity: .72;
+}
+
+.people38-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(129, 140, 248, .34) !important;
+  background:
+    linear-gradient(145deg, rgba(30, 41, 59, .92), rgba(15, 23, 42, .82)) !important;
+}
+
+.people38-avatar {
+  box-shadow: 0 10px 24px rgba(99, 102, 241, .18);
+}
+
+/* Make the flow explainer feel like part of the page rather than another box */
+.people38-explainer {
+  border-color: rgba(56, 189, 248, .16) !important;
+  background:
+    linear-gradient(90deg, rgba(14, 116, 144, .08), rgba(76, 29, 149, .08)) !important;
+}
+
+.people38-flow > span {
+  border: 1px solid rgba(129, 140, 248, .12);
+  background: rgba(15, 23, 42, .62) !important;
+}
+
+/* A little more breathing space */
+.people38-body {
+  padding-top: 24px !important;
+}
+
+.people38-directory-heading {
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(148, 163, 184, .09);
+}
+
+/* Search becomes a more obvious interaction */
+.people38-search input:focus {
+  outline: none;
+  border-color: rgba(96, 165, 250, .70);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, .13);
+}
+
+@media (max-width: 650px) {
+  .people38-stats {
+    border-radius: 16px;
+  }
+
+  .people38-stats article {
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(148, 163, 184, .12) !important;
+  }
+
+  .people38-stats article:last-child {
+    border-bottom: 0 !important;
+  }
+
+  .people38-contexts {
+    border-radius: 0;
+  }
+}
+
+
+/* AutoTeams v7.13.40 - Network Actions revamp */
+
+.people40-network-actions {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: .78fr 1.22fr;
+  gap: 26px;
+  margin-top: 20px;
+  padding: 28px;
+  border: 1px solid rgba(129, 140, 248, .24);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(139, 92, 246, .12), transparent 32%),
+    radial-gradient(circle at 18% 90%, rgba(56, 189, 248, .08), transparent 28%),
+    linear-gradient(145deg, rgba(15, 23, 42, .96), rgba(8, 15, 31, .98));
+}
+
+.people40-network-actions::after {
+  content: "";
+  position: absolute;
+  right: -100px;
+  bottom: -130px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  border: 1px solid rgba(139, 92, 246, .13);
+  box-shadow:
+    0 0 0 34px rgba(139, 92, 246, .035),
+    0 0 0 70px rgba(56, 189, 248, .025);
+  pointer-events: none;
+}
+
+.people40-network-copy {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+}
+
+.people40-network-copy h2 {
+  margin: 7px 0 10px;
+  max-width: 440px;
+  color: #f8fafc;
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  line-height: 1.02;
+  letter-spacing: -.04em;
+}
+
+.people40-network-copy p {
+  max-width: 480px;
+  margin: 0;
+  color: #98a8c1;
+  line-height: 1.65;
+}
+
+.people40-network-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.people40-network-flow {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.people40-step {
+  min-height: 178px;
+  padding: 16px;
+  border: 1px solid rgba(148, 163, 184, .13);
+  border-radius: 16px;
+  background: rgba(7, 13, 27, .58);
+}
+
+.people40-step:hover {
+  transform: translateY(-2px);
+  transition: .18s ease;
+}
+
+.people40-step > span {
+  display: inline-block;
+  margin: 10px 0 6px;
+  color: #66758d;
+  font-size: .67rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.people40-step h3 {
+  margin: 0 0 7px;
+  color: #f8fafc;
+}
+
+.people40-step p {
+  margin: 0;
+  color: #8190a8;
+  font-size: .74rem;
+  line-height: 1.45;
+}
+
+.people40-step-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+.people40-step.profile .people40-step-icon {
+  background: rgba(139, 92, 246, .15);
+  color: #c4b5fd;
+}
+
+.people40-step.invite .people40-step-icon {
+  background: rgba(59, 130, 246, .14);
+  color: #93c5fd;
+}
+
+.people40-step.people .people40-step-icon {
+  background: rgba(16, 185, 129, .13);
+  color: #6ee7b7;
+}
+
+.people40-step.team .people40-step-icon {
+  background: rgba(245, 158, 11, .12);
+  color: #fcd34d;
+}
+
+.people40-connector {
+  color: #6366f1;
+  font-weight: 900;
+}
+
+.people40-atlas-note {
+  position: relative;
+  z-index: 1;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 15px 17px;
+  border: 1px solid rgba(129, 140, 248, .15);
+  border-radius: 15px;
+  background:
+    linear-gradient(90deg, rgba(76, 29, 149, .11), rgba(14, 116, 144, .08));
+}
+
+.people40-atlas-mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7c3aed, #2563eb);
+  color: white;
+  font-size: 1.1rem;
+}
+
+.people40-atlas-note strong {
+  display: block;
+  color: #e9e7ff;
+  font-size: .83rem;
+}
+
+.people40-atlas-note span {
+  display: block;
+  margin-top: 3px;
+  color: #8090a9;
+  font-size: .73rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 1050px) {
+  .people40-network-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .people40-network-flow {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .people40-connector {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .people40-network-flow {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .people40-network-actions {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .people40-network-flow {
+    grid-template-columns: 1fr;
+  }
+}
