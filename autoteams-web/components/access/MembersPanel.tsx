@@ -29,6 +29,7 @@ export function MembersPanel() {
   const [inviteName, setInviteName] = useState("");
   const [inviteEmail, setInviteEmail] = useState("");
   const [inviteRole, setInviteRole] = useState<WorkspaceRole>("member");
+  const [inviteMessage, setInviteMessage] = useState("");
 
   const access = useWorkspaceAccess(workspaceId);
   const workspaces = loadWorkspaces();
@@ -78,6 +79,9 @@ export function MembersPanel() {
     setInviteName("");
     setInviteEmail("");
     setInviteRole("member");
+    setInviteMessage(
+      `Invitation created for ${invitation.email}.`,
+    );
   }
 
   function revoke(id: string) {
@@ -313,9 +317,40 @@ export function MembersPanel() {
           </section>
 
           <aside className="access-side">
-            <section className="access-panel">
-              <span className="eyebrow">Invite member</span>
-              <h2>Add someone to this workspace</h2>
+            <section
+              className="access-panel"
+              id="invite"
+              style={{
+                scrollMarginTop: 110,
+                borderColor: "rgba(129,140,248,.42)",
+                boxShadow: "0 18px 50px rgba(79,70,229,.10)",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
+                <span
+                  aria-hidden="true"
+                  style={{
+                    display: "inline-grid",
+                    width: 42,
+                    height: 42,
+                    placeItems: "center",
+                    borderRadius: 13,
+                    background: "linear-gradient(135deg, #4f8ef7, #a855f7)",
+                    color: "white",
+                    fontSize: 22,
+                  }}
+                >
+                  ♙+
+                </span>
+                <div>
+                  <span className="eyebrow">Invite people</span>
+                  <h2 style={{ margin: "3px 0 0" }}>Grow this workspace</h2>
+                </div>
+              </div>
+              <p style={{ marginTop: 0 }}>
+                Invite someone to AutoTeams. They can join this workspace, create
+                their own profile and become available for team building.
+              </p>
 
               {!canManage ? (
                 <div className="access-denied">
@@ -365,8 +400,20 @@ export function MembersPanel() {
                     </select>
                   </label>
                   <button className="button" type="submit">
-                    Create Invitation
+                    Send Invitation →
                   </button>
+                  {inviteMessage && (
+                    <p
+                      role="status"
+                      style={{
+                        margin: "12px 0 0",
+                        color: "#86efac",
+                        fontWeight: 700,
+                      }}
+                    >
+                      ✓ {inviteMessage}
+                    </p>
+                  )}
                 </form>
               )}
             </section>

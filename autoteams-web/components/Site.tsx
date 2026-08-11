@@ -24,6 +24,7 @@ const primaryLinks = [
   { href: "/home", label: "Dashboard" },
 { href: "/get-started", label: "Get Started" },
   { href: "/people", label: "People" },
+  { href: "/members#invite", label: "Invite", invite: true },
   { href: "/team-builder", label: "Build Team" },
   {
     href: "/gemini-team-coach",
@@ -62,6 +63,13 @@ if (href === "/people") {
       (route) =>
         pathname === route ||
         pathname.startsWith(`${route}/`),
+    );
+  }
+
+  if (href === "/members#invite") {
+    return (
+      pathname === "/members" ||
+      pathname.startsWith("/members/")
     );
   }
 
@@ -157,6 +165,40 @@ export function Navbar() {
                   gap: 7,
                 }}
               >
+                {link.invite && (
+                  <span
+                    aria-hidden="true"
+                    title="Invite people"
+                    style={{
+                      display: "inline-grid",
+                      width: 25,
+                      height: 25,
+                      placeItems: "center",
+                      borderRadius: 8,
+                      background:
+                        "linear-gradient(135deg, rgba(59,130,246,.24), rgba(168,85,247,.24))",
+                      border: "1px solid rgba(129,140,248,.34)",
+                      color: "#c4b5fd",
+                    }}
+                  >
+                    <svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M15 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                      <circle cx="8.5" cy="7" r="4" />
+                      <path d="M19 8v6" />
+                      <path d="M22 11h-6" />
+                    </svg>
+                  </span>
+                )}
+
                 {link.ai && (
                   <span
                     aria-hidden="true"
