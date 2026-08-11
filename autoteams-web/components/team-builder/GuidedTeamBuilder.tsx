@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { filterCandidatesForRequirement } from "@/lib/team-builder/context-candidate-filter";
@@ -176,27 +176,27 @@ const groupTypes: Array<{
   {
     value: "organisation",
     label: "Organisation",
-    icon: "Ã¢Å’â€š",
+    icon: "⌂",
   },
   {
     value: "community",
     label: "Community Group",
-    icon: "Ã¢â„¢â„¢",
+    icon: "♙",
   },
   {
     value: "sports",
     label: "Sports Club",
-    icon: "Ã¢â€”Å½",
+    icon: "◎",
   },
   {
     value: "education",
     label: "Education Group",
-    icon: "Ã¢â€“Â¤",
+    icon: "▤",
   },
   {
     value: "friends_family",
     label: "Friends & Family",
-    icon: "Ã¢â„¢Â¡",
+    icon: "♡",
   },
 ];
 
@@ -588,7 +588,7 @@ export function GuidedTeamBuilder() {
     try {
       if (!activeWorkspaceId) {
         throw new Error(
-          "Please select a team context before generating a recommendation.",
+          "Please select a group before generating a recommendation.",
         );
       }
 
@@ -955,7 +955,7 @@ function toggleFinalPerson(
       <section
         className={styles.loading}
       >
-        Preparing Team Builderâ€¦
+        Preparing Team Builder…
       </section>
     );
   }
@@ -982,7 +982,7 @@ function toggleFinalPerson(
             <p>
               {isRebuildFlow
                 ? "Create a new team recommendation while keeping the existing team unchanged. Choose the people and requirements you want Atlas to consider."
-                : "Choose the team context, select the people and define the outcome. Atlas then creates an explainable recommendation for you to review."}
+                : "AutoTeams guides you from group selection to a human-reviewed Gemini recommendation without sending you to other setup pages."}
             </p>
           </div>
 
@@ -992,10 +992,10 @@ function toggleFinalPerson(
             }
           >
             <ProductIcon
-              label="Team context"
+              label="Current group"
               size="lg"
             >
-              Ã¢â€”â€¡
+              ◇
             </ProductIcon>
 
             <div>
@@ -1011,10 +1011,10 @@ function toggleFinalPerson(
                 {activeWorkspace
                   ? `${workspaceTypeLabel(
                       activeWorkspace.type,
-                    )} Â· ${
+                    )} · ${
                       activePeople.length
                     } active people`
-                  : "Choose the team context in Step 1."}
+                  : "Create or choose a group in Step 1."}
               </p>
             </div>
           </aside>
@@ -1251,9 +1251,9 @@ function StepNavigation({
     {
       id: "group",
       number: 1,
-      label: "Choose context",
+      label: "Choose group",
       text:
-        "What kind of team this is",
+        "Where the team belongs",
     },
     {
       id: "people",
@@ -1315,7 +1315,7 @@ function StepNavigation({
           >
             <span>
               {complete
-                ? "âœ“"
+                ? "✓"
                 : step.number}
             </span>
             <div>
@@ -1373,7 +1373,7 @@ function GroupStep({
           Step 1
         </span>
         <h2>
-          Choose the context for this team.
+          Choose where this team belongs.
         </h2>
         <p className={styles.intro}>
           Select an existing group
@@ -1430,7 +1430,7 @@ function GroupStep({
                   </div>
 
                   <span>
-                    Use group â†’
+                    Use group →
                   </span>
                 </button>
               ),
@@ -1448,10 +1448,10 @@ function GroupStep({
         className={styles.panel}
       >
         <span className="eyebrow">
-          Team context
+          Create a group
         </span>
         <h2>
-          Choose a team context.
+          Start a new group.
         </h2>
 
         <form data-autoteams-team-builder="true"
@@ -1459,7 +1459,7 @@ function GroupStep({
           onSubmit={onCreate}
         >
           <label>
-            Team context name
+            Group name
             <input
               required
               value={groupName}
@@ -1468,12 +1468,12 @@ function GroupStep({
                   event.target.value,
                 )
               }
-              placeholder="e.g. Sports & Clubs"
+              placeholder="Sunday Football Club"
             />
           </label>
 
           <label>
-            Context type
+            Group type
             <select
               value={groupType}
               onChange={(event) =>
@@ -1652,7 +1652,7 @@ function PeopleStep({
                       {
                         person.jobTitle
                       }{" "}
-                      Â·{" "}
+                      ·{" "}
                       {
                         person.department
                       }
@@ -1664,7 +1664,7 @@ function PeopleStep({
                         ? person.strengths
                             .slice(0, 2)
                             .join(
-                              " Â· ",
+                              " · ",
                             )
                         : "Profile not completed"}
                     </em>
@@ -1677,7 +1677,7 @@ function PeopleStep({
           <EmptyState
             title={`No people in ${
               workspace?.name ||
-              "this context"
+              "this group"
             }.`}
             text="Add a person or generate demo people using the options alongside."
           />
@@ -1696,7 +1696,7 @@ function PeopleStep({
             onClick={onContinue}
             type="button"
           >
-            Continue with Available People â†’
+            Continue with Available People →
           </button>
         </div>
       </article>
@@ -1798,7 +1798,7 @@ function PeopleStep({
             label="Demo people"
             size="md"
           >
-            âœ¦
+            ✦
           </ProductIcon>
           <h3>
             Need people for testing?
@@ -2214,7 +2214,7 @@ function RequirementStep({
               fontWeight: 800,
             }}
           >
-            â† Back
+            ← Back
           </button>
 
           <button
@@ -2232,8 +2232,8 @@ function RequirementStep({
             }}
           >
             {isGenerating
-              ? "Gemini is analysingâ€¦"
-              : "Generate Recommendation â†’"}
+              ? "Gemini is analysing…"
+              : "Generate Recommendation →"}
           </button>
         </div>
       </form>
@@ -2322,7 +2322,7 @@ function RecommendationStep({
           label="Recommendation"
           size="lg"
         >
-          âœ¦
+          ✦
         </ProductIcon>
 
         <div>
@@ -2427,7 +2427,7 @@ function RecommendationStep({
                           item.person
                             .jobTitle
                         }{" "}
-                        Â·{" "}
+                        ·{" "}
                         {
                           item.person
                             .department
@@ -2449,7 +2449,7 @@ function RecommendationStep({
                             reason
                           }
                         >
-                          âœ“ {reason}
+                          ✓ {reason}
                         </span>
                       ),
                     )}
@@ -2463,7 +2463,7 @@ function RecommendationStep({
                             concern
                           }
                         >
-                          â–³{" "}
+                          △{" "}
                           {
                             concern
                           }
@@ -2502,7 +2502,7 @@ function RecommendationStep({
           onClick={onBack}
           type="button"
         >
-          â† Edit Requirement
+          ← Edit Requirement
         </button>
 
         <button
@@ -2513,7 +2513,7 @@ function RecommendationStep({
           onClick={onContinue}
           type="button"
         >
-          Review Final Team â†’
+          Review Final Team →
         </button>
       </div>
     </section>
@@ -2624,7 +2624,7 @@ function ConfirmStep({
                     {
                       person.jobTitle
                     }{" "}
-                    Â·{" "}
+                    ·{" "}
                     {
                       person.department
                     }
@@ -2644,7 +2644,7 @@ function ConfirmStep({
             label="Human review"
             size="md"
           >
-            âœ“
+            ✓
           </ProductIcon>
           <span className="eyebrow">
             Human reviewed
@@ -2655,21 +2655,21 @@ function ConfirmStep({
 
           <div>
             <span>
-              âœ“ Team size matches
+              ✓ Team size matches
               the requirement
             </span>
             <span>
-              âœ“ Authorised
+              ✓ Authorised
               candidate population
               used
             </span>
             <span>
-              âœ“ Skills and
+              ✓ Skills and
               collaboration evidence
               considered
             </span>
             <span>
-              âœ“ Final selection
+              ✓ Final selection
               reviewed by a person
             </span>
           </div>
@@ -2677,7 +2677,7 @@ function ConfirmStep({
           <p>
             Group:{" "}
             {workspace?.name ||
-              "Team context"}
+              "Current group"}
           </p>
         </aside>
       </div>
@@ -2692,7 +2692,7 @@ function ConfirmStep({
           onClick={onBack}
           type="button"
         >
-          â† Adjust Selection
+          ← Adjust Selection
         </button>
 
         <button
@@ -2754,7 +2754,7 @@ function AiTelemetryBanner({
     >
       <div className={styles.aiSourceMain}>
         <span className={styles.aiSourceStatus}>
-          {live ? "âœ“" : developmentMode ? "Ã¢â€”â€¡" : "â–³"}
+          {live ? "✓" : developmentMode ? "◇" : "△"}
         </span>
 
         <div>
@@ -2788,7 +2788,7 @@ function AiTelemetryBanner({
             <strong>
               {telemetry
                 ? `${telemetry.responseTimeMs} ms`
-                : "â€”"}
+                : "—"}
             </strong>
           </span>
 
@@ -2837,7 +2837,7 @@ function AiEvidenceList({
                 }
                 key={item}
               >
-                {attention ? "â–³" : "âœ“"} {item}
+                {attention ? "△" : "✓"} {item}
               </span>
             ))}
         </div>
@@ -2866,7 +2866,7 @@ function EmptyState({
         size="md"
         subtle
       >
-        Ã¢â€”â€¹
+        ○
       </ProductIcon>
       <h3>{title}</h3>
       <p>{text}</p>
@@ -2969,12 +2969,12 @@ function groupIcon(
     WorkspaceType,
     string
   > = {
-    organisation: "Ã¢Å’â€š",
-    community: "Ã¢â„¢â„¢",
-    sports: "Ã¢â€”Å½",
-    education: "Ã¢â€“Â¤",
-    friends_family: "Ã¢â„¢Â¡",
-    personal: "Ã¢â„¢Â¡",
+    organisation: "⌂",
+    community: "♙",
+    sports: "◎",
+    education: "▤",
+    friends_family: "♡",
+    personal: "♡",
   };
 
   return icons[type];
