@@ -469,7 +469,7 @@ export function TeamInsights() {
   return (
     <main
       className={styles.page}
-      data-autoteams-team-insights="v7.13.2"
+      data-autoteams-team-insights="v7.13.6"
     >
       <div
         className={`container ${styles.container}`}
@@ -699,8 +699,8 @@ export function TeamInsights() {
               </p>
             </div>
 
-            {!loading && (
-              <Link href="/team-builder">
+            {!loading && selectedTeam && (
+              <Link href={`/team-builder?teamId=${selectedTeamId}&mode=rebuild&reason=atlas`}>
                 Build a{" "}
                 {profileLabel(
                   selectedProfile,
@@ -954,8 +954,8 @@ export function TeamInsights() {
                   priority="High priority"
                   title="Strengthen analytical coverage"
                   description="The team appears stronger in collaboration and delivery than analysis."
-                  href="/team-builder"
-                  action="Adjust team"
+                  href={`/team-builder?teamId=${selectedTeamId}&mode=rebuild&reason=atlas`}
+                  action="Rebuild Team"
                 />
 
                 <Recommendation

@@ -1,5 +1,6 @@
-﻿"use client";
+"use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
 import { filterCandidatesForRequirement } from "@/lib/team-builder/context-candidate-filter";
 import { SportsTeamRequirements } from "@/components/team-builder/SportsTeamRequirements";
 import { ContextAwareSkills } from "@/components/team-builder/ContextAwareSkills";
@@ -258,9 +259,18 @@ export function GuidedTeamBuilder() {
       selectedPeople.includes(person.id),
     );
 
+  /*
+   * v7.13.8
+   *
+   * Do not restrict restored team members to activePeople here. During an
+   * adjustment the team can have been persisted with a cloud workspace/context
+   * identifier that is different from the browser-local workspace identifier.
+   * finalPeople is normalised to local WorkspacePerson ids by the adjustment
+   * loader below, so resolve from the full people collection.
+   */
   const selectedTeam = finalPeople
     .map((id) =>
-      activePeople.find(
+      people.find(
         (person) => person.id === id,
       ),
     )
@@ -628,7 +638,120 @@ export function GuidedTeamBuilder() {
     }
   }
 
-  function toggleFinalPerson(
+  const adjustSearchParams =
+    useSearchParams();
+  const router = useRouter();
+  const [isRebuildFlow, setIsRebuildFlow] =
+    useState(false);
+
+  /*
+   * v7.13.10
+   *
+   * Rebuild Team starts a fresh team design rather than attempting to
+   * reconstruct the existing team.
+   * The previous restore logic depended on Firestore membership ids matching
+   * the browser-local WorkspacePerson ids, which is not guaranteed.
+   *
+   * Instead, an adjust request deliberately starts the standard Create New
+   * Team journey. The active workspace and its available people remain in
+   * place, but all previous recommendation/final-team state is cleared.
+   */
+  useEffect(() => {
+    if (!ready) {
+      return;
+    }
+
+    const mode =
+      adjustSearchParams.get(
+        "mode",
+      );
+    const flow =
+      adjustSearchParams.get(
+        "flow",
+      );
+
+    if (flow === "rebuild") {
+      setIsRebuildFlow(true);
+      return;
+    }
+
+    if (
+      mode !== "adjust" &&
+      mode !== "rebuild"
+    ) {
+      return;
+    }
+
+    // Keep compatibility with existing links that still use mode=adjust.
+    // Both routes now intentionally enter the Rebuild Team experience.
+    setIsRebuildFlow(true);
+    setRankedPeople([]);
+    setFinalPeople([]);
+    setAiResult(null);
+    setGenerationError("");
+    setMessage("");
+    setRequirement({
+      name: "",
+      purpose: "",
+      size: 5,
+      skills: [],
+      location: "Any",
+      workingStyle: "Balanced",
+    });
+
+    // Remove stale adjustment metadata from earlier patches.
+    localStorage.removeItem(
+      "autoteams-adjust-team-v7136",
+    );
+    localStorage.removeItem(
+      "autoteams-adjust-team-v7137",
+    );
+    localStorage.removeItem(
+      "autoteams-v7136-fix2-team-context",
+    );
+    localStorage.removeItem(
+      "autoteams-v7137-team-context",
+    );
+
+    const availablePeople =
+      people.filter(
+        (person) =>
+          person.workspaceId ===
+            activeWorkspaceId &&
+          person.status === "active",
+      );
+
+    if (!activeWorkspaceId) {
+      setSelectedPeople([]);
+      setStep("group");
+    } else if (
+      availablePeople.length === 0
+    ) {
+      setSelectedPeople([]);
+      setStep("people");
+    } else {
+      // Standard Create New Team candidate pool.
+      setSelectedPeople(
+        availablePeople.map(
+          (person) => person.id,
+        ),
+      );
+      setStep("requirement");
+    }
+
+    // Canonicalise the URL so refresh/back does not restart the rebuild.
+    router.replace(
+      "/team-builder?flow=rebuild",
+    );
+  }, [
+    activeWorkspaceId,
+    adjustSearchParams,
+    people,
+    ready,
+    router,
+  ]);
+
+function toggleFinalPerson(
     id: string,
   ) {
     setFinalPeople(
@@ -756,19 +879,19 @@ export function GuidedTeamBuilder() {
         >
           <div>
             <span className="eyebrow">
-              Build a Team
+              {isRebuildFlow
+                ? "Rebuild Team"
+                : "Build a Team"}
             </span>
             <h1>
-              Create the right team
-              in five clear steps.
+              {isRebuildFlow
+                ? "Build a fresh version of your team."
+                : "Create the right team in five clear steps."}
             </h1>
             <p>
-              AutoTeams guides you
-              from group selection
-              to a human-reviewed
-              Gemini recommendation
-              without sending you to
-              other setup pages.
+              {isRebuildFlow
+                ? "Create a new team recommendation while keeping the existing team unchanged. Choose the people and requirements you want Atlas to consider."
+                : "AutoTeams guides you from group selection to a human-reviewed Gemini recommendation without sending you to other setup pages."}
             </p>
           </div>
 
@@ -811,6 +934,12 @@ export function GuidedTeamBuilder() {
         className={styles.body}
       >
         <div className="container">
+          {isRebuildFlow && (
+            <div className={styles.message}>
+              Rebuild Team creates a new team. Your existing team will remain unchanged.
+            </div>
+          )}
+
           {message && (
             <div
               className={
