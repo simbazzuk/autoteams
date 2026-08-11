@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { useAuth } from "@/components/AuthProvider";
 import { WorkspaceSwitcher } from "@/components/workspaces/WorkspaceSwitcher";
 import { useWorkspaceAccess } from "./AccessContext";
 import {
@@ -105,7 +104,6 @@ function rememberPreferredProfileMode(mode: ContextMode) {
 }
 
 export function MembersPanel() {
-  const { user } = useAuth();
   const [workspaceId, setWorkspaceId] = useState("");
   const [memberships, setMemberships] = useState<WorkspaceMembership[]>([]);
   const [invitations, setInvitations] = useState<WorkspaceInvitation[]>([]);
@@ -134,21 +132,16 @@ export function MembersPanel() {
     setProfiles(availableProfiles);
 
     const preferred = readPreferredProfileMode();
-    const firstOwned = availableProfiles.find((profile) =>
-      belongsToCurrentUser(
-        profile,
-        user?.displayName,
-        user?.email,
-      ),
+    const availableModes = new Set(
+      availableProfiles.map((profile) => profile.mode),
     );
 
     setProfileMode(
-      preferred ??
-        firstOwned?.mode ??
-        availableProfiles[0]?.mode ??
-        "",
+      preferred && availableModes.has(preferred)
+        ? preferred
+        : availableProfiles[0]?.mode ?? "",
     );
-  }, [user?.displayName, user?.email]);
+  }, []);
 
   const workspaceMembers = useMemo(
     () => memberships.filter((item) => item.workspaceId === workspaceId),
@@ -163,17 +156,21 @@ export function MembersPanel() {
     [invitations, workspaceId],
   );
 
-  const myProfiles = useMemo(
-    () =>
-      profiles.filter((profile) =>
-        belongsToCurrentUser(
-          profile,
-          user?.displayName,
-          user?.email,
-        ),
-      ),
-    [profiles, user?.displayName, user?.email],
-  );
+  const myProfiles = useMemo(() => {
+    // v7.13.26: contextual profiles loaded for this signed-in browser/account
+    // are already the user's available profile contexts. Do not infer
+    // ownership again from preferredName/email because that can hide valid
+    // Work, Sport, Community or Education profiles.
+    const byMode = new Map<ContextMode, ContextualProfile>();
+
+    for (const profile of profiles) {
+      if (!byMode.has(profile.mode)) {
+        byMode.set(profile.mode, profile);
+      }
+    }
+
+    return [...byMode.values()];
+  }, [profiles]);
 
   const selectedProfile =
     myProfiles.find((profile) => profile.mode === profileMode) ??
@@ -268,7 +265,7 @@ export function MembersPanel() {
     };
 
   return (
-    <main className="access-page">
+    <main className="access-page" data-autoteams-invite="v7.13.26">
       <section className={`access-hero ${styles.hero}`}>
         <div className={`container access-hero-row ${styles.heroRow}`}>
           <div>
@@ -292,7 +289,10 @@ export function MembersPanel() {
             </div>
 
             <label className={styles.profileControl}>
-              <span>Profile context</span>
+              <span>
+                Profile context
+                {myProfiles.length > 1 ? ` · ${myProfiles.length} available` : ""}
+              </span>
               <select
                 value={profileMode}
                 onChange={(event) => {
@@ -312,8 +312,8 @@ export function MembersPanel() {
                 )}
               </select>
               <small>
-                This helps frame the invitation. Workspace access is still
-                controlled by the workspace above.
+                Choose from your AutoTeams profile contexts. Workspace access
+                is still controlled by the workspace above.
               </small>
             </label>
 
