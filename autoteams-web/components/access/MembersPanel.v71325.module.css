@@ -321,3 +321,28 @@
     grid-template-columns: 1fr !important;
   }
 }
+
+
+/* v7.13.30 - Invite dropdown readability */
+.profileControl select {
+  color: #f8fafc !important;
+  background-color: #0f172a !important;
+  color-scheme: dark;
+}
+
+.profileControl select option {
+  color: #f8fafc !important;
+  background-color: #0f172a !important;
+}
+
+.profileControl select option:checked {
+  color: #ffffff !important;
+  background-color: #334155 !important;
+}
+
+/* Keep invite/profile terminology visually consistent. */
+.profileControl select:focus {
+  outline: none;
+  border-color: rgba(129, 140, 248, .9) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, .22);
+}

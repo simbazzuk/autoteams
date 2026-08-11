@@ -270,7 +270,7 @@ export function MembersPanel() {
     };
 
   return (
-    <main className="access-page" data-autoteams-invite="v7.13.29">
+    <main className="access-page" data-autoteams-invite="v7.13.30">
       <section className={`access-hero ${styles.hero}`}>
         <div className={`container access-hero-row ${styles.heroRow}`}>
           <div>
@@ -345,7 +345,7 @@ export function MembersPanel() {
             <section className="access-panel">
               <div className="access-panel-heading">
                 <div>
-                  <span className="eyebrow">Workspace members</span>
+                  <span className="eyebrow">Profile members</span>
                   <h2>People and permissions</h2>
                 </div>
                 <span>{workspaceMembers.length}</span>
