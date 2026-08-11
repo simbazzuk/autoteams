@@ -55,6 +55,69 @@ const CANONICAL_PROFILE_MODES: ContextMode[] = [
   "education",
 ];
 
+
+function workspaceTypeToProfileMode(
+  type?: string | null,
+): ContextMode | undefined {
+  switch ((type ?? "").toLowerCase()) {
+    case "organisation":
+    case "business":
+    case "work":
+      return "business";
+    case "sports":
+    case "sport":
+      return "sports";
+    case "friends_family":
+    case "friendship":
+    case "personal":
+      return "friendship";
+    case "community":
+      return "community";
+    case "education":
+      return "education";
+    default:
+      return undefined;
+  }
+}
+
+function memberBelongsToProfile(
+  member: WorkspaceMembership,
+  mode: ContextMode,
+  currentUserId: string,
+  legacyMode?: ContextMode,
+) {
+  // The signed-in owner/person can operate across their own profile contexts.
+  if (
+    member.userId === currentUserId ||
+    member.role === "owner"
+  ) {
+    return true;
+  }
+
+  if (member.profileContexts?.length) {
+    return member.profileContexts.includes(mode);
+  }
+
+  // Legacy memberships pre-date profileContexts. Associate them only with
+  // the context implied by their old container, rather than showing them
+  // under every profile.
+  return legacyMode === mode;
+}
+
+function invitationBelongsToProfile(
+  invitation: WorkspaceInvitation,
+  mode: ContextMode,
+  legacyMode?: ContextMode,
+) {
+  if (invitation.profileContext) {
+    return invitation.profileContext === mode;
+  }
+
+  // Legacy invitations had no profileContext; keep them only with their
+  // original context instead of duplicating them across all profiles.
+  return legacyMode === mode;
+}
+
 function normalise(value?: string | null) {
   return (value ?? "").trim().toLowerCase();
 }
@@ -159,6 +222,43 @@ export function MembersPanel() {
       ),
     [invitations, workspaceId],
   );
+
+  const legacyProfileMode =
+    workspaceTypeToProfileMode(workspace?.type);
+
+  const profileMembers = useMemo(() => {
+    if (!profileMode) return [];
+
+    return workspaceMembers.filter((member) =>
+      memberBelongsToProfile(
+        member,
+        profileMode,
+        access.currentUserId,
+        legacyProfileMode,
+      ),
+    );
+  }, [
+    workspaceMembers,
+    profileMode,
+    access.currentUserId,
+    legacyProfileMode,
+  ]);
+
+  const profileInvitations = useMemo(() => {
+    if (!profileMode) return [];
+
+    return workspaceInvitations.filter((invitation) =>
+      invitationBelongsToProfile(
+        invitation,
+        profileMode,
+        legacyProfileMode,
+      ),
+    );
+  }, [
+    workspaceInvitations,
+    profileMode,
+    legacyProfileMode,
+  ]);
 
   const profileOptions = useMemo(() => {
     // v7.13.31: Invite must use the same canonical profile model as
@@ -281,7 +381,7 @@ export function MembersPanel() {
     };
 
   return (
-    <main className="access-page" data-autoteams-invite="v7.13.31">
+    <main className="access-page" data-autoteams-invite="v7.13.32">
       <section className={`access-hero ${styles.hero}`}>
         <div className={`container access-hero-row ${styles.heroRow}`}>
           <div>
@@ -332,12 +432,12 @@ export function MembersPanel() {
           <section className="access-main">
             <div className={`access-summary-grid ${styles.summaryGrid}`}>
               <article className={styles.peopleMetric}>
-                <small>Active members</small>
-                <strong>{workspaceMembers.length}</strong>
+                <small>Profile members</small>
+                <strong>{profileMembers.length}</strong>
               </article>
               <article className={styles.inviteMetric}>
                 <small>Pending invitations</small>
-                <strong>{workspaceInvitations.length}</strong>
+                <strong>{profileInvitations.length}</strong>
               </article>
               <article className={styles.profileMetric}>
                 <small>Selected profile</small>
@@ -352,14 +452,30 @@ export function MembersPanel() {
             <section className="access-panel">
               <div className="access-panel-heading">
                 <div>
-                  <span className="eyebrow">People with access</span>
-                  <h2>People and permissions</h2>
+                  <span className="eyebrow">Profile members</span>
+                  <h2>
+                    {selectedProfileOption
+                      ? `${profileModeLabel(selectedProfileOption.mode)} members`
+                      : "Profile members"}
+                  </h2>
                 </div>
-                <span>{workspaceMembers.length}</span>
+                <span>{profileMembers.length}</span>
               </div>
 
               <div className="access-member-list">
-                {workspaceMembers.map((member) => (
+                {profileMembers.length === 0 && (
+                  <div className={styles.profileEmptyState}>
+                    <strong>
+                      No members in this profile yet.
+                    </strong>
+                    <span>
+                      Invite someone using the form to add them to the selected
+                      profile context.
+                    </span>
+                  </div>
+                )}
+
+                {profileMembers.map((member) => (
                   <article key={member.id}>
                     <span className="avatar">
                       {member.name.charAt(0).toUpperCase()}
@@ -584,7 +700,7 @@ export function MembersPanel() {
               </div>
 
               <div className="invitation-list">
-                {workspaceInvitations.length === 0 ? (
+                {profileInvitations.length === 0 ? (
                   <p>No pending invitations.</p>
                 ) : (
                   workspaceInvitations.map((invitation) => (

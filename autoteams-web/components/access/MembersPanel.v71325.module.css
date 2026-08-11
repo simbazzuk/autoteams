@@ -356,3 +356,24 @@
   font-size: .8rem;
   line-height: 1.5;
 }
+
+
+/* v7.13.32 - profile-specific member state */
+.profileEmptyState {
+  display: grid;
+  gap: 6px;
+  padding: 18px;
+  border: 1px dashed rgba(129, 140, 248, .28);
+  border-radius: 14px;
+  background: rgba(79, 70, 229, .05);
+}
+
+.profileEmptyState strong {
+  color: #f8fafc;
+}
+
+.profileEmptyState span {
+  color: #8fa0bb;
+  font-size: .82rem;
+  line-height: 1.5;
+}
