@@ -106,13 +106,15 @@ function normaliseProfileType(
 function inferProfileType(
   team: RecordLike,
 ) {
+  // v7.13.22: profile identity must come from an explicit profile field
+  // whenever Team Builder has supplied one. Workspace/team types describe
+  // the group and must not override the profile used to build the team.
   const explicit =
     stringValue(
       team.profileType ??
-        team.contextType ??
-        team.teamType ??
-        team.workspaceType ??
-        team.groupType,
+        team.builderProfileType ??
+        team.selectedProfile ??
+        team.profileContext,
     );
 
   if (explicit) {
@@ -121,9 +123,15 @@ function inferProfileType(
     );
   }
 
+  // Legacy records may not contain profileType. Only those records use
+  // workspace/context inference.
   const context =
     stringValue(
-      team.workspaceId ??
+      team.contextType ??
+        team.teamType ??
+        team.workspaceType ??
+        team.groupType ??
+        team.workspaceId ??
         team.contextId ??
         team.workspaceName ??
         team.contextName,

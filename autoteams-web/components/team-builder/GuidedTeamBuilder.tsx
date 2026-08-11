@@ -62,6 +62,7 @@ type RankedPerson = {
 type SavedTeam = {
   id: string;
   workspaceId: string;
+  profileType: string;
   name: string;
   purpose: string;
   personIds: string[];
@@ -81,6 +82,91 @@ type SavedTeam = {
 
 const TEAM_KEY =
   "autoteams-v20-saved-teams";
+
+const INSIGHTS_PROFILE_KEY =
+  "autoteams-team-insights-selected-profile-v7122";
+
+function normaliseTeamProfileType(
+  value?: string | null,
+) {
+  const raw =
+    (value ?? "")
+      .trim()
+      .toLowerCase();
+
+  if (["work", "business", "professional"].includes(raw)) {
+    return "work";
+  }
+
+  if (["sport", "sports"].includes(raw)) {
+    return "sport";
+  }
+
+  if (["friendship", "friends", "friends_family", "personal"].includes(raw)) {
+    return "friendship";
+  }
+
+  if (raw === "community") {
+    return "community";
+  }
+
+  if (raw === "education") {
+    return "education";
+  }
+
+  return "";
+}
+
+function workspaceProfileFallback(
+  workspace?: Workspace,
+) {
+  if (!workspace) return "work";
+
+  switch (workspace.type) {
+    case "sports":
+      return "sport";
+    case "community":
+      return "community";
+    case "education":
+      return "education";
+    case "friends_family":
+      return "friendship";
+    default:
+      return "work";
+  }
+}
+
+function selectedProfileForTeam(
+  searchParams: ReturnType<typeof useSearchParams>,
+  workspace?: Workspace,
+) {
+  // Explicit route context is authoritative. This is used when Team Builder
+  // is launched from a profile-aware experience such as Team Insights.
+  const routeProfile = normaliseTeamProfileType(
+    searchParams.get("profileType") ??
+      searchParams.get("profile") ??
+      searchParams.get("context"),
+  );
+
+  if (routeProfile) {
+    return routeProfile;
+  }
+
+  // Team Insights persists the user's current profile selection. Preserve it
+  // when Build Team is opened without a query string.
+  try {
+    const selectedProfile = normaliseTeamProfileType(
+      localStorage.getItem(INSIGHTS_PROFILE_KEY),
+    );
+
+    if (selectedProfile) {
+      return selectedProfile;
+    }
+  } catch {}
+
+  // Workspace type is deliberately the final fallback only.
+  return workspaceProfileFallback(workspace);
+}
 
 const groupTypes: Array<{
   value: FriendlyWorkspaceType;
@@ -645,7 +731,7 @@ export function GuidedTeamBuilder() {
     useState(false);
 
   /*
-   * v7.13.10
+   * v7.13.22
    *
    * Rebuild Team starts a fresh team design rather than attempting to
    * reconstruct the existing team.
@@ -791,6 +877,11 @@ function toggleFinalPerson(
       id: createWorkspaceId("team"),
       workspaceId:
         activeWorkspace.id,
+      profileType:
+        selectedProfileForTeam(
+          adjustSearchParams,
+          activeWorkspace,
+        ),
       name:
         requirement.name.trim() ||
         `${activeWorkspace.name} Team`,
