@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import {useRouter, useSearchParams} from "next/navigation";
 import { createPersona } from "@/lib/personas";
 import { useAuth } from "./AuthProvider";
 
@@ -60,15 +60,12 @@ const prompts: Record<string, string[]> = {
 };
 
 export function PersonaWizard() {
-  // v7.13.36-fix4: read invite mode client-side without useSearchParams.
-  // This keeps /register prerenderable in Next.js 16.
-  const [inviteMode, setInviteMode] = useState(false);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setInviteMode(Boolean(params.get("invite")));
-  }, []);
-const router = useRouter();
+  // v7.13.36-fix3: invitation mode is owned by PersonaWizard itself.
+  // This avoids relying on an external helper component to set a DOM flag.
+  const searchParams = useSearchParams();
+  const inviteToken = searchParams.get("invite") ?? "";
+  const inviteMode = Boolean(inviteToken);
+  const router = useRouter();
   const { user, loading } = useAuth();
 
   const [step, setStep] = useState(1);

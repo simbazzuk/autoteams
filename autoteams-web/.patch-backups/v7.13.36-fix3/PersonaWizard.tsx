@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createPersona } from "@/lib/personas";
 import { useAuth } from "./AuthProvider";
@@ -60,15 +60,7 @@ const prompts: Record<string, string[]> = {
 };
 
 export function PersonaWizard() {
-  // v7.13.36-fix4: read invite mode client-side without useSearchParams.
-  // This keeps /register prerenderable in Next.js 16.
-  const [inviteMode, setInviteMode] = useState(false);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setInviteMode(Boolean(params.get("invite")));
-  }, []);
-const router = useRouter();
+  const router = useRouter();
   const { user, loading } = useAuth();
 
   const [step, setStep] = useState(1);
@@ -120,7 +112,7 @@ const router = useRouter();
   }
 
   if (loading) {
-    return <div className={inviteMode ? "wizard invite-mode" : "wizard"}>Checking your account…</div>;
+    return <div className="wizard">Checking your account…</div>;
   }
 
   if (!user) {
@@ -152,7 +144,7 @@ const router = useRouter();
   }
 
   return (
-    <div className={inviteMode ? "wizard invite-mode" : "wizard"}>
+    <div className="wizard">
       <div className="wizard-progress">
         {[1, 2, 3, 4].map((number) => (
           <span className={number <= step ? "active" : ""} key={number} />

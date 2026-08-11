@@ -57,6 +57,7 @@ if (href === "/people") {
     return [
       "/people",
       "/talent",
+      "/members",
       "/talent-pools",
     ].some(
       (route) =>
