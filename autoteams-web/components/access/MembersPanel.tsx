@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { WorkspaceSwitcher } from "@/components/workspaces/WorkspaceSwitcher";
 import { useWorkspaceAccess } from "./AccessContext";
 import {
   MemberConsent,
@@ -202,7 +201,7 @@ export function MembersPanel() {
     setInviteMessage(
       `Invitation created for ${invitation.email}${
         invitation.profileContext
-          ? ` · ${profileModeLabel(invitation.profileContext)} context`
+          ? ` · ${profileModeLabel(invitation.profileContext)} profile`
           : ""
       }.`,
     );
@@ -271,32 +270,28 @@ export function MembersPanel() {
     };
 
   return (
-    <main className="access-page" data-autoteams-invite="v7.13.27">
+    <main className="access-page" data-autoteams-invite="v7.13.29">
       <section className={`access-hero ${styles.hero}`}>
         <div className={`container access-hero-row ${styles.heroRow}`}>
           <div>
-            <span className="eyebrow">Invite & grow</span>
-            <h1>Bring the right people into AutoTeams.</h1>
+            <span className="eyebrow">Invite people</span>
+            <h1>Invite someone to your AutoTeams profile context.</h1>
             <p>
-              Invite people into a workspace, then let each person build their
-              own Atlas profile. Roles keep access controlled while Team Builder
-              gets the people it needs.
+              Choose the profile context, enter their details and send the
+              invitation. They can then join AutoTeams, create their own profile
+              and become available for team building.
             </p>
             <div className={styles.heroPills}>
               <span>♙ Invite people</span>
-              <span>◇ Assign roles</span>
-              <span>✦ Build better teams</span>
+              <span>✦ Choose profile context</span>
+              <span>◇ Build teams together</span>
             </div>
           </div>
 
           <div className={`access-account-summary ${styles.contextCard}`}>
-            <div className={styles.workspaceControl}>
-              <WorkspaceSwitcher value={workspaceId} onChange={setWorkspaceId} />
-            </div>
-
             <label className={styles.profileControl}>
               <span>
-                Default invite context
+                Invite to profile
                 {myProfiles.length > 1 ? ` · ${myProfiles.length} available` : ""}
               </span>
               <select
@@ -318,17 +313,9 @@ export function MembersPanel() {
                 )}
               </select>
               <small>
-                Sets the default for new invitations. You can change it
-                again inside each invitation form.
+                Choose the AutoTeams profile context this invitation relates to.
               </small>
             </label>
-
-            <div className={styles.roleSummary}>
-              <span>Signed-in role</span>
-              <strong>
-                {access.role ? roleLabel(access.role, category) : "No workspace access"}
-              </strong>
-            </div>
           </div>
         </div>
       </section>
@@ -337,16 +324,6 @@ export function MembersPanel() {
         <div className="container access-layout">
           <section className="access-main">
             <div className={`access-summary-grid ${styles.summaryGrid}`}>
-              <article className={styles.workspaceMetric}>
-                <small>Workspace</small>
-                <strong>{workspace?.name || "Not selected"}</strong>
-              </article>
-              <article className={styles.roleMetric}>
-                <small>Your role</small>
-                <strong>
-                  {access.role ? roleLabel(access.role, category) : "No access"}
-                </strong>
-              </article>
               <article className={styles.peopleMetric}>
                 <small>Active members</small>
                 <strong>{workspaceMembers.length}</strong>
@@ -356,7 +333,7 @@ export function MembersPanel() {
                 <strong>{workspaceInvitations.length}</strong>
               </article>
               <article className={styles.profileMetric}>
-                <small>Default invite context</small>
+                <small>Selected profile</small>
                 <strong>
                   {selectedProfile
                     ? profileModeLabel(selectedProfile.mode)
@@ -514,14 +491,14 @@ export function MembersPanel() {
                   ♙+
                 </span>
                 <div>
-                  <span className="eyebrow">Invite people</span>
-                  <h2 style={{ margin: "3px 0 0" }}>Grow this workspace</h2>
+                  <span className="eyebrow">Invite to profile</span>
+                  <h2 style={{ margin: "3px 0 0" }}>Invite someone</h2>
                 </div>
               </div>
               <p className={styles.inviteIntro}>
-                Invite someone to <strong>{workspace?.name || "this workspace"}</strong>.
-                They create their own profile after joining and can then become
-                available for team building.
+                Invite someone to the selected AutoTeams profile context. They
+                create and own their own profile after joining, and can then
+                become available for team building.
               </p>
 
               {!canManage ? (
@@ -552,42 +529,9 @@ export function MembersPanel() {
                       placeholder="name@example.com"
                     />
                   </label>
-                  <label className={styles.inviteContextField}>
-                    Profile context
-                    <select
-                      required={myProfiles.length > 0}
-                      value={profileMode}
-                      onChange={(event) => {
-                        const next =
-                          event.target.value as ContextMode;
-                        setProfileMode(next);
-                        rememberPreferredProfileMode(next);
-                      }}
-                    >
-                      {myProfiles.length ? (
-                        myProfiles.map((profile) => (
-                          <option
-                            key={profile.id}
-                            value={profile.mode}
-                          >
-                            {profileModeLabel(profile.mode)}
-                          </option>
-                        ))
-                      ) : (
-                        <option value="">
-                          No profiles created yet
-                        </option>
-                      )}
-                    </select>
-                    <small>
-                      Sets the initial collaboration context for this
-                      invitation. The invited person still owns and creates
-                      their own profile.
-                    </small>
-                  </label>
 
-                  <label>
-                    Role
+<label>
+                    Team role
                     <select
                       value={inviteRole}
                       onChange={(event) =>
@@ -649,7 +593,7 @@ export function MembersPanel() {
                           ? `${profileModeIcon(invitation.profileContext)} ${profileModeLabel(
                               invitation.profileContext,
                             )}`
-                          : "No profile context"}
+                          : "No profile selected"}
                       </span>
                       {canManage && (
                         <button

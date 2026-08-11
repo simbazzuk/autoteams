@@ -265,3 +265,59 @@
   font-weight: 800;
   white-space: nowrap;
 }
+
+
+/* v7.13.29 - profile-first invitation UX */
+
+.summaryGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.contextCard {
+  max-width: 430px;
+}
+
+.contextCard::before {
+  content: "PROFILE INVITATION";
+  display: block;
+  margin-bottom: 12px;
+  color: #818cf8;
+  font-size: .69rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.profileControl {
+  margin-top: 0 !important;
+}
+
+.profileControl select {
+  min-height: 54px !important;
+  font-size: 1rem;
+  border-color: rgba(129,140,248,.46) !important;
+  background:
+    linear-gradient(145deg, rgba(79,70,229,.08), rgba(7,13,27,.92)) !important;
+}
+
+.invitePanel {
+  border-color: rgba(129,140,248,.46) !important;
+}
+
+.invitePanel form {
+  margin-top: 18px;
+}
+
+.invitePanel::before {
+  content: "";
+  display: block;
+  height: 3px;
+  margin: -1px -1px 20px;
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #38bdf8);
+}
+
+@media (max-width: 900px) {
+  .summaryGrid {
+    grid-template-columns: 1fr !important;
+  }
+}
