@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/AuthProvider";
 import {
@@ -46,17 +47,13 @@ export function SimpleProfileDashboard() {
   const [ready, setReady] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [message, setMessage] = useState("");
-  const [requestedMode, setRequestedMode] =
-    useState<ContextMode | undefined>(undefined);
+
+  const searchParams = useSearchParams();
+  const requestedMode = contextQueryToMode(
+    searchParams.get("context"),
+  );
 
   useEffect(() => {
-    const requestedContext =
-      new URLSearchParams(window.location.search).get("context");
-
-    setRequestedMode(
-      contextQueryToMode(requestedContext),
-    );
-
     setAllProfiles(loadContextualProfiles());
     setWorkspaces(loadWorkspaces());
     setActiveWorkspaceId(loadActiveWorkspaceId());
@@ -732,7 +729,7 @@ function selectPrimaryProfile(
 ): ContextualProfile | undefined {
   if (!profiles.length) return undefined;
 
-  // v7.13.19: Team Insights passes ?context=<profile type>.
+  // v7.13.20: Team Insights passes ?context=<profile type>.
   // Honour that explicit context before workspace/default selection.
   if (requestedMode) {
     const requestedProfile = profiles.find(
