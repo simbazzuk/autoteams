@@ -18,6 +18,23 @@ type RecordLike =
 const TEAM_KEY_PATTERN =
   /team|savedteam|recommendation/i;
 
+const DELETED_TEAMS_KEY =
+  "autoteams-deleted-team-ids-v71317";
+
+function deletedTeamIds() {
+  try {
+    const raw = localStorage.getItem(DELETED_TEAMS_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return new Set<string>(
+      Array.isArray(parsed)
+        ? parsed.filter((value): value is string => typeof value === "string")
+        : [],
+    );
+  } catch {
+    return new Set<string>();
+  }
+}
+
 function isRecord(
   value: unknown,
 ): value is RecordLike {
@@ -410,6 +427,49 @@ function teamDocument(
         team.id,
     );
 
+  let adjustment:
+    {
+      teamId?: string;
+      name?: string;
+      workspaceId?: string | null;
+    } | null =
+    null;
+
+  try {
+    const rawAdjustment =
+      localStorage.getItem(
+        "autoteams-adjust-team-v7136",
+      );
+
+    adjustment =
+      rawAdjustment
+        ? JSON.parse(
+            rawAdjustment,
+          )
+        : null;
+  } catch {
+    adjustment = null;
+  }
+
+  const adjustmentMatches =
+    Boolean(
+      adjustment?.teamId &&
+      adjustment?.name &&
+      adjustment.name ===
+        name &&
+      (
+        !adjustment.workspaceId ||
+        adjustment.workspaceId ===
+          (
+            stringValue(
+              team.workspaceId,
+            ) ??
+            contextId ??
+            null
+          )
+      ),
+    );
+
   const derivedKey =
     [
       ownerId,
@@ -420,10 +480,12 @@ function teamDocument(
 
   const id =
     safeDocumentId(
-      rawId ??
-        `team-${stableHash(
-          derivedKey,
-        )}`,
+      adjustmentMatches
+        ? adjustment!.teamId!
+        : rawId ??
+          `team-${stableHash(
+            derivedKey,
+          )}`,
     );
 
   const existingMembers =
@@ -534,6 +596,13 @@ async function persistCandidate(
     return;
   }
 
+  // v7.13.17: legacy localStorage may still contain a team after the
+  // Firestore document is deleted. A tombstone is authoritative and stops
+  // this migration bridge from recreating that team.
+  if (deletedTeamIds().has(mapped.id)) {
+    return;
+  }
+
   await setDoc(
     doc(
       db,
@@ -563,6 +632,43 @@ async function persistCandidate(
       },
     ),
   );
+
+  try {
+    const rawAdjustment =
+      localStorage.getItem(
+        "autoteams-adjust-team-v7136",
+      );
+
+    if (rawAdjustment) {
+      const adjustment =
+        JSON.parse(
+          rawAdjustment,
+        );
+
+      if (
+        adjustment?.teamId ===
+          mapped.id
+      ) {
+        localStorage.removeItem(
+          "autoteams-adjust-team-v7136",
+        );
+
+        window.dispatchEvent(
+          new CustomEvent(
+            "autoteams:team-adjustment-completed",
+            {
+              detail: {
+                teamId:
+                  mapped.id,
+                name:
+                  mapped.data.name,
+              },
+            },
+          ),
+        );
+      }
+    }
+  } catch {}
 }
 
 async function persistRawValue(

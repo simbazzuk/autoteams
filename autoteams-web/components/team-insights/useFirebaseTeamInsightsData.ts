@@ -15,6 +15,7 @@ import { db } from "@/lib/firebase";
 export type FirebaseInsightTeam = {
   id: string;
   name: string;
+  sourceCollection: string;
   contextId?: string;
   contextName?: string;
   profileType?: string;
@@ -260,6 +261,7 @@ function includesUser(
 function mapTeam(
   id: string,
   data: DocumentData,
+  sourceCollection: string,
 ): FirebaseInsightTeam | null {
   const name =
     stringValue(
@@ -284,6 +286,7 @@ function mapTeam(
   return {
     id,
     name,
+    sourceCollection,
     contextId:
       stringValue(
         data.contextId ??
@@ -444,6 +447,7 @@ async function loadTeams(
               mapTeam(
                 document.id,
                 document.data(),
+                collectionName,
               );
 
             if (mapped) {
@@ -489,6 +493,7 @@ async function loadTeams(
             mapTeam(
               document.id,
               data,
+              collectionName,
             );
 
           if (mapped) {

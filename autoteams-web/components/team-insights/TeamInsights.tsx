@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { deleteDoc, doc, getDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 import {
   useEffect,
   useMemo,
@@ -34,6 +36,9 @@ const TEAM_KEY =
 
 const PROFILE_KEY =
   "autoteams-team-insights-selected-profile-v7122";
+
+const DELETED_TEAMS_KEY =
+  "autoteams-deleted-team-ids-v71317";
 
 const DEFAULT_PROFILES:
   FirebaseInsightProfile[] = [
@@ -340,6 +345,26 @@ export function TeamInsights() {
   ] =
     useState("");
 
+  // Optimistically hide a team from the current insights session once
+  // Firestore confirms it has been deleted. The Firebase data hook then
+  // refreshes in the background so every selector converges on the same list.
+  const [
+    deletedTeamIds,
+    setDeletedTeamIds,
+  ] = useState<Set<string>>(
+    () => new Set(),
+  );
+
+  const [
+    deleteMessage,
+    setDeleteMessage,
+  ] = useState("");
+
+  const [
+    deletingTeam,
+    setDeletingTeam,
+  ] = useState(false);
+
   const [
     workspacePeople,
     setWorkspacePeople,
@@ -456,16 +481,20 @@ export function TeamInsights() {
       () =>
         teams.filter(
           (team) =>
-            !selectedProfile ||
-            !team.profileType ||
-            normaliseProfileType(
-              team.profileType,
-            ) ===
-              selectedProfile,
+            !deletedTeamIds.has(team.id) &&
+            (
+              !selectedProfile ||
+              !team.profileType ||
+              normaliseProfileType(
+                team.profileType,
+              ) ===
+                selectedProfile
+            ),
         ),
       [
         teams,
         selectedProfile,
+        deletedTeamIds,
       ],
     );
 
@@ -603,6 +632,124 @@ export function TeamInsights() {
     } catch {}
   }
 
+  async function deleteSelectedTeam() {
+    if (!selectedTeam || deletingTeam) {
+      return;
+    }
+
+    const confirmed = window.confirm(
+      `Delete “${selectedTeam.name}”?\n\nThis permanently removes the saved team. It will not delete any member profiles or people.`,
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    setDeletingTeam(true);
+    setDeleteMessage("");
+
+    const deletedId = selectedTeam.id;
+    const sourceCollection =
+      selectedTeam.sourceCollection || "teams";
+
+    // Write the tombstone BEFORE deleting Firestore. This closes the race
+    // where TeamPersistenceBridge could otherwise restore a legacy copy
+    // between deleteDoc() and the UI refresh.
+    let previousTombstones: string[] = [];
+
+    try {
+      try {
+        const raw = localStorage.getItem(DELETED_TEAMS_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        previousTombstones = Array.isArray(parsed)
+          ? parsed.filter((value): value is string => typeof value === "string")
+          : [];
+
+        localStorage.setItem(
+          DELETED_TEAMS_KEY,
+          JSON.stringify([...new Set([...previousTombstones, deletedId])]),
+        );
+      } catch {}
+
+      const teamRef = doc(db, sourceCollection, deletedId);
+
+      await deleteDoc(teamRef);
+
+      // Firestore deleteDoc resolves even when a document does not exist.
+      // Verify the exact document used by Team Insights is now gone.
+      const verification = await getDoc(teamRef);
+
+      if (verification.exists()) {
+        throw new Error(
+          `Delete verification failed: ${sourceCollection}/${deletedId} still exists.`,
+        );
+      }
+
+      try {
+        localStorage.removeItem(TEAM_KEY);
+      } catch {}
+
+      setDeletedTeamIds((current) => {
+        const next = new Set(current);
+        next.add(deletedId);
+        return next;
+      });
+
+      setSelectedTeamId("");
+      setDeleteMessage(
+        `“${selectedTeam.name}” was deleted.`,
+      );
+
+      window.dispatchEvent(
+        new CustomEvent("autoteams:team-deleted", {
+          detail: {
+            teamId: deletedId,
+            sourceCollection,
+          },
+        }),
+      );
+
+      // Refresh the Firebase-backed selector after the tombstone is safely in
+      // place. TeamPersistenceBridge will now refuse to recreate this ID.
+      window.dispatchEvent(
+        new Event("autoteams:firebase-team-persisted"),
+      );
+    } catch (deleteError) {
+      // The delete did not complete: undo the tombstone so a failed delete
+      // cannot silently suppress legitimate data.
+      try {
+        localStorage.setItem(
+          DELETED_TEAMS_KEY,
+          JSON.stringify(previousTombstones),
+        );
+      } catch {}
+
+      const errorCode =
+        typeof deleteError === "object" &&
+        deleteError !== null &&
+        "code" in deleteError
+          ? String((deleteError as { code?: unknown }).code ?? "")
+          : "";
+
+      const errorText =
+        deleteError instanceof Error
+          ? deleteError.message
+          : "Unknown Firestore delete error";
+
+      console.error("Unable to delete team", {
+        teamId: deletedId,
+        sourceCollection,
+        error: deleteError,
+      });
+
+      setDeleteMessage(
+        `Could not delete “${selectedTeam.name}” from ${sourceCollection}/${deletedId}. ${errorCode ? `${errorCode}: ` : ""}${errorText}`,
+      );
+    } finally {
+      setDeletingTeam(false);
+    }
+  }
+
   const selectedMembers =
     useMemo(() => {
       if (!selectedTeam) {
@@ -729,7 +876,7 @@ export function TeamInsights() {
   return (
     <main
       className={styles.page}
-      data-autoteams-team-insights="v7.13.12"
+      data-autoteams-team-insights="v7.13.17"
     >
       <div
         className={`container ${styles.container}`}
@@ -918,8 +1065,51 @@ export function TeamInsights() {
                 Create a Team →
               </Link>
             )}
+
+            {selectedTeam && (
+              <button
+                aria-label={`Delete ${selectedTeam.name}`}
+                disabled={deletingTeam}
+                onClick={deleteSelectedTeam}
+                type="button"
+                style={{
+                  alignSelf: "flex-end",
+                  width: "auto",
+                  minWidth: "148px",
+                  padding: "10px 16px",
+                  borderRadius: "12px",
+                  border: "1px solid rgba(248, 113, 113, 0.65)",
+                  background: "rgba(127, 29, 29, 0.10)",
+                  color: deletingTeam ? "#fca5a5" : "#f87171",
+                  fontWeight: 700,
+                  cursor: deletingTeam ? "wait" : "pointer",
+                  opacity: deletingTeam ? 0.7 : 1,
+                }}
+              >
+                {deletingTeam
+                  ? "Deleting…"
+                  : "Delete Team"}
+              </button>
+            )}
           </div>
         </section>
+
+        {deleteMessage && (
+          <div
+            role="status"
+            style={{
+              margin: "0 0 18px",
+              padding: "12px 16px",
+              borderRadius: "12px",
+              border: "1px solid rgba(52, 211, 153, 0.35)",
+              background: "rgba(6, 78, 59, 0.14)",
+              color: "#a7f3d0",
+              fontWeight: 600,
+            }}
+          >
+            {deleteMessage}
+          </div>
+        )}
 
         {!selectedTeam ? (
           <section
