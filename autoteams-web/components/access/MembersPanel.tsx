@@ -47,6 +47,14 @@ function profileModeIcon(mode: ContextMode) {
   }[mode];
 }
 
+const CANONICAL_PROFILE_MODES: ContextMode[] = [
+  "business",
+  "sports",
+  "friendship",
+  "community",
+  "education",
+];
+
 function normalise(value?: string | null) {
   return (value ?? "").trim().toLowerCase();
 }
@@ -131,14 +139,11 @@ export function MembersPanel() {
     setProfiles(availableProfiles);
 
     const preferred = readPreferredProfileMode();
-    const availableModes = new Set(
-      availableProfiles.map((profile) => profile.mode),
-    );
 
     setProfileMode(
-      preferred && availableModes.has(preferred)
+      preferred && CANONICAL_PROFILE_MODES.includes(preferred)
         ? preferred
-        : availableProfiles[0]?.mode ?? "",
+        : "business",
     );
   }, []);
 
@@ -155,25 +160,31 @@ export function MembersPanel() {
     [invitations, workspaceId],
   );
 
-  const myProfiles = useMemo(() => {
-    // v7.13.26: contextual profiles loaded for this signed-in browser/account
-    // are already the user's available profile contexts. Do not infer
-    // ownership again from preferredName/email because that can hide valid
-    // Work, Sport, Community or Education profiles.
-    const byMode = new Map<ContextMode, ContextualProfile>();
+  const profileOptions = useMemo(() => {
+    // v7.13.31: Invite must use the same canonical profile model as
+    // My AutoTeams Summary. Saved contextual-profile data enriches the
+    // option where available, but missing local records must not hide
+    // Work, Sport, Friendship, Community or Education.
+    const savedByMode = new Map<ContextMode, ContextualProfile>();
 
     for (const profile of profiles) {
-      if (!byMode.has(profile.mode)) {
-        byMode.set(profile.mode, profile);
+      if (!savedByMode.has(profile.mode)) {
+        savedByMode.set(profile.mode, profile);
       }
     }
 
-    return [...byMode.values()];
+    return CANONICAL_PROFILE_MODES.map((mode) => ({
+      mode,
+      profile: savedByMode.get(mode),
+    }));
   }, [profiles]);
 
+  const selectedProfileOption =
+    profileOptions.find((item) => item.mode === profileMode) ??
+    profileOptions[0];
+
   const selectedProfile =
-    myProfiles.find((profile) => profile.mode === profileMode) ??
-    myProfiles[0];
+    selectedProfileOption?.profile;
 
   function invite(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -270,7 +281,7 @@ export function MembersPanel() {
     };
 
   return (
-    <main className="access-page" data-autoteams-invite="v7.13.30">
+    <main className="access-page" data-autoteams-invite="v7.13.31">
       <section className={`access-hero ${styles.hero}`}>
         <div className={`container access-hero-row ${styles.heroRow}`}>
           <div>
@@ -292,7 +303,7 @@ export function MembersPanel() {
             <label className={styles.profileControl}>
               <span>
                 Invite to profile
-                {myProfiles.length > 1 ? ` · ${myProfiles.length} available` : ""}
+                {` · ${profileOptions.length} available`}
               </span>
               <select
                 value={profileMode}
@@ -302,15 +313,11 @@ export function MembersPanel() {
                   rememberPreferredProfileMode(next);
                 }}
               >
-                {myProfiles.length ? (
-                  myProfiles.map((profile) => (
-                    <option key={profile.id} value={profile.mode}>
-                      {profileModeLabel(profile.mode)}
-                    </option>
-                  ))
-                ) : (
-                  <option value="">No profiles created yet</option>
-                )}
+                {profileOptions.map((item) => (
+                  <option key={item.mode} value={item.mode}>
+                    {profileModeLabel(item.mode)}
+                  </option>
+                ))}
               </select>
               <small>
                 Choose the AutoTeams profile context this invitation relates to.
@@ -335,8 +342,8 @@ export function MembersPanel() {
               <article className={styles.profileMetric}>
                 <small>Selected profile</small>
                 <strong>
-                  {selectedProfile
-                    ? profileModeLabel(selectedProfile.mode)
+                  {selectedProfileOption
+                    ? profileModeLabel(selectedProfileOption.mode)
                     : "Not selected"}
                 </strong>
               </article>
@@ -345,7 +352,7 @@ export function MembersPanel() {
             <section className="access-panel">
               <div className="access-panel-heading">
                 <div>
-                  <span className="eyebrow">Profile members</span>
+                  <span className="eyebrow">People with access</span>
                   <h2>People and permissions</h2>
                 </div>
                 <span>{workspaceMembers.length}</span>

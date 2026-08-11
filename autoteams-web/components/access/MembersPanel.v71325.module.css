@@ -346,3 +346,13 @@
   border-color: rgba(129, 140, 248, .9) !important;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, .22);
 }
+
+
+/* v7.13.31 - canonical profile options */
+.accessNote {
+  margin: 6px 0 14px;
+  max-width: 680px;
+  color: #8fa0bb;
+  font-size: .8rem;
+  line-height: 1.5;
+}
