@@ -173,6 +173,15 @@ function rememberPreferredProfileMode(mode: ContextMode) {
   } catch {}
 }
 
+
+function invitationUrl(token: string) {
+  if (typeof window === "undefined") {
+    return "";
+  }
+
+  return `${window.location.origin}/invite/${encodeURIComponent(token)}`;
+}
+
 export function MembersPanel() {
   const [workspaceId, setWorkspaceId] = useState("");
   const [memberships, setMemberships] = useState<WorkspaceMembership[]>([]);
@@ -182,6 +191,8 @@ export function MembersPanel() {
   const [inviteEmail, setInviteEmail] = useState("");
   const [inviteRole, setInviteRole] = useState<WorkspaceRole>("member");
   const [inviteMessage, setInviteMessage] = useState("");
+  const [copyMessage, setCopyMessage] = useState("");
+  const [lastInvitationToken, setLastInvitationToken] = useState("");
   const [profiles, setProfiles] = useState<ContextualProfile[]>([]);
   const [profileMode, setProfileMode] = useState<ContextMode | "">("");
 
@@ -309,12 +320,14 @@ export function MembersPanel() {
     setInviteName("");
     setInviteEmail("");
     setInviteRole("member");
+    setLastInvitationToken(invitation.token);
+    setCopyMessage("");
     setInviteMessage(
-      `Invitation created for ${invitation.email}${
+      `Invite created for ${invitation.email}${
         invitation.profileContext
           ? ` · ${profileModeLabel(invitation.profileContext)} profile`
           : ""
-      }.`,
+      }. Share the invite link below.`,
     );
   }
 
@@ -381,7 +394,7 @@ export function MembersPanel() {
     };
 
   return (
-    <main className="access-page" data-autoteams-invite="v7.13.32">
+    <main className="access-page" data-autoteams-invite="v7.13.33">
       <section className={`access-hero ${styles.hero}`}>
         <div className={`container access-hero-row ${styles.heroRow}`}>
           <div>
@@ -673,19 +686,57 @@ export function MembersPanel() {
                     </select>
                   </label>
                   <button className="button" type="submit">
-                    Send Invitation →
+                    Create Invite →
                   </button>
                   {inviteMessage && (
-                    <p
-                      role="status"
-                      style={{
-                        margin: "12px 0 0",
-                        color: "#86efac",
-                        fontWeight: 700,
-                      }}
-                    >
-                      ✓ {inviteMessage}
-                    </p>
+                    <div className={styles.inviteCreated}>
+                      <p role="status">
+                        ✓ {inviteMessage}
+                      </p>
+
+                      {lastInvitationToken && (
+                        <div className={styles.inviteShareActions}>
+                          <button
+                            className="button secondary"
+                            onClick={async () => {
+                              const url = invitationUrl(lastInvitationToken);
+
+                              try {
+                                await navigator.clipboard.writeText(url);
+                                setCopyMessage("Invite link copied.");
+                              } catch {
+                                setCopyMessage(
+                                  `Copy this link: ${url}`,
+                                );
+                              }
+                            }}
+                            type="button"
+                          >
+                            Copy Invite Link
+                          </button>
+
+                          <a
+                            className="button secondary"
+                            href={invitationUrl(lastInvitationToken)}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Open Invite
+                          </a>
+                        </div>
+                      )}
+
+                      {copyMessage && (
+                        <small className={styles.copyMessage}>
+                          {copyMessage}
+                        </small>
+                      )}
+
+                      <small className={styles.deliveryNote}>
+                        AutoTeams has created the invitation, but no email has
+                        been sent automatically yet.
+                      </small>
+                    </div>
                   )}
                 </form>
               )}
@@ -711,6 +762,24 @@ export function MembersPanel() {
                       </div>
                       <code>{invitation.token}</code>
                       <span>{roleLabel(invitation.role, category)}</span>
+                      <button
+                        className={styles.copyInviteMini}
+                        onClick={async () => {
+                          const url = invitationUrl(invitation.token);
+
+                          try {
+                            await navigator.clipboard.writeText(url);
+                            setCopyMessage(
+                              `Invite link copied for ${invitation.email}.`,
+                            );
+                          } catch {
+                            setCopyMessage(`Copy this link: ${url}`);
+                          }
+                        }}
+                        type="button"
+                      >
+                        Copy link
+                      </button>
                       <span className={styles.pendingContext}>
                         {invitation.profileContext
                           ? `${profileModeIcon(invitation.profileContext)} ${profileModeLabel(
