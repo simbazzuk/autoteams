@@ -24,6 +24,16 @@ export type WorkspaceInvitation = {
   email: string;
   name: string;
   role: WorkspaceRole;
+  /**
+   * Context the inviter expects this person to use first.
+   * Optional so existing invitations remain valid.
+   */
+  profileContext?:
+    | "business"
+    | "friendship"
+    | "community"
+    | "sports"
+    | "education";
   token: string;
   status: "pending" | "accepted" | "revoked";
   createdAt: string;

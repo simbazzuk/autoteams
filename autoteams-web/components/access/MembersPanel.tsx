@@ -186,6 +186,8 @@ export function MembersPanel() {
       email: inviteEmail.trim(),
       name: inviteName.trim() || inviteEmail.trim().split("@")[0],
       role: inviteRole,
+      profileContext:
+        profileMode || undefined,
       token: createInviteToken(),
       status: "pending",
       createdAt: new Date().toISOString(),
@@ -198,7 +200,11 @@ export function MembersPanel() {
     setInviteEmail("");
     setInviteRole("member");
     setInviteMessage(
-      `Invitation created for ${invitation.email}.`,
+      `Invitation created for ${invitation.email}${
+        invitation.profileContext
+          ? ` · ${profileModeLabel(invitation.profileContext)} context`
+          : ""
+      }.`,
     );
   }
 
@@ -265,7 +271,7 @@ export function MembersPanel() {
     };
 
   return (
-    <main className="access-page" data-autoteams-invite="v7.13.26">
+    <main className="access-page" data-autoteams-invite="v7.13.27">
       <section className={`access-hero ${styles.hero}`}>
         <div className={`container access-hero-row ${styles.heroRow}`}>
           <div>
@@ -290,7 +296,7 @@ export function MembersPanel() {
 
             <label className={styles.profileControl}>
               <span>
-                Profile context
+                Default invite context
                 {myProfiles.length > 1 ? ` · ${myProfiles.length} available` : ""}
               </span>
               <select
@@ -312,8 +318,8 @@ export function MembersPanel() {
                 )}
               </select>
               <small>
-                Choose from your AutoTeams profile contexts. Workspace access
-                is still controlled by the workspace above.
+                Sets the default for new invitations. You can change it
+                again inside each invitation form.
               </small>
             </label>
 
@@ -350,7 +356,7 @@ export function MembersPanel() {
                 <strong>{workspaceInvitations.length}</strong>
               </article>
               <article className={styles.profileMetric}>
-                <small>Profile context</small>
+                <small>Default invite context</small>
                 <strong>
                   {selectedProfile
                     ? profileModeLabel(selectedProfile.mode)
@@ -518,16 +524,6 @@ export function MembersPanel() {
                 available for team building.
               </p>
 
-              {selectedProfile && (
-                <div className={styles.profileContextBanner}>
-                  <span>{profileModeIcon(selectedProfile.mode)}</span>
-                  <div>
-                    <small>Current profile context</small>
-                    <strong>{profileModeLabel(selectedProfile.mode)}</strong>
-                  </div>
-                </div>
-              )}
-
               {!canManage ? (
                 <div className="access-denied">
                   <strong>Invitation access restricted</strong>
@@ -556,6 +552,40 @@ export function MembersPanel() {
                       placeholder="name@example.com"
                     />
                   </label>
+                  <label className={styles.inviteContextField}>
+                    Profile context
+                    <select
+                      required={myProfiles.length > 0}
+                      value={profileMode}
+                      onChange={(event) => {
+                        const next =
+                          event.target.value as ContextMode;
+                        setProfileMode(next);
+                        rememberPreferredProfileMode(next);
+                      }}
+                    >
+                      {myProfiles.length ? (
+                        myProfiles.map((profile) => (
+                          <option
+                            key={profile.id}
+                            value={profile.mode}
+                          >
+                            {profileModeLabel(profile.mode)}
+                          </option>
+                        ))
+                      ) : (
+                        <option value="">
+                          No profiles created yet
+                        </option>
+                      )}
+                    </select>
+                    <small>
+                      Sets the initial collaboration context for this
+                      invitation. The invited person still owns and creates
+                      their own profile.
+                    </small>
+                  </label>
+
                   <label>
                     Role
                     <select
@@ -614,6 +644,13 @@ export function MembersPanel() {
                       </div>
                       <code>{invitation.token}</code>
                       <span>{roleLabel(invitation.role, category)}</span>
+                      <span className={styles.pendingContext}>
+                        {invitation.profileContext
+                          ? `${profileModeIcon(invitation.profileContext)} ${profileModeLabel(
+                              invitation.profileContext,
+                            )}`
+                          : "No profile context"}
+                      </span>
                       {canManage && (
                         <button
                           onClick={() => revoke(invitation.id)}
