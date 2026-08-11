@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { deleteDoc, doc, getDoc } from "firebase/firestore";
+import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { useAuth } from "@/components/AuthProvider";
 import {
   useEffect,
   useMemo,
@@ -36,9 +37,6 @@ const TEAM_KEY =
 
 const PROFILE_KEY =
   "autoteams-team-insights-selected-profile-v7122";
-
-const DELETED_TEAMS_KEY =
-  "autoteams-deleted-team-ids-v71317";
 
 const DEFAULT_PROFILES:
   FirebaseInsightProfile[] = [
@@ -316,6 +314,14 @@ function scoreTeamMembers(
 }
 
 export function TeamInsights() {
+  const auth =
+    useAuth() as unknown as {
+      user?: {
+        uid?: string;
+        email?: string | null;
+      } | null;
+    };
+
   const {
     teams,
     profiles:
@@ -648,47 +654,20 @@ export function TeamInsights() {
     setDeletingTeam(true);
     setDeleteMessage("");
 
-    const deletedId = selectedTeam.id;
-    const sourceCollection =
-      selectedTeam.sourceCollection || "teams";
-
-    // Write the tombstone BEFORE deleting Firestore. This closes the race
-    // where TeamPersistenceBridge could otherwise restore a legacy copy
-    // between deleteDoc() and the UI refresh.
-    let previousTombstones: string[] = [];
-
     try {
-      try {
-        const raw = localStorage.getItem(DELETED_TEAMS_KEY);
-        const parsed = raw ? JSON.parse(raw) : [];
-        previousTombstones = Array.isArray(parsed)
-          ? parsed.filter((value): value is string => typeof value === "string")
-          : [];
-
-        localStorage.setItem(
-          DELETED_TEAMS_KEY,
-          JSON.stringify([...new Set([...previousTombstones, deletedId])]),
-        );
-      } catch {}
-
-      const teamRef = doc(db, sourceCollection, deletedId);
-
-      await deleteDoc(teamRef);
-
-      // Firestore deleteDoc resolves even when a document does not exist.
-      // Verify the exact document used by Team Insights is now gone.
-      const verification = await getDoc(teamRef);
-
-      if (verification.exists()) {
-        throw new Error(
-          `Delete verification failed: ${sourceCollection}/${deletedId} still exists.`,
-        );
-      }
+      await deleteDoc(
+        doc(db, "teams", selectedTeam.id),
+      );
 
       try {
         localStorage.removeItem(TEAM_KEY);
       } catch {}
 
+      const deletedId = selectedTeam.id;
+
+      // Remove the team from this screen immediately after Firestore confirms
+      // the delete. This prevents the deleted option being re-selected while
+      // the Firebase query refreshes.
       setDeletedTeamIds((current) => {
         const next = new Set(current);
         next.add(deletedId);
@@ -700,50 +679,83 @@ export function TeamInsights() {
         `“${selectedTeam.name}” was deleted.`,
       );
 
-      window.dispatchEvent(
-        new CustomEvent("autoteams:team-deleted", {
-          detail: {
-            teamId: deletedId,
-            sourceCollection,
-          },
-        }),
-      );
-
-      // Refresh the Firebase-backed selector after the tombstone is safely in
-      // place. TeamPersistenceBridge will now refuse to recreate this ID.
+      // Reuse the existing Firebase Team Insights refresh event rather than
+      // forcing a full browser reload.
       window.dispatchEvent(
         new Event("autoteams:firebase-team-persisted"),
       );
     } catch (deleteError) {
-      // The delete did not complete: undo the tombstone so a failed delete
-      // cannot silently suppress legitimate data.
-      try {
-        localStorage.setItem(
-          DELETED_TEAMS_KEY,
-          JSON.stringify(previousTombstones),
-        );
-      } catch {}
+      console.error(
+        "Unable to delete team",
+        deleteError,
+      );
+
+      const errorRecord =
+        deleteError as {
+          code?: string;
+          message?: string;
+        };
+
+      const teamRecord =
+        selectedTeam as unknown as
+          Record<string, unknown>;
+
+      const ownerId =
+        typeof teamRecord.ownerId ===
+        "string"
+          ? teamRecord.ownerId
+          : "unknown";
+
+      const signedInUid =
+        auth.user?.uid ??
+        "not signed in";
+
+      const signedInEmail =
+        auth.user?.email ??
+        "unknown";
+
+      const firebaseProject =
+        (
+          db as unknown as {
+            app?: {
+              options?: {
+                projectId?: string;
+              };
+            };
+          }
+        ).app?.options?.projectId ??
+        "unknown";
+
+      const collectionName =
+        typeof teamRecord.__collection ===
+        "string"
+          ? teamRecord.__collection
+          : "teams";
+
+      const documentPath =
+        `${collectionName}/${selectedTeam.id}`;
 
       const errorCode =
-        typeof deleteError === "object" &&
-        deleteError !== null &&
-        "code" in deleteError
-          ? String((deleteError as { code?: unknown }).code ?? "")
-          : "";
+        errorRecord.code ??
+        "unknown";
 
-      const errorText =
-        deleteError instanceof Error
-          ? deleteError.message
-          : "Unknown Firestore delete error";
+      const errorMessage =
+        errorRecord.message ??
+        String(deleteError);
 
-      console.error("Unable to delete team", {
-        teamId: deletedId,
-        sourceCollection,
-        error: deleteError,
-      });
+      const diagnostic =
+        [
+          `Could not delete “${selectedTeam.name}”.`,
+          `Document: ${documentPath}`,
+          `Team owner UID: ${ownerId}`,
+          `Signed-in UID: ${signedInUid}`,
+          `Signed-in email: ${signedInEmail}`,
+          `Firebase project: ${firebaseProject}`,
+          `Firebase error: ${errorCode}: ${errorMessage}`,
+        ].join("\n");
 
       setDeleteMessage(
-        `Could not delete “${selectedTeam.name}” from ${sourceCollection}/${deletedId}. ${errorCode ? `${errorCode}: ` : ""}${errorText}`,
+        diagnostic,
       );
     } finally {
       setDeletingTeam(false);
@@ -876,7 +888,7 @@ export function TeamInsights() {
   return (
     <main
       className={styles.page}
-      data-autoteams-team-insights="v7.13.17"
+      data-autoteams-team-insights="v7.13.18"
     >
       <div
         className={`container ${styles.container}`}
@@ -1105,6 +1117,7 @@ export function TeamInsights() {
               background: "rgba(6, 78, 59, 0.14)",
               color: "#a7f3d0",
               fontWeight: 600,
+              whiteSpace: "pre-line",
             }}
           >
             {deleteMessage}
