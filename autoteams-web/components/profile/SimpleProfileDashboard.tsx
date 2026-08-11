@@ -158,9 +158,7 @@ export function SimpleProfileDashboard() {
 
     const profile = createContextualProfile(
       mode,
-      user?.displayName,
-      user?.email,
-      activeWorkspace,
+      user?.displayName || emailDisplayName(user?.email),
     );
 
     const updated = [
