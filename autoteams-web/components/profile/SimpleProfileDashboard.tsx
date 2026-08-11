@@ -14,7 +14,9 @@ import {
 } from "@/lib/contextual-profiles";
 import {
   loadContextInterview,
+  loadContextInterviews,
   profileFreshness,
+  saveContextInterviews,
 } from "@/lib/atlas-interview-state";
 import {
   Workspace,
@@ -127,6 +129,45 @@ export function SimpleProfileDashboard() {
     saveActiveContextualProfileId(created.id);
     setAllProfiles(updated);
     setMessage(`${friendlyProfileName(mode)} was created.`);
+  }
+
+  function deleteProfile(profile: ContextualProfile) {
+    const label = friendlyProfileName(profile.mode);
+
+    const confirmed = window.confirm(
+      `Delete ${label}?\n\nThis removes this profile and its saved Atlas interview answers from this browser. Teams and other people are not deleted.`,
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    const updated = allProfiles.filter(
+      (item) => item.id !== profile.id,
+    );
+
+    saveContextualProfiles(updated);
+
+    saveContextInterviews(
+      loadContextInterviews().filter(
+        (item) => item.profileId !== profile.id,
+      ),
+    );
+
+    const nextProfile = updated.find((item) =>
+      belongsToCurrentUser(
+        item,
+        user?.displayName,
+        user?.email,
+      ),
+    );
+
+    saveActiveContextualProfileId(
+      nextProfile?.id || "",
+    );
+
+    setAllProfiles(updated);
+    setMessage(`${label} was deleted.`);
   }
 
   if (!ready) {
@@ -342,6 +383,14 @@ export function SimpleProfileDashboard() {
                           Refresh My Profile
                         </button>
                       )}
+
+                      <button
+                        className="button secondary"
+                        onClick={() => deleteProfile(primaryProfile)}
+                        type="button"
+                      >
+                        Delete Profile
+                      </button>
                     </div>
                   </article>
 
@@ -448,6 +497,7 @@ export function SimpleProfileDashboard() {
                     secondaryProfiles={secondaryProfiles}
                     onCreate={createAdditionalProfile}
                     onOpen={openProfile}
+                    onDelete={deleteProfile}
                   />
                 )}
               </section>
@@ -464,6 +514,7 @@ function AdvancedProfiles({
   secondaryProfiles,
   onCreate,
   onOpen,
+  onDelete,
 }: {
   currentProfiles: ContextualProfile[];
   secondaryProfiles: ContextualProfile[];
@@ -472,6 +523,7 @@ function AdvancedProfiles({
     profile: ContextualProfile,
     href: string,
   ) => void;
+  onDelete: (profile: ContextualProfile) => void;
 }) {
   const modes: ContextMode[] = [
     "business",
@@ -516,19 +568,28 @@ function AdvancedProfiles({
                     </small>
                   </div>
 
-                  <button
-                    onClick={() =>
-                      onOpen(
-                        profile,
-                        state.completed
-                          ? "/my-atlas-profile"
-                          : "/atlas",
-                      )
-                    }
-                    type="button"
-                  >
-                    Open →
-                  </button>
+                  <div>
+                    <button
+                      onClick={() =>
+                        onOpen(
+                          profile,
+                          state.completed
+                            ? "/my-atlas-profile"
+                            : "/atlas",
+                        )
+                      }
+                      type="button"
+                    >
+                      Open →
+                    </button>
+
+                    <button
+                      onClick={() => onDelete(profile)}
+                      type="button"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </article>
               );
             })}
