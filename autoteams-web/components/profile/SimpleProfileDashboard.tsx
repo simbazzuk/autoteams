@@ -46,8 +46,17 @@ export function SimpleProfileDashboard() {
   const [ready, setReady] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [message, setMessage] = useState("");
+  const [requestedMode, setRequestedMode] =
+    useState<ContextMode | undefined>(undefined);
 
   useEffect(() => {
+    const requestedContext =
+      new URLSearchParams(window.location.search).get("context");
+
+    setRequestedMode(
+      contextQueryToMode(requestedContext),
+    );
+
     setAllProfiles(loadContextualProfiles());
     setWorkspaces(loadWorkspaces());
     setActiveWorkspaceId(loadActiveWorkspaceId());
@@ -73,6 +82,7 @@ export function SimpleProfileDashboard() {
   const primaryProfile = selectPrimaryProfile(
     myProfiles,
     activeWorkspace,
+    requestedMode,
   );
 
   const secondaryProfiles = myProfiles.filter(
@@ -718,8 +728,21 @@ function getProfileState(
 function selectPrimaryProfile(
   profiles: ContextualProfile[],
   workspace?: Workspace,
+  requestedMode?: ContextMode,
 ): ContextualProfile | undefined {
   if (!profiles.length) return undefined;
+
+  // v7.13.19: Team Insights passes ?context=<profile type>.
+  // Honour that explicit context before workspace/default selection.
+  if (requestedMode) {
+    const requestedProfile = profiles.find(
+      (profile) => profile.mode === requestedMode,
+    );
+
+    if (requestedProfile) {
+      return requestedProfile;
+    }
+  }
 
   if (workspace) {
     const desiredMode = workspaceContextToMode(
@@ -735,6 +758,31 @@ function selectPrimaryProfile(
   }
 
   return profiles[0];
+}
+
+function contextQueryToMode(
+  context: string | null,
+): ContextMode | undefined {
+  const value =
+    context?.trim().toLowerCase();
+
+  if (!value) {
+    return undefined;
+  }
+
+  const aliases: Record<string, ContextMode> = {
+    work: "business",
+    business: "business",
+    professional: "business",
+    sport: "sports",
+    sports: "sports",
+    community: "community",
+    friendship: "friendship",
+    friends: "friendship",
+    education: "education",
+  };
+
+  return aliases[value];
 }
 
 function workspaceContextToMode(
