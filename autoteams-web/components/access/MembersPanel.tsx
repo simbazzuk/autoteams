@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useAuth } from "@/components/AuthProvider";
 import { WorkspaceSwitcher } from "@/components/workspaces/WorkspaceSwitcher";
 import { useWorkspaceAccess } from "./AccessContext";
 import {
@@ -20,8 +21,91 @@ import {
   saveMemberships,
 } from "@/lib/workspace-access";
 import { loadActiveWorkspaceId, loadWorkspaces } from "@/lib/workspaces";
+import {
+  ContextMode,
+  ContextualProfile,
+  loadContextualProfiles,
+} from "@/lib/contextual-profiles";
+import styles from "./MembersPanel.v71325.module.css";
+
+
+function profileModeLabel(mode: ContextMode) {
+  return {
+    business: "Work",
+    friendship: "Friendship",
+    community: "Community",
+    sports: "Sport",
+    education: "Education",
+  }[mode];
+}
+
+function profileModeIcon(mode: ContextMode) {
+  return {
+    business: "⌂",
+    friendship: "♡",
+    community: "♙",
+    sports: "◎",
+    education: "▥",
+  }[mode];
+}
+
+function normalise(value?: string | null) {
+  return (value ?? "").trim().toLowerCase();
+}
+
+function emailDisplayName(email?: string | null) {
+  return (email ?? "").split("@")[0]?.replace(/[._-]+/g, " ").trim() || "";
+}
+
+function belongsToCurrentUser(
+  profile: ContextualProfile,
+  displayName?: string | null,
+  email?: string | null,
+) {
+  const profileName = normalise(profile.preferredName);
+  const fullName = normalise(displayName);
+  const emailName = normalise(emailDisplayName(email));
+
+  if (!profileName) return false;
+
+  return (
+    profileName === fullName ||
+    profileName === emailName ||
+    Boolean(
+      fullName &&
+        profileName === normalise(fullName.split(" ")[0]),
+    )
+  );
+}
+
+const INVITE_PROFILE_CONTEXT_KEY =
+  "autoteams-invite-profile-context-v71325";
+
+function readPreferredProfileMode(): ContextMode | undefined {
+  try {
+    const value = localStorage.getItem(INVITE_PROFILE_CONTEXT_KEY);
+    if (
+      value === "business" ||
+      value === "friendship" ||
+      value === "community" ||
+      value === "sports" ||
+      value === "education"
+    ) {
+      return value;
+    }
+  } catch {}
+
+  return undefined;
+}
+
+function rememberPreferredProfileMode(mode: ContextMode) {
+  try {
+    localStorage.setItem(INVITE_PROFILE_CONTEXT_KEY, mode);
+  } catch {}
+}
 
 export function MembersPanel() {
+  const { user } = useAuth();
   const [workspaceId, setWorkspaceId] = useState("");
   const [memberships, setMemberships] = useState<WorkspaceMembership[]>([]);
   const [invitations, setInvitations] = useState<WorkspaceInvitation[]>([]);
@@ -30,6 +114,8 @@ export function MembersPanel() {
   const [inviteEmail, setInviteEmail] = useState("");
   const [inviteRole, setInviteRole] = useState<WorkspaceRole>("member");
   const [inviteMessage, setInviteMessage] = useState("");
+  const [profiles, setProfiles] = useState<ContextualProfile[]>([]);
+  const [profileMode, setProfileMode] = useState<ContextMode | "">("");
 
   const access = useWorkspaceAccess(workspaceId);
   const workspaces = loadWorkspaces();
@@ -43,7 +129,26 @@ export function MembersPanel() {
     setMemberships(loadMemberships());
     setInvitations(loadInvitations());
     setConsents(loadConsents());
-  }, []);
+
+    const availableProfiles = loadContextualProfiles();
+    setProfiles(availableProfiles);
+
+    const preferred = readPreferredProfileMode();
+    const firstOwned = availableProfiles.find((profile) =>
+      belongsToCurrentUser(
+        profile,
+        user?.displayName,
+        user?.email,
+      ),
+    );
+
+    setProfileMode(
+      preferred ??
+        firstOwned?.mode ??
+        availableProfiles[0]?.mode ??
+        "",
+    );
+  }, [user?.displayName, user?.email]);
 
   const workspaceMembers = useMemo(
     () => memberships.filter((item) => item.workspaceId === workspaceId),
@@ -57,6 +162,22 @@ export function MembersPanel() {
       ),
     [invitations, workspaceId],
   );
+
+  const myProfiles = useMemo(
+    () =>
+      profiles.filter((profile) =>
+        belongsToCurrentUser(
+          profile,
+          user?.displayName,
+          user?.email,
+        ),
+      ),
+    [profiles, user?.displayName, user?.email],
+  );
+
+  const selectedProfile =
+    myProfiles.find((profile) => profile.mode === profileMode) ??
+    myProfiles[0];
 
   function invite(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -148,19 +269,55 @@ export function MembersPanel() {
 
   return (
     <main className="access-page">
-      <section className="access-hero">
-        <div className="container access-hero-row">
+      <section className={`access-hero ${styles.hero}`}>
+        <div className={`container access-hero-row ${styles.heroRow}`}>
           <div>
-            <span className="eyebrow">Roles, invitations and consent</span>
-            <h1>Invite people without giving everyone admin access.</h1>
+            <span className="eyebrow">Invite & grow</span>
+            <h1>Bring the right people into AutoTeams.</h1>
             <p>
-              Owners and administrators manage the workspace. Team Leaders can
-              build teams. Members control how their Team DNA is used.
+              Invite people into a workspace, then let each person build their
+              own Atlas profile. Roles keep access controlled while Team Builder
+              gets the people it needs.
             </p>
+            <div className={styles.heroPills}>
+              <span>♙ Invite people</span>
+              <span>◇ Assign roles</span>
+              <span>✦ Build better teams</span>
+            </div>
           </div>
-          <div className="access-account-summary">
-            <WorkspaceSwitcher value={workspaceId} onChange={setWorkspaceId} />
-<div>
+
+          <div className={`access-account-summary ${styles.contextCard}`}>
+            <div className={styles.workspaceControl}>
+              <WorkspaceSwitcher value={workspaceId} onChange={setWorkspaceId} />
+            </div>
+
+            <label className={styles.profileControl}>
+              <span>Profile context</span>
+              <select
+                value={profileMode}
+                onChange={(event) => {
+                  const next = event.target.value as ContextMode;
+                  setProfileMode(next);
+                  rememberPreferredProfileMode(next);
+                }}
+              >
+                {myProfiles.length ? (
+                  myProfiles.map((profile) => (
+                    <option key={profile.id} value={profile.mode}>
+                      {profileModeLabel(profile.mode)}
+                    </option>
+                  ))
+                ) : (
+                  <option value="">No profiles created yet</option>
+                )}
+              </select>
+              <small>
+                This helps frame the invitation. Workspace access is still
+                controlled by the workspace above.
+              </small>
+            </label>
+
+            <div className={styles.roleSummary}>
               <span>Signed-in role</span>
               <strong>
                 {access.role ? roleLabel(access.role, category) : "No workspace access"}
@@ -173,24 +330,32 @@ export function MembersPanel() {
       <section className="access-content">
         <div className="container access-layout">
           <section className="access-main">
-            <div className="access-summary-grid">
-              <article>
+            <div className={`access-summary-grid ${styles.summaryGrid}`}>
+              <article className={styles.workspaceMetric}>
                 <small>Workspace</small>
                 <strong>{workspace?.name || "Not selected"}</strong>
               </article>
-              <article>
+              <article className={styles.roleMetric}>
                 <small>Your role</small>
                 <strong>
                   {access.role ? roleLabel(access.role, category) : "No access"}
                 </strong>
               </article>
-              <article>
+              <article className={styles.peopleMetric}>
                 <small>Active members</small>
                 <strong>{workspaceMembers.length}</strong>
               </article>
-              <article>
+              <article className={styles.inviteMetric}>
                 <small>Pending invitations</small>
                 <strong>{workspaceInvitations.length}</strong>
+              </article>
+              <article className={styles.profileMetric}>
+                <small>Profile context</small>
+                <strong>
+                  {selectedProfile
+                    ? profileModeLabel(selectedProfile.mode)
+                    : "Not selected"}
+                </strong>
               </article>
             </div>
 
@@ -318,7 +483,7 @@ export function MembersPanel() {
 
           <aside className="access-side">
             <section
-              className="access-panel"
+              className={`access-panel ${styles.invitePanel}`}
               id="invite"
               style={{
                 scrollMarginTop: 110,
@@ -347,10 +512,21 @@ export function MembersPanel() {
                   <h2 style={{ margin: "3px 0 0" }}>Grow this workspace</h2>
                 </div>
               </div>
-              <p style={{ marginTop: 0 }}>
-                Invite someone to AutoTeams. They can join this workspace, create
-                their own profile and become available for team building.
+              <p className={styles.inviteIntro}>
+                Invite someone to <strong>{workspace?.name || "this workspace"}</strong>.
+                They create their own profile after joining and can then become
+                available for team building.
               </p>
+
+              {selectedProfile && (
+                <div className={styles.profileContextBanner}>
+                  <span>{profileModeIcon(selectedProfile.mode)}</span>
+                  <div>
+                    <small>Current profile context</small>
+                    <strong>{profileModeLabel(selectedProfile.mode)}</strong>
+                  </div>
+                </div>
+              )}
 
               {!canManage ? (
                 <div className="access-denied">

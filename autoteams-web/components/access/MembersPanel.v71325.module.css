@@ -1,0 +1,221 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(99,102,241,.18), transparent 28%),
+    radial-gradient(circle at 10% 30%, rgba(14,165,233,.10), transparent 28%),
+    linear-gradient(145deg, rgba(15,23,42,.96), rgba(17,24,39,.98));
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -140px -180px auto;
+  width: 420px;
+  height: 420px;
+  border-radius: 999px;
+  background: rgba(168,85,247,.08);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.heroRow {
+  align-items: center !important;
+  gap: 52px !important;
+}
+
+.hero h1 {
+  max-width: 760px;
+  font-size: clamp(2.7rem,5vw,5rem) !important;
+  line-height: .96 !important;
+  letter-spacing: -.045em;
+}
+
+.hero p {
+  max-width: 760px;
+}
+
+.heroPills {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.heroPills span {
+  padding: 8px 11px;
+  border: 1px solid rgba(129,140,248,.24);
+  border-radius: 999px;
+  background: rgba(79,70,229,.08);
+  color: #c7d2fe;
+  font-size: .8rem;
+  font-weight: 800;
+}
+
+.contextCard {
+  width: min(100%, 430px) !important;
+  min-width: 390px;
+  padding: 18px !important;
+  border: 1px solid rgba(129,140,248,.28) !important;
+  background:
+    linear-gradient(160deg, rgba(99,102,241,.08), transparent 55%),
+    rgba(15,23,42,.82) !important;
+  box-shadow: 0 24px 70px rgba(2,6,23,.28);
+}
+
+.workspaceControl {
+  width: 100%;
+}
+
+.workspaceControl :global(.workspace-switcher) {
+  width: 100%;
+  min-width: 0;
+}
+
+.workspaceControl :global(.workspace-switcher select) {
+  width: 100% !important;
+  min-width: 350px !important;
+  max-width: none !important;
+  min-height: 48px;
+  padding-left: 14px;
+  padding-right: 42px;
+  border-radius: 13px;
+}
+
+.profileControl {
+  display: grid;
+  gap: 7px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.profileControl > span,
+.roleSummary > span {
+  color: #94a3b8;
+  font-size: .72rem;
+  font-weight: 850;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.profileControl select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 42px 0 14px;
+  border: 1px solid rgba(45,212,191,.35);
+  border-radius: 13px;
+  background: rgba(7,13,27,.88);
+  color: #f8fafc;
+  font-weight: 800;
+}
+
+.profileControl small {
+  color: #7f8da8;
+  line-height: 1.4;
+}
+
+.roleSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 15px;
+  padding-top: 13px;
+  border-top: 1px solid rgba(148,163,184,.13);
+}
+
+.roleSummary strong {
+  color: #fff;
+}
+
+.summaryGrid {
+  grid-template-columns: repeat(5,minmax(0,1fr)) !important;
+  gap: 12px !important;
+}
+
+.summaryGrid article {
+  position: relative;
+  overflow: hidden;
+  min-height: 96px;
+  border-width: 1px !important;
+}
+
+.summaryGrid article::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: currentColor;
+  opacity: .85;
+}
+
+.workspaceMetric { color: #818cf8; border-color: rgba(129,140,248,.30) !important; }
+.roleMetric { color: #60a5fa; border-color: rgba(96,165,250,.30) !important; }
+.peopleMetric { color: #2dd4bf; border-color: rgba(45,212,191,.30) !important; }
+.inviteMetric { color: #c084fc; border-color: rgba(192,132,252,.30) !important; }
+.profileMetric { color: #fbbf24; border-color: rgba(251,191,36,.30) !important; }
+
+.summaryGrid strong { color: #fff !important; }
+
+.invitePanel {
+  border-color: rgba(129,140,248,.42) !important;
+  background:
+    radial-gradient(circle at 90% 5%, rgba(168,85,247,.14), transparent 32%),
+    radial-gradient(circle at 5% 15%, rgba(14,165,233,.08), transparent 28%),
+    rgba(15,23,42,.88) !important;
+  box-shadow: 0 24px 65px rgba(79,70,229,.13) !important;
+}
+
+.inviteIntro {
+  margin-top: 0;
+  color: #a9b5ca;
+  line-height: 1.55;
+}
+
+.inviteIntro strong { color: #f8fafc; }
+
+.profileContextBanner {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 14px 0 18px;
+  padding: 11px 12px;
+  border: 1px solid rgba(45,212,191,.22);
+  border-radius: 13px;
+  background: rgba(20,184,166,.07);
+}
+
+.profileContextBanner > span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(20,184,166,.15);
+  color: #5eead4;
+  font-weight: 900;
+}
+
+.profileContextBanner small,
+.profileContextBanner strong {
+  display: block;
+}
+
+.profileContextBanner small { color: #7e91ad; }
+.profileContextBanner strong { color: #f8fafc; margin-top: 2px; }
+
+@media (max-width: 1180px) {
+  .summaryGrid { grid-template-columns: repeat(3,minmax(0,1fr)) !important; }
+}
+
+@media (max-width: 900px) {
+  .contextCard { min-width: 0; width: 100% !important; }
+  .workspaceControl :global(.workspace-switcher select) { min-width: 0 !important; }
+  .summaryGrid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+}
+
+@media (max-width: 560px) {
+  .summaryGrid { grid-template-columns: 1fr !important; }
+}
