@@ -12462,3 +12462,566 @@ p {
   }
 }
 
+
+
+/* AutoTeams v7.13.35 - invited-user onboarding */
+html[data-autoteams-invite-onboarding="true"] body {
+  background:
+    radial-gradient(circle at 72% 6%, rgba(99, 102, 241, .18), transparent 30%),
+    #0b1220 !important;
+}
+
+.invite-onboarding-banner {
+  width: min(100% - 32px, 920px);
+  margin: 34px auto 22px;
+  padding: 26px 28px;
+  border: 1px solid rgba(129, 140, 248, .30);
+  border-radius: 22px;
+  background:
+    linear-gradient(145deg, rgba(99, 102, 241, .12), rgba(15, 23, 42, .94));
+  box-shadow: 0 24px 70px rgba(2, 6, 23, .32);
+  color: #f8fafc;
+}
+
+.invite-onboarding-badge {
+  display: inline-flex;
+  margin-bottom: 16px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(124, 108, 255, .13);
+  color: #b7a9ff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.invite-onboarding-copy {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.invite-onboarding-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-size: 22px;
+}
+
+.invite-onboarding-copy h1 {
+  margin: 0 0 7px !important;
+  color: #f8fafc !important;
+  font-size: clamp(2rem, 4vw, 3.1rem) !important;
+  line-height: 1 !important;
+  letter-spacing: -.035em !important;
+}
+
+.invite-onboarding-copy p {
+  max-width: 720px;
+  margin: 0;
+  color: #a9b7cf !important;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.invite-onboarding-copy strong { color: #fff; }
+
+.invite-onboarding-steps {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-top: 19px;
+}
+
+.invite-onboarding-steps span {
+  padding: 7px 10px;
+  border: 1px solid rgba(129, 140, 248, .18);
+  border-radius: 999px;
+  color: #8493ad;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.invite-onboarding-steps .active {
+  border-color: rgba(129, 140, 248, .45);
+  background: rgba(99, 102, 241, .10);
+  color: #c7d2fe;
+}
+
+/* Repair the generic onboarding surface only during invite onboarding. */
+html[data-autoteams-invite-onboarding="true"] main {
+  padding-top: 0 !important;
+}
+
+html[data-autoteams-invite-onboarding="true"] main > section:first-child h1,
+html[data-autoteams-invite-onboarding="true"] main > section:first-child > div > h1 {
+  margin-top: 0 !important;
+}
+
+html[data-autoteams-invite-onboarding="true"] form,
+html[data-autoteams-invite-onboarding="true"] [class*="card"],
+html[data-autoteams-invite-onboarding="true"] [class*="panel"] {
+  --invite-surface-text: #0f172a;
+}
+
+html[data-autoteams-invite-onboarding="true"] form h1,
+html[data-autoteams-invite-onboarding="true"] form h2,
+html[data-autoteams-invite-onboarding="true"] form h3,
+html[data-autoteams-invite-onboarding="true"] [class*="card"] h1,
+html[data-autoteams-invite-onboarding="true"] [class*="card"] h2,
+html[data-autoteams-invite-onboarding="true"] [class*="card"] h3 {
+  color: var(--invite-surface-text) !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 700px) {
+  .invite-onboarding-banner {
+    width: min(100% - 20px, 920px);
+    margin-top: 18px;
+    padding: 20px;
+  }
+
+  .invite-onboarding-copy { align-items: flex-start; }
+}
+
+
+/* AutoTeams v7.13.36 - dedicated invite registration */
+html[data-autoteams-invite-register="true"] body {
+  background:
+    radial-gradient(circle at 75% 4%, rgba(99,102,241,.17), transparent 31%),
+    #0b1220 !important;
+}
+
+html[data-autoteams-invite-register="true"]
+[data-autoteams-generic-register-hero="true"] {
+  display: none !important;
+}
+
+.invite-register-hero {
+  width: min(calc(100% - 36px), 920px);
+  margin: 34px auto 26px;
+  padding: 30px;
+  border: 1px solid rgba(129,140,248,.3);
+  border-radius: 24px;
+  background:
+    linear-gradient(150deg, rgba(99,102,241,.13), rgba(15,23,42,.96) 48%);
+  box-shadow: 0 28px 85px rgba(2,6,23,.35);
+  color: #f8fafc;
+}
+
+.invite-register-top,
+.invite-register-title-row,
+.invite-register-journey {
+  display: flex;
+}
+
+.invite-register-top {
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.invite-register-eyebrow,
+.invite-register-token {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .11em;
+}
+
+.invite-register-eyebrow { color: #a78bfa; }
+
+.invite-register-token {
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(99,102,241,.1);
+  color: #94a3b8;
+}
+
+.invite-register-title-row {
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.invite-register-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 54px;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: linear-gradient(135deg,#6366f1,#8b5cf6);
+  font-size: 25px;
+}
+
+.invite-register-title-row h1 {
+  margin: 0 0 8px !important;
+  color: #f8fafc !important;
+  font-size: clamp(2.2rem,5vw,3.8rem) !important;
+  line-height: .98 !important;
+  letter-spacing: -.045em;
+}
+
+.invite-register-title-row p,
+.invite-register-note {
+  margin: 0;
+  color: #a8b7cf;
+  line-height: 1.6;
+}
+
+.invite-register-title-row strong { color: #fff; }
+
+.invite-register-details {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 10px;
+  margin: 24px 0 18px;
+}
+
+.invite-register-details > div {
+  display: grid;
+  gap: 5px;
+  padding: 12px 14px;
+  border: 1px solid rgba(148,163,184,.14);
+  border-radius: 13px;
+  background: rgba(7,13,27,.5);
+}
+
+.invite-register-details small {
+  color: #7888a4;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.invite-register-journey {
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.invite-register-journey span {
+  padding: 7px 10px;
+  border: 1px solid rgba(129,140,248,.18);
+  border-radius: 999px;
+  color: #8190a9;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.invite-register-journey .active {
+  border-color: rgba(129,140,248,.5);
+  background: rgba(99,102,241,.1);
+  color: #c7d2fe;
+}
+
+.invite-register-note {
+  margin-top: 17px;
+  font-size: 13px;
+}
+
+/* The existing registration form stays functional but is visually integrated. */
+html[data-autoteams-invite-register="true"]
+[data-autoteams-core-heading="true"] {
+  color: #172033 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+html[data-autoteams-invite-register="true"] input,
+html[data-autoteams-invite-register="true"] select,
+html[data-autoteams-invite-register="true"] textarea {
+  color-scheme: dark;
+}
+
+@media (max-width: 700px) {
+  .invite-register-hero {
+    width: min(calc(100% - 20px),920px);
+    margin-top: 18px;
+    padding: 20px;
+  }
+
+  .invite-register-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* AutoTeams v7.13.36 - dedicated invite registration */
+html[data-autoteams-invite-register="true"] body {
+  background:
+    radial-gradient(circle at 75% 4%, rgba(99,102,241,.17), transparent 31%),
+    #0b1220 !important;
+}
+
+html[data-autoteams-invite-register="true"]
+[data-autoteams-generic-register-hero="true"] {
+  display: none !important;
+}
+
+.invite-register-hero {
+  width: min(calc(100% - 36px), 920px);
+  margin: 34px auto 26px;
+  padding: 30px;
+  border: 1px solid rgba(129,140,248,.3);
+  border-radius: 24px;
+  background:
+    linear-gradient(150deg, rgba(99,102,241,.13), rgba(15,23,42,.96) 48%);
+  box-shadow: 0 28px 85px rgba(2,6,23,.35);
+  color: #f8fafc;
+}
+
+.invite-register-top,
+.invite-register-title-row,
+.invite-register-journey {
+  display: flex;
+}
+
+.invite-register-top {
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.invite-register-eyebrow,
+.invite-register-token {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .11em;
+}
+
+.invite-register-eyebrow { color: #a78bfa; }
+
+.invite-register-token {
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(99,102,241,.1);
+  color: #94a3b8;
+}
+
+.invite-register-title-row {
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.invite-register-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 54px;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: linear-gradient(135deg,#6366f1,#8b5cf6);
+  font-size: 25px;
+}
+
+.invite-register-title-row h1 {
+  margin: 0 0 8px !important;
+  color: #f8fafc !important;
+  font-size: clamp(2.2rem,5vw,3.8rem) !important;
+  line-height: .98 !important;
+  letter-spacing: -.045em;
+}
+
+.invite-register-title-row p,
+.invite-register-note {
+  margin: 0;
+  color: #a8b7cf;
+  line-height: 1.6;
+}
+
+.invite-register-title-row strong { color: #fff; }
+
+.invite-register-details {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 10px;
+  margin: 24px 0 18px;
+}
+
+.invite-register-details > div {
+  display: grid;
+  gap: 5px;
+  padding: 12px 14px;
+  border: 1px solid rgba(148,163,184,.14);
+  border-radius: 13px;
+  background: rgba(7,13,27,.5);
+}
+
+.invite-register-details small {
+  color: #7888a4;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.invite-register-journey {
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.invite-register-journey span {
+  padding: 7px 10px;
+  border: 1px solid rgba(129,140,248,.18);
+  border-radius: 999px;
+  color: #8190a9;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.invite-register-journey .active {
+  border-color: rgba(129,140,248,.5);
+  background: rgba(99,102,241,.1);
+  color: #c7d2fe;
+}
+
+.invite-register-note {
+  margin-top: 17px;
+  font-size: 13px;
+}
+
+/* The existing registration form stays functional but is visually integrated. */
+html[data-autoteams-invite-register="true"]
+[data-autoteams-core-heading="true"] {
+  color: #172033 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+html[data-autoteams-invite-register="true"] input,
+html[data-autoteams-invite-register="true"] select,
+html[data-autoteams-invite-register="true"] textarea {
+  color-scheme: dark;
+}
+
+@media (max-width: 700px) {
+  .invite-register-hero {
+    width: min(calc(100% - 20px),920px);
+    margin-top: 18px;
+    padding: 20px;
+  }
+
+  .invite-register-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* AutoTeams v7.13.36-fix1 - force the real Step 1 card dark */
+html[data-autoteams-invite-register="true"]
+[data-autoteams-invite-form-surface="true"] {
+  background:
+    linear-gradient(145deg, rgba(20, 30, 52, .98), rgba(11, 18, 32, .98))
+    !important;
+  border: 1px solid rgba(129, 140, 248, .30) !important;
+  box-shadow: 0 28px 80px rgba(2, 6, 23, .42) !important;
+  color: #f8fafc !important;
+}
+
+html[data-autoteams-invite-register="true"]
+[data-autoteams-invite-form-surface="true"] h1,
+html[data-autoteams-invite-register="true"]
+[data-autoteams-invite-form-surface="true"] h2,
+html[data-autoteams-invite-register="true"]
+[data-autoteams-invite-form-surface="true"] h3 {
+  color: #f8fafc !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+html[data-autoteams-invite-register="true"]
+[data-autoteams-invite-form-surface="true"] label,
+html[data-autoteams-invite-register="true"]
+[data-autoteams-invite-form-surface="true"] small {
+  color: #a8b7cf !important;
+}
+
+html[data-autoteams-invite-register="true"]
+[data-autoteams-invite-form-surface="true"] input,
+html[data-autoteams-invite-register="true"]
+[data-autoteams-invite-form-surface="true"] select,
+html[data-autoteams-invite-register="true"]
+[data-autoteams-invite-form-surface="true"] textarea {
+  background: #0f172a !important;
+  border-color: rgba(148, 163, 184, .24) !important;
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+}
+
+html[data-autoteams-invite-register="true"]
+[data-autoteams-invite-form-surface="true"] input:focus,
+html[data-autoteams-invite-register="true"]
+[data-autoteams-invite-form-surface="true"] select:focus,
+html[data-autoteams-invite-register="true"]
+[data-autoteams-invite-form-surface="true"] textarea:focus {
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, .18) !important;
+}
+
+html[data-autoteams-invite-register="true"]
+[data-autoteams-invite-form-surface="true"] [class*="progress"] {
+  background-color: transparent !important;
+}
+
+
+/* AutoTeams v7.13.36-fix2 - exact PersonaWizard invite styling */
+html[data-autoteams-invite-register="true"] .wizard {
+  background:
+    linear-gradient(145deg, rgba(20, 30, 52, .98), rgba(11, 18, 32, .98))
+    !important;
+  border: 1px solid rgba(129, 140, 248, .30) !important;
+  box-shadow: 0 28px 80px rgba(2, 6, 23, .42) !important;
+  color: #f8fafc !important;
+}
+
+html[data-autoteams-invite-register="true"] .wizard section {
+  background: transparent !important;
+  color: #f8fafc !important;
+}
+
+html[data-autoteams-invite-register="true"] .wizard h2 {
+  color: #f8fafc !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+html[data-autoteams-invite-register="true"] .wizard .eyebrow {
+  color: #a78bfa !important;
+}
+
+html[data-autoteams-invite-register="true"] .wizard label {
+  color: #a8b7cf !important;
+}
+
+html[data-autoteams-invite-register="true"] .wizard input,
+html[data-autoteams-invite-register="true"] .wizard select,
+html[data-autoteams-invite-register="true"] .wizard textarea {
+  background: #0f172a !important;
+  border-color: rgba(148, 163, 184, .24) !important;
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+}
+
+html[data-autoteams-invite-register="true"] .wizard input:disabled {
+  opacity: 1 !important;
+  color: #e2e8f0 !important;
+  -webkit-text-fill-color: #e2e8f0 !important;
+}
+
+html[data-autoteams-invite-register="true"] .wizard-progress span {
+  background: rgba(148, 163, 184, .18) !important;
+}
+
+html[data-autoteams-invite-register="true"] .wizard-progress span.active {
+  background: linear-gradient(90deg, #8b5cf6, #60a5fa) !important;
+}
+
+html[data-autoteams-invite-register="true"]
+[data-autoteams-generic-register-subtitle="true"] {
+  display: none !important;
+}
