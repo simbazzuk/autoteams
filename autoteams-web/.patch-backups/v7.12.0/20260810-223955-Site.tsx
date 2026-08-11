@@ -27,7 +27,7 @@ const primaryLinks = [
   { href: "/team-builder", label: "Build Team" },
   {
     href: "/gemini-team-coach",
-    label: "Team Insights",
+    label: "Team Coach",
     ai: true,
   },
   { href: "/teams", label: "Teams" },

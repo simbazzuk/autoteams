@@ -387,9 +387,18 @@
 }
 
 /* Generic compact cards often used in AiFirstHome */
+[class*="metric"] small,
+[class*="stat"] small,
+[class*="summary"] small {
+  font-size: 13px;
+}
 
-
-
+[class*="metric"] a,
+[class*="stat"] a,
+[class*="summary"] a {
+  font-size: 13px;
+  font-weight: 800;
+}
 
 @media (max-width: 720px) {
   .summary h2,
@@ -407,45 +416,6 @@
   .metricCard span,
   .statCard span,
   .overviewCard span {
-    font-size: 14px;
-  }
-
-  .summaryCard a,
-  .metricCard a,
-  .statCard a,
-  .overviewCard a {
-    font-size: 14px;
-  }
-}
-
-
-/* AutoTeams v7.9.5 Fix 1 pure CSS module rules */
-
-/*
- * Readability rules using only local CSS-module classes.
- * These are safe with Next.js/Turbopack CSS Modules.
- */
-.summaryCard small,
-.metricCard small,
-.statCard small,
-.overviewCard small {
-  font-size: 13px;
-  line-height: 1.35;
-}
-
-.summaryCard a,
-.metricCard a,
-.statCard a,
-.overviewCard a {
-  font-size: 13px;
-  font-weight: 800;
-}
-
-@media (max-width: 720px) {
-  .summaryCard small,
-  .metricCard small,
-  .statCard small,
-  .overviewCard small {
     font-size: 14px;
   }
 

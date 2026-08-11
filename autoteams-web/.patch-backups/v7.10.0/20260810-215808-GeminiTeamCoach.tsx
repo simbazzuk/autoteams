@@ -1,6 +1,5 @@
 "use client";
 
-import { CoachContextSelector } from "@/components/team-coach/CoachContextSelector";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/AuthProvider";
@@ -282,9 +281,7 @@ export function GeminiTeamCoach() {
 
           <section className={styles.context}>
             <div>
-          <CoachContextSelector />
-
-              <span className="eyebrow">Coaching for</span>
+              <span className="eyebrow">Current Coach context</span>
               <h2>
                 {activeWorkspace?.name || "General collaboration profile"}
               </h2>
@@ -297,8 +294,17 @@ export function GeminiTeamCoach() {
               </p>
             </div>
 
-            
-
+            <div className={styles.contextActions}>
+              <Link className="button secondary" href="/organisation">
+                Manage My Group
+              </Link>
+              <Link className="button secondary" href="/profile/privacy">
+                Profile Privacy
+              </Link>
+              <Link className="button secondary" href="/trust-centre">
+                Trust Centre
+              </Link>
+            </div>
           </section>
         </div>
       </section>

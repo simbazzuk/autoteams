@@ -1,12 +1,12 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { TeamInsights } from "@/components/team-insights/TeamInsights";
+import { RegistrationProfilePanel } from "@/components/onboarding/RegistrationProfilePanel";
 
-export default function TeamInsightsPage() {
+export default function RegistrationProfilePage() {
   return (
     <PageShell>
       <ProtectedRoute>
-        <TeamInsights />
+        <RegistrationProfilePanel />
       </ProtectedRoute>
     </PageShell>
   );

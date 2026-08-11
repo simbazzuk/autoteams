@@ -1,12 +1,12 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { TeamInsights } from "@/components/team-insights/TeamInsights";
+import { GeminiTeamCoach } from "@/components/gemini-team-coach/GeminiTeamCoach";
 
-export default function TeamInsightsPage() {
+export default function GeminiTeamCoachPage() {
   return (
     <PageShell>
       <ProtectedRoute>
-        <TeamInsights />
+        <GeminiTeamCoach />
       </ProtectedRoute>
     </PageShell>
   );

@@ -1,0 +1,330 @@
+.page {
+  width: 100%;
+  padding: 42px 0 70px;
+}
+
+.container {
+  display: grid;
+  gap: 22px;
+}
+
+.hero {
+  padding: 34px;
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(95, 84, 255, .18),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #14192c,
+      #101827
+    );
+  border:
+    1px solid #29384e;
+  border-radius: 22px;
+}
+
+.heroCopy {
+  max-width: 760px;
+}
+
+.eyebrow,
+.contextPanel > div:first-child > span,
+.profileReadiness > div:nth-child(2) > span,
+.sectionHeading > span,
+.ask > div > span {
+  color: #927bff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.hero h1 {
+  margin: 8px 0 12px;
+  font-size:
+    clamp(
+      44px,
+      5vw,
+      64px
+    );
+  line-height: 1.02;
+}
+
+.hero p,
+.contextPanel p,
+.profileReadiness p,
+.helpGrid p,
+.ask p,
+.modelNote p {
+  margin: 0;
+  color: #9aa8bb;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.badge {
+  width: fit-content;
+  margin-top: 20px;
+  padding: 9px 12px;
+  color: #dcd8ff;
+  background:
+    rgba(118, 96, 255, .1);
+  border:
+    1px solid
+    rgba(118, 96, 255, .22);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.contextPanel {
+  display: grid;
+  gap: 18px;
+  padding: 26px;
+  background: #121b2a;
+  border:
+    1px solid #31415a;
+  border-radius: 20px;
+}
+
+.contextPanel h2,
+.profileReadiness h2,
+.sectionHeading h2,
+.ask h2 {
+  margin: 6px 0 8px;
+  font-size:
+    clamp(
+      28px,
+      3vw,
+      38px
+    );
+  line-height: 1.08;
+}
+
+.contextMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.contextMeta span {
+  padding: 7px 10px;
+  color: #c7d2df;
+  background: #0f1724;
+  border:
+    1px solid #2c3a4f;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.contextActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.contextActions a,
+.profileActions a {
+  padding: 9px 12px;
+  color: #b8c3d3;
+  border:
+    1px solid #2c394d;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.profileReadiness {
+  display: grid;
+  grid-template-columns:
+    52px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 24px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(80, 145, 247, .06),
+      rgba(119, 96, 255, .06)
+    ),
+    #121a29;
+  border:
+    1px solid #30405a;
+  border-radius: 18px;
+}
+
+.profileIcon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  color: #fff;
+  background:
+    linear-gradient(
+      135deg,
+      #765fff,
+      #4f8ef7
+    );
+  border-radius: 14px;
+}
+
+.profileReadiness strong {
+  color: #e8edf5;
+}
+
+.profileActions {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.help {
+  display: grid;
+  gap: 16px;
+  padding: 26px;
+  background: #111927;
+  border:
+    1px solid #2d394e;
+  border-radius: 20px;
+}
+
+.helpGrid {
+  display: grid;
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(0, 1fr)
+    );
+  gap: 12px;
+}
+
+.helpGrid a {
+  display: grid;
+  gap: 8px;
+  min-height: 180px;
+  padding: 18px;
+  color: inherit;
+  background: #0f1724;
+  border:
+    1px solid #2b394e;
+  border-radius: 15px;
+  text-decoration: none;
+}
+
+.helpGrid a > span {
+  font-size: 24px;
+}
+
+.helpGrid strong {
+  font-size: 17px;
+}
+
+.helpGrid p {
+  font-size: 14px;
+}
+
+.ask {
+  display: flex;
+  justify-content:
+    space-between;
+  gap: 24px;
+  align-items: center;
+  padding: 24px 26px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(118,96,255,.07),
+      rgba(79,142,247,.04)
+    ),
+    #111927;
+  border:
+    1px solid
+    rgba(118,96,255,.22);
+  border-radius: 18px;
+}
+
+.primary {
+  flex: 0 0 auto;
+  padding: 12px 18px;
+  color: #fff;
+  background:
+    linear-gradient(
+      135deg,
+      #765fff,
+      #4f8ef7
+    );
+  border-radius: 11px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.modelNote {
+  padding: 17px 19px;
+  background: #0f1622;
+  border:
+    1px solid #273448;
+  border-radius: 14px;
+}
+
+.modelNote strong {
+  font-size: 13px;
+}
+
+.modelNote p {
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+@media (max-width: 920px) {
+  .helpGrid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+  .profileReadiness {
+    grid-template-columns:
+      52px minmax(0, 1fr);
+  }
+
+  .profileActions {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 650px) {
+  .page {
+    padding: 28px 0 50px;
+  }
+
+  .hero {
+    padding: 23px;
+  }
+
+  .hero h1 {
+    font-size:
+      clamp(
+        38px,
+        11vw,
+        50px
+      );
+  }
+
+  .helpGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ask {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

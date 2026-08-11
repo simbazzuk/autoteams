@@ -297,8 +297,17 @@ export function GeminiTeamCoach() {
               </p>
             </div>
 
-            
-
+            <div className={styles.contextActions}>
+              <Link className="button secondary" href="/organisation">
+                Manage My Group
+              </Link>
+              <Link className="button secondary" href="/profile/privacy">
+                Profile Privacy
+              </Link>
+              <Link className="button secondary" href="/trust-centre">
+                Trust Centre
+              </Link>
+            </div>
           </section>
         </div>
       </section>

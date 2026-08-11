@@ -1,0 +1,697 @@
+.page {
+  width: 100%;
+  padding: 42px 0 72px;
+}
+
+.container {
+  display: grid;
+  gap: 20px;
+}
+
+.hero,
+.context,
+.card,
+.recommendations,
+.askAtlas {
+  border: 1px solid #2c3a50;
+  border-radius: 20px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 28px;
+  align-items: flex-start;
+  padding: 32px;
+  background:
+    radial-gradient(circle at 92% 5%, rgba(108, 91, 255, .18), transparent 31%),
+    #111a29;
+}
+
+.hero > div:first-child {
+  max-width: 760px;
+}
+
+.eyebrow,
+.context span,
+.cardHeading span,
+.askAtlas span {
+  color: #967fff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.hero h1 {
+  margin: 8px 0 10px;
+  font-size: clamp(42px, 5vw, 62px);
+  line-height: 1.02;
+}
+
+.hero p,
+.context p,
+.cardHeading p,
+.signal p,
+.recommendation p,
+.askAtlas p {
+  margin: 0;
+  color: #9ba9bb;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.atlasBadge {
+  flex: 0 0 auto;
+  padding: 9px 12px;
+  color: #dedaff;
+  background: rgba(118, 96, 255, .1);
+  border: 1px solid rgba(118, 96, 255, .22);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.context {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  padding: 22px 25px;
+  background: #121b2a;
+}
+
+.context h2,
+.cardHeading h2,
+.askAtlas h2 {
+  margin: 5px 0 6px;
+  font-size: clamp(25px, 2.7vw, 34px);
+}
+
+.context > a,
+.cardHeading a {
+  color: #b9c7d8;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.metric {
+  min-height: 112px;
+  padding: 17px;
+  background: #111a28;
+  border: 1px solid #2c394e;
+  border-radius: 15px;
+}
+
+.metric > span {
+  display: block;
+  min-height: 32px;
+  color: #8998ad;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.metric strong {
+  display: block;
+  margin-top: 7px;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.metric small {
+  margin-left: 2px;
+  color: #8998ad;
+  font-size: 13px;
+}
+
+.twoColumn {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 20px;
+}
+
+.card,
+.recommendations {
+  padding: 24px;
+  background: #111927;
+}
+
+.cardHeading {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.dna {
+  display: grid;
+  gap: 15px;
+  margin-top: 23px;
+}
+
+.dnaRow {
+  display: grid;
+  gap: 7px;
+}
+
+.dnaRow > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.dnaRow strong,
+.dnaRow span {
+  font-size: 13px;
+}
+
+.dnaRow span {
+  color: #9aa8ba;
+}
+
+.track {
+  height: 9px;
+  overflow: hidden;
+  background: #202b3d;
+  border-radius: 999px;
+}
+
+.track i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #765fff, #4f8ef7);
+  border-radius: inherit;
+}
+
+.signalGroup {
+  display: grid;
+  gap: 11px;
+  margin-top: 20px;
+}
+
+.signal {
+  display: grid;
+  grid-template-columns: 35px minmax(0, 1fr);
+  gap: 11px;
+  padding: 13px;
+  background: #0f1724;
+  border: 1px solid #29374b;
+  border-radius: 12px;
+}
+
+.signal strong {
+  font-size: 14px;
+}
+
+.signal p {
+  margin-top: 3px;
+  font-size: 12px;
+}
+
+.good,
+.warn {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border-radius: 9px;
+  font-weight: 900;
+}
+
+.good {
+  color: #8ce5bd;
+  background: rgba(45, 180, 126, .11);
+}
+
+.warn {
+  color: #f0c879;
+  background: rgba(221, 164, 57, .11);
+}
+
+.recommendations {
+  display: grid;
+  gap: 18px;
+}
+
+.recommendationList {
+  display: grid;
+  gap: 11px;
+}
+
+.recommendation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 22px;
+  align-items: center;
+  padding: 18px;
+  background: #0f1724;
+  border: 1px solid #2b394e;
+  border-radius: 14px;
+}
+
+.recommendation span {
+  color: #927cff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.recommendation h3 {
+  margin: 5px 0 5px;
+  font-size: 17px;
+}
+
+.recommendation p {
+  max-width: 800px;
+  font-size: 13px;
+}
+
+.recommendation > a,
+.askAtlas > a {
+  padding: 10px 13px;
+  color: #fff;
+  background: linear-gradient(135deg, #765fff, #4f8ef7);
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.askAtlas {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  padding: 24px;
+  background:
+    linear-gradient(135deg, rgba(118, 96, 255, .07), rgba(79, 142, 247, .04)),
+    #111927;
+}
+
+.disclaimer {
+  margin: 0;
+  color: #68778c;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1050px) {
+  .metricGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .twoColumn {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .page {
+    padding: 28px 0 50px;
+  }
+
+  .hero,
+  .context,
+  .askAtlas {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero {
+    padding: 23px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .metricGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .recommendation {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* AutoTeams v7.12.1 - Team selection */
+.selectorPanel {
+  align-items: flex-end;
+}
+
+.selectorIntro {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.teamSelect {
+  display: grid;
+  gap: 7px;
+  min-width: min(340px, 100%);
+}
+
+.teamSelect > span {
+  color: #8f9eb2;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: .04em;
+}
+
+.teamSelect select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 42px 0 14px;
+  color: #f5f7fb;
+  background: #0d1624;
+  border: 1px solid #35445c;
+  border-radius: 11px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.primaryAction,
+.emptyState > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  padding: 0 15px;
+  color: #fff;
+  background: linear-gradient(135deg, #765fff, #4f8ef7);
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.emptyState {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 28px;
+  background: #111927;
+  border: 1px solid #2c3a50;
+  border-radius: 20px;
+}
+
+.emptyIcon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, #765fff, #4f8ef7);
+  border-radius: 14px;
+  font-size: 22px;
+}
+
+.emptyState span {
+  color: #967fff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.emptyState h2 {
+  margin: 5px 0 6px;
+  font-size: clamp(23px, 2.5vw, 31px);
+}
+
+.emptyState p {
+  margin: 0;
+  color: #9ba9bb;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+@media (max-width: 650px) {
+  .selectorPanel {
+    align-items: stretch;
+  }
+
+  .teamSelect {
+    min-width: 100%;
+  }
+
+  .emptyState {
+    grid-template-columns: 1fr;
+  }
+
+  .emptyState > a {
+    justify-self: start;
+  }
+}
+
+
+/* AutoTeams v7.12.2 - Profile-aware Team Insights */
+.selectorStack {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(190px, 1fr));
+  gap: 12px;
+  width: min(620px, 100%);
+}
+
+@media (max-width: 760px) {
+  .selectorStack {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+}
+
+
+/* AutoTeams v7.12.6 - Insights Visual Experience */
+
+/* Make the analysis selector feel like a premium control surface. */
+.selectorPanel {
+  background:
+    radial-gradient(circle at 90% 0%, rgba(118, 95, 255, .14), transparent 34%),
+    radial-gradient(circle at 0% 100%, rgba(53, 145, 255, .10), transparent 32%),
+    linear-gradient(135deg, #111a2a, #101725);
+  border-color: #3a4a67;
+}
+
+/* Metric cards: colour communicates the type of insight without overpowering the page. */
+.metricGrid .metric:nth-child(1) {
+  --metric-accent: #43d19e;
+  background: linear-gradient(145deg, rgba(67, 209, 158, .19), #111a28 76%);
+  border-color: rgba(67, 209, 158, .45);
+}
+
+.metricGrid .metric:nth-child(2) {
+  --metric-accent: #31c9c0;
+  background: linear-gradient(145deg, rgba(49, 201, 192, .18), #111a28 76%);
+  border-color: rgba(49, 201, 192, .43);
+}
+
+.metricGrid .metric:nth-child(3) {
+  --metric-accent: #ffb14a;
+  background: linear-gradient(145deg, rgba(255, 177, 74, .18), #111a28 76%);
+  border-color: rgba(255, 177, 74, .43);
+}
+
+.metricGrid .metric:nth-child(4) {
+  --metric-accent: #5b9cff;
+  background: linear-gradient(145deg, rgba(91, 156, 255, .18), #111a28 76%);
+  border-color: rgba(91, 156, 255, .43);
+}
+
+.metricGrid .metric:nth-child(5) {
+  --metric-accent: #a477ff;
+  background: linear-gradient(145deg, rgba(164, 119, 255, .18), #111a28 76%);
+  border-color: rgba(164, 119, 255, .43);
+}
+
+.metricGrid .metric:nth-child(6) {
+  --metric-accent: #ec6cad;
+  background: linear-gradient(145deg, rgba(236, 108, 173, .17), #111a28 76%);
+  border-color: rgba(236, 108, 173, .40);
+}
+
+.metricGrid .metric {
+  position: relative;
+  overflow: hidden;
+  min-height: 132px;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.metricGrid .metric::after {
+  content: "";
+  position: absolute;
+  inset: auto 18px 0 18px;
+  height: 3px;
+  background: var(--metric-accent);
+  border-radius: 999px 999px 0 0;
+  opacity: .9;
+}
+
+.metricGrid .metric > span {
+  font-size: 13px;
+  font-weight: 800;
+  color: #c2cede;
+}
+
+.metricGrid .metric > strong {
+  font-size: clamp(30px, 3vw, 42px);
+  color: #fff;
+}
+
+.metricGrid .metric > strong small {
+  color: var(--metric-accent);
+  font-size: 15px;
+}
+
+/* Team DNA stays dark, but its bars become a meaningful visual palette. */
+.dnaRow:nth-child(1) .track i { background: #9a75ff; }
+.dnaRow:nth-child(2) .track i { background: #2fc9b7; }
+.dnaRow:nth-child(3) .track i { background: #579dff; }
+.dnaRow:nth-child(4) .track i { background: #ff9f43; }
+.dnaRow:nth-child(5) .track i { background: #ed68aa; }
+.dnaRow:nth-child(6) .track i { background: #65ca57; }
+
+.dnaRow .track {
+  height: 10px;
+  background: #202c40;
+  border-radius: 999px;
+}
+
+.dnaRow .track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  box-shadow: 0 0 13px rgba(110, 130, 255, .16);
+}
+
+/* Strength/gap signals: green/teal for positive, amber/orange for attention. */
+.signalGroup .signal {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid #2c3a50;
+  background: #111a28;
+}
+
+.signalGroup .signal:nth-child(1),
+.signalGroup .signal:nth-child(2) {
+  background: linear-gradient(135deg, rgba(51, 198, 153, .14), #111a28 72%);
+  border-color: rgba(51, 198, 153, .35);
+}
+
+.signalGroup .signal:nth-child(3),
+.signalGroup .signal:nth-child(4) {
+  background: linear-gradient(135deg, rgba(255, 164, 58, .14), #111a28 72%);
+  border-color: rgba(255, 164, 58, .35);
+}
+
+.signalGroup .signal strong {
+  font-size: 15px;
+}
+
+.signalGroup .signal p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Atlas recommendations: priority is visually scannable. */
+.recommendationList .recommendation {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #111a28;
+}
+
+.recommendationList .recommendation:nth-child(1) {
+  border-color: rgba(245, 103, 90, .42);
+  background: linear-gradient(135deg, rgba(245, 103, 90, .14), #111a28 72%);
+}
+
+.recommendationList .recommendation:nth-child(2) {
+  border-color: rgba(255, 177, 74, .40);
+  background: linear-gradient(135deg, rgba(255, 177, 74, .13), #111a28 72%);
+}
+
+.recommendationList .recommendation:nth-child(3) {
+  border-color: rgba(80, 150, 255, .40);
+  background: linear-gradient(135deg, rgba(80, 150, 255, .13), #111a28 72%);
+}
+
+.recommendationList .recommendation:nth-child(1) > div > span { color: #ff8277; }
+.recommendationList .recommendation:nth-child(2) > div > span { color: #ffc064; }
+.recommendationList .recommendation:nth-child(3) > div > span { color: #73adff; }
+
+/* Ask Atlas should feel like the AI/action destination. */
+.askAtlas {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(68, 162, 255, .28), transparent 34%),
+    radial-gradient(circle at 10% 90%, rgba(170, 91, 255, .24), transparent 34%),
+    linear-gradient(135deg, #33226f, #153b72 58%, #10213a);
+  border: 1px solid rgba(140, 128, 255, .58);
+  border-radius: 20px;
+  box-shadow: 0 16px 42px rgba(24, 28, 73, .22);
+}
+
+.askAtlas span {
+  color: #c8b9ff;
+  font-weight: 900;
+}
+
+.askAtlas h2 {
+  font-size: clamp(25px, 3vw, 34px);
+}
+
+.askAtlas p {
+  color: #d0daeb;
+  font-size: 14px;
+}
+
+.askAtlas a {
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.20);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: #fff;
+  font-weight: 800;
+}
+
+/* General readability uplift for the insight containers. */
+.cardHeading h2,
+.recommendations .cardHeading h2 {
+  font-size: clamp(22px, 2.4vw, 29px);
+}
+
+.cardHeading > div > span {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .09em;
+}
+
+.recommendation h3 {
+  font-size: 17px;
+}
+
+.recommendation p {
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+@media (max-width: 760px) {
+  .metricGrid .metric {
+    min-height: 110px;
+  }
+
+  .askAtlas {
+    padding: 22px;
+  }
+}
+
