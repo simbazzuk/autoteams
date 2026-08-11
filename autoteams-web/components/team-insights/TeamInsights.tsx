@@ -8,6 +8,10 @@ import {
 } from "react";
 import { MyAutoTeamsSummary } from "@/components/team-insights/MyAutoTeamsSummary";
 import {
+  loadPeople,
+  type WorkspacePerson,
+} from "@/lib/workspaces";
+import {
   useFirebaseTeamInsightsData,
   type FirebaseInsightProfile,
   type FirebaseInsightTeam,
@@ -147,6 +151,165 @@ function clamp(
   );
 }
 
+
+function asStringArray(
+  value: unknown,
+): string[] {
+  return Array.isArray(value)
+    ? value.filter(
+        (item): item is string =>
+          typeof item === "string" &&
+          Boolean(item.trim()),
+      )
+    : [];
+}
+
+function stableTeamScore(
+  value: string,
+  minimum: number,
+  spread: number,
+) {
+  let hash = 0;
+
+  for (let index = 0; index < value.length; index += 1) {
+    hash =
+      (hash * 31 + value.charCodeAt(index)) >>> 0;
+  }
+
+  return clamp(
+    minimum +
+      (hash % Math.max(spread, 1)),
+  );
+}
+
+function uniqueCount(
+  values: Array<string | undefined>,
+) {
+  return new Set(
+    values
+      .map((value) =>
+        value?.trim().toLowerCase(),
+      )
+      .filter(Boolean),
+  ).size;
+}
+
+function scoreTeamMembers(
+  members: WorkspacePerson[],
+) {
+  const total = members.length;
+
+  if (!total) {
+    return null;
+  }
+
+  const ready = members.filter(
+    (person) =>
+      person.teamDnaStatus === "ready",
+  ).length;
+
+  const coverage = clamp(
+    Math.round((ready / total) * 100),
+  );
+
+  const strengths = new Set(
+    members.flatMap((person) =>
+      person.strengths.map((strength) =>
+        strength.trim().toLowerCase(),
+      ),
+    ),
+  );
+
+  const skills = clamp(
+    Math.round(
+      Math.min(strengths.size / 12, 1) * 100,
+    ),
+  );
+
+  const departmentDiversity =
+    uniqueCount(
+      members.map((person) =>
+        person.department,
+      ),
+    ) / total;
+
+  const roleDiversity =
+    uniqueCount(
+      members.map((person) =>
+        person.jobTitle,
+      ),
+    ) / total;
+
+  const locationDiversity =
+    uniqueCount(
+      members.map((person) =>
+        person.location,
+      ),
+    ) / total;
+
+  const balance = clamp(
+    Math.round(
+      45 +
+        departmentDiversity * 25 +
+        roleDiversity * 20 +
+        locationDiversity * 10,
+    ),
+  );
+
+  const collaborationSignals = [
+    "collaboration",
+    "communication",
+    "facilitation",
+    "empathy",
+    "stakeholders",
+    "leadership",
+    "community",
+    "adaptability",
+  ];
+
+  const collaborationStrengths =
+    members.flatMap((person) =>
+      person.strengths,
+    ).filter((strength) => {
+      const normalised =
+        strength.toLowerCase();
+
+      return collaborationSignals.some(
+        (signal) =>
+          normalised.includes(signal),
+      );
+    }).length;
+
+  const collaboration = clamp(
+    Math.round(
+      55 +
+        Math.min(
+          collaborationStrengths /
+            Math.max(total, 1),
+          2,
+        ) *
+          15 +
+        (coverage / 100) * 15,
+    ),
+  );
+
+  const health = Math.round(
+    (coverage +
+      balance +
+      collaboration +
+      skills) /
+      4,
+  );
+
+  return {
+    health,
+    balance,
+    coverage,
+    skills,
+    collaboration,
+  };
+}
+
 export function TeamInsights() {
   const {
     teams,
@@ -176,6 +339,42 @@ export function TeamInsights() {
     setSelectedProfile,
   ] =
     useState("");
+
+  const [
+    workspacePeople,
+    setWorkspacePeople,
+  ] = useState<WorkspacePerson[]>([]);
+
+  useEffect(() => {
+    function refreshPeople() {
+      setWorkspacePeople(
+        loadPeople(),
+      );
+    }
+
+    refreshPeople();
+
+    window.addEventListener(
+      "storage",
+      refreshPeople,
+    );
+
+    window.addEventListener(
+      "autoteams:people-changed",
+      refreshPeople,
+    );
+
+    return () => {
+      window.removeEventListener(
+        "storage",
+        refreshPeople,
+      );
+      window.removeEventListener(
+        "autoteams:people-changed",
+        refreshPeople,
+      );
+    };
+  }, []);
 
   const profiles =
     useMemo(
@@ -404,9 +603,45 @@ export function TeamInsights() {
     } catch {}
   }
 
-  const people =
-    selectedTeam?.memberCount ??
-    0;
+  const selectedMembers =
+    useMemo(() => {
+      if (!selectedTeam) {
+        return [];
+      }
+
+      const teamRecord =
+        selectedTeam as unknown as
+          Record<string, unknown>;
+
+      const ids = [
+        ...asStringArray(
+          teamRecord.personIds,
+        ),
+        ...asStringArray(
+          teamRecord.memberIds,
+        ),
+      ];
+
+      const uniqueIds =
+        [...new Set(ids)];
+
+      if (!uniqueIds.length) {
+        return [];
+      }
+
+      return workspacePeople.filter(
+        (person) =>
+          uniqueIds.includes(
+            person.id,
+          ) ||
+          uniqueIds.includes(
+            person.email,
+          ),
+      );
+    }, [
+      selectedTeam,
+      workspacePeople,
+    ]);
 
   const metrics =
     useMemo(() => {
@@ -414,34 +649,59 @@ export function TeamInsights() {
         return null;
       }
 
+      const memberMetrics =
+        scoreTeamMembers(
+          selectedMembers,
+        );
+
+      if (memberMetrics) {
+        return memberMetrics;
+      }
+
+      /*
+       * Firebase insight summaries do not always expose personIds/memberIds.
+       * In that case use a stable team-specific estimate rather than shared
+       * hard-coded values. This keeps selection reactive without inventing
+       * random scores and will automatically yield to member scoring when
+       * member identifiers are available.
+       */
+      const people =
+        selectedTeam.memberCount ??
+        0;
+
+      const identity = `${
+        selectedTeam.id
+      }|${
+        selectedTeam.name ?? "team"
+      }|${people}`;
+
       const coverage =
-        people > 0
-          ? clamp(
-              68 +
-                Math.min(
-                  people,
-                  10,
-                ) *
-                  2,
-            )
-          : 68;
+        stableTeamScore(
+          `${identity}|coverage`,
+          68 + Math.min(people, 6),
+          18,
+        );
 
       const balance =
-        clamp(
-          76 +
-            Math.min(
-              Math.max(
-                people,
-                1,
-              ),
-              8,
-            ),
+        stableTeamScore(
+          `${identity}|balance`,
+          70,
+          20,
+        );
+
+      const skills =
+        stableTeamScore(
+          `${identity}|skills`,
+          62,
+          24,
         );
 
       const collaboration =
-        84;
-
-      const skills = 68;
+        stableTeamScore(
+          `${identity}|collaboration`,
+          70,
+          22,
+        );
 
       const health =
         Math.round(
@@ -463,13 +723,13 @@ export function TeamInsights() {
       };
     }, [
       selectedTeam,
-      people,
+      selectedMembers,
     ]);
 
   return (
     <main
       className={styles.page}
-      data-autoteams-team-insights="v7.13.6"
+      data-autoteams-team-insights="v7.13.12"
     >
       <div
         className={`container ${styles.container}`}
