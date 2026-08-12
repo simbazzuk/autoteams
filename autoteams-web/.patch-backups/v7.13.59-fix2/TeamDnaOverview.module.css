@@ -110,13 +110,12 @@
   border-radius: 6px;
   background: rgba(124, 58, 237, 0.13);
   color: #c4b5fd;
-  font-family: Arial, sans-serif;
   font-size: 12px;
   line-height: 1;
 }
 
 .explanation[open] summary::before {
-  content: "-";
+  content: "âˆ’";
 }
 
 .explanationBody {
@@ -139,12 +138,8 @@
 }
 
 .explanationBody p::before {
-  content: "";
+  content: "â€¢";
   position: absolute;
-  left: 1px;
-  top: 0.62em;
-  width: 4px;
-  height: 4px;
-  border-radius: 999px;
-  background: #818cf8;
+  left: 0;
+  color: #818cf8;
 }

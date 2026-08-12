@@ -19,7 +19,6 @@ type TeamMetric = {
   label: string;
   value: number;
   description: string;
-  evidence: string[];
 };
 
 // AUTOTEAMS_V71357_AS_STRING_ARRAY
@@ -406,15 +405,6 @@ export function TeamDnaOverview() {
             <div className={styles.bar}>
               <i style={{ width: `${metric.value}%` }} />
             </div>
-
-            <details className={styles.explanation}>
-              <summary>Why this score?</summary>
-              <div className={styles.explanationBody}>
-                {metric.evidence.map((item) => (
-                  <p key={item}>{item}</p>
-                ))}
-              </div>
-            </details>
           </article>
         ))}
       </section>
@@ -642,81 +632,6 @@ function buildMetrics(
       : 0;
   };
 
-  // AUTOTEAMS_V71359_EXPLAINABILITY
-  const matchingMemberCount = (
-    signals: string[],
-  ) =>
-    normalisedStrengths.filter(
-      (strengths) =>
-        strengths.some(
-          (strength) =>
-            signals.some(
-              (signal) =>
-                strength.includes(
-                  signal,
-                ),
-            ),
-        ),
-    ).length;
-
-  const strengthExamples = (
-    signals: string[],
-  ) => {
-    const matches =
-      new Set<string>();
-
-    activeMembers.forEach(
-      (person) => {
-        person.strengths.forEach(
-          (strength) => {
-            const normalised =
-              strength
-                .trim()
-                .toLowerCase();
-
-            if (
-              signals.some(
-                (signal) =>
-                  normalised.includes(
-                    signal,
-                  ),
-              )
-            ) {
-              matches.add(
-                strength.trim(),
-              );
-            }
-          },
-        );
-      },
-    );
-
-    return Array.from(matches)
-      .slice(0, 4);
-  };
-
-  const evidenceFor = (
-    label: string,
-    signals: string[],
-  ) => {
-    const matching =
-      matchingMemberCount(
-        signals,
-      );
-
-    const examples =
-      strengthExamples(
-        signals,
-      );
-
-    return [
-      `${matching} of ${activeMembers.length} active members show ${label.toLowerCase()} signals.`,
-      `${readyMembers.length} of ${activeMembers.length} active members have Team DNA-ready profiles.`,
-      examples.length
-        ? `Evidence includes ${examples.join(", ")}.`
-        : `No strong ${label.toLowerCase()} keyword evidence is currently present in member strengths.`,
-    ];
-  };
   const scoreSignal = (
     signals: string[],
     diversityWeight = 0,
@@ -750,86 +665,76 @@ function buildMetrics(
     );
   };
 
-  const communicationSignals = [
-    "communication",
-    "present",
-    "writing",
-    "listening",
-    "stakeholder",
-    "outreach",
-    "conversation",
-  ];
-
   const communication =
     scoreSignal(
-      communicationSignals,
+      [
+        "communication",
+        "present",
+        "writing",
+        "listening",
+        "stakeholder",
+        "outreach",
+        "conversation",
+      ],
       5,
     );
-
-  const leadershipSignals = [
-    "leadership",
-    "mentor",
-    "facilitation",
-    "initiative",
-    "ownership",
-    "strategy",
-    "coordination",
-  ];
 
   const leadership =
     scoreSignal(
-      leadershipSignals,
+      [
+        "leadership",
+        "mentor",
+        "facilitation",
+        "initiative",
+        "ownership",
+        "strategy",
+        "coordination",
+      ],
       6,
     );
 
-  const deliverySignals = [
-    "delivery",
-    "planning",
-    "organisation",
-    "reliability",
-    "logistics",
-    "execution",
-    "project",
-    "operations",
-  ];
-
   const delivery =
     scoreSignal(
-      deliverySignals,
+      [
+        "delivery",
+        "planning",
+        "organisation",
+        "reliability",
+        "logistics",
+        "execution",
+        "project",
+        "operations",
+      ],
       5,
     );
-
-  const innovationSignals = [
-    "creativity",
-    "design",
-    "ai",
-    "problem solving",
-    "analysis",
-    "research",
-    "prototype",
-    "strategy",
-  ];
 
   const innovation =
     scoreSignal(
-      innovationSignals,
+      [
+        "creativity",
+        "design",
+        "ai",
+        "problem solving",
+        "analysis",
+        "research",
+        "prototype",
+        "strategy",
+      ],
       5,
     );
 
-  const collaborationSignals = [
-    "collaboration",
-    "teamwork",
-    "empathy",
-    "support",
-    "facilitation",
-    "community",
-    "communication",
-    "adaptability",
-  ];
-
   const collaboration =
     scoreSignal(
-      collaborationSignals,
+      [
+        "collaboration",
+        "teamwork",
+        "empathy",
+        "support",
+        "facilitation",
+        "community",
+        "communication",
+        "adaptability",
+      ],
       7,
     );
 
@@ -855,11 +760,6 @@ function buildMetrics(
       value: communication,
       description:
         "How effectively the combined profile may share information and decisions.",
-      evidence:
-        evidenceFor(
-          "Communication",
-          communicationSignals,
-        ),
     },
     {
       key: "leadership",
@@ -867,11 +767,6 @@ function buildMetrics(
       value: leadership,
       description:
         "The mix of direction, ownership and support available across the team.",
-      evidence:
-        evidenceFor(
-          "Leadership",
-          leadershipSignals,
-        ),
     },
     {
       key: "delivery",
@@ -879,11 +774,6 @@ function buildMetrics(
       value: delivery,
       description:
         "The team's collective readiness, reliability and ability to follow through.",
-      evidence:
-        evidenceFor(
-          "Delivery",
-          deliverySignals,
-        ),
     },
     {
       key: "innovation",
@@ -891,11 +781,6 @@ function buildMetrics(
       value: innovation,
       description:
         "The variety of skills and perspectives available for problem solving.",
-      evidence:
-        evidenceFor(
-          "Innovation",
-          innovationSignals,
-        ),
     },
     {
       key: "collaboration",
@@ -903,11 +788,6 @@ function buildMetrics(
       value: collaboration,
       description:
         "The extent to which member profiles are ready and complementary.",
-      evidence:
-        evidenceFor(
-          "Collaboration",
-          collaborationSignals,
-        ),
     },
     {
       key: "role-balance",
@@ -915,11 +795,6 @@ function buildMetrics(
       value: roleBalance,
       description:
         "The spread of departments, roles and strengths represented in the team.",
-      evidence: [
-        `${new Set(activeMembers.map((person) => person.department).filter(Boolean)).size} departments are represented across ${activeMembers.length} active members.`,
-        `${new Set(activeMembers.map((person) => person.jobTitle).filter(Boolean)).size} distinct roles are represented.`,
-        `${readyMembers.length} of ${activeMembers.length} active members have Team DNA-ready profiles.`,
-      ],
     },
   ];
 }
