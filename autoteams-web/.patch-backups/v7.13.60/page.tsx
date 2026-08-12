@@ -1,7 +1,6 @@
 import { SocialMediaFooter } from "@/components/landing/SocialMediaFooter";
 import Link from "next/link";
 import { PageShell } from "@/components/Site";
-import { LandingCtaPalette } from "@/components/home/LandingCtaPalette";
 
 const useCases = [
   {
@@ -897,7 +896,6 @@ export default function HomePage() {
         </section>
 <SocialMediaFooter />
 </main>
-          <LandingCtaPalette />
     </PageShell>
   );
 }
