@@ -31,6 +31,7 @@ const primaryLinks = [
     label: "Team Insights",
     ai: true,
   },
+  { href: "/teams", label: "Teams" },
   { href: "/academy", label: "Academy" },
 ];
 
@@ -306,6 +307,7 @@ export function Footer() {
           <Link href="/gemini-team-coach">
             Gemini Team Coach
           </Link>
+          <Link href="/teams">Teams</Link>
           <Link href="/pricing">Pricing</Link>
       <Link href="/trust-centre">
             Trust Centre

@@ -15492,21 +15492,3 @@ html[data-autoteams-invite-page="true"] [class*="consent"] + * {
   .access-page[data-autoteams-invite="v7.13.44"] .access-summary-grid,
   .invite44-flow{grid-template-columns:1fr !important}
 }
-
-
-/* AutoTeams v7.13.46 - Landing Page Invite CTA */
-.landing-invite-cta {
-  background: linear-gradient(135deg, #f97316, #fb923c) !important;
-  border-color: transparent !important;
-  color: #ffffff !important;
-  box-shadow:
-    0 12px 28px rgba(249,115,22,.22),
-    0 0 0 1px rgba(251,146,60,.08) inset !important;
-}
-
-.landing-invite-cta:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 16px 34px rgba(249,115,22,.28),
-    0 0 0 1px rgba(251,146,60,.10) inset !important;
-}

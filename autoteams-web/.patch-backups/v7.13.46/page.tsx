@@ -237,9 +237,6 @@ export default function HomePage() {
                 >
                   Build a Team
                 </Link>
-          <Link className="button landing-invite-cta" href="/members#invite">
-            Invite People
-          </Link>
               </div>
             </div>
 
@@ -887,9 +884,6 @@ export default function HomePage() {
                 >
                   Build a Team
                 </Link>
-          <Link className="button landing-invite-cta" href="/members#invite">
-            Invite People
-          </Link>
               </div>
             </div>
           </div>
