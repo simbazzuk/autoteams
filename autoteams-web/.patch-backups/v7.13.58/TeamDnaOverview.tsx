@@ -472,329 +472,55 @@ function buildMetrics(
   team: DemoTeam,
   members: WorkspacePerson[],
 ): TeamMetric[] {
-  // v7.13.58:
-  // Team DNA is calculated from the actual selected members rather than
-  // generic presentation-only values.
-  const clamp = (
-    value: number,
-    minimum = 0,
-    maximum = 100,
-  ) =>
-    Math.max(
-      minimum,
-      Math.min(
-        maximum,
-        Math.round(value),
-      ),
-    );
+  const base = Math.max(55, Math.min(96, team.confidence));
+  const activeMembers = members.filter((person) => person.status === "active").length;
+  const readyMembers = members.filter((person) => person.teamDnaStatus === "ready").length;
+  const departments = new Set(members.map((person) => person.department)).size;
+  const strengths = new Set(members.flatMap((person) => person.strengths)).size;
 
-  const total =
-    Math.max(
-      members.length,
-      1,
-    );
-
-  const activeMembers =
-    members.filter(
-      (person) =>
-        person.status === "active",
-    );
-
-  const readyMembers =
-    activeMembers.filter(
-      (person) =>
-        person.teamDnaStatus ===
-        "ready",
-    );
-
-  const readyCoverage =
-    activeMembers.length
-      ? readyMembers.length /
-        activeMembers.length
-      : 0;
-
-  const uniqueRatio = (
-    values: Array<
-      string | undefined
-    >,
-  ) => {
-    if (!activeMembers.length) {
-      return 0;
-    }
-
-    const unique =
-      new Set(
-        values
-          .map((value) =>
-            (value ?? "")
-              .trim()
-              .toLowerCase(),
-          )
-          .filter(Boolean),
-      ).size;
-
-    return Math.min(
-      unique /
-        activeMembers.length,
-      1,
-    );
-  };
-
-  const departmentDiversity =
-    uniqueRatio(
-      activeMembers.map(
-        (person) =>
-          person.department,
-      ),
-    );
-
-  const roleDiversity =
-    uniqueRatio(
-      activeMembers.map(
-        (person) =>
-          person.jobTitle,
-      ),
-    );
-
-  const locationDiversity =
-    uniqueRatio(
-      activeMembers.map(
-        (person) =>
-          person.location,
-      ),
-    );
-
-  const normalisedStrengths =
-    activeMembers.map(
-      (person) =>
-        person.strengths.map(
-          (strength) =>
-            strength
-              .trim()
-              .toLowerCase(),
-        ),
-    );
-
-  const coverageFor = (
-    signals: string[],
-  ) => {
-    if (!activeMembers.length) {
-      return 0;
-    }
-
-    const matchingMembers =
-      normalisedStrengths.filter(
-        (strengths) =>
-          strengths.some(
-            (strength) =>
-              signals.some(
-                (signal) =>
-                  strength.includes(
-                    signal,
-                  ),
-              ),
-          ),
-      ).length;
-
-    return (
-      matchingMembers /
-      activeMembers.length
-    );
-  };
-
-  const breadthFor = (
-    signals: string[],
-  ) => {
-    const matchedSignals =
-      new Set<string>();
-
-    normalisedStrengths
-      .flat()
-      .forEach((strength) => {
-        signals.forEach(
-          (signal) => {
-            if (
-              strength.includes(
-                signal,
-              )
-            ) {
-              matchedSignals.add(
-                signal,
-              );
-            }
-          },
-        );
-      });
-
-    return signals.length
-      ? matchedSignals.size /
-          signals.length
-      : 0;
-  };
-
-  const scoreSignal = (
-    signals: string[],
-    diversityWeight = 0,
-  ) => {
-    if (!activeMembers.length) {
-      return 0;
-    }
-
-    const memberCoverage =
-      coverageFor(signals);
-
-    const signalBreadth =
-      breadthFor(signals);
-
-    const diversity =
-      (
-        departmentDiversity +
-        roleDiversity
-      ) /
-      2;
-
-    return clamp(
-      42 +
-        memberCoverage * 34 +
-        signalBreadth * 10 +
-        readyCoverage * 9 +
-        diversity *
-          diversityWeight,
-      45,
-      96,
-    );
-  };
-
-  const communication =
-    scoreSignal(
-      [
-        "communication",
-        "present",
-        "writing",
-        "listening",
-        "stakeholder",
-        "outreach",
-        "conversation",
-      ],
-      5,
-    );
-
-  const leadership =
-    scoreSignal(
-      [
-        "leadership",
-        "mentor",
-        "facilitation",
-        "initiative",
-        "ownership",
-        "strategy",
-        "coordination",
-      ],
-      6,
-    );
-
-  const delivery =
-    scoreSignal(
-      [
-        "delivery",
-        "planning",
-        "organisation",
-        "reliability",
-        "logistics",
-        "execution",
-        "project",
-        "operations",
-      ],
-      5,
-    );
-
-  const innovation =
-    scoreSignal(
-      [
-        "creativity",
-        "design",
-        "ai",
-        "problem solving",
-        "analysis",
-        "research",
-        "prototype",
-        "strategy",
-      ],
-      5,
-    );
-
-  const collaboration =
-    scoreSignal(
-      [
-        "collaboration",
-        "teamwork",
-        "empathy",
-        "support",
-        "facilitation",
-        "community",
-        "communication",
-        "adaptability",
-      ],
-      7,
-    );
-
-  const roleBalance =
-    activeMembers.length
-      ? clamp(
-          48 +
-            departmentDiversity *
-              20 +
-            roleDiversity * 20 +
-            locationDiversity *
-              4 +
-            readyCoverage * 4,
-          50,
-          96,
-        )
-      : 0;
+  const readiness =
+    members.length > 0 ? Math.round((readyMembers / members.length) * 100) : 0;
+  const availability =
+    members.length > 0 ? Math.round((activeMembers / members.length) * 100) : 0;
+  const diversity = Math.min(96, 58 + departments * 8);
+  const capability = Math.min(96, 56 + strengths * 3);
 
   return [
     {
       key: "communication",
       label: "Communication",
-      value: communication,
-      description:
-        "How effectively the combined profile may share information and decisions.",
+      value: clamp(base - 3),
+      description: "How effectively the combined profile may share information and decisions.",
     },
     {
       key: "leadership",
       label: "Leadership",
-      value: leadership,
-      description:
-        "The mix of direction, ownership and support available across the team.",
+      value: clamp(base - 7 + departments * 2),
+      description: "The mix of direction, ownership and support available across the team.",
     },
     {
       key: "delivery",
       label: "Delivery",
-      value: delivery,
-      description:
-        "The team's collective readiness, reliability and ability to follow through.",
+      value: clamp(Math.round((base + availability) / 2)),
+      description: "The team's collective readiness, reliability and ability to follow through.",
     },
     {
       key: "innovation",
       label: "Innovation",
-      value: innovation,
-      description:
-        "The variety of skills and perspectives available for problem solving.",
+      value: clamp(Math.round((base + capability) / 2)),
+      description: "The variety of skills and perspectives available for problem solving.",
     },
     {
       key: "collaboration",
       label: "Collaboration",
-      value: collaboration,
-      description:
-        "The extent to which member profiles are ready and complementary.",
+      value: clamp(Math.round((base + readiness) / 2)),
+      description: "The extent to which member profiles are ready and complementary.",
     },
     {
-      key: "role-balance",
+      key: "balance",
       label: "Role balance",
-      value: roleBalance,
-      description:
-        "The spread of departments, roles and strengths represented in the team.",
+      value: clamp(Math.round((diversity + capability) / 2)),
+      description: "The spread of departments, roles and strengths represented in the team.",
     },
   ];
 }
