@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase";
 import { useEffect, useMemo, useState } from "react";
 import {
   DemoTeam,
@@ -20,30 +18,6 @@ type TeamMetric = {
   value: number;
   description: string;
 };
-
-// AUTOTEAMS_V71357_AS_STRING_ARRAY
-function asStringArray(
-  value: unknown,
-): string[] {
-  return Array.isArray(value)
-    ? value.filter(
-        (
-          item,
-        ): item is string =>
-          typeof item === "string" &&
-          Boolean(item.trim()),
-      )
-    : [];
-}
-
-function asOptionalString(
-  value: unknown,
-): string | undefined {
-  return typeof value === "string" &&
-    value.trim()
-    ? value.trim()
-    : undefined;
-}
 
 type BuilderSavedTeam = {
   id: string;
@@ -151,144 +125,6 @@ export function TeamDnaOverview() {
     );
   }, []);
 
-  // AUTOTEAMS_V71357_DIRECT_FIRESTORE
-  useEffect(() => {
-    let cancelled = false;
-
-    async function loadRequestedTeam() {
-      const params =
-        new URLSearchParams(
-          window.location.search,
-        );
-
-      const requestedId =
-        params.get("teamId")?.trim() || "";
-
-      if (!requestedId) {
-        return;
-      }
-
-      try {
-        const snapshot =
-          await getDoc(
-            doc(
-              db,
-              "teams",
-              requestedId,
-            ),
-          );
-
-        if (
-          cancelled ||
-          !snapshot.exists()
-        ) {
-          return;
-        }
-
-        const data =
-          snapshot.data();
-
-        const ownerId =
-          asOptionalString(
-            data.ownerId,
-          );
-
-        const memberIds =
-          asStringArray(
-            data.memberIds,
-          );
-
-        const personIds =
-          asStringArray(
-            data.personIds,
-          );
-
-        const selectedPeople =
-          personIds.length
-            ? personIds
-            : memberIds.filter(
-                (id) =>
-                  id !== ownerId,
-              );
-
-        const firebaseTeam =
-          ({
-            id: snapshot.id,
-            workspaceId:
-              asOptionalString(
-                data.workspaceId,
-              ) || "",
-            name:
-              asOptionalString(
-                data.name,
-              ) ||
-              params.get("teamName") ||
-              "Saved team",
-            purpose:
-              asOptionalString(
-                data.purpose,
-              ) ||
-              "Saved AutoTeams team",
-            memberIds:
-              selectedPeople,
-            confidence:
-              typeof data.confidence ===
-              "number"
-                ? data.confidence
-                : 85,
-            status:
-              asOptionalString(
-                data.status,
-              ) ||
-              "active",
-            createdAt:
-              asOptionalString(
-                data.createdAt,
-              ) ||
-              new Date().toISOString(),
-          }) as unknown as DemoTeam;
-
-        setTeams((current) => {
-          const merged =
-            new Map<string, DemoTeam>();
-
-          current.forEach(
-            (team) =>
-              merged.set(
-                team.id,
-                team,
-              ),
-          );
-
-          merged.set(
-            firebaseTeam.id,
-            firebaseTeam,
-          );
-
-          return Array.from(
-            merged.values(),
-          );
-        });
-
-        setPeople(loadPeople());
-
-        setSelectedId(
-          firebaseTeam.id,
-        );
-      } catch (error) {
-        console.warn(
-          "[AutoTeams] Team DNA could not load requested Firebase team",
-          error,
-        );
-      }
-    }
-
-    void loadRequestedTeam();
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
   const selectedTeam = useMemo(
     () => teams.find((team) => team.id === selectedId) || null,
     [teams, selectedId],

@@ -959,20 +959,6 @@ function toggleFinalPerson(
       ...teams,
       team,
     ]);
-    try {
-      window.localStorage.setItem(
-        "autoteams-team-dna-route-v71357",
-        JSON.stringify({
-          id: team.id,
-          name: team.name,
-        }),
-      );
-
-      window.localStorage.setItem(
-        "autoteams-team-insights-selected-team-v7121",
-        team.id,
-      );
-    } catch {}
 
     setMessage(
       `${team.name} was saved.`,

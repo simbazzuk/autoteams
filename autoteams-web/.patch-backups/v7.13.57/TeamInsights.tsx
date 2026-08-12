@@ -1261,7 +1261,7 @@ export function TeamInsights() {
                     </h2>
                   </div>
 
-                  <Link href={`/team-dna?teamId=${encodeURIComponent(selectedTeamId)}&teamName=${encodeURIComponent(selectedTeam.name)}`}>
+                  <Link href="/team-dna">
                     View Team DNA →
                   </Link>
                 </div>
@@ -1425,7 +1425,7 @@ export function TeamInsights() {
                   priority="Medium priority"
                   title="Build leadership depth"
                   description="Avoid concentrating coordination and leadership responsibility in too few people."
-                  href={`/team-dna?teamId=${encodeURIComponent(selectedTeamId)}&teamName=${encodeURIComponent(selectedTeam.name)}`}
+                  href="/team-dna"
                   action="Review Team DNA"
                 />
 
