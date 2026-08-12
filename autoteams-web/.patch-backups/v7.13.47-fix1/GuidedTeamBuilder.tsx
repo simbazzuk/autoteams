@@ -611,11 +611,6 @@ export function GuidedTeamBuilder() {
           "No selected people match this team context. Review the selected people or choose profiles that match the requirement.",
         );
       }
-      if (requirement.size > contextCandidates.length) {
-        throw new Error(
-          `Not enough eligible people are available to build this team. You requested ${requirement.size}, but only ${contextCandidates.length} ${contextCandidates.length === 1 ? "person is" : "people are"} available for this profile and requirement. Reduce the team size to ${contextCandidates.length} or fewer, or invite more people.`,
-        );
-      }
 
       const result =
         await requestTeamRecommendation({
@@ -2023,76 +2018,8 @@ function RequirementStep({
               fontSize: 16,
             }}
           />
-                  <small
-            style={{
-              color:
-                requirement.size > availablePeople
-                  ? "#fdba74"
-                  : "#7f8ea8",
-              fontSize: 11,
-              fontWeight: 600,
-            }}
-          >
-            Maximum available for this team: {availablePeople}
-          </small></label>
+        </label>
 
-        {requirement.size > availablePeople && (
-          <div
-            className={`${styles.fullWidth} invite47-size-warning`}
-            role="alert"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr auto",
-              gap: 16,
-              alignItems: "center",
-              padding: "16px 18px",
-              borderRadius: 14,
-              background:
-                "linear-gradient(135deg, rgba(249,115,22,.10), rgba(245,158,11,.05))",
-              border:
-                "1px solid rgba(249,115,22,.32)",
-            }}
-          >
-            <div>
-              <strong
-                style={{
-                  display: "block",
-                  marginBottom: 5,
-                  color: "#fdba74",
-                  fontSize: 15,
-                }}
-              >
-                Not enough people available
-              </strong>
-              <span
-                style={{
-                  display: "block",
-                  color: "#cbd5e1",
-                  fontSize: 13,
-                  lineHeight: 1.55,
-                }}
-              >
-                You requested a team of{" "}
-                <strong>{requirement.size}</strong>, but only{" "}
-                <strong>{availablePeople}</strong>{" "}
-                {availablePeople === 1 ? "person is" : "people are"} currently
-                available. Reduce the team size to {availablePeople} or fewer,
-                or invite more people.
-              </span>
-            </div>
-
-            <Link
-              className="button secondary"
-              href="/members#invite"
-              style={{
-                whiteSpace: "nowrap",
-                borderColor: "rgba(249,115,22,.35)",
-              }}
-            >
-              Invite People
-            </Link>
-          </div>
-        )}
         <label
           style={{
             fontSize: 14,
@@ -2295,8 +2222,7 @@ function RequirementStep({
             type="submit"
             disabled={
               isGenerating ||
-              availablePeople === 0 ||
-              requirement.size > availablePeople
+              availablePeople === 0
             }
             style={{
               minHeight: 50,
