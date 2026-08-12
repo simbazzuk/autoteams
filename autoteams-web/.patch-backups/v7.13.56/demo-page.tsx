@@ -6,8 +6,9 @@ export default function DemoPage() {
   return (
     <PageShell>
       <ProtectedRoute>
-        <UnifiedDemoScenarios />
-      </ProtectedRoute>
+<UnifiedDemoScenarios />
+        <DemoEnvironmentPanel />
+</ProtectedRoute>
     </PageShell>
   );
 }

@@ -1,15 +1,13 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { PeopleDirectory } from "@/components/people/PeopleDirectory";
-import { EducationDemoLoader } from "@/components/people/EducationDemoLoader";
 
 export default function PeoplePage() {
   return (
     <PageShell>
       <ProtectedRoute>
         <PeopleDirectory />
-      <EducationDemoLoader />
-</ProtectedRoute>
+      </ProtectedRoute>
     </PageShell>
   );
 }
