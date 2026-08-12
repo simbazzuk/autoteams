@@ -2,6 +2,7 @@ import { SocialMediaFooter } from "@/components/landing/SocialMediaFooter";
 import Link from "next/link";
 import { PageShell } from "@/components/Site";
 import { LandingCtaPalette } from "@/components/home/LandingCtaPalette";
+
 const useCases = [
   {
     icon: "🏢",

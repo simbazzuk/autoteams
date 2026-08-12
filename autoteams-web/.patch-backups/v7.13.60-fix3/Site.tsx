@@ -38,12 +38,6 @@ function isActivePath(
   pathname: string,
   href: string,
 ): boolean {
-
-  // AUTOTEAMS_V71360_ROOT_ROUTE_GUARD
-  // The public landing page is not an application workflow.
-  if (pathname === "/") {
-    return false;
-  }
   if (href === "/home") {
 return (
 pathname === "/home" ||

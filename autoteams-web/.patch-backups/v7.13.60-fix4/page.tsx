@@ -2,6 +2,8 @@ import { SocialMediaFooter } from "@/components/landing/SocialMediaFooter";
 import Link from "next/link";
 import { PageShell } from "@/components/Site";
 import { LandingCtaPalette } from "@/components/home/LandingCtaPalette";
+import { LandingNavigationState } from "@/components/home/LandingNavigationState";
+
 const useCases = [
   {
     icon: "🏢",
@@ -897,6 +899,7 @@ export default function HomePage() {
 <SocialMediaFooter />
 </main>
           <LandingCtaPalette />
+      <LandingNavigationState />
     </PageShell>
   );
 }

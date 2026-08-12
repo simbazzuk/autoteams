@@ -35,28 +35,9 @@ function normalise(value: string) {
 export function LandingCtaPalette() {
   useEffect(() => {
     const apply = () => {
-      // Remove any stale attributes accidentally applied outside the landing content.
-      document
-        .querySelectorAll<HTMLElement>(
-          "[data-autoteams-landing-cta]",
-        )
-        .forEach((element) => {
-          if (!element.closest("main")) {
-            delete element.dataset
-              .autoteamsLandingCta;
-          }
-        });
-
-      const main =
-        document.querySelector("main");
-
-      if (!main) {
-        return;
-      }
-
       const candidates =
         Array.from(
-          main.querySelectorAll<HTMLElement>(
+          document.querySelectorAll<HTMLElement>(
             "a, button",
           ),
         );
@@ -81,14 +62,19 @@ export function LandingCtaPalette() {
 
     apply();
 
-    const timer =
-      window.setTimeout(
-        apply,
-        150,
-      );
+    const observer =
+      new MutationObserver(apply);
+
+    observer.observe(
+      document.body,
+      {
+        childList: true,
+        subtree: true,
+      },
+    );
 
     return () => {
-      window.clearTimeout(timer);
+      observer.disconnect();
     };
   }, []);
 
