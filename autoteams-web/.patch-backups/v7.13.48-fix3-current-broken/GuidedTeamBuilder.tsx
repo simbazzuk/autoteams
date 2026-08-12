@@ -117,39 +117,12 @@ function normaliseTeamProfileType(
   return "";
 }
 
-function effectiveWorkspaceType(
-  workspace?: Workspace,
-): WorkspaceType {
-  if (!workspace) {
-    return "organisation";
-  }
-
-  /*
-   * v7.13.50
-   *
-   * Community Action Network is legacy/demo data that was originally
-   * stored as friends_family. Treat it as Community throughout Team
-   * Builder without mutating the user's persisted workspace record.
-   */
-  if (
-    workspace.name
-      .trim()
-      .toLowerCase() ===
-      "community action network" &&
-    workspace.type ===
-      "friends_family"
-  ) {
-    return "community";
-  }
-
-  return workspace.type;
-}
 function workspaceProfileFallback(
   workspace?: Workspace,
 ) {
   if (!workspace) return "work";
 
-  switch (effectiveWorkspaceType(workspace)) {
+  switch (workspace.type) {
     case "sports":
       return "sport";
     case "community":
@@ -496,6 +469,73 @@ export function GuidedTeamBuilder() {
     );
   }
 
+  function addScienceContextDemoPeople(
+    context: string,
+  ) {
+    if (!activeWorkspace) return;
+
+    const existingEmails =
+      new Set(
+        people.map((person) =>
+          person.email.toLowerCase(),
+        ),
+      );
+
+    const samples =
+      scienceContextDemoPeople(context)
+        .filter(
+          (person) =>
+            !existingEmails.has(
+              person.email.toLowerCase(),
+            ),
+        )
+        .map<WorkspacePerson>(
+          (person) => ({
+            ...person,
+            id: createWorkspaceId(
+              "person",
+            ),
+            workspaceId:
+              activeWorkspace.id,
+            status: "active",
+            teamDnaStatus: "ready",
+          }),
+        );
+
+    const updated = [
+      ...people,
+      ...samples,
+    ];
+
+    savePeople(updated);
+    setPeople(updated);
+
+    const contextIds =
+      scienceContextDemoPeople(context)
+        .map((person) =>
+          person.email.toLowerCase(),
+        );
+
+    const selectedIds =
+      updated
+        .filter(
+          (person) =>
+            person.workspaceId ===
+              activeWorkspace.id &&
+            contextIds.includes(
+              person.email.toLowerCase(),
+            ),
+        )
+        .map((person) => person.id);
+
+    setSelectedPeople(selectedIds);
+
+    setMessage(
+      samples.length > 0
+        ? `${samples.length} ${scienceContextLabel(context)} demo people were added and selected.`
+        : `${scienceContextLabel(context)} demo people are already loaded and selected.`,
+    );
+  }
   function addDemoPeople() {
     if (!activeWorkspace) return;
 
@@ -998,7 +1038,7 @@ function toggleFinalPerson(
         className={styles.hero}
       >
         <div
-          className={`container ${styles.heroGrid} team-builder-visual-hero`}
+          className={`container ${styles.heroGrid}`}
         >
           <div>
             <span className="eyebrow">
@@ -1014,56 +1054,43 @@ function toggleFinalPerson(
             <p>
               {isRebuildFlow
                 ? "Create a new team recommendation while keeping the existing team unchanged. Choose the people and requirements you want Atlas to consider."
-                : "Choose the people, describe what the team needs to achieve, and let Atlas suggest the strengths and team science context that best fit the requirement."}
+                : "AutoTeams guides you from group selection to a human-reviewed Gemini recommendation without sending you to other setup pages."}
             </p>
           </div>
 
           <aside
-            className="team-builder-hero-visual"
-            aria-hidden="true"
+            className={
+              styles.contextCard
+            }
           >
-            <div className="team-builder-hero-orbit">
-              <span className="team-builder-hero-node node-a">
-                A
-              </span>
-              <span className="team-builder-hero-node node-b">
-                B
-              </span>
-              <span className="team-builder-hero-node node-c">
-                C
-              </span>
-              <span className="team-builder-hero-node node-d">
-                D
-              </span>
-              <span className="team-builder-hero-node node-e">
-                E
-              </span>
+            <ProductIcon
+              label="Current group"
+              size="lg"
+            >
+              ◇
+            </ProductIcon>
 
-              <span className="team-builder-hero-line line-a" />
-              <span className="team-builder-hero-line line-b" />
-              <span className="team-builder-hero-line line-c" />
-              <span className="team-builder-hero-line line-d" />
-              <span className="team-builder-hero-line line-e" />
-
-              <div className="team-builder-hero-atlas">
-                <span className="team-builder-hero-atlas-ring" />
-                <span className="team-builder-hero-atlas-core">
-                  &#10022;
-                </span>
-                <small>Atlas</small>
-              </div>
-
-              <div className="team-builder-hero-team-card">
-                <small>Recommended team</small>
-                <strong>Balanced by design</strong>
-                <div>
-                  <span>5 people</span>
-                  <span>92% fit</span>
-                </div>
-              </div>
+            <div>
+              <small>
+                Current group
+              </small>
+              <strong>
+                {activeWorkspace
+                  ?.name ||
+                  "Not selected"}
+              </strong>
+              <p>
+                {activeWorkspace
+                  ? `${workspaceTypeLabel(
+                      activeWorkspace.type,
+                    )} · ${
+                      activePeople.length
+                    } active people`
+                  : "Create or choose a group in Step 1."}
+              </p>
             </div>
           </aside>
-</div>
+        </div>
       </section>
 
       <section
@@ -1211,6 +1238,8 @@ function toggleFinalPerson(
               }
               generationError={
                 generationError
+              }              onLoadContextDemo={
+                addScienceContextDemoPeople
               }
             />
           )}
@@ -1464,9 +1493,7 @@ function GroupStep({
                     </strong>
                     <small>
                       {workspaceTypeLabel(
-                        effectiveWorkspaceType(
-                          workspace,
-                        ),
+                        workspace.type,
                       )}
                     </small>
                     <p>
@@ -1882,6 +1909,7 @@ function RequirementStep({
   onBack,
   isGenerating,
   generationError,
+  onLoadContextDemo,
 }: {
   workspace?: Workspace;
   availablePeople: number;
@@ -1901,8 +1929,19 @@ function RequirementStep({
   ) => void | Promise<void>;
   onBack: () => void;
   isGenerating: boolean;
-  generationError: string;
+  generationError: string;  onLoadContextDemo: (
+    context: string,
+  ) => void;
 }) {
+  const [
+    selectedScienceContext,
+    setSelectedScienceContext,
+  ] = useState(() =>
+    inferDemoScienceContext(
+      `${requirement.name} ${requirement.purpose}`,
+    ),
+  );
+
   return (
     <section
       className={styles.panel}
@@ -1952,7 +1991,9 @@ function RequirementStep({
       </div>
 
       <form
-        className={`${styles.requirementForm} team-builder-step3-form`}
+        className={
+          styles.requirementForm
+        }
         onSubmit={onSubmit}
         style={{
           gap: 18,
@@ -2221,7 +2262,6 @@ function RequirementStep({
             </option>
           </select>
         </label>
-
         <ContextAwareSkills
           outcome={requirement.purpose}
           teamName={requirement.name}
@@ -2229,7 +2269,112 @@ function RequirementStep({
           onToggleSkill={onToggleSkill}
         />
 
-          <SportsTeamRequirements teamName={requirement.name} outcome={requirement.purpose} />
+        <div
+          className={`${styles.fullWidth} context-demo-loader-v71348`}
+          onClickCapture={(event) => {
+            const target =
+              event.target as HTMLElement;
+            const button =
+              target.closest("button");
+
+            if (!button) {
+              return;
+            }
+
+            const nextContext =
+              scienceContextFromLabel(
+                button.textContent || "",
+              );
+
+            if (nextContext) {
+              setSelectedScienceContext(
+                nextContext,
+              );
+            }
+          }}
+          style={{
+            padding: "16px 18px",
+            borderRadius: 16,
+            border:
+              "1px solid rgba(129,140,248,.20)",
+            background:
+              "linear-gradient(135deg, rgba(99,102,241,.08), rgba(15,23,42,.35))",
+            display: "grid",
+            gridTemplateColumns:
+              "minmax(0, 1fr) auto",
+            alignItems: "center",
+            gap: 18,
+          }}
+        >
+          <div>
+            <small
+              style={{
+                display: "block",
+                marginBottom: 5,
+                color: "#8ea0bb",
+                fontSize: 11,
+                fontWeight: 800,
+                letterSpacing: ".05em",
+                textTransform: "uppercase",
+              }}
+            >
+              Demo people for selected context
+            </small>
+
+            <strong
+              style={{
+                display: "block",
+                color: "#f8fafc",
+                fontSize: 16,
+              }}
+            >
+              {scienceContextLabel(
+                selectedScienceContext,
+              )}
+            </strong>
+
+            <span
+              style={{
+                display: "block",
+                marginTop: 4,
+                maxWidth: 720,
+                color: "#9fb0c8",
+                fontSize: 12,
+                lineHeight: 1.45,
+              }}
+            >
+              {scienceContextDemoDescription(
+                selectedScienceContext,
+              )}
+            </span>
+          </div>
+
+          <button
+            className="button secondary"
+            onClick={() =>
+              onLoadContextDemo(
+                selectedScienceContext,
+              )
+            }
+            type="button"
+            style={{
+              whiteSpace: "nowrap",
+              borderColor:
+                selectedScienceContext ===
+                "education"
+                  ? "rgba(139,92,246,.45)"
+                  : "rgba(96,165,250,.30)",
+            }}
+          >
+            {selectedScienceContext ===
+            "education"
+              ? "Load 12 Education Demo People"
+              : `Load ${scienceContextLabel(
+                  selectedScienceContext,
+                )} Demo`}
+          </button>
+        </div>
+<SportsTeamRequirements teamName={requirement.name} outcome={requirement.purpose} />
 
         <fieldset
           className={
@@ -3136,6 +3281,370 @@ function saveSavedTeams(
   );
 }
 
+function scienceContextFromLabel(
+  label: string,
+) {
+  const text =
+    label.toLowerCase();
+
+  if (
+    text.includes("education") ||
+    text.includes("learning")
+  ) {
+    return "education";
+  }
+
+  if (
+    text.includes("sport") ||
+    text.includes("club")
+  ) {
+    return "sport";
+  }
+
+  if (
+    text.includes("friend") ||
+    text.includes("social")
+  ) {
+    return "friendship";
+  }
+
+  if (
+    text.includes("community")
+  ) {
+    return "community";
+  }
+
+  if (
+    text.includes("volunteer")
+  ) {
+    return "volunteering";
+  }
+
+  if (
+    text.includes("work") ||
+    text.includes("organisation")
+  ) {
+    return "work";
+  }
+
+  return "";
+}
+
+function inferDemoScienceContext(
+  value: string,
+) {
+  const text =
+    value.toLowerCase();
+
+  if (
+    /education|learning|student|study|course|university|school|college/.test(
+      text,
+    )
+  ) {
+    return "education";
+  }
+
+  if (
+    /sport|football|rugby|cricket|club|player|coach/.test(
+      text,
+    )
+  ) {
+    return "sport";
+  }
+
+  if (
+    /friend|social|relationship/.test(
+      text,
+    )
+  ) {
+    return "friendship";
+  }
+
+  if (
+    /community|neighbourhood|local group/.test(
+      text,
+    )
+  ) {
+    return "community";
+  }
+
+  if (
+    /volunteer|charity|nonprofit|non-profit/.test(
+      text,
+    )
+  ) {
+    return "volunteering";
+  }
+
+  return "work";
+}
+
+function scienceContextLabel(
+  context: string,
+) {
+  switch (context) {
+    case "education":
+      return "Education & Learning";
+    case "sport":
+      return "Sports & Clubs";
+    case "friendship":
+      return "Friendships & Social";
+    case "community":
+      return "Community";
+    case "volunteering":
+      return "Volunteering";
+    default:
+      return "Work & Organisations";
+  }
+}
+
+function scienceContextDemoDescription(
+  context: string,
+) {
+  switch (context) {
+    case "education":
+      return "12 realistic students across different subjects, strengths and locations.";
+    case "sport":
+      return "Players and coaching roles ready for sports team scenarios.";
+    case "friendship":
+      return "A varied social group for friendship and activity matching.";
+    case "community":
+      return "Community organisers and volunteers with complementary strengths.";
+    case "volunteering":
+      return "Volunteer-focused people for charity and service teams.";
+    default:
+      return "A cross-functional work group ready for team recommendation testing.";
+  }
+}
+
+function scienceContextDemoPeople(
+  context: string,
+): Array<
+  Omit<
+    WorkspacePerson,
+    | "id"
+    | "workspaceId"
+    | "status"
+    | "teamDnaStatus"
+  >
+> {
+  if (
+    context === "education"
+  ) {
+    return [
+      {
+        name: "Aisha Khan",
+        email:
+          "aisha.khan@example.com",
+        department:
+          "Computer Science",
+        jobTitle:
+          "Student - Computer Science",
+        location: "Leeds",
+        strengths: [
+          "Python",
+          "AI",
+          "Problem solving",
+          "Analytical thinking",
+        ],
+      },
+      {
+        name: "James Wilson",
+        email:
+          "james.wilson@example.com",
+        department:
+          "Business Management",
+        jobTitle:
+          "Student - Business Management",
+        location: "Leeds",
+        strengths: [
+          "Leadership",
+          "Communication",
+          "Presenting",
+          "Collaboration",
+        ],
+      },
+      {
+        name: "Priya Patel",
+        email:
+          "priya.patel@example.com",
+        department: "Psychology",
+        jobTitle:
+          "Student - Psychology",
+        location: "Bradford",
+        strengths: [
+          "Research",
+          "Analysis",
+          "Writing",
+          "Empathy",
+        ],
+      },
+      {
+        name: "Daniel Evans",
+        email:
+          "daniel.evans@example.com",
+        department: "Engineering",
+        jobTitle:
+          "Student - Engineering",
+        location: "Sheffield",
+        strengths: [
+          "Design",
+          "Mathematics",
+          "Prototyping",
+          "Problem solving",
+        ],
+      },
+      {
+        name: "Sophie Taylor",
+        email:
+          "sophie.taylor@example.com",
+        department: "Marketing",
+        jobTitle:
+          "Student - Marketing",
+        location: "Leeds",
+        strengths: [
+          "Creativity",
+          "Communication",
+          "Social media",
+          "Presenting",
+        ],
+      },
+      {
+        name: "Harpreet Singh",
+        email:
+          "harpreet.singh@example.com",
+        department:
+          "Computer Science",
+        jobTitle:
+          "Student - Software Engineering",
+        location: "Bradford",
+        strengths: [
+          "JavaScript",
+          "Cloud",
+          "APIs",
+          "Collaboration",
+        ],
+      },
+      {
+        name: "Emily Roberts",
+        email:
+          "emily.roberts@example.com",
+        department: "Medicine",
+        jobTitle:
+          "Student - Medicine",
+        location: "Leeds",
+        strengths: [
+          "Research",
+          "Organisation",
+          "Communication",
+          "Planning",
+        ],
+      },
+      {
+        name: "Mohammed Ali",
+        email:
+          "mohammed.ali@example.com",
+        department: "Data Science",
+        jobTitle:
+          "Student - Data Science",
+        location: "Manchester",
+        strengths: [
+          "SQL",
+          "Python",
+          "Statistics",
+          "Analytical thinking",
+        ],
+      },
+      {
+        name: "Chloe Davies",
+        email:
+          "chloe.davies@example.com",
+        department:
+          "Graphic Design",
+        jobTitle:
+          "Student - Graphic Design",
+        location: "Leeds",
+        strengths: [
+          "UX",
+          "Visual design",
+          "Creativity",
+          "Collaboration",
+        ],
+      },
+      {
+        name: "Oliver Brown",
+        email:
+          "oliver.brown@example.com",
+        department: "Economics",
+        jobTitle:
+          "Student - Economics",
+        location: "York",
+        strengths: [
+          "Data analysis",
+          "Finance",
+          "Strategy",
+          "Problem solving",
+        ],
+      },
+      {
+        name: "Simran Kaur",
+        email:
+          "simran.kaur@example.com",
+        department: "Law",
+        jobTitle:
+          "Student - Law",
+        location: "Leeds",
+        strengths: [
+          "Research",
+          "Communication",
+          "Critical thinking",
+          "Attention to detail",
+        ],
+      },
+      {
+        name: "Jack Morgan",
+        email:
+          "jack.morgan@example.com",
+        department:
+          "Cyber Security",
+        jobTitle:
+          "Student - Cyber Security",
+        location: "Sheffield",
+        strengths: [
+          "Security",
+          "Networking",
+          "Problem solving",
+          "Technical analysis",
+        ],
+      },
+    ];
+  }
+
+  if (
+    context === "sport"
+  ) {
+    return demoPeople("sports");
+  }
+
+  if (
+    context === "community" ||
+    context === "volunteering"
+  ) {
+    return demoPeople("community");
+  }
+
+  if (
+    context === "friendship"
+  ) {
+    return demoPeople(
+      "friends_family",
+    );
+  }
+
+  return demoPeople(
+    "organisation",
+  );
+}
 function demoPeople(
   type: WorkspaceType,
 ): Array<

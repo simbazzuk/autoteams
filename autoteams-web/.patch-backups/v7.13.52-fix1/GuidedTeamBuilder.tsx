@@ -998,7 +998,7 @@ function toggleFinalPerson(
         className={styles.hero}
       >
         <div
-          className={`container ${styles.heroGrid} team-builder-visual-hero`}
+          className={`container ${styles.heroGrid} team-builder-neutral-hero`}
         >
           <div>
             <span className="eyebrow">
@@ -1017,52 +1017,6 @@ function toggleFinalPerson(
                 : "Choose the people, describe what the team needs to achieve, and let Atlas suggest the strengths and team science context that best fit the requirement."}
             </p>
           </div>
-
-          <aside
-            className="team-builder-hero-visual"
-            aria-hidden="true"
-          >
-            <div className="team-builder-hero-orbit">
-              <span className="team-builder-hero-node node-a">
-                A
-              </span>
-              <span className="team-builder-hero-node node-b">
-                B
-              </span>
-              <span className="team-builder-hero-node node-c">
-                C
-              </span>
-              <span className="team-builder-hero-node node-d">
-                D
-              </span>
-              <span className="team-builder-hero-node node-e">
-                E
-              </span>
-
-              <span className="team-builder-hero-line line-a" />
-              <span className="team-builder-hero-line line-b" />
-              <span className="team-builder-hero-line line-c" />
-              <span className="team-builder-hero-line line-d" />
-              <span className="team-builder-hero-line line-e" />
-
-              <div className="team-builder-hero-atlas">
-                <span className="team-builder-hero-atlas-ring" />
-                <span className="team-builder-hero-atlas-core">
-                  &#10022;
-                </span>
-                <small>Atlas</small>
-              </div>
-
-              <div className="team-builder-hero-team-card">
-                <small>Recommended team</small>
-                <strong>Balanced by design</strong>
-                <div>
-                  <span>5 people</span>
-                  <span>92% fit</span>
-                </div>
-              </div>
-            </div>
-          </aside>
 </div>
       </section>
 

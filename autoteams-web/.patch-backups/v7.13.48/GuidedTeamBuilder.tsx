@@ -117,39 +117,12 @@ function normaliseTeamProfileType(
   return "";
 }
 
-function effectiveWorkspaceType(
-  workspace?: Workspace,
-): WorkspaceType {
-  if (!workspace) {
-    return "organisation";
-  }
-
-  /*
-   * v7.13.50
-   *
-   * Community Action Network is legacy/demo data that was originally
-   * stored as friends_family. Treat it as Community throughout Team
-   * Builder without mutating the user's persisted workspace record.
-   */
-  if (
-    workspace.name
-      .trim()
-      .toLowerCase() ===
-      "community action network" &&
-    workspace.type ===
-      "friends_family"
-  ) {
-    return "community";
-  }
-
-  return workspace.type;
-}
 function workspaceProfileFallback(
   workspace?: Workspace,
 ) {
   if (!workspace) return "work";
 
-  switch (effectiveWorkspaceType(workspace)) {
+  switch (workspace.type) {
     case "sports":
       return "sport";
     case "community":
@@ -998,7 +971,7 @@ function toggleFinalPerson(
         className={styles.hero}
       >
         <div
-          className={`container ${styles.heroGrid} team-builder-visual-hero`}
+          className={`container ${styles.heroGrid}`}
         >
           <div>
             <span className="eyebrow">
@@ -1014,56 +987,43 @@ function toggleFinalPerson(
             <p>
               {isRebuildFlow
                 ? "Create a new team recommendation while keeping the existing team unchanged. Choose the people and requirements you want Atlas to consider."
-                : "Choose the people, describe what the team needs to achieve, and let Atlas suggest the strengths and team science context that best fit the requirement."}
+                : "AutoTeams guides you from group selection to a human-reviewed Gemini recommendation without sending you to other setup pages."}
             </p>
           </div>
 
           <aside
-            className="team-builder-hero-visual"
-            aria-hidden="true"
+            className={
+              styles.contextCard
+            }
           >
-            <div className="team-builder-hero-orbit">
-              <span className="team-builder-hero-node node-a">
-                A
-              </span>
-              <span className="team-builder-hero-node node-b">
-                B
-              </span>
-              <span className="team-builder-hero-node node-c">
-                C
-              </span>
-              <span className="team-builder-hero-node node-d">
-                D
-              </span>
-              <span className="team-builder-hero-node node-e">
-                E
-              </span>
+            <ProductIcon
+              label="Current group"
+              size="lg"
+            >
+              ◇
+            </ProductIcon>
 
-              <span className="team-builder-hero-line line-a" />
-              <span className="team-builder-hero-line line-b" />
-              <span className="team-builder-hero-line line-c" />
-              <span className="team-builder-hero-line line-d" />
-              <span className="team-builder-hero-line line-e" />
-
-              <div className="team-builder-hero-atlas">
-                <span className="team-builder-hero-atlas-ring" />
-                <span className="team-builder-hero-atlas-core">
-                  &#10022;
-                </span>
-                <small>Atlas</small>
-              </div>
-
-              <div className="team-builder-hero-team-card">
-                <small>Recommended team</small>
-                <strong>Balanced by design</strong>
-                <div>
-                  <span>5 people</span>
-                  <span>92% fit</span>
-                </div>
-              </div>
+            <div>
+              <small>
+                Current group
+              </small>
+              <strong>
+                {activeWorkspace
+                  ?.name ||
+                  "Not selected"}
+              </strong>
+              <p>
+                {activeWorkspace
+                  ? `${workspaceTypeLabel(
+                      activeWorkspace.type,
+                    )} · ${
+                      activePeople.length
+                    } active people`
+                  : "Create or choose a group in Step 1."}
+              </p>
             </div>
           </aside>
-</div>
+        </div>
       </section>
 
       <section
@@ -1464,9 +1424,7 @@ function GroupStep({
                     </strong>
                     <small>
                       {workspaceTypeLabel(
-                        effectiveWorkspaceType(
-                          workspace,
-                        ),
+                        workspace.type,
                       )}
                     </small>
                     <p>
@@ -1848,23 +1806,19 @@ function PeopleStep({
             ✦
           </ProductIcon>
           <h3>
-            {workspace?.type === "education"
-              ? "Load an Education demo group"
-              : "Need people for testing?"}
+            Need people for testing?
           </h3>
           <p>
-            {workspace?.type === "education"
-              ? "Add 12 realistic students across different subjects and strengths, ready for Team Builder testing."
-              : "Add five relevant demo people and continue immediately."}
+            Add five relevant demo
+            people and continue
+            immediately.
           </p>
           <button
             className="button secondary"
             onClick={onAddDemo}
             type="button"
           >
-            {workspace?.type === "education"
-              ? "Load Education Demo"
-              : "Generate Demo People"}
+            Generate Demo People
           </button>
         </section>
       </aside>
@@ -1952,7 +1906,9 @@ function RequirementStep({
       </div>
 
       <form
-        className={`${styles.requirementForm} team-builder-step3-form`}
+        className={
+          styles.requirementForm
+        }
         onSubmit={onSubmit}
         style={{
           gap: 18,
@@ -3260,104 +3216,19 @@ function demoPeople(
   if (
     type === "education"
   ) {
-    return [
-      {
-        name: "Aisha Khan",
-        email: "aisha.khan@example.com",
-        department: "Computer Science",
-        jobTitle: "Student - Computer Science",
-        location: "Leeds",
-        strengths: ["Python", "AI", "Problem solving", "Analytical thinking"],
-      },
-      {
-        name: "James Wilson",
-        email: "james.wilson@example.com",
-        department: "Business Management",
-        jobTitle: "Student - Business Management",
-        location: "Leeds",
-        strengths: ["Leadership", "Communication", "Presenting", "Collaboration"],
-      },
-      {
-        name: "Priya Patel",
-        email: "priya.patel@example.com",
-        department: "Psychology",
-        jobTitle: "Student - Psychology",
-        location: "Bradford",
-        strengths: ["Research", "Analysis", "Writing", "Empathy"],
-      },
-      {
-        name: "Daniel Evans",
-        email: "daniel.evans@example.com",
-        department: "Engineering",
-        jobTitle: "Student - Engineering",
-        location: "Sheffield",
-        strengths: ["Design", "Mathematics", "Prototyping", "Problem solving"],
-      },
-      {
-        name: "Sophie Taylor",
-        email: "sophie.taylor@example.com",
-        department: "Marketing",
-        jobTitle: "Student - Marketing",
-        location: "Leeds",
-        strengths: ["Creativity", "Communication", "Social media", "Presenting"],
-      },
-      {
-        name: "Harpreet Singh",
-        email: "harpreet.singh@example.com",
-        department: "Computer Science",
-        jobTitle: "Student - Software Engineering",
-        location: "Bradford",
-        strengths: ["JavaScript", "Cloud", "APIs", "Collaboration"],
-      },
-      {
-        name: "Emily Roberts",
-        email: "emily.roberts@example.com",
-        department: "Medicine",
-        jobTitle: "Student - Medicine",
-        location: "Leeds",
-        strengths: ["Research", "Organisation", "Communication", "Planning"],
-      },
-      {
-        name: "Mohammed Ali",
-        email: "mohammed.ali@example.com",
-        department: "Data Science",
-        jobTitle: "Student - Data Science",
-        location: "Manchester",
-        strengths: ["SQL", "Python", "Statistics", "Analytical thinking"],
-      },
-      {
-        name: "Chloe Davies",
-        email: "chloe.davies@example.com",
-        department: "Graphic Design",
-        jobTitle: "Student - Graphic Design",
-        location: "Leeds",
-        strengths: ["UX", "Visual design", "Creativity", "Collaboration"],
-      },
-      {
-        name: "Oliver Brown",
-        email: "oliver.brown@example.com",
-        department: "Economics",
-        jobTitle: "Student - Economics",
-        location: "York",
-        strengths: ["Data analysis", "Finance", "Strategy", "Problem solving"],
-      },
-      {
-        name: "Simran Kaur",
-        email: "simran.kaur@example.com",
-        department: "Law",
-        jobTitle: "Student - Law",
-        location: "Leeds",
-        strengths: ["Research", "Communication", "Critical thinking", "Attention to detail"],
-      },
-      {
-        name: "Jack Morgan",
-        email: "jack.morgan@example.com",
-        department: "Cyber Security",
-        jobTitle: "Student - Cyber Security",
-        location: "Sheffield",
-        strengths: ["Security", "Networking", "Problem solving", "Technical analysis"],
-      },
-    ];
+    return base.map(
+      (person, index) => ({
+        ...person,
+        department:
+          index === 2
+            ? "Tutors"
+            : "Study Group",
+        jobTitle:
+          index === 2
+            ? "Tutor"
+            : "Student",
+      }),
+    );
   }
 
   if (
