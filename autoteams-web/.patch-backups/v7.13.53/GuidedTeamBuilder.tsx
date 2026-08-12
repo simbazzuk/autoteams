@@ -1054,12 +1054,11 @@ function toggleFinalPerson(
               </div>
 
               <div className="team-builder-hero-team-card">
-                <small>Atlas Team Science</small>
-                <strong>Find the right mix</strong>
+                <small>Recommended team</small>
+                <strong>Balanced by design</strong>
                 <div>
-                  <span>Skills</span>
-                  <span>Strengths</span>
-                  <span>Compatibility</span>
+                  <span>5 people</span>
+                  <span>92% fit</span>
                 </div>
               </div>
             </div>
