@@ -1,5 +1,10 @@
 "use client";
 
+import {
+  persistInvitation,
+  updateInvitationEmailStatus,
+} from "@/lib/firebase/invitations";
+import { useAuth } from "@/components/AuthProvider";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useWorkspaceAccess } from "./AccessContext";
 import {
@@ -183,6 +188,7 @@ function invitationUrl(token: string) {
 }
 
 export function MembersPanel() {
+  const { user } = useAuth();
   const [workspaceId, setWorkspaceId] = useState("");
   const [memberships, setMemberships] = useState<WorkspaceMembership[]>([]);
   const [invitations, setInvitations] = useState<WorkspaceInvitation[]>([]);
@@ -297,9 +303,9 @@ export function MembersPanel() {
   const selectedProfile =
     selectedProfileOption?.profile;
 
-  function invite(event: FormEvent<HTMLFormElement>) {
+  async function invite(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!canManage) return;
+    if (!canManage || !user) return;
 
     const invitation: WorkspaceInvitation = {
       id: createAccessId("invite"),
@@ -307,28 +313,95 @@ export function MembersPanel() {
       email: inviteEmail.trim(),
       name: inviteName.trim() || inviteEmail.trim().split("@")[0],
       role: inviteRole,
-      profileContext:
-        profileMode || undefined,
+      profileContext: profileMode || undefined,
       token: createInviteToken(),
       status: "pending",
       createdAt: new Date().toISOString(),
     };
 
     const updated = [invitation, ...invitations];
+
+    // Keep the existing local store for backwards compatibility/UI speed.
     setInvitations(updated);
     saveInvitations(updated);
+
+    setInviteMessage("Creating invitation...");
+    setCopyMessage("");
+    setLastInvitationToken(invitation.token);
+
+    try {
+      // Firestore is the cross-device source of truth for invitation tokens.
+      await persistInvitation(
+        invitation,
+        user.uid,
+        {
+          name: user.displayName,
+          email: user.email,
+        },
+      );
+
+      const idToken = await user.getIdToken();
+
+      const response = await fetch("/api/invitations/send", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${idToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token: invitation.token,
+          ownerId: user.uid,
+          recipientName: invitation.name,
+          recipientEmail: invitation.email,
+          profileContext: invitation.profileContext,
+          role: invitation.role,
+          inviterName: user.displayName || "An AutoTeams member",
+        }),
+      });
+
+      const result = (await response.json()) as {
+        error?: string;
+        inviteUrl?: string;
+      };
+
+      if (!response.ok) {
+        await updateInvitationEmailStatus(
+          invitation.token,
+          "failed",
+        );
+
+        throw new Error(
+          result.error || "The invitation email could not be sent.",
+        );
+      }
+
+      await updateInvitationEmailStatus(
+        invitation.token,
+        "sent",
+      );
+
+      setInviteMessage(
+        `Invitation emailed to ${invitation.email}${
+          invitation.profileContext
+            ? ` - ${profileModeLabel(invitation.profileContext)} profile`
+            : ""
+        }.`,
+      );
+    } catch (error) {
+      console.error(
+        "[AutoTeams] invitation email failed",
+        error,
+      );
+
+      // The invitation still exists and the user can share the link manually.
+      setInviteMessage(
+        `Invite created for ${invitation.email}, but the email could not be sent. You can still copy the invite link below.`,
+      );
+    }
+
     setInviteName("");
     setInviteEmail("");
     setInviteRole("member");
-    setLastInvitationToken(invitation.token);
-    setCopyMessage("");
-    setInviteMessage(
-      `Invite created for ${invitation.email}${
-        invitation.profileContext
-          ? ` · ${profileModeLabel(invitation.profileContext)} profile`
-          : ""
-      }. Share the invite link below.`,
-    );
   }
 
   function revoke(id: string) {

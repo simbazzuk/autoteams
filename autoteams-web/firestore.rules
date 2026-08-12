@@ -48,7 +48,23 @@ service cloud.firestore {
     }
 
     // Deny everything that has not been explicitly allowed above.
-    match /{document=**} {
+      // AutoTeams invitations - v7.13.42
+  // Token is the document ID. A recipient may GET a known invitation token,
+  // but anonymous listing/querying of invitations is prohibited.
+  match /invitations/{token} {
+    allow get: if true;
+    allow list: if false;
+
+    allow create: if request.auth != null
+      && request.resource.data.ownerId == request.auth.uid
+      && request.resource.data.token == token;
+
+    allow update, delete: if request.auth != null
+      && resource.data.ownerId == request.auth.uid
+      && request.resource.data.ownerId == request.auth.uid;
+  }
+
+match /{document=**} {
       allow read, write: if false;
     }
   }
