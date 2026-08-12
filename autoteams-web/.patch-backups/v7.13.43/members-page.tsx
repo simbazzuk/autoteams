@@ -1,17 +1,13 @@
-import { InvitePageTheme } from "@/components/access/InvitePageTheme";
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { MembersPanel } from "@/components/access/MembersPanel";
 
 export default function MembersPage() {
   return (
-    <>
-      <InvitePageTheme />
-      <PageShell>
-        <ProtectedRoute>
-          <MembersPanel />
-        </ProtectedRoute>
-      </PageShell>
-    </>
+    <PageShell>
+      <ProtectedRoute>
+        <MembersPanel />
+      </ProtectedRoute>
+    </PageShell>
   );
 }

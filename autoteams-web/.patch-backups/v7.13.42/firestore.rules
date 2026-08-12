@@ -1,0 +1,55 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // User account document: owner can read/update, but account deletion
+    // should be handled separately from profile/persona deletion.
+    match /users/{userId} {
+      allow read, create, update: if request.auth != null
+        && request.auth.uid == userId;
+      allow delete: if false;
+
+      // A user owns their own AutoTeams personas/profiles.
+      match /personas/{personaId} {
+        allow read, create, update, delete: if request.auth != null
+          && request.auth.uid == userId;
+      }
+    }
+
+    // Saved AutoTeams teams.
+    // TeamPersistenceBridge writes ownerId on every persisted team and
+    // includes the owner in memberIds.
+    match /teams/{teamId} {
+      // Owners can always read their team. A signed-in member can read a
+      // team only when their Firebase UID is explicitly present in memberIds.
+      allow read: if request.auth != null
+        && (
+          resource.data.ownerId == request.auth.uid
+          || (
+            resource.data.memberIds is list
+            && request.auth.uid in resource.data.memberIds
+          )
+        );
+
+      // A user may only create a team owned by themselves.
+      allow create: if request.auth != null
+        && request.resource.data.ownerId == request.auth.uid;
+
+      // Only the existing owner may change a team, and ownership cannot be
+      // transferred by an ordinary client update.
+      allow update: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && request.resource.data.ownerId == request.auth.uid;
+
+      // Only the existing owner may permanently delete a saved team.
+      allow delete: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    // Deny everything that has not been explicitly allowed above.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

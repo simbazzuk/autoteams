@@ -467,17 +467,17 @@ export function MembersPanel() {
     };
 
   return (
-    <main className="access-page" data-autoteams-invite="v7.13.44">
+    <main className="access-page" data-autoteams-invite="v7.13.43-fix1">
       <section className={`access-hero ${styles.hero}`}>
         <div className={`container access-hero-row ${styles.heroRow}`}>
           <div>
-            <span className="eyebrow">Invite intelligence</span>
-            <h1>Grow the right network.</h1>
+            <span className="eyebrow">Invite & grow</span>
+            <h1>Invites</h1>
             <p>
-              Invite people into the right profile, give them the right access
-              and make them available for better team decisions.
+              Bring the right people into your AutoTeams network. Choose a
+              profile, assign their role and send a secure email invitation.
             </p>
-            <div className="invite44-hero-actions"><span>Invite securely</span><span>Profile aware</span><span>Atlas ready</span></div>
+            <div className="invite43-hero-pills"><span>Invite people</span><span>Choose profile</span><span>Build together</span></div>
           </div>
 
           <div className={`access-account-summary ${styles.contextCard}`}>
@@ -533,7 +533,7 @@ export function MembersPanel() {
               </article>
             </div>
 
-            <section className="access-panel invite44-members-panel">
+            <section className="access-panel invite43-members-panel">
               <div className="access-panel-heading">
                 <div>
                   <span className="eyebrow">Profile members</span>
@@ -599,7 +599,7 @@ export function MembersPanel() {
               </div>
             </section>
 
-            <section className="access-panel invite44-consent-panel">
+            <section className="access-panel invite43-consent-panel">
               <div className="access-panel-heading">
                 <div>
                   <span className="eyebrow">Member consent</span>
@@ -669,25 +669,25 @@ export function MembersPanel() {
                 </label>
               </div>
             </section>
-            <section className="access-panel invite44-guide-panel">
+            <section className="access-panel invite43-how-panel">
               <div className="access-panel-heading">
                 <div>
                   <span className="eyebrow">How invites work</span>
-                  <h2>From connection to team value</h2>
+                  <h2>From invitation to team building</h2>
                 </div>
               </div>
-              <div className="invite44-flow">
-                <article><span>01</span><strong>Invite</strong><small>Send a secure invitation.</small></article>
-                <article><span>02</span><strong>Join</strong><small>They connect their AutoTeams account.</small></article>
-                <article><span>03</span><strong>Profile</strong><small>They complete and own their profile.</small></article>
-                <article><span>04</span><strong>Build</strong><small>They become available for team building.</small></article>
+              <div className="invite43-how-grid">
+                <article className="invite43-how-step"><span>01</span><strong>Invite</strong><small>Send a secure email invitation.</small></article>
+                <article className="invite43-how-step"><span>02</span><strong>Join</strong><small>They create or connect their AutoTeams account.</small></article>
+                <article className="invite43-how-step"><span>03</span><strong>Profile</strong><small>They own and complete their profile.</small></article>
+                <article className="invite43-how-step"><span>04</span><strong>Build</strong><small>They become available for team building.</small></article>
               </div>
             </section>
           </section>
 
           <aside className="access-side">
             <section
-              className={`access-panel invite44-compose-panel ${styles.invitePanel}`}
+              className={`access-panel invite43-compose-panel ${styles.invitePanel}`}
               id="invite"
               style={{
                 scrollMarginTop: 110,
@@ -827,7 +827,7 @@ export function MembersPanel() {
               )}
             </section>
 
-            <section className="access-panel invite44-pending-panel">
+            <section className="access-panel invite43-pending-panel">
               <div className="access-panel-heading">
                 <div>
                   <span className="eyebrow">Pending invitations</span>
@@ -886,7 +886,7 @@ export function MembersPanel() {
               </div>
             </section>
 
-            <section className="access-panel access-role-guide invite44-role-guide-panel">
+            <section className="access-panel access-role-guide invite43-role-guide-panel">
               <span className="eyebrow">Permission guide</span>
               <h2>Who can do what?</h2>
               <div>

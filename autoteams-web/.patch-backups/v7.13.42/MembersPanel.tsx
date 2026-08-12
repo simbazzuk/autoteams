@@ -1,10 +1,5 @@
 "use client";
 
-import {
-  persistInvitation,
-  updateInvitationEmailStatus,
-} from "@/lib/firebase/invitations";
-import { useAuth } from "@/components/AuthProvider";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useWorkspaceAccess } from "./AccessContext";
 import {
@@ -188,7 +183,6 @@ function invitationUrl(token: string) {
 }
 
 export function MembersPanel() {
-  const { user } = useAuth();
   const [workspaceId, setWorkspaceId] = useState("");
   const [memberships, setMemberships] = useState<WorkspaceMembership[]>([]);
   const [invitations, setInvitations] = useState<WorkspaceInvitation[]>([]);
@@ -303,9 +297,9 @@ export function MembersPanel() {
   const selectedProfile =
     selectedProfileOption?.profile;
 
-  async function invite(event: FormEvent<HTMLFormElement>) {
+  function invite(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!canManage || !user) return;
+    if (!canManage) return;
 
     const invitation: WorkspaceInvitation = {
       id: createAccessId("invite"),
@@ -313,95 +307,28 @@ export function MembersPanel() {
       email: inviteEmail.trim(),
       name: inviteName.trim() || inviteEmail.trim().split("@")[0],
       role: inviteRole,
-      profileContext: profileMode || undefined,
+      profileContext:
+        profileMode || undefined,
       token: createInviteToken(),
       status: "pending",
       createdAt: new Date().toISOString(),
     };
 
     const updated = [invitation, ...invitations];
-
-    // Keep the existing local store for backwards compatibility/UI speed.
     setInvitations(updated);
     saveInvitations(updated);
-
-    setInviteMessage("Creating invitation...");
-    setCopyMessage("");
-    setLastInvitationToken(invitation.token);
-
-    try {
-      // Firestore is the cross-device source of truth for invitation tokens.
-      await persistInvitation(
-        invitation,
-        user.uid,
-        {
-          name: user.displayName,
-          email: user.email,
-        },
-      );
-
-      const idToken = await user.getIdToken();
-
-      const response = await fetch("/api/invitations/send", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${idToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          token: invitation.token,
-          ownerId: user.uid,
-          recipientName: invitation.name,
-          recipientEmail: invitation.email,
-          profileContext: invitation.profileContext,
-          role: invitation.role,
-          inviterName: user.displayName || "An AutoTeams member",
-        }),
-      });
-
-      const result = (await response.json()) as {
-        error?: string;
-        inviteUrl?: string;
-      };
-
-      if (!response.ok) {
-        await updateInvitationEmailStatus(
-          invitation.token,
-          "failed",
-        );
-
-        throw new Error(
-          result.error || "The invitation email could not be sent.",
-        );
-      }
-
-      await updateInvitationEmailStatus(
-        invitation.token,
-        "sent",
-      );
-
-      setInviteMessage(
-        `Invitation emailed to ${invitation.email}${
-          invitation.profileContext
-            ? ` - ${profileModeLabel(invitation.profileContext)} profile`
-            : ""
-        }.`,
-      );
-    } catch (error) {
-      console.error(
-        "[AutoTeams] invitation email failed",
-        error,
-      );
-
-      // The invitation still exists and the user can share the link manually.
-      setInviteMessage(
-        `Invite created for ${invitation.email}, but the email could not be sent. You can still copy the invite link below.`,
-      );
-    }
-
     setInviteName("");
     setInviteEmail("");
     setInviteRole("member");
+    setLastInvitationToken(invitation.token);
+    setCopyMessage("");
+    setInviteMessage(
+      `Invite created for ${invitation.email}${
+        invitation.profileContext
+          ? ` · ${profileModeLabel(invitation.profileContext)} profile`
+          : ""
+      }. Share the invite link below.`,
+    );
   }
 
   function revoke(id: string) {
@@ -467,17 +394,22 @@ export function MembersPanel() {
     };
 
   return (
-    <main className="access-page" data-autoteams-invite="v7.13.44">
+    <main className="access-page" data-autoteams-invite="v7.13.33">
       <section className={`access-hero ${styles.hero}`}>
         <div className={`container access-hero-row ${styles.heroRow}`}>
           <div>
-            <span className="eyebrow">Invite intelligence</span>
-            <h1>Grow the right network.</h1>
+            <span className="eyebrow">Invite people</span>
+            <h1>Invite someone to your AutoTeams profile context.</h1>
             <p>
-              Invite people into the right profile, give them the right access
-              and make them available for better team decisions.
+              Choose the profile context, enter their details and send the
+              invitation. They can then join AutoTeams, create their own profile
+              and become available for team building.
             </p>
-            <div className="invite44-hero-actions"><span>Invite securely</span><span>Profile aware</span><span>Atlas ready</span></div>
+            <div className={styles.heroPills}>
+              <span>♙ Invite people</span>
+              <span>✦ Choose profile context</span>
+              <span>◇ Build teams together</span>
+            </div>
           </div>
 
           <div className={`access-account-summary ${styles.contextCard}`}>
@@ -527,13 +459,10 @@ export function MembersPanel() {
                     ? profileModeLabel(selectedProfileOption.mode)
                     : "Not selected"}
                 </strong>
-              </article>              <article className="invite43-email-metric">
-                <small>Email delivery</small>
-                <strong>Microsoft 365</strong>
               </article>
             </div>
 
-            <section className="access-panel invite44-members-panel">
+            <section className="access-panel">
               <div className="access-panel-heading">
                 <div>
                   <span className="eyebrow">Profile members</span>
@@ -599,7 +528,7 @@ export function MembersPanel() {
               </div>
             </section>
 
-            <section className="access-panel invite44-consent-panel">
+            <section className="access-panel">
               <div className="access-panel-heading">
                 <div>
                   <span className="eyebrow">Member consent</span>
@@ -610,9 +539,9 @@ export function MembersPanel() {
               <div className="consent-grid">
                 <label>
                   <span>
-                    <strong>Visible in this profile</strong>
+                    <strong>Visible in this workspace</strong>
                     <small>
-                      Allow approved profile leaders to see that your Team DNA is ready.
+                      Allow approved leaders to see that your Team DNA is ready.
                     </small>
                   </span>
                   <input
@@ -669,25 +598,11 @@ export function MembersPanel() {
                 </label>
               </div>
             </section>
-            <section className="access-panel invite44-guide-panel">
-              <div className="access-panel-heading">
-                <div>
-                  <span className="eyebrow">How invites work</span>
-                  <h2>From connection to team value</h2>
-                </div>
-              </div>
-              <div className="invite44-flow">
-                <article><span>01</span><strong>Invite</strong><small>Send a secure invitation.</small></article>
-                <article><span>02</span><strong>Join</strong><small>They connect their AutoTeams account.</small></article>
-                <article><span>03</span><strong>Profile</strong><small>They complete and own their profile.</small></article>
-                <article><span>04</span><strong>Build</strong><small>They become available for team building.</small></article>
-              </div>
-            </section>
           </section>
 
           <aside className="access-side">
             <section
-              className={`access-panel invite44-compose-panel ${styles.invitePanel}`}
+              className={`access-panel ${styles.invitePanel}`}
               id="invite"
               style={{
                 scrollMarginTop: 110,
@@ -717,7 +632,7 @@ export function MembersPanel() {
                 </div>
               </div>
               <p className={styles.inviteIntro}>
-                Invite someone to the selected AutoTeams profile. They
+                Invite someone to the selected AutoTeams profile context. They
                 create and own their own profile after joining, and can then
                 become available for team building.
               </p>
@@ -771,7 +686,7 @@ export function MembersPanel() {
                     </select>
                   </label>
                   <button className="button" type="submit">
-                    Send Email Invite →
+                    Create Invite →
                   </button>
                   {inviteMessage && (
                     <div className={styles.inviteCreated}>
@@ -827,7 +742,7 @@ export function MembersPanel() {
               )}
             </section>
 
-            <section className="access-panel invite44-pending-panel">
+            <section className="access-panel">
               <div className="access-panel-heading">
                 <div>
                   <span className="eyebrow">Pending invitations</span>
@@ -886,7 +801,7 @@ export function MembersPanel() {
               </div>
             </section>
 
-            <section className="access-panel access-role-guide invite44-role-guide-panel">
+            <section className="access-panel access-role-guide">
               <span className="eyebrow">Permission guide</span>
               <h2>Who can do what?</h2>
               <div>
