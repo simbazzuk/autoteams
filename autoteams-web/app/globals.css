@@ -19532,3 +19532,48 @@ html[data-theme="light"] .access-page[data-autoteams-invite] .access-side > sect
     min-height: auto !important;
   }
 }
+
+/* =========================================================
+   AutoTeams v7.13.82-fix1 compact team delete
+   ========================================================= */
+
+.atlas-team-delete-icon {
+  display: inline-flex !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  margin-top: 7px;
+  padding: 7px 11px !important;
+
+  border: 1px solid rgba(248,113,113,.30) !important;
+  border-radius: 9px !important;
+
+  background: rgba(127,29,29,.10) !important;
+  color: #fca5a5 !important;
+
+  box-shadow: none !important;
+
+  font-size: 11px !important;
+  font-weight: 800 !important;
+
+  cursor: pointer;
+}
+
+.atlas-team-delete-icon:hover:not(:disabled) {
+  border-color: rgba(248,113,113,.58) !important;
+  background: rgba(127,29,29,.22) !important;
+  color: #fecaca !important;
+}
+
+.atlas-team-delete-icon:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.atlas-team-delete-icon svg {
+  flex: 0 0 auto;
+}

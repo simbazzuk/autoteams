@@ -25,6 +25,10 @@ type Props = {
   selectedTeamId: string;
   onSelectProfile: (profileType: string) => void;
   onSelectTeam: (teamId: string) => void;
+  onDeleteTeam: (
+    teamId: string,
+    teamName: string,
+  ) => void | Promise<void>;
 };
 
 const PROFILE_META: Record<
@@ -104,6 +108,7 @@ export function MyAutoTeamsSummary({
   selectedTeamId,
   onSelectProfile,
   onSelectTeam,
+  onDeleteTeam,
 }: Props) {
   const profileCards = useMemo(
     () =>
@@ -214,7 +219,7 @@ export function MyAutoTeamsSummary({
                 selectedTeamId === team.id;
 
               return (
-                <button
+                <article
                   className={`${styles.teamCard} ${
                     teamColour
                   } ${
@@ -232,8 +237,58 @@ export function MyAutoTeamsSummary({
 
                     onSelectTeam(team.id);
                   }}
-                  type="button"
+                  onKeyDown={(event) => {
+                    if (
+                      event.key === "Enter" ||
+                      event.key === " "
+                    ) {
+                      event.preventDefault();
+
+                      if (team.profileType) {
+                        onSelectProfile(
+                          team.profileType,
+                        );
+                      }
+
+                      onSelectTeam(team.id);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
                 >
+                  <button
+                    className={styles.teamDelete}
+                    type="button"
+                    aria-label={`Delete ${team.name}`}
+                    title={`Delete ${team.name}`}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+
+                      void onDeleteTeam(
+                        team.id,
+                        team.name,
+                      );
+                    }}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M3 6h18" />
+                      <path d="M8 6V4h8v2" />
+                      <path d="M19 6l-1 14H6L5 6" />
+                      <path d="M10 11v5" />
+                      <path d="M14 11v5" />
+                    </svg>
+                  </button>
                   <div className={styles.teamTop}>
                     <span className={styles.teamIcon}>
                       {meta.icon}
@@ -285,7 +340,7 @@ export function MyAutoTeamsSummary({
                       View Insights →
                     </strong>
                   </div>
-                </button>
+                </article>
               );
             })}
           </div>

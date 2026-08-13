@@ -37,6 +37,51 @@ const TEAM_KEY =
 
 const PROFILE_KEY =
   "autoteams-team-insights-selected-profile-v7122";
+const AUTOTEAMS_DELETED_TEAM_IDS =
+  "autoteams-deleted-team-ids-v71317";
+
+function rememberDeletedTeamId(
+  teamId: string,
+) {
+  try {
+    const raw =
+      window.localStorage.getItem(
+        AUTOTEAMS_DELETED_TEAM_IDS,
+      );
+
+    const parsed =
+      raw
+        ? JSON.parse(raw)
+        : [];
+
+    const ids =
+      new Set<string>(
+        Array.isArray(parsed)
+          ? parsed.filter(
+              (
+                value,
+              ): value is string =>
+                typeof value ===
+                "string",
+            )
+          : [],
+      );
+
+    ids.add(teamId);
+
+    window.localStorage.setItem(
+      AUTOTEAMS_DELETED_TEAM_IDS,
+      JSON.stringify(
+        [...ids],
+      ),
+    );
+  } catch (error) {
+    console.warn(
+      "[AutoTeams] Could not record deleted team tombstone.",
+      error,
+    );
+  }
+}
 
 const DEFAULT_PROFILES:
   FirebaseInsightProfile[] = [
@@ -638,13 +683,16 @@ export function TeamInsights() {
     } catch {}
   }
 
-  async function deleteSelectedTeam() {
-    if (!selectedTeam || deletingTeam) {
+  async function deleteTeam(
+    teamId: string,
+    teamName: string,
+  ) {
+    if (!teamId || deletingTeam) {
       return;
     }
 
     const confirmed = window.confirm(
-      `Delete “${selectedTeam.name}”?\n\nThis permanently removes the saved team. It will not delete any member profiles or people.`,
+      `Delete "${teamName}"?\n\nThis permanently removes the saved team. It will not delete any member profiles or people.`,
     );
 
     if (!confirmed) {
@@ -655,39 +703,56 @@ export function TeamInsights() {
     setDeleteMessage("");
 
     try {
-      await deleteDoc(
-        doc(db, "teams", selectedTeam.id),
+      // Prevent TeamPersistenceBridge from recreating this team
+      // from legacy browser storage after the Firestore delete.
+      rememberDeletedTeamId(
+        teamId,
       );
 
-      try {
-        localStorage.removeItem(TEAM_KEY);
-      } catch {}
+      rememberDeletedTeamId(
+        teamId,
+      );
 
-      const deletedId = selectedTeam.id;
+      await deleteDoc(
+        doc(db, "teams", teamId),
+      );
 
-      // Remove the team from this screen immediately after Firestore confirms
-      // the delete. This prevents the deleted option being re-selected while
-      // the Firebase query refreshes.
+      const wasSelected =
+        selectedTeamId === teamId;
+
+      if (wasSelected) {
+        try {
+          localStorage.removeItem(
+            TEAM_KEY,
+          );
+        } catch {}
+
+        setSelectedTeamId("");
+      }
+
       setDeletedTeamIds((current) => {
         const next = new Set(current);
-        next.add(deletedId);
+        next.add(teamId);
         return next;
       });
 
-      setSelectedTeamId("");
       setDeleteMessage(
-        `“${selectedTeam.name}” was deleted.`,
+        `"${teamName}" was deleted.`,
       );
 
-      // Reuse the existing Firebase Team Insights refresh event rather than
-      // forcing a full browser reload.
       window.dispatchEvent(
-        new Event("autoteams:firebase-team-persisted"),
+        new Event(
+          "autoteams:firebase-team-persisted",
+        ),
       );
     } catch (deleteError) {
       console.error(
         "Unable to delete team",
-        deleteError,
+        {
+          teamId,
+          teamName,
+          deleteError,
+        },
       );
 
       const errorRecord =
@@ -696,72 +761,23 @@ export function TeamInsights() {
           message?: string;
         };
 
-      const teamRecord =
-        selectedTeam as unknown as
-          Record<string, unknown>;
-
-      const ownerId =
-        typeof teamRecord.ownerId ===
-        "string"
-          ? teamRecord.ownerId
-          : "unknown";
-
-      const signedInUid =
-        auth.user?.uid ??
-        "not signed in";
-
-      const signedInEmail =
-        auth.user?.email ??
-        "unknown";
-
-      const firebaseProject =
-        (
-          db as unknown as {
-            app?: {
-              options?: {
-                projectId?: string;
-              };
-            };
-          }
-        ).app?.options?.projectId ??
-        "unknown";
-
-      const collectionName =
-        typeof teamRecord.__collection ===
-        "string"
-          ? teamRecord.__collection
-          : "teams";
-
-      const documentPath =
-        `${collectionName}/${selectedTeam.id}`;
-
-      const errorCode =
-        errorRecord.code ??
-        "unknown";
-
-      const errorMessage =
-        errorRecord.message ??
-        String(deleteError);
-
-      const diagnostic =
-        [
-          `Could not delete “${selectedTeam.name}”.`,
-          `Document: ${documentPath}`,
-          `Team owner UID: ${ownerId}`,
-          `Signed-in UID: ${signedInUid}`,
-          `Signed-in email: ${signedInEmail}`,
-          `Firebase project: ${firebaseProject}`,
-          `Firebase error: ${errorCode}: ${errorMessage}`,
-        ].join("\n");
-
       setDeleteMessage(
-        diagnostic,
+        [
+          `Could not delete "${teamName}".`,
+          `Document: teams/${teamId}`,
+          `Firebase error: ${
+            errorRecord.code ??
+            "unknown"
+          }: ${
+            errorRecord.message ??
+            String(deleteError)
+          }`,
+        ].join("\n"),
       );
     } finally {
       setDeletingTeam(false);
     }
   }
-
   const selectedMembers =
     useMemo(() => {
       if (!selectedTeam) {
@@ -932,6 +948,9 @@ export function TeamInsights() {
           onSelectTeam={
             chooseTeam
           }
+          onDeleteTeam={
+            deleteTeam
+          }
         />
 
         <section
@@ -1078,31 +1097,7 @@ export function TeamInsights() {
               </Link>
             )}
 
-            {selectedTeam && (
-              <button
-                aria-label={`Delete ${selectedTeam.name}`}
-                disabled={deletingTeam}
-                onClick={deleteSelectedTeam}
-                type="button"
-                style={{
-                  alignSelf: "flex-end",
-                  width: "auto",
-                  minWidth: "148px",
-                  padding: "10px 16px",
-                  borderRadius: "12px",
-                  border: "1px solid rgba(248, 113, 113, 0.65)",
-                  background: "rgba(127, 29, 29, 0.10)",
-                  color: deletingTeam ? "#fca5a5" : "#f87171",
-                  fontWeight: 700,
-                  cursor: deletingTeam ? "wait" : "pointer",
-                  opacity: deletingTeam ? 0.7 : 1,
-                }}
-              >
-                {deletingTeam
-                  ? "Deleting…"
-                  : "Delete Team"}
-              </button>
-            )}
+
           </div>
         </section>
 

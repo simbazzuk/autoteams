@@ -293,3 +293,74 @@
   --soft: rgba(240,77,157,.18);
 }
 
+
+
+/* =========================================================
+   v7.13.82-fix2 per-team delete
+   ========================================================= */
+
+.teamCard {
+  position: relative;
+  cursor: pointer;
+}
+
+.teamDelete {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+
+  padding: 0;
+  border: 1px solid rgba(248,113,113,.20);
+  border-radius: 9px;
+
+  background: rgba(8,17,31,.48);
+  color: rgba(248,113,113,.78);
+
+  opacity: .58;
+  cursor: pointer;
+
+  transition:
+    opacity .16s ease,
+    border-color .16s ease,
+    background .16s ease,
+    transform .16s ease;
+}
+
+.teamCard:hover .teamDelete,
+.teamDelete:focus-visible {
+  opacity: 1;
+}
+
+.teamDelete:hover {
+  border-color: rgba(248,113,113,.58);
+  background: rgba(127,29,29,.30);
+  color: #fecaca;
+  transform: translateY(-1px);
+}
+
+.teamDelete:focus-visible {
+  outline: 2px solid rgba(248,113,113,.72);
+  outline-offset: 2px;
+}
+
+.teamDelete svg {
+  pointer-events: none;
+}
+
+.teamTop {
+  padding-right: 38px;
+}
+
+@media (max-width: 720px) {
+  .teamDelete {
+    top: 10px;
+    right: 10px;
+    opacity: .9;
+  }
+}

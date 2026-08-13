@@ -21,20 +21,33 @@ const TEAM_KEY_PATTERN =
 const DELETED_TEAMS_KEY =
   "autoteams-deleted-team-ids-v71317";
 
-function deletedTeamIds() {
+function deletedTeamIds(): Set<string> {
   try {
-    const raw = localStorage.getItem(DELETED_TEAMS_KEY);
-    const parsed = raw ? JSON.parse(raw) : [];
+    const raw =
+      window.localStorage.getItem(
+        DELETED_TEAMS_KEY,
+      );
+
+    const parsed =
+      raw
+        ? JSON.parse(raw)
+        : [];
+
     return new Set<string>(
       Array.isArray(parsed)
-        ? parsed.filter((value): value is string => typeof value === "string")
+        ? parsed.filter(
+            (
+              value,
+            ): value is string =>
+              typeof value ===
+              "string",
+          )
         : [],
     );
   } catch {
     return new Set<string>();
   }
 }
-
 function isRecord(
   value: unknown,
 ): value is RecordLike {
@@ -731,7 +744,7 @@ async function persistRawValue(
               message:
                 error instanceof Error
                   ? error.message
-                  : "Couldn’t save this team. Please try again.",
+                  : "Couldnâ€™t save this team. Please try again.",
             },
           },
         ),
@@ -884,3 +897,4 @@ export function TeamPersistenceBridge() {
 
   return null;
 }
+
