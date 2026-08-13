@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { AccountMenu } from "@/components/navigation/AccountMenu";
+import { AtlasAiAllowanceBadge } from "@/components/navigation/AtlasAiAllowanceBadge";
 
 export function RobotLogo() {
   return (
@@ -130,6 +131,8 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
+        <>
+      {/* AUTOTEAMS_V71369_FIX7_FRAGMENT */}
     <header className="site-header">
       <div className="container product-nav atlas-product-nav">
         <Link
@@ -282,6 +285,15 @@ export function Navbar() {
         </div>
       </div>
     </header>
+      <div
+        className="atlas-ai-utility-strip"
+        data-autoteams-ai-utility-strip="true"
+      >
+        <div className="container atlas-ai-utility-strip-inner">
+          <AtlasAiAllowanceBadge />
+        </div>
+      </div>
+    </>
   );
 }
 

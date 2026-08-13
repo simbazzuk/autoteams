@@ -68,7 +68,7 @@ const SIGNALS = [
     icon: "*",
     description:
       "Your natural talents and what you bring to teams.",
-    action: "Review & Tune",
+    action: "Review Questions",
     href: "/onboarding/profile",
   },
   {
@@ -76,7 +76,7 @@ const SIGNALS = [
     icon: "=",
     description:
       "How you like to work, collaborate and decide.",
-    action: "Review & Tune",
+    action: "Review Questions",
     href: "/atlas",
   },
   {
@@ -84,7 +84,7 @@ const SIGNALS = [
     icon: "C",
     description:
       "How you interact, communicate and support others.",
-    action: "Review & Tune",
+    action: "Review Questions",
     href: "/atlas",
   },
   {
@@ -92,7 +92,7 @@ const SIGNALS = [
     icon: "O",
     description:
       "What drives you and what gives you energy.",
-    action: "Review & Tune",
+    action: "Review Questions",
     href: "/atlas",
   },
   {
@@ -100,7 +100,7 @@ const SIGNALS = [
     icon: "V",
     description:
       "Your core values and what matters to you.",
-    action: "Review & Tune",
+    action: "Review Questions",
     href: "/atlas",
   },
 ];
@@ -229,7 +229,7 @@ export function AtlasProfileTuningDashboard() {
             My Atlas Profile
           </span>
           <h1>
-            Tune how Atlas understands you.
+            Improve how Atlas understands you.
           </h1>
           <p>
             This is your individual Atlas Profile.
@@ -248,6 +248,29 @@ export function AtlasProfileTuningDashboard() {
           </strong>
           <span>{freshness.label}</span>
         </div>
+      </section>
+      <section className={styles.profileExplanation}>
+        <div className={styles.profileExplanationIcon} aria-hidden="true">
+          ?
+        </div>
+        <div>
+          <span className="eyebrow">How Atlas learns about you</span>
+          <h2>What does improving my Atlas Profile mean?</h2>
+          <p>
+            It means answering or updating your Atlas interview questions for
+            the selected profile context. Your answers create signals about
+            strengths, working style, collaboration, motivation and values.
+            Atlas uses those signals when explaining team fit and making
+            recommendations.
+          </p>
+        </div>
+        <button
+          className="button"
+          onClick={() => openForProfile("/atlas")}
+          type="button"
+        >
+          Continue Atlas Interview
+        </button>
       </section>
 
       <div className={styles.layout}>
@@ -470,7 +493,7 @@ export function AtlasProfileTuningDashboard() {
               }
               type="button"
             >
-              Refresh Profile Signals
+              Continue Atlas Interview
             </button>
           </section>
 
@@ -537,7 +560,7 @@ export function AtlasProfileTuningDashboard() {
                   Update Working Style
                 </strong>
                 <span>
-                  Tune how you like to work
+                  Update the interview answers about how you like to work
                 </span>
               </div>
               <b>-&gt;</b>

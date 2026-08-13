@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import {
   getGeminiClient,
   getGeminiModel,
@@ -10,6 +11,10 @@ import {
   validateRecommendationRequest,
 } from "@/lib/ai/recommendation-validation";
 import { buildFallbackRecommendation } from "@/lib/ai/fallback-recommendation";
+import {
+  ATLAS_AI_USAGE_COOKIE,
+  evaluateAtlasAiAllowance,
+} from "@/lib/ai/recommendation-usage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -95,6 +100,80 @@ export async function POST(request: Request) {
   const startedAt = Date.now();
 
   try {
+    // AUTOTEAMS_V71368_AI_ALLOWANCE
+    // Launch-phase cost guardrail. Only live Gemini attempts consume allowance.
+    const atlasCookieStore = await cookies();
+
+    const atlasAiAllowance =
+      evaluateAtlasAiAllowance(
+        atlasCookieStore
+          .get(ATLAS_AI_USAGE_COOKIE)
+          ?.value,
+      );
+
+    if (!atlasAiAllowance.allowed) {
+      const fallback =
+        buildFallbackRecommendation(validatedRequest);
+
+      console.log(
+        "Atlas AI allowance prevented live Gemini call",
+        {
+          workspaceId: validatedRequest.workspaceId,
+          reason: atlasAiAllowance.reason,
+          used: atlasAiAllowance.used,
+          limit: atlasAiAllowance.limit,
+          remaining: atlasAiAllowance.remaining,
+          period: atlasAiAllowance.period,
+        },
+      );
+
+      return NextResponse.json({
+        ...fallback,
+        source: "fallback",
+        model,
+        telemetry: {
+          provider: "google-vertex-ai",
+          source: "fallback",
+          model,
+          location,
+          responseTimeMs:
+            Date.now() - startedAt,
+          generatedAt:
+            new Date().toISOString(),
+          mode: "launch-allowance",
+          reason:
+            atlasAiAllowance.reason ===
+            "monthly_limit"
+              ? "Monthly Atlas AI recommendation allowance reached."
+              : "Atlas AI recommendation cooldown is active.",
+          aiAllowance: {
+            used: atlasAiAllowance.used,
+            limit: atlasAiAllowance.limit,
+            remaining:
+              atlasAiAllowance.remaining,
+            period:
+              atlasAiAllowance.period,
+          },
+        },
+      });
+    }
+
+    if (atlasAiAllowance.cookieValue) {
+      atlasCookieStore.set(
+        ATLAS_AI_USAGE_COOKIE,
+        atlasAiAllowance.cookieValue,
+        {
+          httpOnly: true,
+          sameSite: "lax",
+          secure:
+            process.env.NODE_ENV ===
+            "production",
+          path: "/",
+          maxAge: 60 * 60 * 24 * 31,
+        },
+      );
+    }
+
     const client = getGeminiClient();
 
     const response = await client.models.generateContent({

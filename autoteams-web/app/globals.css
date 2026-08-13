@@ -17497,3 +17497,64 @@ html[data-theme="light"] .access-page[data-autoteams-invite] .access-side > sect
       #ffffff
     ) !important;
 }
+
+/* =========================================================
+   AutoTeams v7.13.69-fix2 - AI utility strip
+   ========================================================= */
+
+.atlas-ai-utility-strip {
+  width: 100%;
+  border-bottom: 1px solid rgba(148, 163, 184, .08);
+  background: rgba(10, 17, 29, .72);
+}
+
+.atlas-ai-utility-strip-inner {
+  display: flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+
+
+/*
+ * If the badge component returns null on the current route, keep the strip
+ * visually collapsed.
+ */
+.atlas-ai-utility-strip-inner:empty {
+  display: none;
+}
+
+@media (max-width: 820px) {
+  .atlas-ai-utility-strip {
+    display: none;
+  }
+}
+
+/* =========================================================
+   AutoTeams v7.13.69-fix8 - allowance strip visibility
+   ========================================================= */
+
+/*
+ * CSS Module class names are hashed at runtime, so do not test for
+ * `.wrapper`. The badge now exposes a stable data attribute instead.
+ */
+.atlas-ai-utility-strip:not(
+  :has([data-autoteams-ai-allowance="true"])
+) {
+  display: none;
+}
+
+.atlas-ai-utility-strip:has(
+  [data-autoteams-ai-allowance="true"]
+) {
+  display: block;
+}
+
+.atlas-ai-utility-strip:has(
+  [data-autoteams-ai-allowance="true"]
+) .atlas-ai-utility-strip-inner {
+  display: flex;
+}
