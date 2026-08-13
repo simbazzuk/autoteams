@@ -63,7 +63,7 @@ export function CourseCertificate({
         className={
           styles.lockedPage
         }
-      >
+       data-autoteams-academy-refresh="v7.13.81">
         <section>
           <span>🔒</span>
           <h1>

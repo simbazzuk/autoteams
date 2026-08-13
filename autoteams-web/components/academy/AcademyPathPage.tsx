@@ -89,7 +89,7 @@ export function AcademyPathPage({
         background: "#0f1420",
         color: "#f5f7fb",
       }}
-    >
+     data-autoteams-academy-refresh="v7.13.81">
       <section style={{ padding: "54px 0 34px" }}>
         <div className="container">
           <Link

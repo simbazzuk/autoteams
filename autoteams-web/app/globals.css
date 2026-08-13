@@ -19010,3 +19010,525 @@ html[data-theme="light"] .access-page[data-autoteams-invite] .access-side > sect
     font-size: 11px !important;
   }
 }
+
+/* =========================================================
+   AutoTeams v7.13.81 - Academy + Get Started refresh
+   ========================================================= */
+
+[data-autoteams-academy-refresh="v7.13.81"] {
+  width: min(1200px,calc(100% - 40px));
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article {
+  border-color: rgba(129,140,248,.22) !important;
+  background:
+    linear-gradient(135deg,rgba(59,130,246,.07),rgba(139,92,246,.04)),
+    rgba(12,21,38,.84) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 12px 30px rgba(0,0,0,.09);
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(4n+2) {
+  border-color: rgba(34,211,238,.22) !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(4n+3) {
+  border-color: rgba(168,85,247,.26) !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(4n+4) {
+  border-color: rgba(45,212,191,.22) !important;
+}
+
+.academy81-intro,
+.getstarted81-current {
+  width: min(1200px,calc(100% - 40px));
+  max-width: 1200px;
+  margin: 26px auto 24px;
+  padding: 28px;
+  box-sizing: border-box;
+  border: 1px solid rgba(129,140,248,.32);
+  border-radius: 21px;
+  background:
+    radial-gradient(circle at 5% 8%,rgba(99,102,241,.25),transparent 33%),
+    radial-gradient(circle at 93% 10%,rgba(168,85,247,.16),transparent 32%),
+    linear-gradient(135deg,#172947,#171f3b 55%,#21193d 100%);
+  box-shadow: 0 22px 54px rgba(0,0,0,.17);
+}
+
+.academy81-intro {
+  display: grid;
+  grid-template-columns: minmax(0,1.5fr) minmax(290px,.7fr);
+  gap: 18px;
+}
+
+.academy81-kicker,
+.getstarted81-kicker {
+  display: inline-flex;
+  padding: 6px 11px;
+  border: 1px solid rgba(165,180,252,.28);
+  border-radius: 999px;
+  color: #c7d2fe;
+  background: rgba(99,102,241,.12);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.academy81-intro h1,
+.getstarted81-current h1 {
+  max-width: 780px;
+  margin: 14px 0 8px;
+  color: #fff;
+  font-size: clamp(32px,4vw,50px);
+  line-height: 1.03;
+  letter-spacing: -.04em;
+}
+
+.academy81-intro > div:first-child > p,
+.getstarted81-head p {
+  max-width: 740px;
+  margin: 0;
+  color: #bdc9da;
+  font-size: 12px;
+  line-height: 1.62;
+}
+
+.academy81-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.academy81-pills span {
+  padding: 7px 10px;
+  border: 1px solid rgba(129,140,248,.22);
+  border-radius: 999px;
+  color: #dce5ff;
+  background: rgba(7,15,29,.34);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.academy81-pills span:nth-child(2){border-color:rgba(34,211,238,.25);color:#a5f3fc}
+.academy81-pills span:nth-child(3){border-color:rgba(168,85,247,.28);color:#e9d5ff}
+.academy81-pills span:nth-child(4){border-color:rgba(45,212,191,.25);color:#99f6e4}
+.academy81-pills span:nth-child(5){border-color:rgba(251,191,36,.23);color:#fde68a}
+
+.academy81-atlas {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  border: 1px solid rgba(168,85,247,.28);
+  border-radius: 17px;
+  background:
+    linear-gradient(145deg,rgba(126,34,206,.13),rgba(59,130,246,.08)),
+    rgba(8,17,31,.60);
+}
+
+.academy81-atlas > b {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  margin-bottom: 13px;
+  border-radius: 13px;
+  color: #fff;
+  background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+}
+
+.academy81-atlas small {
+  color:#c4b5fd;
+  font-size:9px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.academy81-atlas strong {
+  margin-top:4px;
+  color:#fff;
+  font-size:15px;
+}
+
+.academy81-atlas p {
+  color:#9faec4;
+  font-size:10px;
+  line-height:1.55;
+}
+
+.academy81-atlas a,
+.getstarted81-head > a,
+.getstarted81-allowance > a {
+  padding: 9px 12px;
+  border-radius: 10px;
+  color: #fff;
+  background: linear-gradient(135deg,#765fff,#4f8ef7);
+  font-size: 10px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.getstarted81-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.getstarted81-definitions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.getstarted81-definitions > div {
+  display: grid;
+  grid-template-columns: 42px minmax(0,1fr);
+  gap: 13px;
+  padding: 17px;
+  border: 1px solid rgba(129,140,248,.23);
+  border-radius: 15px;
+  background: rgba(7,15,29,.48);
+}
+
+.getstarted81-definitions > .workspace {
+  border-color:rgba(34,211,238,.23);
+}
+
+.getstarted81-definitions > div > b {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(135deg,#8b5cf6,#4f8ef7);
+}
+
+.getstarted81-definitions > .workspace > b {
+  background:linear-gradient(135deg,#0284c7,#22d3ee);
+}
+
+.getstarted81-definitions strong {
+  color:#fff;
+  font-size:13px;
+}
+
+.getstarted81-definitions p {
+  margin:5px 0 8px;
+  color:#aebed2;
+  font-size:10px;
+  line-height:1.55;
+}
+
+.getstarted81-definitions a {
+  color:#a5b4fc;
+  font-size:9px;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.getstarted81-steps {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.getstarted81-steps > a {
+  display: flex;
+  min-height: 158px;
+  flex-direction: column;
+  padding: 14px;
+  border: 1px solid rgba(129,140,248,.18);
+  border-radius: 14px;
+  color: inherit;
+  background: rgba(7,15,29,.48);
+  text-decoration: none;
+  transition: transform .16s ease,border-color .16s ease;
+}
+
+.getstarted81-steps > a:hover {
+  border-color:rgba(129,140,248,.42);
+  transform:translateY(-2px);
+}
+
+.getstarted81-steps > a > b {
+  display:grid;
+  width:29px;
+  height:29px;
+  place-items:center;
+  margin-bottom:10px;
+  border-radius:9px;
+  color:#fff;
+  background:linear-gradient(135deg,#6366f1,#3b82f6);
+  font-size:10px;
+}
+
+.getstarted81-steps span {
+  color:#a5b4fc;
+  font-size:8px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.getstarted81-steps strong {
+  margin-top:5px;
+  color:#f7f9ff;
+  font-size:12px;
+  line-height:1.3;
+}
+
+.getstarted81-steps small {
+  margin-top:7px;
+  color:#91a3ba;
+  font-size:9px;
+  line-height:1.45;
+}
+
+.getstarted81-steps > a:nth-child(2) > b{background:linear-gradient(135deg,#0284c7,#22d3ee)}
+.getstarted81-steps > a:nth-child(3) > b{background:linear-gradient(135deg,#0f766e,#2dd4bf)}
+.getstarted81-steps > a:nth-child(4) > b{background:linear-gradient(135deg,#2563eb,#60a5fa)}
+.getstarted81-steps > a:nth-child(5) > b{background:linear-gradient(135deg,#7c3aed,#c084fc)}
+.getstarted81-steps > a:nth-child(6) > b{background:linear-gradient(135deg,#b45309,#fbbf24)}
+.getstarted81-steps > a:nth-child(7) > b{background:linear-gradient(135deg,#be185d,#f472b6)}
+.getstarted81-steps > a:nth-child(8) > b{background:linear-gradient(135deg,#0891b2,#67e8f9)}
+
+.getstarted81-allowance {
+  display:grid;
+  grid-template-columns:38px minmax(0,1fr) auto;
+  gap:12px;
+  align-items:center;
+  margin-top:14px;
+  padding:13px 14px;
+  border:1px solid rgba(168,85,247,.23);
+  border-radius:13px;
+  background:
+    linear-gradient(135deg,rgba(126,34,206,.09),rgba(59,130,246,.06)),
+    rgba(7,15,29,.47);
+}
+
+.getstarted81-allowance > b {
+  display:grid;
+  width:38px;
+  height:38px;
+  place-items:center;
+  border-radius:11px;
+  color:#fff;
+  background:linear-gradient(135deg,#8b5cf6,#3b82f6);
+  font-size:9px;
+}
+
+.getstarted81-allowance strong {
+  color:#fff;
+  font-size:11px;
+}
+
+.getstarted81-allowance p {
+  margin:3px 0 0;
+  color:#aabbd0;
+  font-size:9px;
+  line-height:1.5;
+}
+
+@media(max-width:1000px){
+  .academy81-intro{grid-template-columns:1fr}
+  .getstarted81-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:720px){
+  .academy81-intro,
+  .getstarted81-current{
+    width:calc(100% - 20px);
+    padding:19px;
+  }
+
+  .getstarted81-head{flex-direction:column}
+  .getstarted81-definitions,
+  .getstarted81-steps{grid-template-columns:1fr}
+
+  .getstarted81-allowance{
+    grid-template-columns:38px minmax(0,1fr)
+  }
+
+  .getstarted81-allowance>a{
+    grid-column:1/-1;
+    width:fit-content
+  }
+}
+
+/* =========================================================
+   AutoTeams v7.13.81-fix2 - Academy learning path colours
+   Stronger visual separation for the four learning stages.
+   ========================================================= */
+
+/*
+ * AcademyLanding renders the four capability-path cards before the
+ * Available Now course catalogue. Scope these stronger treatments to
+ * the first four Academy articles only.
+ */
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(1) {
+  border: 1px solid rgba(168,85,247,.58) !important;
+  background:
+    radial-gradient(circle at 85% 10%,rgba(168,85,247,.16),transparent 38%),
+    linear-gradient(145deg,rgba(91,33,182,.34),rgba(39,24,78,.72) 58%,rgba(16,25,46,.94)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 14px 34px rgba(91,33,182,.16) !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(2) {
+  border: 1px solid rgba(14,165,233,.58) !important;
+  background:
+    radial-gradient(circle at 85% 10%,rgba(14,165,233,.15),transparent 38%),
+    linear-gradient(145deg,rgba(30,64,175,.34),rgba(18,45,88,.72) 58%,rgba(16,25,46,.94)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 14px 34px rgba(14,165,233,.13) !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(3) {
+  border: 1px solid rgba(20,184,166,.58) !important;
+  background:
+    radial-gradient(circle at 85% 10%,rgba(20,184,166,.15),transparent 38%),
+    linear-gradient(145deg,rgba(13,116,108,.31),rgba(15,62,67,.72) 58%,rgba(16,25,46,.94)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 14px 34px rgba(20,184,166,.12) !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(4) {
+  border: 1px solid rgba(249,115,22,.58) !important;
+  background:
+    radial-gradient(circle at 85% 10%,rgba(249,115,22,.16),transparent 38%),
+    linear-gradient(145deg,rgba(154,52,18,.34),rgba(92,45,18,.72) 58%,rgba(16,25,46,.94)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 14px 34px rgba(249,115,22,.12) !important;
+}
+
+/* Stage labels */
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(1) > *:is(span,small):not(:first-child) {
+  color: #c084fc !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(2) > *:is(span,small):not(:first-child) {
+  color: #38bdf8 !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(3) > *:is(span,small):not(:first-child) {
+  color: #2dd4bf !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(4) > *:is(span,small):not(:first-child) {
+  color: #fb923c !important;
+}
+
+/* Number / icon badges - supports the common first-child span/b element. */
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(1) > :first-child {
+  border-color: rgba(192,132,252,.35) !important;
+  background: rgba(126,34,206,.25) !important;
+  color: #e9d5ff !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(2) > :first-child {
+  border-color: rgba(56,189,248,.35) !important;
+  background: rgba(2,132,199,.24) !important;
+  color: #bae6fd !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(3) > :first-child {
+  border-color: rgba(45,212,191,.35) !important;
+  background: rgba(13,148,136,.23) !important;
+  color: #99f6e4 !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(4) > :first-child {
+  border-color: rgba(251,146,60,.35) !important;
+  background: rgba(234,88,12,.24) !important;
+  color: #fed7aa !important;
+}
+
+/*
+ * Progress bars in the learning-path cards.
+ * Covers native progress, common role=progressbar and nested bar elements.
+ */
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(-n+4) progress {
+  width: 100%;
+  accent-color: #8b5cf6;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(2) progress {
+  accent-color: #0ea5e9;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(3) progress {
+  accent-color: #14b8a6;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(4) progress {
+  accent-color: #f97316;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(1) [role="progressbar"] > *,
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(1) .progress > *,
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(1) .progressBar > * {
+  background: linear-gradient(90deg,#7c3aed,#c084fc) !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(2) [role="progressbar"] > *,
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(2) .progress > *,
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(2) .progressBar > * {
+  background: linear-gradient(90deg,#0284c7,#38bdf8) !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(3) [role="progressbar"] > *,
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(3) .progress > *,
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(3) .progressBar > * {
+  background: linear-gradient(90deg,#0f766e,#2dd4bf) !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(4) [role="progressbar"] > *,
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(4) .progress > *,
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(4) .progressBar > * {
+  background: linear-gradient(90deg,#ea580c,#fb923c) !important;
+}
+
+/* Slight interaction lift so the path feels selectable. */
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(-n+4) {
+  transition:
+    transform .16s ease,
+    border-color .16s ease,
+    box-shadow .16s ease !important;
+}
+
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(-n+4):hover {
+  transform: translateY(-3px);
+  filter: brightness(1.05);
+}
+
+/*
+ * Keep headings white for legibility while giving the small stage label
+ * and card treatment the colour identity.
+ */
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(-n+4) h2,
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(-n+4) h3,
+[data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(-n+4) strong {
+  color: #ffffff !important;
+}
+
+@media (max-width: 720px) {
+  [data-autoteams-academy-refresh="v7.13.81"] article:nth-of-type(-n+4) {
+    min-height: auto !important;
+  }
+}

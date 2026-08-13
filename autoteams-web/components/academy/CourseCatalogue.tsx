@@ -18,7 +18,7 @@ export function CourseCatalogue(){
  const passed=availableAcademyCourses.filter(c=>assessments[c.slug]?.passed).length;
  const overall=total?Math.round(done/total*100):0;
  const recommended=useMemo(()=>availableAcademyCourses.find(c=>(progress[c.slug]?.length||0)>0&&!assessments[c.slug]?.passed)||availableAcademyCourses.find(c=>!assessments[c.slug]?.passed)||availableAcademyCourses[0],[progress,assessments]);
- return <main className={`${styles.page} ${journey.page}`}>
+ return <main className={`${styles.page} ${journey.page}`} data-autoteams-academy-refresh="v7.13.81">
   <section className={journey.hero}><div><span>TEAM SCIENCE ACADEMY</span><h1>Your Team Science learning journey.</h1><p>Learn the principles, apply them in AutoTeams, and progressively develop the skills to understand, build and improve better teams.</p></div><aside><strong>{overall}%</strong><span>overall progress</span><div><i style={{width:`${overall}%`}}/></div><small>{done}/{total} lessons · {passed}/{availableAcademyCourses.length} courses passed</small></aside></section>
   {recommended&&<section className={journey.recommended}><b>✦</b><div><small>ATLAS RECOMMENDS NEXT</small><strong>{recommended.title}</strong><p>{progress[recommended.slug]?.length?"Continue where you left off and complete the remaining lessons.":"This is the next recommended step in your Team Science learning journey."}</p></div><Link href={`/academy/course/${recommended.slug}`}>{progress[recommended.slug]?.length?"Continue course":"Start course"} →</Link></section>}
   <section><div className={journey.heading}><div><span>LEARNING PATH</span><h2>Build capability step by step.</h2></div><p>Start with the foundations, then move through practical team design, explainable AI and team development.</p></div>

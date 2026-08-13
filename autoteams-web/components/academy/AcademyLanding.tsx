@@ -73,7 +73,37 @@ export function AcademyLanding() {
           "radial-gradient(circle at 15% 0%, rgba(120,104,255,.20), transparent 34%), radial-gradient(circle at 88% 18%, rgba(34,197,94,.09), transparent 28%), #0f1420",
         color: "#f5f7fb",
       }}
-    >
+     data-autoteams-academy-refresh="v7.13.81">
+      {/* AUTOTEAMS_V71381_ACADEMY_INTRO */}
+      <section className="academy81-intro">
+        <div>
+          <span className="academy81-kicker">AutoTeams Academy</span>
+          <h1>Learn the science behind better teams.</h1>
+          <p>
+            Build confidence with Atlas Profiles, team design, recommendations,
+            Team DNA and responsible human review. Learn in short practical
+            paths and apply the ideas directly in AutoTeams.
+          </p>
+          <div className="academy81-pills">
+            <span>Atlas &amp; Profiles</span>
+            <span>Team Building</span>
+            <span>Recommendations</span>
+            <span>Team DNA &amp; Insights</span>
+            <span>Trust &amp; Governance</span>
+          </div>
+        </div>
+
+        <div className="academy81-atlas">
+          <b>A</b>
+          <small>Learn with Atlas</small>
+          <strong>Practical guidance, not theory alone.</strong>
+          <p>
+            Understand why AutoTeams makes a recommendation and what a human
+            reviewer should check before acting on it.
+          </p>
+          <a href="/academy/courses">Browse courses</a>
+        </div>
+      </section>
       <section style={{ padding: "74px 0 46px" }}>
         <div className="container">
           <span className="eyebrow">Team Science Academy</span>

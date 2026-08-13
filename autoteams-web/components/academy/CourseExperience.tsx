@@ -14,7 +14,7 @@ export function CourseExperience({course}:{course:AcademyCourse}){
  const pct=Math.round(done.length/course.modules.length*100);
  function complete(){if(done.includes(selected))return;const n=[...done,selected],p=read();p[course.slug]=n;localStorage.setItem(KEY,JSON.stringify(p));setDone(n)}
  function next(){const i=course.modules.findIndex(m=>m.id===selected);if(course.modules[i+1])setSelected(course.modules[i+1].id)}
- return <main className={styles.page}><Link
+ return <main className={styles.page} data-autoteams-academy-refresh="v7.13.81"><Link
         href="/academy"
         data-autoteams-academy-back-button="true"
         className="button secondary"
