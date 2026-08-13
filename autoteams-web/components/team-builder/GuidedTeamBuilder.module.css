@@ -1184,3 +1184,345 @@
     row-gap: 18px;
   }
 }
+
+
+/* =========================================================
+   AutoTeams v7.13.84-fix2 Build Team workflow colours
+   Aligns the five Build Team step boxes with Get Started.
+   ========================================================= */
+
+/* Base box - slightly richer navy than the old flat treatment. */
+.steps > button {
+  position: relative;
+  overflow: hidden;
+  min-height: 74px;
+
+  border: 1px solid rgba(71,85,105,.42) !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(24,34,53,.96),
+      rgba(16,25,42,.98)
+    ) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.018);
+
+  transition:
+    transform .16s ease,
+    border-color .16s ease,
+    background .16s ease,
+    box-shadow .16s ease;
+}
+
+.steps > button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(96,165,250,.38) !important;
+}
+
+/* Upcoming cards receive alternating subtle tints. */
+.steps > button:nth-child(1) {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(35,39,78,.60),
+      rgba(17,25,43,.98)
+    ) !important;
+}
+
+.steps > button:nth-child(2) {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25,53,86,.56),
+      rgba(17,25,43,.98)
+    ) !important;
+}
+
+.steps > button:nth-child(3) {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(44,34,82,.56),
+      rgba(17,25,43,.98)
+    ) !important;
+}
+
+.steps > button:nth-child(4) {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(24,53,68,.50),
+      rgba(17,25,43,.98)
+    ) !important;
+}
+
+.steps > button:nth-child(5) {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(44,38,67,.52),
+      rgba(17,25,43,.98)
+    ) !important;
+}
+
+/* Current step - same purple / blue family as Get Started. */
+.steps .activeStep {
+  border-color: rgba(129,140,248,.72) !important;
+
+  background:
+    radial-gradient(
+      circle at 90% 5%,
+      rgba(99,102,241,.19),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(76,60,155,.52),
+      rgba(29,42,79,.96)
+    ) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 12px 26px rgba(79,70,229,.12) !important;
+}
+
+.steps .activeStep > span {
+  color: #ffffff !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #765fff,
+      #4f8ef7
+    ) !important;
+
+  border-color:
+    rgba(165,180,252,.30) !important;
+
+  box-shadow:
+    0 7px 18px rgba(79,70,229,.22);
+}
+
+.steps .activeStep strong {
+  color: #ffffff !important;
+}
+
+.steps .activeStep small {
+  color: #b8c8e2 !important;
+}
+
+/* Completed - same green success language used by Get Started. */
+.steps .completeStep {
+  border-color:
+    rgba(72,190,135,.36) !important;
+
+  background:
+    radial-gradient(
+      circle at 90% 5%,
+      rgba(34,197,94,.10),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(18,65,57,.64),
+      rgba(18,31,42,.98)
+    ) !important;
+}
+
+.steps .completeStep > span {
+  color: #83e6b2 !important;
+
+  background:
+    rgba(43,181,113,.16) !important;
+
+  border-color:
+    rgba(72,190,135,.18) !important;
+}
+
+.steps .completeStep strong {
+  color: #edfdf5 !important;
+}
+
+.steps .completeStep small {
+  color: #96b8aa !important;
+}
+
+/* Future step number badges stay clear but quieter. */
+.steps > button:not(.activeStep):not(.completeStep) > span {
+  color: #91a3bd !important;
+
+  background:
+    rgba(40,52,75,.82) !important;
+
+  border-color:
+    rgba(90,107,139,.18) !important;
+}
+
+.steps > button:not(.activeStep):not(.completeStep) strong {
+  color: #dce5f3 !important;
+}
+
+.steps > button:not(.activeStep):not(.completeStep) small {
+  color: #8091aa !important;
+}
+
+@media (max-width: 760px) {
+  .steps > button {
+    min-height: 68px;
+  }
+}
+
+/* =========================================================
+   AutoTeams v7.13.84-fix3 Build Team content panels
+   Matches the richer Get Started card treatment.
+   ========================================================= */
+
+/*
+ * The active Build Team content uses .panel for Steps 1-5.
+ * Previous v7.13.84 styling changed only the navigation cards.
+ */
+.panel {
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid rgba(99,102,241,.30) !important;
+  border-radius: 18px !important;
+
+  background:
+    radial-gradient(
+      circle at 92% 5%,
+      rgba(99,102,241,.12),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 4% 2%,
+      rgba(59,130,246,.07),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(24,33,53,.98),
+      rgba(22,29,48,.98) 55%,
+      rgba(30,27,59,.96)
+    ) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 16px 38px rgba(0,0,0,.10);
+}
+
+/*
+ * Two-column panels should keep the same product language but gain
+ * slightly different tinting so neighbouring boxes remain distinct.
+ */
+.twoColumns > .panel:nth-child(1),
+.twoColumns > article.panel:nth-child(1) {
+  border-color: rgba(59,130,246,.28) !important;
+
+  background:
+    radial-gradient(
+      circle at 90% 6%,
+      rgba(59,130,246,.11),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(23,37,61,.98),
+      rgba(19,28,46,.98)
+    ) !important;
+}
+
+.twoColumns > .panel:nth-child(2),
+.twoColumns > aside.panel:nth-child(2) {
+  border-color: rgba(139,92,246,.30) !important;
+
+  background:
+    radial-gradient(
+      circle at 90% 6%,
+      rgba(139,92,246,.12),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(35,29,65,.96),
+      rgba(20,27,44,.98)
+    ) !important;
+}
+
+/* Current step label gets the same white/purple treatment as Get Started. */
+.panel :global(.eyebrow) {
+  border: 1px solid rgba(129,140,248,.16);
+  color: #7c6cff;
+  background: #ffffff;
+}
+
+/* Headings remain bright against the richer panel background. */
+.panel h2 {
+  color: #f7f9ff !important;
+}
+
+/* Supporting copy gets a little more contrast. */
+.panel p,
+.panel .intro {
+  color: #a8b7cc;
+}
+
+/*
+ * Form controls deliberately stay darker than the containing panel,
+ * creating the layered look visible on Get Started.
+ */
+.panel input,
+.panel textarea,
+.panel select {
+  border-color: rgba(86,104,139,.42) !important;
+
+  background:
+    rgba(10,18,32,.72) !important;
+
+  color: #f4f7fb !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.012);
+}
+
+.panel input:focus,
+.panel textarea:focus,
+.panel select:focus {
+  border-color:
+    rgba(129,140,248,.72) !important;
+
+  outline:
+    2px solid rgba(99,102,241,.12);
+
+  outline-offset: 1px;
+}
+
+/* Placeholder remains intentionally muted. */
+.panel input::placeholder,
+.panel textarea::placeholder {
+  color: #7f8da3 !important;
+}
+
+/* Section heading metadata such as "12 people available". */
+.sectionHeading > strong {
+  color: #a99cff !important;
+}
+
+/*
+ * Slightly richer treatment for nested cards/list items without
+ * overwhelming the active content.
+ */
+.panel [class*="card"],
+.panel [class*="option"],
+.panel [class*="groupItem"] {
+  border-color:
+    rgba(84,102,136,.28);
+}
+
+@media (max-width: 760px) {
+  .panel {
+    border-radius: 15px !important;
+  }
+}
