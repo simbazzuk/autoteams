@@ -11,7 +11,6 @@ import {
   listRecommendationsForWorkspace,
   type RecommendationHistoryRecord,
 } from "@/lib/firebase/recommendation-persistence";
-import styles from "./GetStartedExperience.module.css";
 
 type SetupState = {
   workspace: boolean;
@@ -127,81 +126,158 @@ export function GetStartedExperience() {
 
   if (loading) {
     return (
-      <section className={styles.loading}>
+      <section
+        style={{
+          padding: 24,
+          color: "#8f9bb0",
+          background: "#171e2d",
+          border: "1px solid #2a3448",
+          borderRadius: 18,
+        }}
+      >
         Checking your AutoTeams setup...
       </section>
     );
   }
 
   return (
-    <div className={styles.experience}>
-      <section className={styles.progressCard}>
-        <div className={styles.progressHeader}>
-          <div className={styles.progressCopy}>
-            <span className={styles.eyebrow}>Getting started</span>
+    <div style={{ display: "grid", gap: 18 }}>
+      <section
+        style={{
+          display: "grid",
+          gap: 13,
+          padding: 22,
+          background: "#171e2d",
+          border: "1px solid #2a3448",
+          borderRadius: 18,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 18,
+            alignItems: "flex-start",
+            flexWrap: "wrap",
+          }}
+        >
+          <div>
+            <span className="eyebrow">Getting started</span>
 
-            <h2>
+            <h2 style={{ margin: "8px 0 6px", fontSize: 27 }}>
               {workspaceName
                 ? `${workspaceName} setup`
                 : "Set up your first AutoTeams workspace"}
             </h2>
 
-            <p>
+            <p
+              style={{
+                margin: 0,
+                maxWidth: 760,
+                color: "#8f9bb0",
+                fontSize: 13,
+                lineHeight: 1.6,
+              }}
+            >
               Follow these steps to move from an empty workspace
               to a reviewed team recommendation.
             </p>
           </div>
 
-          <strong className={styles.completionBadge}>
+          <strong
+            style={{
+              padding: "8px 11px",
+              color: "#cfc9ff",
+              background: "rgba(120,104,255,.12)",
+              borderRadius: 999,
+              fontSize: 11,
+            }}
+          >
             {completed}/{steps.length} complete
           </strong>
         </div>
 
-        <div className={styles.progressTrack}>
+        <div
+          style={{
+            height: 8,
+            overflow: "hidden",
+            background: "#252e40",
+            borderRadius: 999,
+          }}
+        >
           <span
-            className={styles.progressValue}
-            style={{ width: `${progress}%` }}
+            style={{
+              display: "block",
+              width: `${progress}%`,
+              height: "100%",
+              background: "#7868ff",
+              borderRadius: 999,
+            }}
           />
         </div>
 
-        <small className={styles.progressLabel}>
+        <small style={{ color: "#8995a9", fontSize: 10 }}>
           {progress}% complete
         </small>
       </section>
 
-      <section className={styles.steps}>
+      <section style={{ display: "grid", gap: 10 }}>
         {steps.map((step, index) => (
           <article
             key={step.title}
-            className={`${styles.stepCard} ${
-              step.complete ? styles.stepComplete : ""
-            }`}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "42px minmax(0,1fr) auto",
+              gap: 14,
+              alignItems: "center",
+              padding: 17,
+              background: "#171e2d",
+              border: `1px solid ${
+                step.complete
+                  ? "rgba(72,190,135,.28)"
+                  : "#2a3448"
+              }`,
+              borderRadius: 14,
+            }}
           >
             <span
-              className={`${styles.stepIcon} ${
-                step.complete ? styles.iconComplete : ""
-              }`}
+              style={{
+                display: "grid",
+                width: 34,
+                height: 34,
+                placeItems: "center",
+                color: step.complete ? "#8de2b5" : "#b9c3d2",
+                background: step.complete
+                  ? "rgba(72,190,135,.1)"
+                  : "#222b3c",
+                borderRadius: 10,
+                fontSize: 11,
+                fontWeight: 900,
+              }}
             >
               {step.complete ? "OK" : index + 1}
             </span>
 
-            <div className={styles.stepCopy}>
-              <strong>{step.title}</strong>
-              <p>{step.text}</p>
+            <div style={{ display: "grid", gap: 4 }}>
+              <strong style={{ fontSize: 14 }}>{step.title}</strong>
+              <p
+                style={{
+                  margin: 0,
+                  color: "#8f9bb0",
+                  fontSize: 11,
+                  lineHeight: 1.5,
+                }}
+              >
+                {step.text}
+              </p>
             </div>
 
-            <div className={styles.actionColumn}>
-              <Link
-                className={`${styles.stepAction} ${
-                  step.complete
-                    ? styles.completedAction
-                    : styles.primaryAction
-                }`}
-                href={step.href}
-              >
-                {step.action}
-              </Link>
-            </div>
+            <Link
+              className={step.complete ? "button secondary" : "button"}
+              href={step.href}
+            >
+              {step.action}
+            </Link>
           </article>
         ))}
       </section>

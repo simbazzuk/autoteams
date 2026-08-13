@@ -509,10 +509,30 @@ export function MembersPanel() {
         </div>
       </section>
 
-      <section className="access-content invite86-content">
-        <div className="container access-layout invite86-layout">
-          <section className="access-main invite86-main">
-            
+      <section className="access-content">
+        <div className="container access-layout">
+          <section className="access-main">
+            <div className={`access-summary-grid ${styles.summaryGrid}`}>
+              <article className={styles.peopleMetric}>
+                <small>Profile members</small>
+                <strong>{profileMembers.length}</strong>
+              </article>
+              <article className={styles.inviteMetric} data-autoteams-pending-invites="true">
+                <small>Pending invitations</small>
+                <strong>{profileInvitations.length}</strong>
+              </article>
+              <article className={styles.profileMetric}>
+                <small>Selected profile</small>
+                <strong>
+                  {selectedProfileOption
+                    ? profileModeLabel(selectedProfileOption.mode)
+                    : "Not selected"}
+                </strong>
+              </article>              <article className="invite43-email-metric">
+                <small>Email delivery</small>
+                <strong>Microsoft 365</strong>
+              </article>
+            </div>
 
             <section className="access-panel invite44-members-panel">
               <div className="access-panel-heading">
@@ -580,7 +600,7 @@ export function MembersPanel() {
               </div>
             </section>
 
-            <section className="access-panel invite44-consent-panel invite86-consent">
+            <section className="access-panel invite44-consent-panel">
               <div className="access-panel-heading">
                 <div>
                   <span className="eyebrow">Member consent</span>
@@ -650,7 +670,7 @@ export function MembersPanel() {
                 </label>
               </div>
             </section>
-            <section className="access-panel invite44-guide-panel invite85-guide-panel invite86-guide">
+            <section className="access-panel invite44-guide-panel">
               <div className="access-panel-heading">
                 <div>
                   <span className="eyebrow">How invites work</span>
@@ -666,9 +686,9 @@ export function MembersPanel() {
             </section>
           </section>
 
-          <aside className="access-side invite86-side">
+          <aside className="access-side">
             <section
-              className={`access-panel invite44-compose-panel invite85-compose-panel invite86-compose ${styles.invitePanel}`}
+              className={`access-panel invite44-compose-panel ${styles.invitePanel}`}
               id="invite"
               data-autoteams-invite-panel="true"
               style={{
@@ -676,7 +696,7 @@ export function MembersPanel() {
                 borderColor: "rgba(129,140,248,.42)",
                 boxShadow: "0 18px 50px rgba(79,70,229,.10)",
               }}
-             >
+            >
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
                 <span
                   aria-hidden="true"
@@ -842,7 +862,7 @@ export function MembersPanel() {
               )}
             </section>
 
-            <section className="access-panel invite44-pending-panel invite85-pending-panel invite86-pending">
+            <section className="access-panel invite44-pending-panel">
               <div className="access-panel-heading">
                 <div>
                   <span className="eyebrow">Pending invitations</span>
@@ -901,104 +921,24 @@ export function MembersPanel() {
               </div>
             </section>
 
-            <section
-              className="access-panel autoteams-permission-v71376 invite85-permission-panel invite86-permissions"
-              data-autoteams-permission-guide-v71376="true"
-            >
-              <div className="autoteams-permission-v71376-head">
-                <span>Permission guide</span>
-                <h2>Who can do what?</h2>
-                <p>
-                  Roles control what people can do inside this workspace.
-                  Atlas Profiles remain personal to each member.
-                </p>
+            <section className="access-panel access-role-guide invite44-role-guide-panel" data-autoteams-permission-guide="true">
+              <span className="eyebrow">Permission guide</span>
+              <h2>Who can do what?</h2>
+              <div>
+                <strong>Owner</strong>
+                <p>Workspace, membership, team and billing control.</p>
               </div>
-
-              <div className="autoteams-permission-v71376-grid">
-                <div className="autoteams-permission-v71376-card owner">
-                  <div className="autoteams-permission-v71376-title">
-                    <b className="autoteams-permission-v71376-icon">O</b>
-                    <div>
-                      <strong>Owner</strong>
-                      <span>Full control</span>
-                    </div>
-                  </div>
-
-                  <div className="autoteams-permission-v71376-items">
-                    <div><i aria-hidden="true"></i><span>Workspace settings and roles</span></div>
-                    <div><i aria-hidden="true"></i><span>Member management</span></div>
-                    <div><i aria-hidden="true"></i><span>Team and people management</span></div>
-                    <div><i aria-hidden="true"></i><span>Billing and workspace ownership</span></div>
-                  </div>
-
-                  <p>The workspace creator becomes Owner automatically.</p>
-                </div>
-
-                <div className="autoteams-permission-v71376-card admin">
-                  <div className="autoteams-permission-v71376-title">
-                    <b className="autoteams-permission-v71376-icon">A</b>
-                    <div>
-                      <strong>Administrator</strong>
-                      <span>Legacy role</span>
-                    </div>
-                  </div>
-
-                  <div className="autoteams-permission-v71376-items">
-                    <div><i aria-hidden="true"></i><span>Existing records remain supported</span></div>
-                    <div><i aria-hidden="true"></i><span>Shown for backwards compatibility</span></div>
-                    <div><i aria-hidden="true"></i><span>Cannot be newly assigned in free trial</span></div>
-                    <div><i aria-hidden="true"></i><span>Reserved for future plan options</span></div>
-                  </div>
-
-                  <p>Existing Administrator memberships remain readable.</p>
-                </div>
-
-                <div className="autoteams-permission-v71376-card leader">
-                  <div className="autoteams-permission-v71376-title">
-                    <b className="autoteams-permission-v71376-icon">L</b>
-                    <div>
-                      <strong>Team Leader</strong>
-                      <span>Lead teams</span>
-                    </div>
-                  </div>
-
-                  <div className="autoteams-permission-v71376-items">
-                    <div><i aria-hidden="true"></i><span>Create and manage teams</span></div>
-                    <div><i aria-hidden="true"></i><span>Review team recommendations</span></div>
-                    <div><i aria-hidden="true"></i><span>Use team insights</span></div>
-                    <div><i aria-hidden="true"></i><span>Support team activity</span></div>
-                  </div>
-
-                  <p>Owners can promote a Member to Team Leader.</p>
-                </div>
-
-                <div className="autoteams-permission-v71376-card member">
-                  <div className="autoteams-permission-v71376-title">
-                    <b className="autoteams-permission-v71376-icon">M</b>
-                    <div>
-                      <strong>Team Member</strong>
-                      <span>Participate</span>
-                    </div>
-                  </div>
-
-                  <div className="autoteams-permission-v71376-items">
-                    <div><i aria-hidden="true"></i><span>Complete and improve Atlas Profile</span></div>
-                    <div><i aria-hidden="true"></i><span>Join teams</span></div>
-                    <div><i aria-hidden="true"></i><span>Participate by consent</span></div>
-                    <div><i aria-hidden="true"></i><span>View permitted team information</span></div>
-                  </div>
-
-                  <p>Every new free-trial invitation starts as Member.</p>
-                </div>
+              <div>
+                <strong>Administrator</strong>
+                <p>Members, invitations, directories and talent pools.</p>
               </div>
-
-              <div className="autoteams-permission-v71376-note">
-                <b>i</b>
-                <span>
-                  <strong>Free trial:</strong> everyone invited joins as a
-                  Member. Only the Workspace Owner can promote a Member to Team
-                  Leader or return a Team Leader to Member.
-                </span>
+              <div>
+                <strong>Team Leader</strong>
+                <p>Create teams and review recommendations.</p>
+              </div>
+              <div>
+                <strong>Team Member</strong>
+                <p>Manage their own Team DNA and participate by consent.</p>
               </div>
             </section>
           </aside>

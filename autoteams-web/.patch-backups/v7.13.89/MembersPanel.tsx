@@ -512,7 +512,27 @@ export function MembersPanel() {
       <section className="access-content invite86-content">
         <div className="container access-layout invite86-layout">
           <section className="access-main invite86-main">
-            
+            <div className={`access-summary-grid ${styles.summaryGrid} ${styles.invite88SummaryGrid}`}>
+              <article className={`${styles.peopleMetric} invite87-summary-card invite87-summary-members ${styles.invite88Members}`}>
+                <small>Profile members</small>
+                <strong>{profileMembers.length}</strong>
+              </article>
+              <article className={`${styles.inviteMetric} invite87-summary-card invite87-summary-pending ${styles.invite88Pending}`} data-autoteams-pending-invites="true">
+                <small>Pending invitations</small>
+                <strong>{profileInvitations.length}</strong>
+              </article>
+              <article className={`${styles.profileMetric} invite87-summary-card invite87-summary-profile ${styles.invite88Profile}`}>
+                <small>Selected profile</small>
+                <strong>
+                  {selectedProfileOption
+                    ? profileModeLabel(selectedProfileOption.mode)
+                    : "Not selected"}
+                </strong>
+              </article>              <article className={`${"invite43-email-metric invite87-summary-card invite87-summary-email"} ${styles.invite88Email}`}>
+                <small>Email delivery</small>
+                <strong>Microsoft 365</strong>
+              </article>
+            </div>
 
             <section className="access-panel invite44-members-panel">
               <div className="access-panel-heading">

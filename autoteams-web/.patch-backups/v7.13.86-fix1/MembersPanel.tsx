@@ -512,7 +512,27 @@ export function MembersPanel() {
       <section className="access-content invite86-content">
         <div className="container access-layout invite86-layout">
           <section className="access-main invite86-main">
-            
+            <div className={`access-summary-grid invite86-summary ${styles.summaryGrid}`}>
+              <article className={styles.peopleMetric}>
+                <small>Profile members</small>
+                <strong>{profileMembers.length}</strong>
+              </article>
+              <article className={styles.inviteMetric} data-autoteams-pending-invites="true">
+                <small>Pending invitations</small>
+                <strong>{profileInvitations.length}</strong>
+              </article>
+              <article className={styles.profileMetric}>
+                <small>Selected profile</small>
+                <strong>
+                  {selectedProfileOption
+                    ? profileModeLabel(selectedProfileOption.mode)
+                    : "Not selected"}
+                </strong>
+              </article>              <article className="invite43-email-metric">
+                <small>Email delivery</small>
+                <strong>Microsoft 365</strong>
+              </article>
+            </div>
 
             <section className="access-panel invite44-members-panel">
               <div className="access-panel-heading">
@@ -676,7 +696,7 @@ export function MembersPanel() {
                 borderColor: "rgba(129,140,248,.42)",
                 boxShadow: "0 18px 50px rgba(79,70,229,.10)",
               }}
-             >
+             data-autoteams-invite-access-v71385="true" className="invite86-members">
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
                 <span
                   aria-hidden="true"

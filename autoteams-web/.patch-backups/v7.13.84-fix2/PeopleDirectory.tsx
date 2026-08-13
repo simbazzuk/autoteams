@@ -360,7 +360,7 @@ export function PeopleDirectory() {
           )}
         </section>
 
-        <section className="people40-network-actions" data-autoteams-people-hero="v7.13.84">
+        <section className="people40-network-actions">
           <div className="people40-network-copy">
             <span className="eyebrow">Grow your network</span>
             <h2>Turn connections into better teams.</h2>

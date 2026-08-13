@@ -1,0 +1,241 @@
+.experience {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+}
+
+.loading,
+.progressCard,
+.stepCard {
+  box-sizing: border-box;
+  width: 100%;
+  background:
+    linear-gradient(135deg, rgba(23, 30, 45, 0.98), rgba(20, 27, 42, 0.98));
+  border: 1px solid #2a3448;
+}
+
+.loading {
+  padding: 24px;
+  color: #8f9bb0;
+  border-radius: 18px;
+}
+
+.progressCard {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 18px;
+}
+
+.progressHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  gap: 28px;
+  align-items: start;
+}
+
+.progressCopy {
+  min-width: 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 14px;
+  color: #826fff;
+  background: #ffffff;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.progressCopy h2 {
+  margin: 16px 0 6px;
+  font-size: clamp(24px, 2.2vw, 30px);
+  line-height: 1.15;
+}
+
+.progressCopy p {
+  max-width: 760px;
+  margin: 0;
+  color: #9eabc0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.completionBadge {
+  justify-self: end;
+  min-width: 116px;
+  padding: 10px 14px;
+  color: #d6d0ff;
+  background: rgba(120, 104, 255, 0.14);
+  border: 1px solid rgba(120, 104, 255, 0.12);
+  border-radius: 999px;
+  text-align: center;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.progressTrack {
+  height: 8px;
+  overflow: hidden;
+  background: #252e40;
+  border-radius: 999px;
+}
+
+.progressValue {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #795fff, #9176ff);
+  border-radius: inherit;
+}
+
+.progressLabel {
+  color: #8995a9;
+  font-size: 10px;
+}
+
+.steps {
+  display: grid;
+  gap: 12px;
+}
+
+.stepCard {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 180px;
+  gap: 18px;
+  min-height: 94px;
+  align-items: center;
+  padding: 18px 20px;
+  border-radius: 16px;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.stepCard:hover {
+  border-color: rgba(111, 135, 180, 0.55);
+}
+
+.stepComplete {
+  border-color: rgba(72, 190, 135, 0.32);
+  background:
+    linear-gradient(135deg, rgba(18, 39, 43, 0.96), rgba(20, 29, 42, 0.98));
+}
+
+.stepIcon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  color: #c5cede;
+  background: #222b3c;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 11px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.iconComplete {
+  color: #74e7ac;
+  background: rgba(43, 181, 113, 0.13);
+  border-color: rgba(72, 190, 135, 0.08);
+}
+
+.stepCopy {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.stepCopy strong {
+  color: #f4f6fb;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.stepCopy p {
+  margin: 0;
+  color: #95a3b9;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.actionColumn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 180px;
+}
+
+.stepAction {
+  display: inline-flex;
+  box-sizing: border-box;
+  width: 180px;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
+  text-decoration: none;
+}
+
+.primaryAction {
+  color: #fff;
+  background: linear-gradient(90deg, #745cff, #3f8df7);
+  border: 1px solid rgba(132, 119, 255, 0.6);
+}
+
+.completedAction {
+  color: #f4f6fb;
+  background: rgba(20, 29, 43, 0.82);
+  border: 1px solid #39465e;
+}
+
+.stepComplete .completedAction {
+  color: #82e8b2;
+  border-color: rgba(72, 190, 135, 0.42);
+  background: rgba(17, 43, 39, 0.42);
+}
+
+@media (max-width: 760px) {
+  .progressHeader {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .completionBadge {
+    justify-self: start;
+  }
+
+  .stepCard {
+    grid-template-columns: 42px minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .actionColumn {
+    grid-column: 1 / -1;
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .stepAction {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .progressCard {
+    padding: 19px;
+  }
+
+  .stepCard {
+    padding: 17px;
+  }
+}

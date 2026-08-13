@@ -19774,1953 +19774,312 @@ html[data-theme="light"] .access-page[data-autoteams-invite] .access-side > sect
 }
 
 /* =========================================================
-   AutoTeams v7.13.86 Invite Access dashboard
-   Structural refresh aligned to Team Insights.
+   AutoTeams v7.13.85-fix3 Invite Access global refresh
+   Team Insights visual language.
    ========================================================= */
 
-.invite86-content {
-  padding-top: 22px;
-}
-
-.invite86-layout {
-  display: grid !important;
-  grid-template-columns:
-    minmax(0, 1.35fr)
-    minmax(360px, .82fr) !important;
-  gap: 20px !important;
-  align-items: start !important;
-}
-
-.invite86-main,
-.invite86-side {
-  display: grid !important;
-  gap: 18px !important;
-  min-width: 0;
-}
-
-/* ---------------------------------------------------------
-   Summary - compact insight metrics
-   --------------------------------------------------------- */
-
-.invite86-summary {
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr)) !important;
-  gap: 12px !important;
-}
-
-.invite86-summary article {
-  min-height: 92px !important;
-  padding: 15px 16px !important;
-  border-radius: 15px !important;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(20,30,50,.98),
-      rgba(13,22,38,.98)
-    ) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.018);
-}
-
-.invite86-summary article:nth-child(1) {
-  border-color: rgba(45,212,191,.34) !important;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(13,78,74,.22),
-      rgba(13,22,38,.98)
-    ) !important;
-}
-
-.invite86-summary article:nth-child(2) {
-  border-color: rgba(168,85,247,.34) !important;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(88,28,135,.22),
-      rgba(13,22,38,.98)
-    ) !important;
-}
-
-.invite86-summary article:nth-child(3) {
-  border-color: rgba(245,158,11,.32) !important;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(120,53,15,.20),
-      rgba(13,22,38,.98)
-    ) !important;
-}
-
-.invite86-summary small {
-  color: #91a2ba !important;
-}
-
-.invite86-summary strong {
-  margin-top: 6px;
-  color: #fff !important;
-  font-size: 1.45rem !important;
-}
-
-/* ---------------------------------------------------------
-   Shared panel surface
-   --------------------------------------------------------- */
-
-.invite86-main > .access-panel,
-.invite86-side > .access-panel,
-.invite86-consent,
-.invite86-guide,
-.invite86-compose,
-.invite86-pending,
-.invite86-permissions {
-  border: 1px solid rgba(66,82,111,.42) !important;
+.invite85-guide-panel,
+.invite85-compose-panel,
+.invite85-pending-panel,
+.invite85-permission-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(71,85,105,.40) !important;
   border-radius: 18px !important;
   background:
-    radial-gradient(
-      circle at 94% 4%,
-      rgba(99,102,241,.07),
-      transparent 32%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(18,28,47,.98),
-      rgba(12,21,37,.98)
-    ) !important;
+    radial-gradient(circle at 92% 4%, rgba(99,102,241,.09), transparent 34%),
+    linear-gradient(145deg, rgba(18,27,45,.98), rgba(13,22,38,.98)) !important;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.02),
-    0 16px 34px rgba(0,0,0,.08) !important;
+    0 16px 34px rgba(0,0,0,.10) !important;
 }
 
-/* ---------------------------------------------------------
-   Members panel - more like an Insights roster
-   --------------------------------------------------------- */
-
-.invite86-members {
-  border-color: rgba(59,130,246,.28) !important;
+/* Invite journey */
+.invite85-guide-panel {
+  border-color: rgba(59,130,246,.30) !important;
 }
 
-.invite86-members .member-list,
-.invite86-members .membership-list {
-  display: grid;
-  gap: 9px;
+.invite85-guide-panel .access-panel-heading {
+  margin-bottom: 16px;
 }
 
-.invite86-members article {
-  border-radius: 13px !important;
-  border-color: rgba(71,85,105,.30) !important;
-  background: rgba(8,16,30,.55) !important;
+.invite85-guide-panel h2 {
+  color: #f8fafc;
 }
 
-/* ---------------------------------------------------------
-   Consent - three compact coloured cards
-   --------------------------------------------------------- */
-
-.invite86-consent {
-  border-color: rgba(45,212,191,.26) !important;
-}
-
-.invite86-consent .access-panel-heading {
-  margin-bottom: 15px;
-}
-
-.invite86-consent .consent-grid {
-  display: grid !important;
-  grid-template-columns:
-    repeat(3, minmax(0,1fr)) !important;
+.invite85-guide-panel .invite44-flow {
   gap: 10px !important;
 }
 
-.invite86-consent .consent-grid > label {
-  display: grid !important;
-  grid-template-columns: 1fr auto !important;
-  gap: 12px !important;
-  align-items: start !important;
+.invite85-guide-panel .invite44-flow article {
   min-height: 116px;
-  padding: 14px !important;
-  border: 1px solid rgba(71,85,105,.34) !important;
+  padding: 16px !important;
+  border: 1px solid rgba(71,85,105,.36) !important;
   border-radius: 14px !important;
-  background: rgba(8,16,30,.56) !important;
+  background: rgba(10,18,33,.62) !important;
 }
 
-.invite86-consent .consent-grid > label:nth-child(1) {
-  border-color: rgba(59,130,246,.36) !important;
+.invite85-guide-panel .invite44-flow article:nth-child(1) {
+  border-color: rgba(168,85,247,.38) !important;
   background:
-    linear-gradient(
-      145deg,
-      rgba(30,64,175,.20),
-      rgba(8,16,30,.70)
-    ) !important;
+    linear-gradient(145deg, rgba(88,28,135,.24), rgba(10,18,33,.74)) !important;
 }
 
-.invite86-consent .consent-grid > label:nth-child(2) {
-  border-color: rgba(45,212,191,.36) !important;
+.invite85-guide-panel .invite44-flow article:nth-child(2) {
+  border-color: rgba(59,130,246,.38) !important;
   background:
-    linear-gradient(
-      145deg,
-      rgba(17,94,89,.20),
-      rgba(8,16,30,.70)
-    ) !important;
+    linear-gradient(145deg, rgba(30,64,175,.23), rgba(10,18,33,.74)) !important;
 }
 
-.invite86-consent .consent-grid > label:nth-child(3) {
-  border-color: rgba(168,85,247,.36) !important;
+.invite85-guide-panel .invite44-flow article:nth-child(3) {
+  border-color: rgba(20,184,166,.38) !important;
   background:
-    linear-gradient(
-      145deg,
-      rgba(88,28,135,.20),
-      rgba(8,16,30,.70)
-    ) !important;
+    linear-gradient(145deg, rgba(17,94,89,.23), rgba(10,18,33,.74)) !important;
 }
 
-.invite86-consent .consent-grid strong {
-  color: #fff !important;
+.invite85-guide-panel .invite44-flow article:nth-child(4) {
+  border-color: rgba(245,158,11,.38) !important;
+  background:
+    linear-gradient(145deg, rgba(120,53,15,.23), rgba(10,18,33,.74)) !important;
 }
 
-.invite86-consent .consent-grid small {
-  display: block;
-  margin-top: 5px;
-  color: #91a2ba !important;
+.invite85-guide-panel .invite44-flow article > span {
+  color: #a5b4fc;
+}
+
+.invite85-guide-panel .invite44-flow article strong {
+  color: #fff;
+}
+
+.invite85-guide-panel .invite44-flow article small {
+  color: #93a4bd;
   line-height: 1.45;
 }
 
-.invite86-consent input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: #6366f1;
-}
-
-/* ---------------------------------------------------------
-   How invites work
-   --------------------------------------------------------- */
-
-.invite86-guide {
-  border-color: rgba(99,102,241,.28) !important;
-}
-
-.invite86-guide .invite44-flow {
-  display: grid !important;
-  grid-template-columns:
-    repeat(4, minmax(0,1fr)) !important;
-  gap: 10px !important;
-}
-
-.invite86-guide .invite44-flow article {
-  min-height: 132px !important;
-  padding: 15px !important;
-  border-radius: 14px !important;
-  border: 1px solid rgba(71,85,105,.34) !important;
-  background: rgba(8,16,30,.58) !important;
-}
-
-.invite86-guide .invite44-flow article:nth-child(1) {
-  border-color: rgba(168,85,247,.42) !important;
+/* Primary invite card */
+.invite85-compose-panel {
+  border-color: rgba(129,140,248,.50) !important;
   background:
-    linear-gradient(145deg, rgba(88,28,135,.25), rgba(8,16,30,.74)) !important;
-}
-
-.invite86-guide .invite44-flow article:nth-child(2) {
-  border-color: rgba(59,130,246,.42) !important;
-  background:
-    linear-gradient(145deg, rgba(30,64,175,.24), rgba(8,16,30,.74)) !important;
-}
-
-.invite86-guide .invite44-flow article:nth-child(3) {
-  border-color: rgba(20,184,166,.42) !important;
-  background:
-    linear-gradient(145deg, rgba(17,94,89,.24), rgba(8,16,30,.74)) !important;
-}
-
-.invite86-guide .invite44-flow article:nth-child(4) {
-  border-color: rgba(245,158,11,.40) !important;
-  background:
-    linear-gradient(145deg, rgba(120,53,15,.22), rgba(8,16,30,.74)) !important;
-}
-
-/* ---------------------------------------------------------
-   Invite - make this the clear primary side action
-   --------------------------------------------------------- */
-
-.invite86-compose {
-  position: relative;
-  border-color: rgba(129,140,248,.54) !important;
-  background:
-    radial-gradient(
-      circle at 90% 5%,
-      rgba(168,85,247,.18),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 8% 18%,
-      rgba(14,165,233,.09),
-      transparent 29%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(27,31,61,.98),
-      rgba(14,23,42,.98)
-    ) !important;
+    radial-gradient(circle at 90% 5%, rgba(168,85,247,.16), transparent 32%),
+    radial-gradient(circle at 5% 15%, rgba(14,165,233,.09), transparent 28%),
+    linear-gradient(145deg, rgba(22,29,51,.98), rgba(15,23,42,.98)) !important;
   box-shadow:
-    0 22px 62px rgba(79,70,229,.14) !important;
+    0 22px 58px rgba(79,70,229,.13) !important;
 }
 
-.invite86-compose::before {
+.invite85-compose-panel::before {
   content: "";
-  position: absolute;
-  inset: 0 0 auto;
+  display: block;
   height: 3px;
+  margin: -1px -1px 20px;
+  border-radius: 18px 18px 0 0;
   background:
-    linear-gradient(
-      90deg,
-      #6366f1,
-      #8b5cf6,
-      #38bdf8
-    );
+    linear-gradient(90deg, #6366f1, #8b5cf6, #38bdf8);
 }
 
-.invite86-compose h2 {
-  color: #fff !important;
+.invite85-compose-panel h2 {
+  color: #fff;
 }
 
-.invite86-compose form {
-  display: grid !important;
-  gap: 14px !important;
+.invite85-compose-panel form {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
 }
 
-.invite86-compose form > label {
-  display: grid !important;
-  gap: 7px !important;
+.invite85-compose-panel form > label {
+  display: grid;
+  gap: 7px;
 }
 
-.invite86-compose input,
-.invite86-compose select {
-  width: 100% !important;
-  min-height: 48px !important;
-  border: 1px solid rgba(91,107,139,.42) !important;
+.invite85-compose-panel input,
+.invite85-compose-panel select {
+  min-height: 48px;
+  border: 1px solid rgba(90,107,139,.40) !important;
   border-radius: 12px !important;
-  background: rgba(7,14,27,.78) !important;
+  background: rgba(8,15,28,.76) !important;
   color: #f8fafc !important;
 }
 
-.invite86-compose button[type="submit"] {
-  width: 100% !important;
-  min-height: 48px !important;
-  border-radius: 12px !important;
-  background:
-    linear-gradient(
-      90deg,
-      #6757ee,
-      #4f8ef7
-    ) !important;
-  box-shadow:
-    0 12px 26px rgba(79,70,229,.18);
+.invite85-compose-panel input:focus,
+.invite85-compose-panel select:focus {
+  outline: none;
+  border-color: rgba(129,140,248,.84) !important;
+  box-shadow: 0 0 0 3px rgba(99,102,241,.15);
 }
 
-/* ---------------------------------------------------------
-   Pending invitations
-   --------------------------------------------------------- */
+.invite85-compose-panel button[type="submit"] {
+  min-height: 46px;
+  margin-top: 3px;
+  border-radius: 12px !important;
+  background:
+    linear-gradient(90deg, #6757ee, #4f8ef7) !important;
+  box-shadow:
+    0 12px 24px rgba(79,70,229,.18);
+}
 
-.invite86-pending {
+/* Pending invitations */
+.invite85-pending-panel {
   border-color: rgba(192,132,252,.30) !important;
 }
 
-.invite86-pending .invitation-list {
+.invite85-pending-panel .access-panel-heading {
+  margin-bottom: 14px;
+}
+
+.invite85-pending-panel .invitation-list {
   display: grid;
-  gap: 9px;
+  gap: 10px;
 }
 
-.invite86-pending .invitation-list > article {
-  display: grid !important;
-  grid-template-columns: 1fr auto !important;
-  gap: 8px 12px !important;
-  align-items: center !important;
-  padding: 13px !important;
-  border: 1px solid rgba(91,107,139,.30) !important;
-  border-radius: 13px !important;
+.invite85-pending-panel .invitation-list > article {
+  display: grid;
+  grid-template-columns:
+    minmax(170px,1.5fr)
+    minmax(120px,.8fr)
+    auto
+    auto
+    auto;
+  gap: 12px;
+  align-items: center;
+  padding: 13px 14px;
+  border: 1px solid rgba(88,102,130,.30);
+  border-radius: 13px;
   background:
-    linear-gradient(
-      145deg,
-      rgba(31,25,61,.34),
-      rgba(8,16,30,.72)
-    ) !important;
+    linear-gradient(145deg, rgba(31,25,61,.36), rgba(11,19,34,.78));
 }
 
-.invite86-pending .invitation-list code {
-  grid-column: 1 / -1;
-  max-width: 100%;
+.invite85-pending-panel .invitation-list strong {
+  color: #f8fafc;
+}
+
+.invite85-pending-panel .invitation-list small {
+  display: block;
+  margin-top: 3px;
+  color: #8fa0b8;
+}
+
+.invite85-pending-panel .invitation-list code {
+  max-width: 160px;
   overflow: hidden;
   color: #a5b4fc;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* ---------------------------------------------------------
-   Permissions - 2 x 2 role insight cards
-   --------------------------------------------------------- */
-
-.invite86-permissions {
-  border-color: rgba(99,102,241,.30) !important;
+/* Permission guide */
+.invite85-permission-panel {
+  border-color: rgba(99,102,241,.28) !important;
 }
 
-.invite86-permissions
+.invite85-permission-panel
+.autoteams-permission-v71376-head {
+  max-width: 760px;
+  margin-bottom: 18px;
+}
+
+.invite85-permission-panel
+.autoteams-permission-v71376-head > span {
+  color: #a5b4fc !important;
+}
+
+.invite85-permission-panel
+.autoteams-permission-v71376-head h2 {
+  color: #fff !important;
+}
+
+.invite85-permission-panel
+.autoteams-permission-v71376-head p {
+  color: #94a3b8 !important;
+}
+
+.invite85-permission-panel
 .autoteams-permission-v71376-grid {
   display: grid !important;
   grid-template-columns:
-    repeat(2, minmax(0,1fr)) !important;
+    repeat(2,minmax(0,1fr)) !important;
   gap: 12px !important;
 }
 
-.invite86-permissions
+.invite85-permission-panel
 .autoteams-permission-v71376-card {
   min-height: 0 !important;
   padding: 16px !important;
   border-radius: 14px !important;
-  background: rgba(8,16,30,.64) !important;
+  background:
+    rgba(9,17,31,.64) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.018);
 }
 
-.invite86-permissions
+.invite85-permission-panel
 .autoteams-permission-v71376-card.owner {
-  border-color: rgba(168,85,247,.46) !important;
+  border-color: rgba(168,85,247,.44) !important;
   background:
-    linear-gradient(145deg, rgba(88,28,135,.25), rgba(8,16,30,.76)) !important;
+    linear-gradient(145deg, rgba(88,28,135,.24), rgba(9,17,31,.74)) !important;
 }
 
-.invite86-permissions
+.invite85-permission-panel
 .autoteams-permission-v71376-card.admin {
-  border-color: rgba(59,130,246,.44) !important;
+  border-color: rgba(59,130,246,.42) !important;
   background:
-    linear-gradient(145deg, rgba(30,64,175,.23), rgba(8,16,30,.76)) !important;
+    linear-gradient(145deg, rgba(30,64,175,.22), rgba(9,17,31,.74)) !important;
 }
 
-.invite86-permissions
+.invite85-permission-panel
 .autoteams-permission-v71376-card.leader {
-  border-color: rgba(20,184,166,.44) !important;
+  border-color: rgba(20,184,166,.42) !important;
   background:
-    linear-gradient(145deg, rgba(17,94,89,.23), rgba(8,16,30,.76)) !important;
+    linear-gradient(145deg, rgba(17,94,89,.22), rgba(9,17,31,.74)) !important;
 }
 
-.invite86-permissions
+.invite85-permission-panel
 .autoteams-permission-v71376-card.member {
-  border-color: rgba(245,158,11,.42) !important;
+  border-color: rgba(245,158,11,.40) !important;
   background:
-    linear-gradient(145deg, rgba(120,53,15,.22), rgba(8,16,30,.76)) !important;
+    linear-gradient(145deg, rgba(120,53,15,.20), rgba(9,17,31,.74)) !important;
 }
 
-.invite86-permissions
+.invite85-permission-panel
 .autoteams-permission-v71376-title strong {
   color: #fff !important;
 }
 
-.invite86-permissions
+.invite85-permission-panel
+.autoteams-permission-v71376-title span {
+  color: #98a7bd !important;
+}
+
+.invite85-permission-panel
 .autoteams-permission-v71376-items span {
   color: #b6c2d3 !important;
 }
 
-/* ---------------------------------------------------------
-   Responsive
-   --------------------------------------------------------- */
-
-@media (max-width: 1080px) {
-  .invite86-layout {
-    grid-template-columns: 1fr !important;
-  }
-
-  .invite86-summary {
-    grid-template-columns:
-      repeat(3, minmax(0,1fr)) !important;
-  }
-
-  .invite86-consent .consent-grid {
-    grid-template-columns: 1fr !important;
-  }
+.invite85-permission-panel
+.autoteams-permission-v71376-card > p {
+  margin: 12px 0 0 !important;
+  color: #8495ad !important;
 }
-
-@media (max-width: 720px) {
-  .invite86-summary {
-    grid-template-columns: 1fr !important;
-  }
-
-  .invite86-guide .invite44-flow {
-    grid-template-columns:
-      repeat(2, minmax(0,1fr)) !important;
-  }
-
-  .invite86-permissions
-  .autoteams-permission-v71376-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .invite86-guide .invite44-flow {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* =========================================================
-   AutoTeams v7.13.86-fix2 upper Invite panel colours
-   Adds stronger Team Insights-style colour above Invite.
-   ========================================================= */
-
-/* Top summary cards */
-.invite86-summary article:nth-child(1) {
-  border-color: rgba(20,184,166,.52) !important;
-  background:
-    radial-gradient(circle at 90% 8%, rgba(45,212,191,.18), transparent 35%),
-    linear-gradient(145deg, rgba(13,78,74,.42), rgba(12,22,38,.96)) !important;
-  box-shadow:
-    0 14px 30px rgba(13,78,74,.12) !important;
-}
-
-.invite86-summary article:nth-child(2) {
-  border-color: rgba(168,85,247,.52) !important;
-  background:
-    radial-gradient(circle at 90% 8%, rgba(168,85,247,.18), transparent 35%),
-    linear-gradient(145deg, rgba(88,28,135,.40), rgba(12,22,38,.96)) !important;
-  box-shadow:
-    0 14px 30px rgba(88,28,135,.12) !important;
-}
-
-.invite86-summary article:nth-child(3) {
-  border-color: rgba(245,158,11,.48) !important;
-  background:
-    radial-gradient(circle at 90% 8%, rgba(245,158,11,.16), transparent 35%),
-    linear-gradient(145deg, rgba(120,53,15,.38), rgba(12,22,38,.96)) !important;
-  box-shadow:
-    0 14px 30px rgba(120,53,15,.10) !important;
-}
-
-/* Main member/roster panel */
-.invite86-members {
-  border-color: rgba(59,130,246,.42) !important;
-  background:
-    radial-gradient(circle at 92% 4%, rgba(59,130,246,.16), transparent 33%),
-    linear-gradient(145deg, rgba(26,47,83,.54), rgba(12,22,38,.97)) !important;
-}
-
-.invite86-members article {
-  border-color: rgba(96,165,250,.26) !important;
-  background:
-    linear-gradient(145deg, rgba(30,64,175,.18), rgba(8,16,30,.72)) !important;
-}
-
-/* Member consent overall panel */
-.invite86-consent {
-  border-color: rgba(45,212,191,.40) !important;
-  background:
-    radial-gradient(circle at 92% 4%, rgba(20,184,166,.14), transparent 34%),
-    linear-gradient(145deg, rgba(16,55,62,.48), rgba(12,22,38,.97)) !important;
-}
-
-/* Consent cards - stronger colour than v7.13.86 */
-.invite86-consent .consent-grid > label:nth-child(1) {
-  border-color: rgba(59,130,246,.52) !important;
-  background:
-    radial-gradient(circle at 88% 8%, rgba(59,130,246,.16), transparent 34%),
-    linear-gradient(145deg, rgba(30,64,175,.32), rgba(8,16,30,.76)) !important;
-}
-
-.invite86-consent .consent-grid > label:nth-child(2) {
-  border-color: rgba(20,184,166,.52) !important;
-  background:
-    radial-gradient(circle at 88% 8%, rgba(20,184,166,.16), transparent 34%),
-    linear-gradient(145deg, rgba(17,94,89,.32), rgba(8,16,30,.76)) !important;
-}
-
-.invite86-consent .consent-grid > label:nth-child(3) {
-  border-color: rgba(168,85,247,.52) !important;
-  background:
-    radial-gradient(circle at 88% 8%, rgba(168,85,247,.16), transparent 34%),
-    linear-gradient(145deg, rgba(88,28,135,.32), rgba(8,16,30,.76)) !important;
-}
-
-/* Make headings/statuses pop slightly more */
-.invite86-main h2,
-.invite86-consent h2,
-.invite86-members h2 {
-  color: #ffffff !important;
-}
-
-.invite86-summary strong,
-.invite86-consent strong,
-.invite86-members strong {
-  color: #ffffff !important;
-}
-
-/* =========================================================
-   AutoTeams v7.13.87 Invite Access approved dashboard
-   Matches the approved Team Insights-style concept.
-   Uses stable existing Access page classes only.
-   ========================================================= */
-
-/* ---------------------------------------------------------
-   Page dashboard structure
-   --------------------------------------------------------- */
-
-.access-content {
-  padding-top: 22px !important;
-}
-
-.access-content .access-layout {
-  display: grid !important;
-  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr) !important;
-  gap: 16px !important;
-  align-items: start !important;
-}
-
-/*
- * Flatten old main/side columns. Their children become dashboard grid
- * items so the page reads as one coherent surface.
- */
-.access-content .access-main,
-.access-content .access-side {
-  display: contents !important;
-}
-
-/* Summary metrics span the page */
-.access-content .access-summary-grid {
-  grid-column: 1 / -1 !important;
-  grid-row: 1 !important;
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0,1fr)) !important;
-  gap: 12px !important;
-  margin: 0 !important;
-}
-
-/* Main column panels: members / consent / invite journey */
-.access-content .access-main > section:nth-of-type(1) {
-  grid-column: 1 / -1 !important;
-  grid-row: 2 !important;
-}
-
-.access-content .access-main > section:nth-of-type(2) {
-  grid-column: 1 / -1 !important;
-  grid-row: 3 !important;
-}
-
-.access-content .access-main > section:nth-of-type(3) {
-  grid-column: 1 / -1 !important;
-  grid-row: 4 !important;
-}
-
-/* Side panels: invite / pending / permissions */
-.access-content .access-side > section:nth-of-type(1) {
-  grid-column: 1 !important;
-  grid-row: 5 !important;
-}
-
-.access-content .access-side > section:nth-of-type(2) {
-  grid-column: 2 !important;
-  grid-row: 5 !important;
-}
-
-.access-content .access-side > section:nth-of-type(3) {
-  grid-column: 1 / -1 !important;
-  grid-row: 6 !important;
-}
-
-/* ---------------------------------------------------------
-   Shared panel shell - brighter than previous dark boxes
-   --------------------------------------------------------- */
-
-.access-content .access-panel {
-  position: relative;
-  overflow: hidden;
-  margin: 0 !important;
-  border: 1px solid rgba(71, 106, 162, .42) !important;
-  border-radius: 17px !important;
-  background:
-    radial-gradient(circle at 90% 0%, rgba(37,99,235,.11), transparent 34%),
-    linear-gradient(145deg, rgba(12,31,57,.98), rgba(8,20,38,.98)) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.025),
-    0 16px 38px rgba(0,0,0,.13) !important;
-}
-
-.access-content .access-panel-heading h2 {
-  color: #f8fbff !important;
-}
-
-.access-content .access-panel-heading p,
-.access-content .access-panel p {
-  color: #a5b5cd;
-}
-
-/* ---------------------------------------------------------
-   Top metric cards - teal / purple / amber
-   --------------------------------------------------------- */
-
-.access-content .access-summary-grid article {
-  position: relative;
-  overflow: hidden;
-  min-height: 112px !important;
-  padding: 18px 20px !important;
-  border-radius: 15px !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.03),
-    0 12px 28px rgba(0,0,0,.12) !important;
-}
-
-.access-content .access-summary-grid article:nth-child(1) {
-  border: 1px solid rgba(20,184,166,.62) !important;
-  background:
-    radial-gradient(circle at 90% 10%, rgba(45,212,191,.22), transparent 38%),
-    linear-gradient(145deg, rgba(5,86,91,.58), rgba(7,28,43,.96)) !important;
-}
-
-.access-content .access-summary-grid article:nth-child(2) {
-  border: 1px solid rgba(168,85,247,.62) !important;
-  background:
-    radial-gradient(circle at 90% 10%, rgba(168,85,247,.24), transparent 38%),
-    linear-gradient(145deg, rgba(88,28,135,.58), rgba(20,17,48,.96)) !important;
-}
-
-.access-content .access-summary-grid article:nth-child(3) {
-  border: 1px solid rgba(245,158,11,.58) !important;
-  background:
-    radial-gradient(circle at 90% 10%, rgba(245,158,11,.22), transparent 38%),
-    linear-gradient(145deg, rgba(120,53,15,.56), rgba(34,25,18,.96)) !important;
-}
-
-.access-content .access-summary-grid small {
-  color: #c2cee0 !important;
-  font-size: .76rem !important;
-  font-weight: 800 !important;
-}
-
-.access-content .access-summary-grid strong {
-  display: block;
-  margin-top: 7px;
-  color: #fff !important;
-  font-size: 1.65rem !important;
-  line-height: 1 !important;
-}
-
-/* ---------------------------------------------------------
-   Members panel - rich blue
-   --------------------------------------------------------- */
-
-.access-content .access-main > section:nth-of-type(1) {
-  border-color: rgba(59,130,246,.62) !important;
-  background:
-    radial-gradient(circle at 95% 8%, rgba(59,130,246,.21), transparent 37%),
-    linear-gradient(145deg, rgba(18,57,111,.64), rgba(7,25,49,.98)) !important;
-}
-
-.access-content .access-main > section:nth-of-type(1) .member-list article,
-.access-content .access-main > section:nth-of-type(1) .membership-list article,
-.access-content .access-main > section:nth-of-type(1) article {
-  border-color: rgba(96,165,250,.34) !important;
-  background:
-    linear-gradient(145deg, rgba(30,64,175,.23), rgba(7,18,36,.72)) !important;
-}
-
-/* ---------------------------------------------------------
-   Member consent - teal shell + 3 coloured cards
-   --------------------------------------------------------- */
-
-.access-content .access-main > section:nth-of-type(2) {
-  border-color: rgba(20,184,166,.58) !important;
-  background:
-    radial-gradient(circle at 94% 5%, rgba(20,184,166,.20), transparent 38%),
-    linear-gradient(145deg, rgba(5,89,91,.58), rgba(7,28,42,.98)) !important;
-}
-
-.access-content .consent-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0,1fr)) !important;
-  gap: 12px !important;
-}
-
-.access-content .consent-grid > label {
-  display: grid !important;
-  grid-template-columns: minmax(0,1fr) auto !important;
-  gap: 12px !important;
-  align-items: start !important;
-  min-height: 126px !important;
-  padding: 16px !important;
-  border-radius: 14px !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.025);
-}
-
-.access-content .consent-grid > label:nth-child(1) {
-  border: 1px solid rgba(59,130,246,.62) !important;
-  background:
-    radial-gradient(circle at 90% 8%, rgba(59,130,246,.19), transparent 38%),
-    linear-gradient(145deg, rgba(30,64,175,.42), rgba(6,20,39,.84)) !important;
-}
-
-.access-content .consent-grid > label:nth-child(2) {
-  border: 1px solid rgba(20,184,166,.62) !important;
-  background:
-    radial-gradient(circle at 90% 8%, rgba(20,184,166,.19), transparent 38%),
-    linear-gradient(145deg, rgba(17,94,89,.44), rgba(6,25,37,.84)) !important;
-}
-
-.access-content .consent-grid > label:nth-child(3) {
-  border: 1px solid rgba(168,85,247,.62) !important;
-  background:
-    radial-gradient(circle at 90% 8%, rgba(168,85,247,.20), transparent 38%),
-    linear-gradient(145deg, rgba(88,28,135,.44), rgba(20,15,42,.84)) !important;
-}
-
-.access-content .consent-grid strong {
-  color: #fff !important;
-  font-size: .91rem !important;
-}
-
-.access-content .consent-grid small {
-  display: block !important;
-  margin-top: 7px !important;
-  color: #c0cbe0 !important;
-  font-size: .75rem !important;
-  line-height: 1.48 !important;
-}
-
-.access-content .consent-grid input[type="checkbox"] {
-  width: 19px !important;
-  height: 19px !important;
-  accent-color: #67e8f9;
-}
-
-/* ---------------------------------------------------------
-   Invite journey - same approved colour language
-   --------------------------------------------------------- */
-
-.access-content .access-main > section:nth-of-type(3) {
-  border-color: rgba(20,184,166,.48) !important;
-  background:
-    radial-gradient(circle at 50% 110%, rgba(20,184,166,.14), transparent 42%),
-    linear-gradient(145deg, rgba(5,69,80,.50), rgba(7,24,41,.98)) !important;
-}
-
-.access-content .invite44-flow {
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(0,1fr)) !important;
-  gap: 14px !important;
-}
-
-.access-content .invite44-flow article {
-  min-height: 132px !important;
-  padding: 16px !important;
-  border-radius: 14px !important;
-}
-
-.access-content .invite44-flow article:nth-child(1) {
-  border: 1px solid rgba(168,85,247,.66) !important;
-  background:
-    linear-gradient(145deg, rgba(88,28,135,.54), rgba(17,17,48,.88)) !important;
-}
-
-.access-content .invite44-flow article:nth-child(2) {
-  border: 1px solid rgba(59,130,246,.66) !important;
-  background:
-    linear-gradient(145deg, rgba(30,64,175,.54), rgba(8,30,61,.88)) !important;
-}
-
-.access-content .invite44-flow article:nth-child(3) {
-  border: 1px solid rgba(20,184,166,.66) !important;
-  background:
-    linear-gradient(145deg, rgba(17,94,89,.55), rgba(6,35,43,.88)) !important;
-}
-
-.access-content .invite44-flow article:nth-child(4) {
-  border: 1px solid rgba(245,158,11,.62) !important;
-  background:
-    linear-gradient(145deg, rgba(120,53,15,.54), rgba(39,28,17,.88)) !important;
-}
-
-.access-content .invite44-flow strong {
-  color: #fff !important;
-}
-
-.access-content .invite44-flow small {
-  color: #c0cbe0 !important;
-}
-
-/* ---------------------------------------------------------
-   Invite someone - purple card; REMOVE unwanted top line
-   --------------------------------------------------------- */
-
-.access-content .access-side > section:nth-of-type(1) {
-  border-color: rgba(168,85,247,.62) !important;
-  background:
-    radial-gradient(circle at 86% 16%, rgba(168,85,247,.23), transparent 36%),
-    linear-gradient(145deg, rgba(75,31,129,.60), rgba(18,17,47,.98)) !important;
-}
-
-/* Explicitly remove all previous decorative top strips */
-.access-content .access-side > section:nth-of-type(1)::before,
-.invite85-compose-panel::before,
-.invite86-compose::before,
-.invitePanel::before {
-  display: none !important;
-  content: none !important;
-  height: 0 !important;
-  background: none !important;
-}
-
-.access-content .access-side > section:nth-of-type(1) input,
-.access-content .access-side > section:nth-of-type(1) select {
-  border: 1px solid rgba(167,139,250,.34) !important;
-  border-radius: 11px !important;
-  background: rgba(8,13,31,.72) !important;
-  color: #fff !important;
-}
-
-.access-content .access-side > section:nth-of-type(1) button[type="submit"] {
-  width: 100% !important;
-  min-height: 47px !important;
-  border-radius: 11px !important;
-  background:
-    linear-gradient(90deg, #7857f6, #3b82f6) !important;
-  box-shadow:
-    0 12px 26px rgba(79,70,229,.22) !important;
-}
-
-/* ---------------------------------------------------------
-   Pending invitations - purple management surface
-   --------------------------------------------------------- */
-
-.access-content .access-side > section:nth-of-type(2) {
-  border-color: rgba(139,92,246,.52) !important;
-  background:
-    radial-gradient(circle at 92% 4%, rgba(139,92,246,.18), transparent 36%),
-    linear-gradient(145deg, rgba(49,29,92,.54), rgba(14,18,43,.98)) !important;
-}
-
-.access-content .invitation-list {
-  display: grid !important;
-  gap: 8px !important;
-}
-
-.access-content .invitation-list > article {
-  display: grid !important;
-  grid-template-columns: minmax(150px,1.4fr) minmax(110px,.9fr) auto !important;
-  gap: 8px 12px !important;
-  align-items: center !important;
-  padding: 11px 12px !important;
-  border: 1px solid rgba(139,92,246,.27) !important;
-  border-radius: 11px !important;
-  background: rgba(8,13,31,.48) !important;
-}
-
-.access-content .invitation-list code {
-  overflow: hidden;
-  color: #c4b5fd !important;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* ---------------------------------------------------------
-   Permissions - full width 4-card row
-   --------------------------------------------------------- */
-
-.access-content .access-side > section:nth-of-type(3) {
-  border-color: rgba(59,130,246,.42) !important;
-  background:
-    radial-gradient(circle at 94% 6%, rgba(59,130,246,.12), transparent 38%),
-    linear-gradient(145deg, rgba(13,35,65,.66), rgba(8,19,36,.98)) !important;
-}
-
-.access-content .autoteams-permission-v71376-grid {
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(0,1fr)) !important;
-  gap: 12px !important;
-}
-
-.access-content .autoteams-permission-v71376-card {
-  min-height: 176px !important;
-  padding: 16px !important;
-  border-radius: 14px !important;
-}
-
-.access-content .autoteams-permission-v71376-card.owner {
-  border-color: rgba(168,85,247,.62) !important;
-  background:
-    linear-gradient(145deg, rgba(88,28,135,.48), rgba(17,16,43,.88)) !important;
-}
-
-.access-content .autoteams-permission-v71376-card.admin {
-  border-color: rgba(59,130,246,.62) !important;
-  background:
-    linear-gradient(145deg, rgba(30,64,175,.48), rgba(8,28,56,.88)) !important;
-}
-
-.access-content .autoteams-permission-v71376-card.leader {
-  border-color: rgba(20,184,166,.62) !important;
-  background:
-    linear-gradient(145deg, rgba(17,94,89,.48), rgba(6,31,40,.88)) !important;
-}
-
-.access-content .autoteams-permission-v71376-card.member {
-  border-color: rgba(245,158,11,.58) !important;
-  background:
-    linear-gradient(145deg, rgba(120,53,15,.46), rgba(38,27,16,.88)) !important;
-}
-
-/* ---------------------------------------------------------
-   Responsive
-   --------------------------------------------------------- */
-
-@media (max-width: 1050px) {
-  .access-content .access-layout {
-    grid-template-columns: 1fr !important;
-  }
-
-  .access-content .access-side > section:nth-of-type(1),
-  .access-content .access-side > section:nth-of-type(2) {
-    grid-column: 1 / -1 !important;
-  }
-
-  .access-content .access-side > section:nth-of-type(1) {
-    grid-row: 5 !important;
-  }
-
-  .access-content .access-side > section:nth-of-type(2) {
-    grid-row: 6 !important;
-  }
-
-  .access-content .access-side > section:nth-of-type(3) {
-    grid-row: 7 !important;
-  }
-
-  .access-content .autoteams-permission-v71376-grid {
-    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
-  }
-}
-
-@media (max-width: 760px) {
-  .access-content .access-summary-grid,
-  .access-content .consent-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .access-content .invite44-flow {
-    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
-  }
-}
-
-@media (max-width: 520px) {
-  .access-content .invite44-flow,
-  .access-content .autoteams-permission-v71376-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .access-content .invitation-list > article {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* =========================================================
-   AutoTeams v7.13.87-fix1 top metrics alignment
-   Four equal cards: Members / Invitations / Profile / Email
-   ========================================================= */
-
-/*
- * Override the older three-column summary layouts introduced in previous
- * Invite page versions.
- */
-.access-content .access-summary-grid,
-.access-content .invite86-summary {
-  display: grid !important;
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr)) !important;
-  gap: 12px !important;
-  align-items: stretch !important;
-  width: 100% !important;
-}
-
-/*
- * Every metric occupies exactly one grid cell.
- */
-.access-content .access-summary-grid > article,
-.access-content .invite86-summary > article {
-  box-sizing: border-box !important;
-  width: 100% !important;
-  min-width: 0 !important;
-  min-height: 142px !important;
-  height: 100% !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: flex-start !important;
-
-  padding: 18px 20px !important;
-  margin: 0 !important;
-
-  border-radius: 15px !important;
-  overflow: hidden !important;
-}
-
-/*
- * Remove the old connected-card appearance.
- */
-.access-content .access-summary-grid > article + article,
-.access-content .invite86-summary > article + article {
-  margin-left: 0 !important;
-}
-
-/* ---------------------------------------------------------
-   1. Profile members - teal
-   --------------------------------------------------------- */
-.access-content .access-summary-grid > article:nth-child(1),
-.access-content .invite86-summary > article:nth-child(1) {
-  border: 1px solid rgba(20,184,166,.62) !important;
-
-  background:
-    radial-gradient(
-      circle at 88% 12%,
-      rgba(45,212,191,.22),
-      transparent 37%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(5,86,91,.62),
-      rgba(7,28,43,.97)
-    ) !important;
-}
-
-/* ---------------------------------------------------------
-   2. Pending invitations - purple
-   --------------------------------------------------------- */
-.access-content .access-summary-grid > article:nth-child(2),
-.access-content .invite86-summary > article:nth-child(2) {
-  border: 1px solid rgba(168,85,247,.62) !important;
-
-  background:
-    radial-gradient(
-      circle at 88% 12%,
-      rgba(168,85,247,.24),
-      transparent 37%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(88,28,135,.62),
-      rgba(20,17,48,.97)
-    ) !important;
-}
-
-/* ---------------------------------------------------------
-   3. Selected profile - amber / bronze
-   --------------------------------------------------------- */
-.access-content .access-summary-grid > article:nth-child(3),
-.access-content .invite86-summary > article:nth-child(3) {
-  border: 1px solid rgba(245,158,11,.58) !important;
-
-  background:
-    radial-gradient(
-      circle at 88% 12%,
-      rgba(245,158,11,.22),
-      transparent 37%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(120,53,15,.60),
-      rgba(35,25,18,.97)
-    ) !important;
-}
-
-/* ---------------------------------------------------------
-   4. Email delivery - blue
-   --------------------------------------------------------- */
-.access-content .access-summary-grid > article:nth-child(4),
-.access-content .invite86-summary > article:nth-child(4) {
-  border: 1px solid rgba(59,130,246,.62) !important;
-
-  background:
-    radial-gradient(
-      circle at 88% 12%,
-      rgba(59,130,246,.24),
-      transparent 37%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(30,64,175,.61),
-      rgba(7,26,58,.97)
-    ) !important;
-}
-
-/* ---------------------------------------------------------
-   Content alignment
-   --------------------------------------------------------- */
-
-.access-content .access-summary-grid > article small,
-.access-content .invite86-summary > article small {
-  display: block !important;
-  margin: 0 0 10px !important;
-
-  color: #d0d9e8 !important;
-
-  font-size: .78rem !important;
-  font-weight: 800 !important;
-  line-height: 1.2 !important;
-}
-
-.access-content .access-summary-grid > article strong,
-.access-content .invite86-summary > article strong {
-  display: block !important;
-  margin: 0 !important;
-
-  color: #ffffff !important;
-
-  font-size: 1.72rem !important;
-  font-weight: 800 !important;
-  line-height: 1.08 !important;
-}
-
-/* Selected profile value */
-.access-content .access-summary-grid > article:nth-child(3) strong,
-.access-content .invite86-summary > article:nth-child(3) strong {
-  color: #5ee7a0 !important;
-}
-
-/* Email provider value */
-.access-content .access-summary-grid > article:nth-child(4) strong,
-.access-content .invite86-summary > article:nth-child(4) strong {
-  color: #ffd12f !important;
-}
-
-/*
- * Invitation helper/status pill must not push the card to a different
- * vertical alignment. Keep it compact.
- */
-.access-content .access-summary-grid > article:nth-child(2) .eyebrow,
-.access-content .invite86-summary > article:nth-child(2) .eyebrow,
-.access-content .access-summary-grid > article:nth-child(2) [class*="pill"],
-.access-content .invite86-summary > article:nth-child(2) [class*="pill"] {
-  width: fit-content !important;
-  min-height: 0 !important;
-
-  margin: 0 0 10px !important;
-  padding: 5px 9px !important;
-
-  font-size: .64rem !important;
-  line-height: 1 !important;
-}
-
-/*
- * Remove any older bottom-strip styling that makes the cards appear joined.
- */
-.access-content .access-summary-grid > article::after,
-.access-content .invite86-summary > article::after {
-  display: none !important;
-  content: none !important;
-}
-
-/* ---------------------------------------------------------
-   Responsive
-   --------------------------------------------------------- */
 
 @media (max-width: 1100px) {
-  .access-content .access-summary-grid,
-  .access-content .invite86-summary {
+  .invite85-pending-panel .invitation-list > article {
     grid-template-columns:
-      repeat(2, minmax(0,1fr)) !important;
+      minmax(160px,1fr)
+      auto
+      auto;
   }
 }
 
-@media (max-width: 620px) {
-  .access-content .access-summary-grid,
-  .access-content .invite86-summary {
+@media (max-width: 800px) {
+  .invite85-permission-panel
+  .autoteams-permission-v71376-grid {
     grid-template-columns:
       1fr !important;
   }
 
-  .access-content .access-summary-grid > article,
-  .access-content .invite86-summary > article {
-    min-height: 116px !important;
-  }
-}
-
-/* =========================================================
-   AutoTeams v7.13.87-fix2 compact separated summary cards
-   Fixes oversized / joined appearance from previous patches.
-   ========================================================= */
-
-.access-content .access-summary-grid,
-.access-content .invite86-summary {
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  gap: 14px !important;
-  align-items: stretch !important;
-  width: 100% !important;
-  padding: 0 !important;
-  background: transparent !important;
-  border: 0 !important;
-  overflow: visible !important;
-}
-
-/* Force genuinely separate compact cards. */
-.access-content .access-summary-grid > article,
-.access-content .invite86-summary > article {
-  box-sizing: border-box !important;
-  position: relative !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: flex-start !important;
-
-  width: auto !important;
-  min-width: 0 !important;
-  min-height: 104px !important;
-  height: 104px !important;
-  max-height: 104px !important;
-
-  margin: 0 !important;
-  padding: 14px 18px !important;
-
-  border-radius: 15px !important;
-  overflow: hidden !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.025),
-    0 10px 24px rgba(0,0,0,.13) !important;
-}
-
-/* No legacy edge/bottom strips. */
-.access-content .access-summary-grid > article::before,
-.access-content .access-summary-grid > article::after,
-.access-content .invite86-summary > article::before,
-.access-content .invite86-summary > article::after {
-  display: none !important;
-  content: none !important;
-}
-
-/* Teal */
-.access-content .access-summary-grid > article:nth-child(1),
-.access-content .invite86-summary > article:nth-child(1) {
-  border: 1px solid rgba(20,184,166,.58) !important;
-  background:
-    radial-gradient(circle at 92% 8%, rgba(45,212,191,.17), transparent 38%),
-    linear-gradient(145deg, rgba(5,75,82,.55), rgba(7,25,40,.98)) !important;
-}
-
-/* Purple */
-.access-content .access-summary-grid > article:nth-child(2),
-.access-content .invite86-summary > article:nth-child(2) {
-  border: 1px solid rgba(168,85,247,.58) !important;
-  background:
-    radial-gradient(circle at 92% 8%, rgba(168,85,247,.18), transparent 38%),
-    linear-gradient(145deg, rgba(73,28,118,.55), rgba(18,16,43,.98)) !important;
-}
-
-/* Amber */
-.access-content .access-summary-grid > article:nth-child(3),
-.access-content .invite86-summary > article:nth-child(3) {
-  border: 1px solid rgba(245,158,11,.54) !important;
-  background:
-    radial-gradient(circle at 92% 8%, rgba(245,158,11,.17), transparent 38%),
-    linear-gradient(145deg, rgba(101,49,17,.53), rgba(31,23,18,.98)) !important;
-}
-
-/* Blue */
-.access-content .access-summary-grid > article:nth-child(4),
-.access-content .invite86-summary > article:nth-child(4) {
-  border: 1px solid rgba(59,130,246,.58) !important;
-  background:
-    radial-gradient(circle at 92% 8%, rgba(59,130,246,.18), transparent 38%),
-    linear-gradient(145deg, rgba(25,56,136,.55), rgba(7,24,53,.98)) !important;
-}
-
-/* Compact labels / values */
-.access-content .access-summary-grid > article small,
-.access-content .invite86-summary > article small {
-  display: block !important;
-  margin: 0 0 8px !important;
-  color: #d3dbea !important;
-  font-size: .72rem !important;
-  font-weight: 800 !important;
-  line-height: 1.1 !important;
-}
-
-.access-content .access-summary-grid > article strong,
-.access-content .invite86-summary > article strong {
-  display: block !important;
-  margin: 0 !important;
-  font-size: 1.48rem !important;
-  line-height: 1.05 !important;
-  font-weight: 850 !important;
-}
-
-/* Preserve intentional value accents. */
-.access-content .access-summary-grid > article:nth-child(1) strong,
-.access-content .invite86-summary > article:nth-child(1) strong {
-  color: #43e4e8 !important;
-}
-
-.access-content .access-summary-grid > article:nth-child(2) strong,
-.access-content .invite86-summary > article:nth-child(2) strong {
-  color: #c5a6ff !important;
-}
-
-.access-content .access-summary-grid > article:nth-child(3) strong,
-.access-content .invite86-summary > article:nth-child(3) strong {
-  color: #55e6a1 !important;
-}
-
-.access-content .access-summary-grid > article:nth-child(4) strong,
-.access-content .invite86-summary > article:nth-child(4) strong {
-  color: #ffd52f !important;
-}
-
-/* Pending-invitation status chip must stay compact. */
-.access-content .access-summary-grid > article:nth-child(2) .eyebrow,
-.access-content .invite86-summary > article:nth-child(2) .eyebrow,
-.access-content .access-summary-grid > article:nth-child(2) [class*="pill"],
-.access-content .invite86-summary > article:nth-child(2) [class*="pill"] {
-  display: inline-flex !important;
-  width: fit-content !important;
-  max-width: 100% !important;
-  min-height: 0 !important;
-  margin: 0 0 7px !important;
-  padding: 4px 8px !important;
-  font-size: .56rem !important;
-  line-height: 1 !important;
-  white-space: nowrap !important;
-}
-
-/* Responsive */
-@media (max-width: 1100px) {
-  .access-content .access-summary-grid,
-  .access-content .invite86-summary {
-    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
-  }
-}
-
-@media (max-width: 620px) {
-  .access-content .access-summary-grid,
-  .access-content .invite86-summary {
-    grid-template-columns: 1fr !important;
-  }
-
-  .access-content .access-summary-grid > article,
-  .access-content .invite86-summary > article {
-    height: 96px !important;
-    min-height: 96px !important;
-    max-height: 96px !important;
-  }
-}
-
-/* =========================================================
-   AutoTeams v7.13.87-fix3 summary hard reset
-   Removes all legacy positioning from the four metric cards.
-   ========================================================= */
-
-/* The summary itself */
-.access-content .access-summary-grid,
-.access-content .invite86-summary {
-  position: relative !important;
-
-  display: grid !important;
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr)) !important;
-  grid-auto-rows: 92px !important;
-
-  gap: 14px !important;
-  align-items: stretch !important;
-  justify-items: stretch !important;
-
-  width: 100% !important;
-  min-height: 0 !important;
-  height: auto !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  border: 0 !important;
-  background: transparent !important;
-
-  overflow: visible !important;
-}
-
-/*
- * HARD RESET.
- * Previous Invite iterations added different vertical spacing / positioning
- * to some metric cards. Reset every layout property before styling.
- */
-.access-content .access-summary-grid > article,
-.access-content .invite86-summary > article {
-  position: relative !important;
-
-  inset: auto !important;
-  top: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  left: auto !important;
-
-  transform: none !important;
-  translate: none !important;
-
-  align-self: stretch !important;
-  justify-self: stretch !important;
-
-  box-sizing: border-box !important;
-
-  width: 100% !important;
-  max-width: none !important;
-  min-width: 0 !important;
-
-  height: 92px !important;
-  min-height: 92px !important;
-  max-height: 92px !important;
-
-  margin: 0 !important;
-  margin-top: 0 !important;
-  margin-right: 0 !important;
-  margin-bottom: 0 !important;
-  margin-left: 0 !important;
-
-  padding: 13px 17px !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: flex-start !important;
-
-  border-radius: 14px !important;
-
-  overflow: hidden !important;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.025),
-    0 8px 20px rgba(0,0,0,.12) !important;
-}
-
-/* Kill every legacy decorative strip / connector. */
-.access-content .access-summary-grid > article::before,
-.access-content .access-summary-grid > article::after,
-.access-content .invite86-summary > article::before,
-.access-content .invite86-summary > article::after {
-  display: none !important;
-  content: none !important;
-
-  position: static !important;
-
-  width: 0 !important;
-  height: 0 !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  border: 0 !important;
-  background: none !important;
-}
-
-/* ---------------------------------------------------------
-   Card colour treatments
-   --------------------------------------------------------- */
-
-.access-content .access-summary-grid > article:nth-child(1),
-.access-content .invite86-summary > article:nth-child(1) {
-  border: 1px solid rgba(20,184,166,.56) !important;
-
-  background:
-    radial-gradient(
-      circle at 92% 8%,
-      rgba(45,212,191,.15),
-      transparent 40%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(5,72,79,.53),
-      rgba(7,24,39,.98)
-    ) !important;
-}
-
-.access-content .access-summary-grid > article:nth-child(2),
-.access-content .invite86-summary > article:nth-child(2) {
-  border: 1px solid rgba(168,85,247,.56) !important;
-
-  background:
-    radial-gradient(
-      circle at 92% 8%,
-      rgba(168,85,247,.17),
-      transparent 40%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(72,27,116,.53),
-      rgba(18,15,42,.98)
-    ) !important;
-}
-
-.access-content .access-summary-grid > article:nth-child(3),
-.access-content .invite86-summary > article:nth-child(3) {
-  border: 1px solid rgba(245,158,11,.52) !important;
-
-  background:
-    radial-gradient(
-      circle at 92% 8%,
-      rgba(245,158,11,.15),
-      transparent 40%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(96,46,17,.52),
-      rgba(30,22,17,.98)
-    ) !important;
-}
-
-.access-content .access-summary-grid > article:nth-child(4),
-.access-content .invite86-summary > article:nth-child(4) {
-  border: 1px solid rgba(59,130,246,.56) !important;
-
-  background:
-    radial-gradient(
-      circle at 92% 8%,
-      rgba(59,130,246,.17),
-      transparent 40%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(25,54,130,.53),
-      rgba(7,23,51,.98)
-    ) !important;
-}
-
-/* ---------------------------------------------------------
-   Compact typography
-   --------------------------------------------------------- */
-
-.access-content .access-summary-grid > article small,
-.access-content .invite86-summary > article small {
-  display: block !important;
-
-  width: auto !important;
-
-  margin: 0 0 7px !important;
-  padding: 0 !important;
-
-  color: #d2dbea !important;
-
-  font-size: .70rem !important;
-  font-weight: 800 !important;
-  line-height: 1.05 !important;
-}
-
-.access-content .access-summary-grid > article strong,
-.access-content .invite86-summary > article strong {
-  display: block !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  font-size: 1.38rem !important;
-  font-weight: 850 !important;
-  line-height: 1 !important;
-}
-
-/* Values */
-.access-content .access-summary-grid > article:nth-child(1) strong,
-.access-content .invite86-summary > article:nth-child(1) strong {
-  color: #4de6e8 !important;
-}
-
-.access-content .access-summary-grid > article:nth-child(2) strong,
-.access-content .invite86-summary > article:nth-child(2) strong {
-  color: #c6a7ff !important;
-}
-
-.access-content .access-summary-grid > article:nth-child(3) strong,
-.access-content .invite86-summary > article:nth-child(3) strong {
-  color: #57e6a1 !important;
-}
-
-.access-content .access-summary-grid > article:nth-child(4) strong,
-.access-content .invite86-summary > article:nth-child(4) strong {
-  color: #ffd52f !important;
-}
-
-/*
- * The old invitations status badge is the main source of extra vertical
- * height. Keep it tiny and in normal document flow.
- */
-.access-content .access-summary-grid > article:nth-child(2) .eyebrow,
-.access-content .invite86-summary > article:nth-child(2) .eyebrow,
-.access-content .access-summary-grid > article:nth-child(2) [class*="pill"],
-.access-content .invite86-summary > article:nth-child(2) [class*="pill"] {
-  position: static !important;
-
-  display: inline-flex !important;
-
-  width: fit-content !important;
-  max-width: 100% !important;
-
-  min-height: 0 !important;
-  height: auto !important;
-
-  margin: 0 0 5px !important;
-  padding: 3px 7px !important;
-
-  transform: none !important;
-
-  font-size: .52rem !important;
-  line-height: 1 !important;
-
-  white-space: nowrap !important;
-}
-
-/* If older styling adds an empty status chip, don't let it reserve space. */
-.access-content .access-summary-grid > article:nth-child(2) .eyebrow:empty,
-.access-content .invite86-summary > article:nth-child(2) .eyebrow:empty {
-  display: none !important;
-}
-
-/* ---------------------------------------------------------
-   Responsive
-   --------------------------------------------------------- */
-
-@media (max-width: 1100px) {
-  .access-content .access-summary-grid,
-  .access-content .invite86-summary {
-    grid-template-columns:
-      repeat(2, minmax(0,1fr)) !important;
-    grid-auto-rows: 92px !important;
-  }
-}
-
-@media (max-width: 620px) {
-  .access-content .access-summary-grid,
-  .access-content .invite86-summary {
-    grid-template-columns: 1fr !important;
-    grid-auto-rows: 88px !important;
-  }
-
-  .access-content .access-summary-grid > article,
-  .access-content .invite86-summary > article {
-    height: 88px !important;
-    min-height: 88px !important;
-    max-height: 88px !important;
-  }
-}
-
-/* =========================================================
-   AutoTeams v7.13.87-fix4 explicit summary hooks
-   Directly styles the current four metric article elements.
-   ========================================================= */
-
-.invite87-summary-grid {
-  display: grid !important;
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr)) !important;
-  grid-template-rows: 88px !important;
-  grid-auto-rows: 88px !important;
-
-  column-gap: 14px !important;
-  row-gap: 14px !important;
-
-  align-items: stretch !important;
-  justify-items: stretch !important;
-
-  width: 100% !important;
-  min-height: 0 !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  border: 0 !important;
-  background: transparent !important;
-  overflow: visible !important;
-}
-
-.invite87-summary-card {
-  position: relative !important;
-
-  grid-row: 1 !important;
-
-  align-self: stretch !important;
-  justify-self: stretch !important;
-
-  inset: auto !important;
-  top: 0 !important;
-  right: auto !important;
-  bottom: auto !important;
-  left: auto !important;
-
-  transform: none !important;
-  translate: none !important;
-
-  box-sizing: border-box !important;
-
-  width: 100% !important;
-  min-width: 0 !important;
-  max-width: none !important;
-
-  height: 88px !important;
-  min-height: 88px !important;
-  max-height: 88px !important;
-
-  margin: 0 !important;
-  padding: 13px 17px !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: flex-start !important;
-
-  overflow: hidden !important;
-
-  border-radius: 14px !important;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.025),
-    0 8px 20px rgba(0,0,0,.12) !important;
-}
-
-/* No decorative pseudo-elements can alter height/position. */
-.invite87-summary-card::before,
-.invite87-summary-card::after {
-  display: none !important;
-  content: none !important;
-}
-
-/* Explicit grid columns: no nth-child ambiguity. */
-.invite87-summary-members {
-  grid-column: 1 !important;
-  border: 1px solid rgba(20,184,166,.58) !important;
-  background:
-    radial-gradient(circle at 92% 8%, rgba(45,212,191,.15), transparent 40%),
-    linear-gradient(145deg, rgba(5,72,79,.54), rgba(7,24,39,.98)) !important;
-}
-
-.invite87-summary-pending {
-  grid-column: 2 !important;
-  border: 1px solid rgba(168,85,247,.58) !important;
-  background:
-    radial-gradient(circle at 92% 8%, rgba(168,85,247,.17), transparent 40%),
-    linear-gradient(145deg, rgba(72,27,116,.54), rgba(18,15,42,.98)) !important;
-}
-
-.invite87-summary-profile {
-  grid-column: 3 !important;
-  border: 1px solid rgba(245,158,11,.54) !important;
-  background:
-    radial-gradient(circle at 92% 8%, rgba(245,158,11,.15), transparent 40%),
-    linear-gradient(145deg, rgba(96,46,17,.53), rgba(30,22,17,.98)) !important;
-}
-
-.invite87-summary-email {
-  grid-column: 4 !important;
-  border: 1px solid rgba(59,130,246,.58) !important;
-  background:
-    radial-gradient(circle at 92% 8%, rgba(59,130,246,.17), transparent 40%),
-    linear-gradient(145deg, rgba(25,54,130,.54), rgba(7,23,51,.98)) !important;
-}
-
-/* Remove every possible source of internal vertical offset. */
-.invite87-summary-card > * {
-  position: static !important;
-  transform: none !important;
-  translate: none !important;
-}
-
-.invite87-summary-card small {
-  display: block !important;
-  margin: 0 0 7px !important;
-  padding: 0 !important;
-
-  color: #d2dbea !important;
-
-  font-size: .69rem !important;
-  font-weight: 800 !important;
-  line-height: 1.05 !important;
-}
-
-.invite87-summary-card strong {
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-
-  font-size: 1.35rem !important;
-  font-weight: 850 !important;
-  line-height: 1 !important;
-}
-
-.invite87-summary-members strong {
-  color: #4de6e8 !important;
-}
-
-.invite87-summary-pending strong {
-  color: #c6a7ff !important;
-}
-
-.invite87-summary-profile strong {
-  color: #57e6a1 !important;
-}
-
-.invite87-summary-email strong {
-  color: #ffd52f !important;
-}
-
-/*
- * Hide the older invitation allowance/status eyebrow in this compact metric.
- * The label "Pending invitations" already communicates the metric clearly and
- * removing this chip guarantees identical vertical geometry.
- */
-.invite87-summary-pending .eyebrow,
-.invite87-summary-pending [class*="pill"] {
-  display: none !important;
-}
-
-/* Responsive */
-@media (max-width: 1100px) {
-  .invite87-summary-grid {
-    grid-template-columns:
-      repeat(2, minmax(0,1fr)) !important;
-    grid-template-rows:
-      repeat(2, 88px) !important;
-  }
-
-  .invite87-summary-members {
-    grid-column: 1 !important;
-    grid-row: 1 !important;
-  }
-
-  .invite87-summary-pending {
-    grid-column: 2 !important;
-    grid-row: 1 !important;
-  }
-
-  .invite87-summary-profile {
-    grid-column: 1 !important;
-    grid-row: 2 !important;
-  }
-
-  .invite87-summary-email {
-    grid-column: 2 !important;
-    grid-row: 2 !important;
-  }
-}
-
-@media (max-width: 620px) {
-  .invite87-summary-grid {
-    grid-template-columns: 1fr !important;
-    grid-template-rows:
-      repeat(4, 84px) !important;
-  }
-
-  .invite87-summary-card {
-    grid-column: 1 !important;
-
-    height: 84px !important;
-    min-height: 84px !important;
-    max-height: 84px !important;
-  }
-
-  .invite87-summary-members {
-    grid-row: 1 !important;
-  }
-
-  .invite87-summary-pending {
-    grid-row: 2 !important;
-  }
-
-  .invite87-summary-profile {
-    grid-row: 3 !important;
-  }
-
-  .invite87-summary-email {
-    grid-row: 4 !important;
+  .invite85-pending-panel
+  .invitation-list > article {
+    grid-template-columns: 1fr;
+    align-items: start;
   }
 }
