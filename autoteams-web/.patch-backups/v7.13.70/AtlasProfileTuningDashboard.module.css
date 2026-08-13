@@ -424,3 +424,305 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* =========================================================
+   AutoTeams v7.13.63 - Atlas Quick Actions
+   ========================================================= */
+
+.quickActions {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+}
+
+.quickActionsHeading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 4px;
+}
+
+.quickActionsHeading > div {
+  display: grid;
+  gap: 4px;
+}
+
+.quickActionsHeading small {
+  max-width: 150px;
+  color: #7f90a7;
+  font-size: 9px;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.quickActionRow {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  width: 100%;
+  min-height: 66px;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px !important;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, .12) !important;
+  border-radius: 13px !important;
+  background: #111a28 !important;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease !important;
+}
+
+.quickActionRow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .52;
+}
+
+.quickActionRow > * {
+  position: relative;
+  z-index: 1;
+}
+
+.quickActionRow:hover {
+  transform: translateY(-1px);
+  border-color: rgba(148, 163, 184, .26) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
+}
+
+.quickActionRow div {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.quickActionRow strong {
+  color: #f7f9fc;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.quickActionRow div span {
+  overflow: hidden;
+  color: #91a2b9;
+  font-size: 9px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quickActionRow b {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 8px;
+  color: #cbd5e1;
+  background: rgba(148, 163, 184, .08);
+  font-size: 12px;
+  font-weight: 800;
+  transition:
+    transform 160ms ease,
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.quickActionRow:hover b {
+  transform: translateX(2px);
+  color: #ffffff;
+}
+
+.quickActionIcon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .07);
+  border-radius: 11px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .10),
+    0 7px 18px rgba(0, 0, 0, .14);
+}
+
+.quickPurple .quickActionIcon {
+  background: linear-gradient(135deg, #7c3aed, #5b5cf0);
+}
+
+.quickPurple::before {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(124, 58, 237, .12),
+      transparent 58%
+    );
+}
+
+.quickPurple:hover {
+  border-color: rgba(139, 92, 246, .34) !important;
+}
+
+.quickPurple:hover b {
+  background: rgba(124, 58, 237, .18);
+  color: #c4b5fd;
+}
+
+.quickAmber .quickActionIcon {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+}
+
+.quickAmber::before {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(245, 158, 11, .10),
+      transparent 58%
+    );
+}
+
+.quickAmber:hover {
+  border-color: rgba(245, 158, 11, .32) !important;
+}
+
+.quickAmber:hover b {
+  background: rgba(245, 158, 11, .16);
+  color: #fcd34d;
+}
+
+.quickBlue .quickActionIcon {
+  background: linear-gradient(135deg, #2563eb, #4f8ef7);
+}
+
+.quickBlue::before {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(59, 130, 246, .11),
+      transparent 58%
+    );
+}
+
+.quickBlue:hover {
+  border-color: rgba(59, 130, 246, .34) !important;
+}
+
+.quickBlue:hover b {
+  background: rgba(59, 130, 246, .17);
+  color: #93c5fd;
+}
+
+.quickTeal .quickActionIcon {
+  background: linear-gradient(135deg, #0f766e, #14b8a6);
+}
+
+.quickTeal::before {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(20, 184, 166, .10),
+      transparent 58%
+    );
+}
+
+.quickTeal:hover {
+  border-color: rgba(20, 184, 166, .32) !important;
+}
+
+.quickTeal:hover b {
+  background: rgba(20, 184, 166, .16);
+  color: #5eead4;
+}
+
+@media (max-width: 520px) {
+  .quickActionsHeading small {
+    display: none;
+  }
+
+  .quickActionRow {
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+    gap: 10px;
+  }
+
+  .quickActionIcon {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quickActionRow,
+  .quickActionRow b {
+    transition: none !important;
+  }
+
+  .quickActionRow:hover,
+  .quickActionRow:hover b {
+    transform: none;
+  }
+}
+
+/* AutoTeams v7.13.68 - Atlas clarity */
+.profileExplanation {
+  display: grid;
+  max-width: 1450px;
+  margin: 0 auto 18px;
+  grid-template-columns: 46px minmax(0, 1fr) auto;
+  gap: 15px;
+  align-items: center;
+  padding: 18px 20px;
+  border: 1px solid rgba(96, 165, 250, .24);
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      105deg,
+      rgba(59, 130, 246, .09),
+      rgba(124, 58, 237, .06)
+    ),
+    #131d2c;
+}
+
+.profileExplanationIcon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(135deg, #4f8ef7, #7c3aed);
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.profileExplanation h2 {
+  margin: 4px 0 5px;
+  font-size: 17px;
+}
+
+.profileExplanation p {
+  max-width: 880px;
+  margin: 0;
+  color: #aebbd0;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+@media (max-width: 760px) {
+  .profileExplanation {
+    grid-template-columns: 40px 1fr;
+  }
+
+  .profileExplanation > button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
