@@ -185,6 +185,11 @@ export async function listRecommendationsForWorkspace(
           "==",
           workspaceId,
         ),
+        where(
+          "createdBy",
+          "==",
+          user.uid,
+        ),
       ),
     );
 

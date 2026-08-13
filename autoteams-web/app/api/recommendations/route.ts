@@ -13,7 +13,8 @@ import {
 import { buildFallbackRecommendation } from "@/lib/ai/fallback-recommendation";
 import {
   ATLAS_AI_USAGE_COOKIE,
-  evaluateAtlasAiAllowance,
+  checkAtlasAiAllowance,
+  consumeAtlasAiAllowance,
 } from "@/lib/ai/recommendation-usage";
 
 export const runtime = "nodejs";
@@ -104,11 +105,14 @@ export async function POST(request: Request) {
     // Launch-phase cost guardrail. Only live Gemini attempts consume allowance.
     const atlasCookieStore = await cookies();
 
+    const existingAtlasAiUsageCookie =
+      atlasCookieStore
+        .get(ATLAS_AI_USAGE_COOKIE)
+        ?.value;
+
     const atlasAiAllowance =
-      evaluateAtlasAiAllowance(
-        atlasCookieStore
-          .get(ATLAS_AI_USAGE_COOKIE)
-          ?.value,
+      checkAtlasAiAllowance(
+        existingAtlasAiUsageCookie,
       );
 
     if (!atlasAiAllowance.allowed) {
@@ -158,21 +162,6 @@ export async function POST(request: Request) {
       });
     }
 
-    if (atlasAiAllowance.cookieValue) {
-      atlasCookieStore.set(
-        ATLAS_AI_USAGE_COOKIE,
-        atlasAiAllowance.cookieValue,
-        {
-          httpOnly: true,
-          sameSite: "lax",
-          secure:
-            process.env.NODE_ENV ===
-            "production",
-          path: "/",
-          maxAge: 60 * 60 * 24 * 31,
-        },
-      );
-    }
 
     const client = getGeminiClient();
 
@@ -202,6 +191,38 @@ export async function POST(request: Request) {
       request: validatedRequest,
     });
 
+    /*
+     * AUTOTEAMS_V71378_SUCCESS_ONLY_USAGE
+     *
+     * Charge the Atlas AI allowance only after Gemini:
+     * - returned a response
+     * - returned valid JSON
+     * - passed recommendation validation
+     *
+     * Any exception before this point falls into deterministic fallback
+     * without consuming a Gemini recommendation credit.
+     */
+    const consumedAllowance =
+      consumeAtlasAiAllowance(
+        existingAtlasAiUsageCookie,
+      );
+
+    if (consumedAllowance.cookieValue) {
+      atlasCookieStore.set(
+        ATLAS_AI_USAGE_COOKIE,
+        consumedAllowance.cookieValue,
+        {
+          httpOnly: true,
+          sameSite: "lax",
+          secure:
+            process.env.NODE_ENV ===
+            "production",
+          path: "/",
+          maxAge: 60 * 60 * 24 * 31,
+        },
+      );
+    }
+
     const elapsed = Date.now() - startedAt;
     const usage = readUsage(response);
 
@@ -227,6 +248,12 @@ export async function POST(request: Request) {
         location,
         responseTimeMs: elapsed,
         usage,
+        aiAllowance: {
+          used: consumedAllowance.used,
+          limit: consumedAllowance.limit,
+          remaining: consumedAllowance.remaining,
+          period: consumedAllowance.period,
+        },
         generatedAt: new Date().toISOString(),
         mode: "live",
       },

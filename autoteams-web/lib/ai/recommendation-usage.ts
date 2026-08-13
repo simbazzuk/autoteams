@@ -143,7 +143,7 @@ export function readAtlasAiAllowance(
       ),
   };
 }
-export function evaluateAtlasAiAllowance(
+export function checkAtlasAiAllowance(
   existingCookie?: string,
   now = new Date(),
 ): AtlasAiAllowance {
@@ -197,18 +197,80 @@ export function evaluateAtlasAiAllowance(
     };
   }
 
+  return {
+    allowed: true,
+    ...common,
+  };
+}
+
+export function consumeAtlasAiAllowance(
+  existingCookie?: string,
+  now = new Date(),
+): AtlasAiAllowance {
+  const limit = envNumber(
+    "AUTOTEAMS_FREE_AI_RECOMMENDATIONS_PER_MONTH",
+    10,
+  );
+
+  const currentPeriod = period(now);
+  const decoded = decode(existingCookie);
+
+  const current: StoredUsage =
+    decoded?.period === currentPeriod
+      ? decoded
+      : {
+          period: currentPeriod,
+          used: 0,
+          lastUsedAt: 0,
+        };
+
+  /*
+   * Consumption happens only after a successful Gemini recommendation.
+   * Clamp at the configured monthly limit as a final defensive guard.
+   */
+  const nextUsed = Math.min(
+    limit,
+    current.used + 1,
+  );
+
   const next: StoredUsage = {
     period: currentPeriod,
-    used: current.used + 1,
+    used: nextUsed,
     lastUsedAt: now.getTime(),
   };
 
   return {
-    allowed: true,
+    allowed: nextUsed <= limit,
     used: next.used,
     limit,
     remaining: Math.max(0, limit - next.used),
     period: currentPeriod,
     cookieValue: encode(next),
   };
+}
+
+/*
+ * Backwards-compatible helper retained for older callers.
+ * New recommendation flow should use:
+ *   checkAtlasAiAllowance()
+ *   consumeAtlasAiAllowance()
+ */
+export function evaluateAtlasAiAllowance(
+  existingCookie?: string,
+  now = new Date(),
+): AtlasAiAllowance {
+  const checked =
+    checkAtlasAiAllowance(
+      existingCookie,
+      now,
+    );
+
+  if (!checked.allowed) {
+    return checked;
+  }
+
+  return consumeAtlasAiAllowance(
+    existingCookie,
+    now,
+  );
 }
