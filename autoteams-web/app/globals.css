@@ -17558,3 +17558,1455 @@ html[data-theme="light"] .access-page[data-autoteams-invite] .access-side > sect
 ) .atlas-ai-utility-strip-inner {
   display: flex;
 }
+
+/* =========================================================
+   AutoTeams v7.13.73 - Invite and Permissions polish
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   Overall width / alignment
+   --------------------------------------------------------- */
+
+[data-autoteams-invite="v7.13.33"] .access-content > .container,
+[data-autoteams-invite="v7.13.33"] .access-hero > .container {
+  width: min(1180px, calc(100% - 40px));
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------------------------------------------------------
+   Invite card
+   --------------------------------------------------------- */
+
+[data-autoteams-invite-panel="true"] {
+  position: relative;
+  overflow: hidden;
+  padding: 26px !important;
+  border: 1px solid rgba(96, 165, 250, .30) !important;
+  border-radius: 20px !important;
+  background:
+    radial-gradient(
+      circle at 8% 8%,
+      rgba(79, 70, 229, .16),
+      transparent 34%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(25, 43, 77, .90),
+      rgba(15, 27, 48, .96)
+    ) !important;
+  box-shadow:
+    0 20px 54px rgba(0, 0, 0, .20),
+    inset 0 1px 0 rgba(255, 255, 255, .025) !important;
+}
+
+[data-autoteams-invite-panel="true"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background:
+    linear-gradient(
+      90deg,
+      #765fff,
+      #4f8ef7,
+      #38bdf8
+    );
+}
+
+[data-autoteams-invite-panel="true"] h2 {
+  font-size: 22px;
+  letter-spacing: -.025em;
+}
+
+[data-autoteams-invite-panel="true"] p {
+  max-width: 650px;
+  color: #a9bdd8;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* ---------------------------------------------------------
+   Balanced invite form
+   --------------------------------------------------------- */
+
+[data-autoteams-invite-form="true"] {
+  display: grid !important;
+  grid-template-columns:
+    minmax(220px, .85fr)
+    minmax(260px, 1fr)
+    minmax(250px, .72fr);
+  gap: 16px !important;
+  align-items: end;
+  margin-top: 20px;
+}
+
+[data-autoteams-invite-form="true"] > label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  color: #b9c9dd;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+[data-autoteams-invite-form="true"] input,
+[data-autoteams-invite-form="true"] select {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  box-sizing: border-box;
+  border: 1px solid rgba(96, 165, 250, .18);
+  border-radius: 12px;
+  color: #eef5ff;
+  background: rgba(7, 15, 29, .72);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
+}
+
+[data-autoteams-invite-form="true"] input:focus,
+[data-autoteams-invite-form="true"] select:focus {
+  border-color: rgba(99, 102, 241, .68);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, .10);
+}
+
+/*
+ * The third label is the fixed workspace-role panel added by v7.13.72.
+ * Give it more breathing room so the explanatory copy does not feel cramped.
+ */
+[data-autoteams-invite-form="true"] > label:nth-of-type(3) {
+  align-self: stretch;
+}
+
+[data-autoteams-invite-form="true"] > label:nth-of-type(3) > div {
+  height: 100%;
+  min-height: 72px !important;
+  padding: 12px 14px !important;
+  border-color: rgba(129, 140, 248, .24) !important;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(59, 130, 246, .09),
+      rgba(124, 58, 237, .08)
+    ),
+    rgba(15, 23, 42, .60) !important;
+}
+
+[data-autoteams-invite-form="true"] > label:nth-of-type(3) strong {
+  font-size: 13px !important;
+}
+
+[data-autoteams-invite-form="true"] > label:nth-of-type(3) small {
+  max-width: 280px !important;
+  color: #a9bad0 !important;
+  font-size: 10px !important;
+  line-height: 1.5 !important;
+}
+
+/* Send button sits beneath role panel, mirroring Insights CTA hierarchy. */
+[data-autoteams-invite-form="true"] > button[type="submit"] {
+  grid-column: 3;
+  width: 100%;
+  min-height: 48px;
+  margin: 0;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow: 0 14px 28px rgba(79, 70, 229, .20);
+}
+
+/* Any invite success / share content gets a full-width row. */
+[data-autoteams-invite-form="true"] > :not(label):not(button[type="submit"]) {
+  grid-column: 1 / -1;
+}
+
+/* ---------------------------------------------------------
+   Permission guide - Insights-style treatment
+   --------------------------------------------------------- */
+
+[data-autoteams-permission-guide="true"] {
+  position: relative;
+  overflow: hidden;
+  margin-top: 18px;
+  padding: 24px !important;
+  border: 1px solid rgba(168, 85, 247, .30) !important;
+  border-radius: 20px !important;
+  background:
+    radial-gradient(
+      circle at 9% 12%,
+      rgba(126, 34, 206, .18),
+      transparent 34%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(42, 31, 73, .94),
+      rgba(20, 27, 48, .96)
+    ) !important;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, .16);
+}
+
+[data-autoteams-permission-guide="true"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background:
+    linear-gradient(
+      90deg,
+      #a855f7,
+      #765fff,
+      #4f8ef7
+    );
+}
+
+[data-autoteams-permission-guide="true"] h2 {
+  margin-top: 10px;
+  margin-bottom: 7px;
+  font-size: 21px;
+  letter-spacing: -.025em;
+}
+
+/*
+ * Most current permission-guide variants render the roles as direct articles
+ * inside a list/grid container. Convert those containers to a 4-card row.
+ */
+[data-autoteams-permission-guide="true"] .access-member-list,
+[data-autoteams-permission-guide="true"] .permission-grid,
+[data-autoteams-permission-guide="true"] .role-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px !important;
+  margin-top: 16px;
+}
+
+[data-autoteams-permission-guide="true"] .access-member-list > article,
+[data-autoteams-permission-guide="true"] .permission-grid > article,
+[data-autoteams-permission-guide="true"] .role-grid > article {
+  display: grid !important;
+  align-content: start;
+  min-width: 0;
+  min-height: 150px;
+  padding: 16px !important;
+  border: 1px solid rgba(148, 163, 184, .16) !important;
+  border-radius: 15px !important;
+  background: rgba(8, 17, 31, .58) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
+}
+
+[data-autoteams-permission-guide="true"] .access-member-list > article:nth-child(1),
+[data-autoteams-permission-guide="true"] .permission-grid > article:nth-child(1),
+[data-autoteams-permission-guide="true"] .role-grid > article:nth-child(1) {
+  border-color: rgba(52, 211, 153, .25) !important;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(16, 185, 129, .08),
+      rgba(8,17,31,.58)
+    ) !important;
+}
+
+[data-autoteams-permission-guide="true"] .access-member-list > article:nth-child(2),
+[data-autoteams-permission-guide="true"] .permission-grid > article:nth-child(2),
+[data-autoteams-permission-guide="true"] .role-grid > article:nth-child(2) {
+  border-color: rgba(59, 130, 246, .25) !important;
+}
+
+[data-autoteams-permission-guide="true"] .access-member-list > article:nth-child(3),
+[data-autoteams-permission-guide="true"] .permission-grid > article:nth-child(3),
+[data-autoteams-permission-guide="true"] .role-grid > article:nth-child(3) {
+  border-color: rgba(168, 85, 247, .28) !important;
+}
+
+[data-autoteams-permission-guide="true"] .access-member-list > article:nth-child(4),
+[data-autoteams-permission-guide="true"] .permission-grid > article:nth-child(4),
+[data-autoteams-permission-guide="true"] .role-grid > article:nth-child(4) {
+  border-color: rgba(249, 115, 22, .25) !important;
+}
+
+[data-autoteams-permission-guide="true"] article strong {
+  color: #f4f7fb;
+  font-size: 12px;
+}
+
+[data-autoteams-permission-guide="true"] article small,
+[data-autoteams-permission-guide="true"] article p {
+  color: #90a4c1;
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+/* ---------------------------------------------------------
+   Responsive behaviour
+   --------------------------------------------------------- */
+
+@media (max-width: 1040px) {
+  [data-autoteams-invite-form="true"] {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  [data-autoteams-invite-form="true"] > label:nth-of-type(3) {
+    grid-column: 1 / -1;
+  }
+
+  [data-autoteams-invite-form="true"] > button[type="submit"] {
+    grid-column: 1 / -1;
+    justify-self: end;
+    width: min(320px, 100%);
+  }
+
+  [data-autoteams-permission-guide="true"] .access-member-list,
+  [data-autoteams-permission-guide="true"] .permission-grid,
+  [data-autoteams-permission-guide="true"] .role-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  [data-autoteams-invite="v7.13.33"] .access-content > .container,
+  [data-autoteams-invite="v7.13.33"] .access-hero > .container {
+    width: calc(100% - 20px);
+  }
+
+  [data-autoteams-invite-panel="true"],
+  [data-autoteams-permission-guide="true"] {
+    padding: 18px !important;
+    border-radius: 16px !important;
+  }
+
+  [data-autoteams-invite-form="true"] {
+    grid-template-columns: 1fr;
+  }
+
+  [data-autoteams-invite-form="true"] > label:nth-of-type(3),
+  [data-autoteams-invite-form="true"] > button[type="submit"] {
+    grid-column: 1;
+  }
+
+  [data-autoteams-invite-form="true"] > button[type="submit"] {
+    width: 100%;
+  }
+
+  [data-autoteams-permission-guide="true"] .access-member-list,
+  [data-autoteams-permission-guide="true"] .permission-grid,
+  [data-autoteams-permission-guide="true"] .role-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   AutoTeams v7.13.74 - Invite and Permission Guide redesign
+   ========================================================= */
+
+/* ---------- Shared page width ---------- */
+
+[data-autoteams-invite="v7.13.33"] .access-content > .container {
+  width: min(1160px, calc(100% - 40px)) !important;
+  max-width: 1160px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ---------- Invite card ---------- */
+
+[data-autoteams-invite-panel="true"] {
+  padding: 24px 26px !important;
+  border: 1px solid rgba(96, 165, 250, .35) !important;
+  border-radius: 20px !important;
+  background:
+    radial-gradient(circle at 4% 5%, rgba(79,70,229,.18), transparent 34%),
+    linear-gradient(135deg, #182b4f 0%, #13213c 58%, #111d33 100%) !important;
+}
+
+[data-autoteams-invite-panel="true"] .access-panel-heading,
+[data-autoteams-invite-panel="true"] > div:first-child {
+  margin-bottom: 6px !important;
+}
+
+[data-autoteams-invite-panel="true"] h2 {
+  margin-top: 0 !important;
+  margin-bottom: 4px !important;
+  font-size: 23px !important;
+}
+
+[data-autoteams-invite-panel="true"] > p {
+  margin-top: 6px !important;
+  margin-bottom: 14px !important;
+  max-width: 690px !important;
+  font-size: 11px !important;
+  line-height: 1.55 !important;
+}
+
+/*
+ * Critical fix:
+ * v7.13.73 used align-items:end, which pushed Name and Email down because
+ * the Workspace Role panel is taller. Align everything from the top.
+ */
+[data-autoteams-invite-form="true"] {
+  display: grid !important;
+  grid-template-columns:
+    minmax(220px, 1fr)
+    minmax(260px, 1fr)
+    minmax(280px, .82fr) !important;
+  column-gap: 16px !important;
+  row-gap: 12px !important;
+  align-items: start !important;
+  margin-top: 10px !important;
+}
+
+[data-autoteams-invite-form="true"] > label {
+  align-self: start !important;
+  min-width: 0 !important;
+}
+
+[data-autoteams-invite-form="true"] > label:nth-of-type(1),
+[data-autoteams-invite-form="true"] > label:nth-of-type(2) {
+  padding-top: 4px;
+}
+
+[data-autoteams-invite-form="true"] input {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 48px !important;
+  box-sizing: border-box !important;
+  border-radius: 12px !important;
+  font-size: 12px !important;
+}
+
+/* Equal visual weight for Name and Email. */
+[data-autoteams-invite-form="true"] > label:nth-of-type(1),
+[data-autoteams-invite-form="true"] > label:nth-of-type(2) {
+  width: 100% !important;
+}
+
+/* Workspace role becomes a proper information card. */
+[data-autoteams-invite-form="true"] > label:nth-of-type(3) {
+  grid-column: 3 !important;
+  grid-row: 1 / span 2 !important;
+  width: 100% !important;
+}
+
+[data-autoteams-invite-form="true"] > label:nth-of-type(3) > div {
+  min-height: 100px !important;
+  padding: 14px 15px !important;
+  border: 1px solid rgba(129,140,248,.30) !important;
+  border-radius: 13px !important;
+  background:
+    linear-gradient(135deg, rgba(79,70,229,.13), rgba(59,130,246,.08)),
+    rgba(10,19,35,.76) !important;
+}
+
+[data-autoteams-invite-form="true"] > label:nth-of-type(3) strong {
+  display: inline-flex !important;
+  width: fit-content !important;
+  padding: 5px 9px !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  background: rgba(99,102,241,.17) !important;
+  font-size: 13px !important;
+}
+
+[data-autoteams-invite-form="true"] > label:nth-of-type(3) small {
+  display: block !important;
+  max-width: 300px !important;
+  margin-top: 6px !important;
+  color: #afbdd1 !important;
+  font-size: 10px !important;
+  line-height: 1.55 !important;
+}
+
+/* CTA directly below the role card. */
+[data-autoteams-invite-form="true"] > button[type="submit"] {
+  grid-column: 3 !important;
+  grid-row: 3 !important;
+  width: 100% !important;
+  min-height: 48px !important;
+  margin-top: 0 !important;
+  border-radius: 12px !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+}
+
+/* ---------- Permission Guide ---------- */
+
+.autoteams-permission-guide-v71374 {
+  margin-top: 22px !important;
+  padding: 24px !important;
+  border: 1px solid rgba(168,85,247,.34) !important;
+  border-radius: 20px !important;
+  background:
+    radial-gradient(circle at 5% 8%, rgba(126,34,206,.18), transparent 30%),
+    linear-gradient(135deg, #2a2147 0%, #1d1c38 54%, #151d33 100%) !important;
+  box-shadow: 0 18px 42px rgba(0,0,0,.18) !important;
+}
+
+.autoteams-permission-guide-header {
+  margin-bottom: 18px;
+}
+
+.autoteams-permission-eyebrow {
+  display: inline-flex;
+  padding: 6px 11px;
+  border: 1px solid rgba(192,132,252,.30);
+  border-radius: 999px;
+  color: #d8b4fe;
+  background: rgba(126,34,206,.13);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.autoteams-permission-guide-header h2 {
+  margin: 15px 0 5px !important;
+  color: #ffffff;
+  font-size: 22px !important;
+  letter-spacing: -.025em;
+}
+
+.autoteams-permission-guide-header p {
+  margin: 0;
+  color: #aebdd0;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.autoteams-role-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.autoteams-role-card {
+  display: flex;
+  min-width: 0;
+  min-height: 230px;
+  flex-direction: column;
+  padding: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(148,163,184,.18);
+  border-radius: 15px;
+  background: rgba(8,16,30,.64);
+}
+
+.autoteams-role-card.owner {
+  border-color: rgba(52,211,153,.30);
+  background:
+    linear-gradient(135deg, rgba(16,185,129,.10), transparent 55%),
+    rgba(8,16,30,.68);
+}
+
+.autoteams-role-card.admin {
+  border-color: rgba(59,130,246,.30);
+  background:
+    linear-gradient(135deg, rgba(59,130,246,.10), transparent 55%),
+    rgba(8,16,30,.68);
+}
+
+.autoteams-role-card.leader {
+  border-color: rgba(168,85,247,.32);
+  background:
+    linear-gradient(135deg, rgba(168,85,247,.11), transparent 55%),
+    rgba(8,16,30,.68);
+}
+
+.autoteams-role-card.member {
+  border-color: rgba(249,115,22,.30);
+  background:
+    linear-gradient(135deg, rgba(249,115,22,.09), transparent 55%),
+    rgba(8,16,30,.68);
+}
+
+.autoteams-role-card-top {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 13px;
+}
+
+.autoteams-role-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  place-items: center;
+  border-radius: 12px;
+  color: white;
+  background: rgba(99,102,241,.20);
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.autoteams-role-card.owner .autoteams-role-icon {
+  background: linear-gradient(135deg, #059669, #34d399);
+}
+
+.autoteams-role-card.admin .autoteams-role-icon {
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+}
+
+.autoteams-role-card.leader .autoteams-role-icon {
+  background: linear-gradient(135deg, #7c3aed, #c084fc);
+}
+
+.autoteams-role-card.member .autoteams-role-icon {
+  background: linear-gradient(135deg, #ea580c, #fb923c);
+}
+
+.autoteams-role-card h3 {
+  margin: 0 0 4px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.autoteams-role-card em {
+  display: inline-flex;
+  width: fit-content;
+  padding: 3px 7px;
+  border-radius: 999px;
+  color: #c7d2fe;
+  background: rgba(99,102,241,.12);
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 850;
+}
+
+.autoteams-role-card ul {
+  display: grid;
+  gap: 7px;
+  margin: 0 0 15px;
+  padding: 0;
+  list-style: none;
+}
+
+.autoteams-role-card li {
+  position: relative;
+  padding-left: 17px;
+  color: #c3cfdf;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.autoteams-role-card li::before {
+  content: "âœ“";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #8b9eff;
+  font-weight: 900;
+}
+
+.autoteams-role-card.owner li::before { color: #34d399; }
+.autoteams-role-card.admin li::before { color: #60a5fa; }
+.autoteams-role-card.leader li::before { color: #c084fc; }
+.autoteams-role-card.member li::before { color: #fb923c; }
+
+.autoteams-role-card > small {
+  display: block;
+  margin-top: auto;
+  padding-top: 11px;
+  border-top: 1px solid rgba(148,163,184,.12);
+  color: #8394ad;
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.autoteams-role-trial-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(96,165,250,.22);
+  border-radius: 11px;
+  background: rgba(37,99,235,.07);
+}
+
+.autoteams-role-trial-note > span {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  place-items: center;
+  border-radius: 50%;
+  color: #ffffff;
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.autoteams-role-trial-note p {
+  margin: 0;
+  color: #a9bcda;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1050px) {
+  [data-autoteams-invite-form="true"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  [data-autoteams-invite-form="true"] > label:nth-of-type(3) {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+
+  [data-autoteams-invite-form="true"] > button[type="submit"] {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+    width: min(320px, 100%) !important;
+    justify-self: end;
+  }
+
+  .autoteams-role-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  [data-autoteams-invite-form="true"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  [data-autoteams-invite-form="true"] > label:nth-of-type(3),
+  [data-autoteams-invite-form="true"] > button[type="submit"] {
+    grid-column: 1 !important;
+  }
+
+  [data-autoteams-invite-form="true"] > button[type="submit"] {
+    width: 100% !important;
+  }
+
+  .autoteams-role-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .autoteams-permission-guide-v71374 {
+    padding: 18px !important;
+  }
+}
+
+/* =========================================================
+   AutoTeams v7.13.75 - Permission card hard layout reset
+   Fixes inherited access-page styles collapsing card content.
+   ========================================================= */
+
+.autoteams-permission-guide-v71374 .autoteams-role-card-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  width: 100% !important;
+  align-items: stretch !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-card {
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  min-height: 248px !important;
+  height: auto !important;
+  padding: 18px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-card *,
+.autoteams-permission-guide-v71374 .autoteams-role-card *::before,
+.autoteams-permission-guide-v71374 .autoteams-role-card *::after {
+  box-sizing: border-box !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-card-top {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 0 16px !important;
+  padding: 0 !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-icon {
+  display: grid !important;
+  position: static !important;
+  width: 40px !important;
+  min-width: 40px !important;
+  max-width: 40px !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  flex: 0 0 40px !important;
+  place-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 12px !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  text-align: center !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-card-top > div {
+  display: block !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-card h3 {
+  display: block !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 0 5px !important;
+  padding: 0 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+  text-align: left !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-card em {
+  display: inline-flex !important;
+  position: static !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 4px 8px !important;
+  white-space: nowrap !important;
+  font-size: 8px !important;
+  line-height: 1.2 !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-card ul {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 9px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 0 16px !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-card li {
+  display: block !important;
+  position: relative !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 0 0 18px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  overflow-wrap: anywhere !important;
+  color: #c3cfdf !important;
+  font-size: 10px !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-card li::before {
+  content: "âœ“" !important;
+  display: block !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 12px !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  font-size: 10px !important;
+  line-height: 1.45 !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-card > small {
+  display: block !important;
+  position: static !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: auto 0 0 !important;
+  padding: 12px 0 0 !important;
+  border-width: 1px 0 0 !important;
+  border-style: solid !important;
+  border-color: rgba(148,163,184,.12) !important;
+  background: transparent !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  color: #8394ad !important;
+  font-size: 9px !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-trial-note {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+  min-height: 54px !important;
+  gap: 12px !important;
+  padding: 12px 14px !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-trial-note > span {
+  display: grid !important;
+  position: static !important;
+  width: 24px !important;
+  min-width: 24px !important;
+  max-width: 24px !important;
+  height: 24px !important;
+  flex: 0 0 24px !important;
+  place-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.autoteams-permission-guide-v71374 .autoteams-role-trial-note p {
+  display: block !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 760px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  white-space: normal !important;
+  font-size: 9px !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+}
+
+@media (max-width: 1050px) {
+  .autoteams-permission-guide-v71374 .autoteams-role-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .autoteams-permission-guide-v71374 .autoteams-role-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =========================================================
+   AutoTeams v7.13.76 - clean permission guide rebuild
+   Uses unique DIV-only markup to avoid legacy access CSS.
+   ========================================================= */
+
+.autoteams-permission-v71376 {
+  width: 100%;
+  margin-top: 22px !important;
+  padding: 24px !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+  border: 1px solid rgba(168, 85, 247, .34) !important;
+  border-radius: 20px !important;
+  background:
+    radial-gradient(circle at 4% 5%, rgba(126,34,206,.20), transparent 30%),
+    linear-gradient(135deg, #2a2147 0%, #211d3b 52%, #171e34 100%) !important;
+}
+
+.autoteams-permission-v71376,
+.autoteams-permission-v71376 * {
+  box-sizing: border-box !important;
+}
+
+.autoteams-permission-v71376-head {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 0 18px !important;
+  padding: 0 !important;
+}
+
+.autoteams-permission-v71376-head > span {
+  display: inline-flex !important;
+  width: auto !important;
+  padding: 6px 11px !important;
+  border: 1px solid rgba(192,132,252,.30) !important;
+  border-radius: 999px !important;
+  color: #e3c5ff !important;
+  background: rgba(126,34,206,.14) !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: .08em !important;
+  line-height: 1.2 !important;
+  text-transform: uppercase !important;
+}
+
+.autoteams-permission-v71376-head h2 {
+  display: block !important;
+  width: auto !important;
+  margin: 13px 0 6px !important;
+  padding: 0 !important;
+  color: #fff !important;
+  font-size: 22px !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+}
+
+.autoteams-permission-v71376-head p {
+  display: block !important;
+  width: auto !important;
+  max-width: 620px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #aebdd0 !important;
+  font-size: 11px !important;
+  line-height: 1.55 !important;
+  white-space: normal !important;
+}
+
+.autoteams-permission-v71376-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  align-items: stretch !important;
+}
+
+.autoteams-permission-v71376-card {
+  display: flex !important;
+  position: static !important;
+  min-width: 0 !important;
+  min-height: 235px !important;
+  width: auto !important;
+  height: auto !important;
+  flex-direction: column !important;
+  margin: 0 !important;
+  padding: 17px !important;
+  overflow: visible !important;
+  border: 1px solid rgba(148,163,184,.17) !important;
+  border-radius: 15px !important;
+  background: rgba(8,16,30,.67) !important;
+}
+
+.autoteams-permission-v71376-card.owner {
+  border-color: rgba(52,211,153,.30) !important;
+  background:
+    linear-gradient(135deg, rgba(16,185,129,.10), transparent 55%),
+    rgba(8,16,30,.70) !important;
+}
+
+.autoteams-permission-v71376-card.admin {
+  border-color: rgba(59,130,246,.30) !important;
+  background:
+    linear-gradient(135deg, rgba(59,130,246,.10), transparent 55%),
+    rgba(8,16,30,.70) !important;
+}
+
+.autoteams-permission-v71376-card.leader {
+  border-color: rgba(168,85,247,.32) !important;
+  background:
+    linear-gradient(135deg, rgba(168,85,247,.11), transparent 55%),
+    rgba(8,16,30,.70) !important;
+}
+
+.autoteams-permission-v71376-card.member {
+  border-color: rgba(249,115,22,.30) !important;
+  background:
+    linear-gradient(135deg, rgba(249,115,22,.10), transparent 55%),
+    rgba(8,16,30,.70) !important;
+}
+
+.autoteams-permission-v71376-title {
+  display: flex !important;
+  position: static !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 11px !important;
+  margin: 0 0 15px !important;
+  padding: 0 !important;
+}
+
+.autoteams-permission-v71376-icon {
+  display: grid !important;
+  position: static !important;
+  width: 40px !important;
+  min-width: 40px !important;
+  max-width: 40px !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  flex: 0 0 40px !important;
+  place-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 12px !important;
+  color: #fff !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+}
+
+.owner .autoteams-permission-v71376-icon {
+  background: linear-gradient(135deg, #059669, #34d399) !important;
+}
+
+.admin .autoteams-permission-v71376-icon {
+  background: linear-gradient(135deg, #2563eb, #38bdf8) !important;
+}
+
+.leader .autoteams-permission-v71376-icon {
+  background: linear-gradient(135deg, #7c3aed, #c084fc) !important;
+}
+
+.member .autoteams-permission-v71376-icon {
+  background: linear-gradient(135deg, #ea580c, #fb923c) !important;
+}
+
+.autoteams-permission-v71376-title > div {
+  display: block !important;
+  position: static !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.autoteams-permission-v71376-title strong {
+  display: block !important;
+  position: static !important;
+  width: auto !important;
+  margin: 0 0 5px !important;
+  padding: 0 !important;
+  color: #fff !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+  writing-mode: horizontal-tb !important;
+}
+
+.autoteams-permission-v71376-title span {
+  display: inline-flex !important;
+  position: static !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 4px 8px !important;
+  border-radius: 999px !important;
+  color: #d7ddff !important;
+  background: rgba(99,102,241,.14) !important;
+  font-size: 8px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  writing-mode: horizontal-tb !important;
+}
+
+.autoteams-permission-v71376-items {
+  display: grid !important;
+  position: static !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  gap: 8px !important;
+  margin: 0 0 15px !important;
+  padding: 0 !important;
+}
+
+.autoteams-permission-v71376-items > div {
+  display: grid !important;
+  position: static !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  grid-template-columns: 14px minmax(0, 1fr) !important;
+  gap: 5px !important;
+  align-items: start !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.autoteams-permission-v71376-items i {
+  display: block !important;
+  position: static !important;
+  width: 14px !important;
+  min-width: 14px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #8b9eff !important;
+  font-size: 10px !important;
+  font-style: normal !important;
+  font-weight: 900 !important;
+  line-height: 1.4 !important;
+  writing-mode: horizontal-tb !important;
+}
+
+.owner .autoteams-permission-v71376-items i { color: #34d399 !important; }
+.admin .autoteams-permission-v71376-items i { color: #60a5fa !important; }
+.leader .autoteams-permission-v71376-items i { color: #c084fc !important; }
+.member .autoteams-permission-v71376-items i { color: #fb923c !important; }
+
+.autoteams-permission-v71376-items span {
+  display: block !important;
+  position: static !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #c3cfdf !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  writing-mode: horizontal-tb !important;
+}
+
+.autoteams-permission-v71376-card > p {
+  display: block !important;
+  position: static !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: auto 0 0 !important;
+  padding: 11px 0 0 !important;
+  border-top: 1px solid rgba(148,163,184,.12) !important;
+  color: #8394ad !important;
+  font-size: 9px !important;
+  line-height: 1.45 !important;
+  white-space: normal !important;
+  writing-mode: horizontal-tb !important;
+}
+
+.autoteams-permission-v71376-note {
+  display: flex !important;
+  position: static !important;
+  width: 100% !important;
+  min-height: 50px !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin: 14px 0 0 !important;
+  padding: 10px 12px !important;
+  border: 1px solid rgba(96,165,250,.22) !important;
+  border-radius: 11px !important;
+  background: rgba(37,99,235,.07) !important;
+}
+
+.autoteams-permission-v71376-note > b {
+  display: grid !important;
+  position: static !important;
+  width: 23px !important;
+  min-width: 23px !important;
+  height: 23px !important;
+  flex: 0 0 23px !important;
+  place-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  color: #fff !important;
+  background: linear-gradient(135deg,#6366f1,#3b82f6) !important;
+  font-size: 10px !important;
+  line-height: 1 !important;
+}
+
+.autoteams-permission-v71376-note > span {
+  display: block !important;
+  position: static !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 800px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #a9bcda !important;
+  font-size: 9px !important;
+  line-height: 1.5 !important;
+  white-space: normal !important;
+  writing-mode: horizontal-tb !important;
+}
+
+@media (max-width: 1040px) {
+  .autoteams-permission-v71376-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .autoteams-permission-v71376 {
+    padding: 18px !important;
+  }
+
+  .autoteams-permission-v71376-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =========================================================
+   AutoTeams v7.13.77 - Permission Guide readability and encoding
+   ========================================================= */
+
+/* Slightly more generous section intro. */
+.autoteams-permission-v71376-head > span {
+  font-size: 11px !important;
+}
+
+.autoteams-permission-v71376-head h2 {
+  font-size: 24px !important;
+  line-height: 1.18 !important;
+}
+
+.autoteams-permission-v71376-head p {
+  max-width: 720px !important;
+  color: #bdc9da !important;
+  font-size: 12px !important;
+  line-height: 1.6 !important;
+}
+
+/* Improve role-card readability. */
+.autoteams-permission-v71376-card {
+  min-height: 252px !important;
+  padding: 18px !important;
+}
+
+.autoteams-permission-v71376-title strong {
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+}
+
+.autoteams-permission-v71376-title span {
+  padding: 4px 8px !important;
+  font-size: 9px !important;
+}
+
+.autoteams-permission-v71376-items {
+  gap: 9px !important;
+}
+
+.autoteams-permission-v71376-items > div {
+  grid-template-columns: 18px minmax(0, 1fr) !important;
+  gap: 6px !important;
+}
+
+/*
+ * The JSX marker is deliberately empty.
+ * Render the checkmark via a CSS unicode escape so Windows / PowerShell /
+ * source-file encoding cannot turn it into mojibake such as Ã¢Å“â€œ.
+ */
+.autoteams-permission-v71376-items i {
+  display: grid !important;
+  width: 16px !important;
+  min-width: 16px !important;
+  height: 16px !important;
+  place-items: center !important;
+  margin-top: 1px !important;
+  border-radius: 50% !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+}
+
+.autoteams-permission-v71376-items i::before {
+  content: "\2713" !important;
+  display: block !important;
+  color: currentColor !important;
+  font-family: Arial, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+}
+
+.autoteams-permission-v71376-items span {
+  color: #d2dbea !important;
+  font-size: 11px !important;
+  line-height: 1.45 !important;
+}
+
+.autoteams-permission-v71376-card > p {
+  color: #9fb0c7 !important;
+  font-size: 10px !important;
+  line-height: 1.5 !important;
+}
+
+/* Make the free-trial explanation feel intentional and readable. */
+.autoteams-permission-v71376-note {
+  min-height: 58px !important;
+  gap: 12px !important;
+  padding: 12px 14px !important;
+}
+
+.autoteams-permission-v71376-note > b {
+  width: 26px !important;
+  min-width: 26px !important;
+  height: 26px !important;
+  flex-basis: 26px !important;
+  font-size: 12px !important;
+}
+
+.autoteams-permission-v71376-note > span {
+  max-width: 900px !important;
+  color: #c0cee0 !important;
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+}
+
+.autoteams-permission-v71376-note > span strong {
+  color: #ffffff !important;
+  font-size: inherit !important;
+}
+
+/* Card accent colours also colour the safe CSS checkmark. */
+.autoteams-permission-v71376-card.owner
+.autoteams-permission-v71376-items i {
+  color: #34d399 !important;
+}
+
+.autoteams-permission-v71376-card.admin
+.autoteams-permission-v71376-items i {
+  color: #60a5fa !important;
+}
+
+.autoteams-permission-v71376-card.leader
+.autoteams-permission-v71376-items i {
+  color: #c084fc !important;
+}
+
+.autoteams-permission-v71376-card.member
+.autoteams-permission-v71376-items i {
+  color: #fb923c !important;
+}
+
+@media (max-width: 1040px) {
+  .autoteams-permission-v71376-items span {
+    font-size: 11px !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .autoteams-permission-v71376-head h2 {
+    font-size: 22px !important;
+  }
+
+  .autoteams-permission-v71376-items span,
+  .autoteams-permission-v71376-note > span {
+    font-size: 11px !important;
+  }
+}
