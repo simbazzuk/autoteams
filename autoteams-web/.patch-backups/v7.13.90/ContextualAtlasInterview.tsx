@@ -54,9 +54,8 @@ export function ContextualAtlasInterview() {
     );
 
     const selectedId =
-      loadedProfiles.find((item) => item.id === storedId)?.id ||
+      own.find((item) => item.id === storedId)?.id ||
       own[0]?.id ||
-      loadedProfiles[0]?.id ||
       "";
 
     setProfiles(loadedProfiles);
@@ -76,13 +75,13 @@ export function ContextualAtlasInterview() {
     }
   }, [user?.displayName, user?.email]);
 
-  const ownProfiles = useMemo(() => {
-    const matched = profiles.filter((item) =>
-      isCurrentUserProfile(item, user?.displayName, user?.email),
-    );
-
-    return matched.length > 0 ? matched : profiles;
-  }, [profiles, user?.displayName, user?.email]);
+  const ownProfiles = useMemo(
+    () =>
+      profiles.filter((item) =>
+        isCurrentUserProfile(item, user?.displayName, user?.email),
+      ),
+    [profiles, user?.displayName, user?.email],
+  );
 
   const profile = useMemo(
     () => profiles.find((item) => item.id === activeId) || null,
@@ -235,7 +234,7 @@ export function ContextualAtlasInterview() {
       <section className={styles.empty}>
         <AtlasOrb size="lg" />
         <span className="eyebrow">My Atlas Profiles</span>
-        <h2>No Atlas Profile is available yet.</h2>
+        <h2>No personal Atlas Profile is available yet.</h2>
         <p>
           Atlas does not display other workspace members on this page. Create
           your own Business, Friendship, Community, Sports or Education profile
