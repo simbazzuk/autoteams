@@ -516,7 +516,7 @@ export function MembersPanel() {
                 <small>Profile members</small>
                 <strong>{profileMembers.length}</strong>
               </article>
-              <article className={styles.inviteMetric} data-autoteams-pending-invites="true">
+              <article className={styles.inviteMetric}>
                 <small>Pending invitations</small>
                 <strong>{profileInvitations.length}</strong>
               </article>
@@ -548,7 +548,7 @@ export function MembersPanel() {
 
               <div className="access-member-list">
                 {profileMembers.length === 0 && (
-                  <div className={styles.profileEmptyState} data-autoteams-invite-card="true">
+                  <div className={styles.profileEmptyState}>
                     <strong>
                       No members in this profile yet.
                     </strong>
@@ -886,7 +886,7 @@ export function MembersPanel() {
               </div>
             </section>
 
-            <section className="access-panel access-role-guide invite44-role-guide-panel" data-autoteams-permission-guide="true">
+            <section className="access-panel access-role-guide invite44-role-guide-panel">
               <span className="eyebrow">Permission guide</span>
               <h2>Who can do what?</h2>
               <div>

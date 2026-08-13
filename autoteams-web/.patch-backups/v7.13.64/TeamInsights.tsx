@@ -1431,12 +1431,12 @@ export function TeamInsights() {
 
                 <Recommendation
                   priority="Data quality"
-                  title={`Improve ${profileLabel(
+                  title={`Complete ${profileLabel(
                     selectedProfile,
-                  )} profile coverage`}
-                  description="Review which selected team members have complete Atlas profile signals. Better member coverage improves Team DNA confidence."
-                  href={`/team-dna?teamId=${encodeURIComponent(selectedTeamId)}&context=${encodeURIComponent(selectedProfile)}`}
-                  action="Review member profiles"
+                  )} Atlas profiles`}
+                  description="More complete profiles improve Atlas confidence and make recommendations more useful."
+                  href={`/profile?context=${selectedProfile}`}
+                  action="Review profiles"
                 />
               </div>
             </section>

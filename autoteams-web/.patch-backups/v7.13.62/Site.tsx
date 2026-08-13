@@ -1,7 +1,6 @@
 "use client";
 
 import { AtlasSupport } from "@/components/support/AtlasSupport";
-import { AtlasProfileBanner } from "@/components/atlas-profile/AtlasProfileBanner";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -334,7 +333,6 @@ export function PageShell({
   return (
     <>
       <Navbar />
-      <AtlasProfileBanner />
       <main>{children}
 
       <AtlasSupport /></main>

@@ -206,8 +206,8 @@ export function RecommendationCentre() {
             </ProductIcon>
             <div>
               <small>Human-controlled AI</small>
-              <strong>Human review required</strong>
-              <p>Atlas recommends and explains the evidence. A person reviews the recommendation and remains accountable for the final decision.</p>
+              <strong>Recommendation, not decision</strong>
+              <p>AutoTeams explains the evidence. A person approves it.</p>
             </div>
           </aside>
         </div>
@@ -385,13 +385,13 @@ export function RecommendationCentre() {
                 </div>
               </section>
 
-              <section className={styles.card} data-autoteams-match-decision="true">
+              <section className={styles.card}>
                 <div className={styles.heading}>
                   <div>
                     <span className="eyebrow">Human review</span>
                     <h2>Record the final decision.</h2>
                     <p>
-                      Review the evidence, record your judgement, then confirm the recommendation when you are satisfied.
+                      Add a note, mark the recommendation reviewed, then publish.
                     </p>
                   </div>
                 </div>
@@ -444,8 +444,8 @@ export function RecommendationCentre() {
                     disabled={review.status === "draft"}
                     onClick={publish}
                     type="button"
-                   data-autoteams-approval-action="true">
-                    Approve & Publish
+                  >
+                    Publish Recommendation
                   </button>
                   <Link className="button secondary" href="/teams">
                     View Teams
