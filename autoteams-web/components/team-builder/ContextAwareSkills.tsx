@@ -11,8 +11,7 @@ export type TeamContext =
   | "sports"
   | "friendships"
   | "community"
-  | "education"
-  | "volunteering";
+  | "education";
 
 type ContextAwareSkillsProps = {
   outcome: string;
@@ -40,7 +39,7 @@ const CONTEXTS: Record<
   ContextDefinition
 > = {
   work: {
-    label: "Work & Organisations",
+    label: "Business",
     icon: "◫",
     description:
       "Teams formed to deliver outcomes, solve problems and coordinate work.",
@@ -59,7 +58,7 @@ const CONTEXTS: Record<
     ],
   },
   sports: {
-    label: "Sports & Clubs",
+    label: "Sports",
     icon: "◉",
     description:
       "Teams that need coordination, resilience and role clarity under pressure.",
@@ -78,7 +77,7 @@ const CONTEXTS: Record<
     ],
   },
   friendships: {
-    label: "Friendships & Social",
+    label: "Friendship",
     icon: "♡",
     description:
       "Groups built around compatibility, reliability, openness and shared interests.",
@@ -116,7 +115,7 @@ const CONTEXTS: Record<
     ],
   },
   education: {
-    label: "Education & Learning",
+    label: "Education",
     icon: "◇",
     description:
       "Learning teams that benefit from curiosity, mentoring and knowledge sharing.",
@@ -134,34 +133,14 @@ const CONTEXTS: Record<
       "Weak mentoring or knowledge sharing",
     ],
   },
-  volunteering: {
-    label: "Volunteering",
-    icon: "✦",
-    description:
-      "Purpose-led groups that depend on reliability, initiative and service mindset.",
-    skills: [
-      "Empathy",
-      "Reliability",
-      "Initiative",
-      "Organisation",
-      "Communication",
-      "Service mindset",
-    ],
-    watchouts: [
-      "Too much dependency on a small number of volunteers",
-      "Unclear ownership",
-      "Strong motivation but weak organisation",
-    ],
-  },
 };
-
 const CONTEXT_ORDER: TeamContext[] = [
   "work",
   "sports",
   "friendships",
   "community",
   "education",
-  "volunteering",
+
 ];
 
 function inferContext(
@@ -191,7 +170,7 @@ function inferContext(
       value,
     )
   ) {
-    return "volunteering";
+    return "community";
   }
 
   if (
@@ -705,3 +684,6 @@ export function ContextAwareSkills({
     </section>
   );
 }
+
+
+

@@ -10,15 +10,15 @@ const contexts = [
   {
     id: "business",
     icon: "💼",
-    title: "Work",
-    description: "Professional teams, projects, skills, roles and workplace collaboration.",
+    title: "Business",
+    description: "Work, organisations, projects, skills, roles and professional collaboration.",
     next: "/profile?context=business",
   },
   {
     id: "sports",
     icon: "⚽",
-    title: "Sport",
-    description: "Sports teams, positions, playing strengths, experience and preferred roles.",
+    title: "Sports",
+    description: "Sports teams, clubs, positions, playing strengths, experience and preferred roles.",
     next: "/profile?context=sports",
   },
   {
@@ -111,7 +111,7 @@ export function ProfileContextSelection() {
         <section className={styles.explainer}>
           <span className={styles.atlas}>✦</span>
           <div>
-            <strong>One person can have more than one profile.</strong>
+            <strong>One person can have more than one Atlas Profile.</strong>
             <p>
               A Work profile and a Sport profile can describe different sides
               of the same person. AutoTeams should use the profile that matches
@@ -121,7 +121,7 @@ export function ProfileContextSelection() {
         </section>
 
         <p className={styles.note}>
-          You can add other profile types later. This choice simply sets up your
+          You can add other Atlas Profiles later. This choice simply sets up your
           first AutoTeams profile.
         </p>
       </div>

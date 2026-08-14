@@ -21724,3 +21724,197 @@ html[data-theme="light"] .access-page[data-autoteams-invite] .access-side > sect
     grid-row: 4 !important;
   }
 }
+/* AutoTeams v7.13.96 - registration wizard dark theme */
+
+/*
+ * PersonaWizard is used by both:
+ *   /register
+ *   invite registration flows
+ *
+ * Older dark styling was scoped only to
+ * html[data-autoteams-invite-register="true"], which meant the normal
+ * /register page fell back to the legacy white wizard surface.
+ *
+ * Make the wizard dark by default. Invite-specific rules can still override
+ * these where necessary.
+ */
+
+.wizard {
+  background:
+    radial-gradient(
+      circle at 85% 10%,
+      rgba(99, 102, 241, .10),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(20, 30, 52, .98),
+      rgba(11, 18, 32, .98)
+    ) !important;
+  border: 1px solid rgba(129, 140, 248, .30) !important;
+  box-shadow: 0 28px 80px rgba(2, 6, 23, .42) !important;
+  color: #f8fafc !important;
+}
+
+.wizard section {
+  background: transparent !important;
+  color: #f8fafc !important;
+}
+
+.wizard h1,
+.wizard h2,
+.wizard h3 {
+  color: #f8fafc !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+.wizard .eyebrow {
+  color: #a78bfa !important;
+}
+
+.wizard .lead {
+  color: #9fb0c8 !important;
+}
+
+.wizard label {
+  color: #a8b7cf !important;
+}
+
+.wizard small {
+  color: #8fa0b8 !important;
+}
+
+.wizard input,
+.wizard select,
+.wizard textarea {
+  background: #0f172a !important;
+  border: 1px solid rgba(148, 163, 184, .24) !important;
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+  color-scheme: dark;
+}
+
+.wizard input:disabled,
+.wizard select:disabled,
+.wizard textarea:disabled {
+  background: #111a2d !important;
+  border-color: rgba(148, 163, 184, .18) !important;
+  color: #d9e2f0 !important;
+  -webkit-text-fill-color: #d9e2f0 !important;
+  opacity: 1 !important;
+}
+
+.wizard input:focus,
+.wizard select:focus,
+.wizard textarea:focus {
+  outline: none !important;
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, .18) !important;
+}
+
+/* Four-step progress line */
+.wizard .wizard-progress {
+  background: transparent !important;
+}
+
+.wizard .wizard-progress span {
+  background: rgba(148, 163, 184, .18) !important;
+}
+
+.wizard .wizard-progress span.active {
+  background:
+    linear-gradient(
+      90deg,
+      #8b5cf6,
+      #60a5fa
+    ) !important;
+}
+
+/* Step 2 persona/context cards */
+.wizard .type-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(24, 34, 55, .96),
+      rgba(13, 22, 38, .98)
+    ) !important;
+  border: 1px solid rgba(148, 163, 184, .20) !important;
+  color: #f8fafc !important;
+}
+
+.wizard .type-card:hover {
+  border-color: rgba(96, 165, 250, .48) !important;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(37, 50, 79, .98),
+      rgba(16, 28, 48, .98)
+    ) !important;
+}
+
+.wizard .type-card.selected {
+  border-color: rgba(129, 140, 248, .80) !important;
+  box-shadow:
+    0 0 0 2px rgba(99, 102, 241, .12),
+    0 16px 40px rgba(79, 70, 229, .12) !important;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(79, 70, 229, .18),
+      rgba(15, 23, 42, .98)
+    ) !important;
+}
+
+.wizard .type-card strong {
+  color: #f8fafc !important;
+}
+
+.wizard .type-card small {
+  color: #9fb0c8 !important;
+}
+
+/* Step 3 notice */
+.wizard .notice {
+  background: rgba(59, 130, 246, .07) !important;
+  border: 1px solid rgba(96, 165, 250, .20) !important;
+  color: #a9b8cd !important;
+}
+
+/* Step 4 persona summary */
+.wizard .persona {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(21, 31, 52, .98),
+      rgba(12, 20, 35, .98)
+    ) !important;
+  border: 1px solid rgba(129, 140, 248, .25) !important;
+  color: #f8fafc !important;
+}
+
+.wizard .persona strong {
+  color: #f8fafc !important;
+}
+
+.wizard .persona small {
+  color: #9fb0c8 !important;
+}
+
+.wizard .chip {
+  background: rgba(99, 102, 241, .10) !important;
+  border: 1px solid rgba(129, 140, 248, .20) !important;
+  color: #c7d2fe !important;
+}
+
+/* Keep action rows transparent */
+.wizard .wizard-actions {
+  background: transparent !important;
+}
+
+/* Mobile remains naturally stacked */
+@media (max-width: 700px) {
+  .wizard {
+    border-radius: 18px !important;
+  }
+}

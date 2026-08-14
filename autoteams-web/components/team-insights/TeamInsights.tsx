@@ -19,6 +19,10 @@ import {
   type FirebaseInsightProfile,
   type FirebaseInsightTeam,
 } from "@/components/team-insights/useFirebaseTeamInsightsData";
+import {
+  loadContextualProfiles,
+  type ContextMode,
+} from "@/lib/contextual-profiles";
 import styles from "./TeamInsights.module.css";
 
 type CoachContext = {
@@ -121,6 +125,92 @@ const DIMENSIONS = [
   ["Communication", 78],
 ] as const;
 
+function atlasModeToInsightType(
+  mode: ContextMode,
+): string {
+  return {
+    business: "work",
+    friendship: "friendship",
+    community: "community",
+    sports: "sport",
+    education: "education",
+  }[mode];
+}
+
+function atlasModeLabel(
+  mode: ContextMode,
+): string {
+  return {
+    business: "Work",
+    friendship: "Friendship",
+    community: "Community",
+    sports: "Sport",
+    education: "Education",
+  }[mode];
+}
+
+function canonicalAtlasInsightProfiles(): FirebaseInsightProfile[] {
+  const contextual =
+    loadContextualProfiles();
+
+  if (contextual.length === 0) {
+    return [];
+  }
+
+  const modes: ContextMode[] = [
+    "business",
+    "friendship",
+    "community",
+    "sports",
+    "education",
+  ];
+
+  return modes
+    .map((mode) => {
+      const matches =
+        contextual.filter(
+          (profile) =>
+            profile.mode === mode,
+        );
+
+      if (matches.length === 0) {
+        return null;
+      }
+
+      const latest =
+        [...matches].sort(
+          (a, b) =>
+            Date.parse(
+              b.updatedAt ||
+                b.createdAt ||
+                "",
+            ) -
+            Date.parse(
+              a.updatedAt ||
+                a.createdAt ||
+                "",
+            ),
+        )[0];
+
+      return {
+        id: latest.id,
+        type:
+          atlasModeToInsightType(
+            mode,
+          ),
+        label:
+          atlasModeLabel(
+            mode,
+          ),
+      } satisfies FirebaseInsightProfile;
+    })
+    .filter(
+      (
+        profile,
+      ): profile is FirebaseInsightProfile =>
+        Boolean(profile),
+    );
+}
 function normaliseProfileType(
   value?: string,
 ) {
@@ -453,15 +543,30 @@ export function TeamInsights() {
   }, []);
 
   const profiles =
-    useMemo(
-      () =>
-        firebaseProfiles.length
-          ? firebaseProfiles
-          : DEFAULT_PROFILES,
-      [
-        firebaseProfiles,
-      ],
-    );
+    useMemo(() => {
+      /*
+       * v7.13.91
+       *
+       * Atlas Profiles are the canonical user-profile contexts across
+       * AutoTeams. Team Insights therefore uses the same contextual profiles
+       * shown by Improve My Atlas Profile.
+       *
+       * Existing Team Insights terminology remains Work / Sport while the
+       * canonical Atlas storage modes remain business / sports.
+       */
+      const atlasProfiles =
+        canonicalAtlasInsightProfiles();
+
+      if (atlasProfiles.length > 0) {
+        return atlasProfiles;
+      }
+
+      return firebaseProfiles.length
+        ? firebaseProfiles
+        : DEFAULT_PROFILES;
+    }, [
+      firebaseProfiles,
+    ]);
 
   useEffect(() => {
     try {

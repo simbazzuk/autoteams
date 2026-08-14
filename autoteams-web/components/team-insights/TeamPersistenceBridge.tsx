@@ -21,6 +21,18 @@ const TEAM_KEY_PATTERN =
 const DELETED_TEAMS_KEY =
   "autoteams-deleted-team-ids-v71317";
 
+/*
+ * v7.13.95
+ *
+ * A legacy localStorage team can point at a Firestore document that is owned
+ * by another Firebase user. Firestore correctly denies that update.
+ *
+ * Keep those IDs blocked for the lifetime of this page so focus/visibility
+ * rescans do not repeatedly retry the same forbidden migration.
+ */
+const blockedPersistenceTeamIds =
+  new Set<string>();
+
 function deletedTeamIds(): Set<string> {
   try {
     const raw =
@@ -601,6 +613,45 @@ function teamDocument(
   };
 }
 
+function isPermissionDenied(
+  error: unknown,
+): boolean {
+  const record =
+    error as {
+      code?: string;
+      message?: string;
+    };
+
+  return (
+    record?.code ===
+      "permission-denied" ||
+    record?.code ===
+      "firestore/permission-denied" ||
+    Boolean(
+      record?.message
+        ?.toLowerCase()
+        .includes(
+          "missing or insufficient permissions",
+        ),
+    )
+  );
+}
+
+function sourceOwnerId(
+  team: RecordLike,
+): string | undefined {
+  return (
+    stringValue(
+      team.ownerId,
+    ) ||
+    stringValue(
+      team.createdBy,
+    ) ||
+    stringValue(
+      team.userId,
+    )
+  );
+}
 async function persistCandidate(
   team: RecordLike,
   ownerId: string,
@@ -617,6 +668,32 @@ async function persistCandidate(
     return;
   }
 
+  /*
+   * Never migrate a local team that explicitly belongs to another user.
+   * This is especially important on shared browsers or after switching
+   * Firebase accounts.
+   */
+  const candidateOwner =
+    sourceOwnerId(team);
+
+  if (
+    candidateOwner &&
+    candidateOwner !== ownerId
+  ) {
+    blockedPersistenceTeamIds.add(
+      mapped.id,
+    );
+    return;
+  }
+
+  if (
+    blockedPersistenceTeamIds.has(
+      mapped.id,
+    )
+  ) {
+    return;
+  }
+
   // v7.13.17: legacy localStorage may still contain a team after the
   // Firestore document is deleted. A tombstone is authoritative and stops
   // this migration bridge from recreating that team.
@@ -624,21 +701,56 @@ async function persistCandidate(
     return;
   }
 
-  await setDoc(
-    doc(
-      db,
-      "teams",
-      mapped.id,
-    ),
-    {
-      ...mapped.data,
-      migratedAt:
-        serverTimestamp(),
-    },
-    {
-      merge: true,
-    },
-  );
+  try {
+    await setDoc(
+      doc(
+        db,
+        "teams",
+        mapped.id,
+      ),
+      {
+        ...mapped.data,
+        migratedAt:
+          serverTimestamp(),
+      },
+      {
+        merge: true,
+      },
+    );
+  } catch (error) {
+    /*
+     * A deterministic legacy ID can already exist in Firestore under another
+     * owner. The security rules must remain authoritative: do not overwrite,
+     * do not weaken the rule, and do not retry the same ID on every rescan.
+     */
+    if (
+      isPermissionDenied(
+        error,
+      )
+    ) {
+      blockedPersistenceTeamIds.add(
+        mapped.id,
+      );
+
+      window.dispatchEvent(
+        new CustomEvent(
+          "autoteams:firebase-team-persist-skipped",
+          {
+            detail: {
+              teamId:
+                mapped.id,
+              reason:
+                "permission-denied",
+            },
+          },
+        ),
+      );
+
+      return;
+    }
+
+    throw error;
+  }
 
   window.dispatchEvent(
     new CustomEvent(
@@ -856,10 +968,14 @@ export function TeamPersistenceBridge() {
       };
 
     function rescan() {
-      if (active) {
+      if (
+        active &&
+        document.visibilityState !==
+          "hidden"
+      ) {
         void scanExistingTeams(
-      ownerId,
-    );
+          ownerId,
+        );
       }
     }
 

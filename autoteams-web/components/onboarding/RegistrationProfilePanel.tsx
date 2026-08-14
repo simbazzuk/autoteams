@@ -21,28 +21,28 @@ const modes: Array<{
 }> = [
   {
     id: "business",
-    title: "Business or organisation",
-    text: "Job, department, skills, delivery and workplace Team DNA.",
+    title: "Business",
+    text: "Work, organisations, delivery, skills and professional Team DNA.",
   },
   {
     id: "friendship",
-    title: "Friendship or social",
-    text: "Interests, activities, social style and optional discovery.",
+    title: "Friendship",
+    text: "Friendships, social groups, shared interests and compatibility.",
   },
   {
     id: "community",
-    title: "Community or volunteering",
-    text: "Causes, responsibilities, practical contribution and commitment.",
+    title: "Community",
+    text: "Community groups, volunteering, causes, contribution and commitment.",
   },
   {
     id: "sports",
-    title: "Sports team or club",
-    text: "Sport, role, experience, competition and teamwork style.",
+    title: "Sports",
+    text: "Sports, clubs, participation roles, experience and teamwork style.",
   },
   {
     id: "education",
-    title: "Education or study group",
-    text: "Subject, study preferences, project work and learning roles.",
+    title: "Education",
+    text: "Education, study groups, learning preferences and project roles.",
   },
 ];
 
@@ -54,17 +54,19 @@ export function RegistrationProfilePanel() {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    let loaded = loadContextualProfiles();
+    const loaded = loadContextualProfiles();
+
     if (loaded.length === 0) {
-      loaded = [
-        createContextualProfile("business", user?.displayName || ""),
-      ];
-      saveContextualProfiles(loaded);
+      setProfiles([]);
+      setActiveId("");
+      setInterests("");
+      return;
     }
 
     const requestedId = loadActiveContextualProfileId();
     const selectedId =
-      loaded.find((item) => item.id === requestedId)?.id || loaded[0].id;
+      loaded.find((item) => item.id === requestedId)?.id ||
+      loaded[0].id;
 
     setProfiles(loaded);
     setActiveId(selectedId);
@@ -105,8 +107,28 @@ export function RegistrationProfilePanel() {
   }
 
   function addProfile(mode: ContextMode) {
-    const next = createContextualProfile(mode, user?.displayName || "");
-    const updated = [...profiles, next];
+    const existing =
+      profiles.find(
+        (item) =>
+          item.mode === mode,
+      );
+
+    if (existing) {
+      selectProfile(existing.id);
+      return;
+    }
+
+    const next =
+      createContextualProfile(
+        mode,
+        user?.displayName || "",
+      );
+
+    const updated = [
+      ...profiles,
+      next,
+    ];
+
     setProfiles(updated);
     saveContextualProfiles(updated);
     setActiveId(next.id);
@@ -154,7 +176,125 @@ export function RegistrationProfilePanel() {
     setSaved(true);
   }
 
-  if (!profile) return null;
+  if (!profile) {
+    return (
+      <main className="context125-page">
+        <section className="context125-hero">
+          <div className="container">
+            <span className="eyebrow">Create your first Atlas Profile</span>
+            <h1>Which part of your life do you want Atlas to understand first?</h1>
+            <p>
+              Choose one profile context to begin. You can add the other
+              contexts later from My Profile.
+            </p>
+          </div>
+        </section>
+
+        <section className="context125-body">
+          <div
+            className="container"
+            style={{
+              display: "grid",
+              gap: 18,
+              paddingTop: 24,
+              paddingBottom: 36,
+            }}
+          >
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns:
+                  "repeat(auto-fit, minmax(220px, 1fr))",
+                gap: 14,
+              }}
+            >
+              {modes.map((mode) => (
+                <button
+                  key={mode.id}
+                  onClick={() =>
+                    addProfile(mode.id)
+                  }
+                  type="button"
+                  style={{
+                    display: "grid",
+                    gap: 10,
+                    minHeight: 150,
+                    padding: 20,
+                    textAlign: "left",
+                    color: "#f8fafc",
+                    background:
+                      "linear-gradient(145deg, rgba(79,70,229,.10), rgba(15,23,42,.92))",
+                    border:
+                      "1px solid rgba(129,140,248,.28)",
+                    borderRadius: 16,
+                    cursor: "pointer",
+                  }}
+                >
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      display: "grid",
+                      width: 42,
+                      height: 42,
+                      placeItems: "center",
+                      borderRadius: 12,
+                      background:
+                        "rgba(99,102,241,.16)",
+                      color: "#c7d2fe",
+                      fontSize: 20,
+                    }}
+                  >
+                    {modeIcon(mode.id)}
+                  </span>
+
+                  <strong
+                    style={{
+                      fontSize: 18,
+                    }}
+                  >
+                    {mode.title}
+                  </strong>
+
+                  <span
+                    style={{
+                      color: "#94a3b8",
+                      fontSize: 13,
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    {mode.text}
+                  </span>
+
+                  <span
+                    style={{
+                      color: "#c4b5fd",
+                      fontSize: 12,
+                      fontWeight: 800,
+                    }}
+                  >
+                    Create {mode.title} Profile →
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            <p
+              style={{
+                margin: 0,
+                color: "#8794aa",
+                fontSize: 12,
+                lineHeight: 1.5,
+              }}
+            >
+              AutoTeams uses five canonical Atlas Profile contexts:
+              Business, Friendship, Community, Sports and Education.
+              Volunteering is included within Community.
+            </p>
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="context125-page">
@@ -172,8 +312,8 @@ export function RegistrationProfilePanel() {
       <section className="context125-body">
         <form className="container context125-layout" onSubmit={submit}>
           <aside className="context125-profile-list">
-            <span className="eyebrow">My Team DNA profiles</span>
-            <h2>Select a context</h2>
+            <span className="eyebrow">My Atlas Profiles</span>
+            <h2>Select a profile context</h2>
 
             <div className="context125-tabs">
               {profiles.map((item) => (

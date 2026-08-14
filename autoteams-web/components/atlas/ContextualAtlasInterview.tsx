@@ -49,14 +49,21 @@ export function ContextualAtlasInterview() {
     const storedId = loadActiveContextualProfileId();
     const core = loadCoreInterview();
 
-    const own = loadedProfiles.filter((item) =>
+    const matchedProfiles = loadedProfiles.filter((item) =>
       isCurrentUserProfile(item, user?.displayName, user?.email),
     );
 
+    const candidates =
+      matchedProfiles.length > 0
+        ? matchedProfiles
+        : loadedProfiles;
+
+    const canonicalProfiles =
+      canonicaliseProfiles(candidates, storedId);
+
     const selectedId =
-      loadedProfiles.find((item) => item.id === storedId)?.id ||
-      own[0]?.id ||
-      loadedProfiles[0]?.id ||
+      canonicalProfiles.find((item) => item.id === storedId)?.id ||
+      canonicalProfiles[0]?.id ||
       "";
 
     setProfiles(loadedProfiles);
@@ -81,8 +88,18 @@ export function ContextualAtlasInterview() {
       isCurrentUserProfile(item, user?.displayName, user?.email),
     );
 
-    return matched.length > 0 ? matched : profiles;
-  }, [profiles, user?.displayName, user?.email]);
+    const candidates =
+      matched.length > 0
+        ? matched
+        : profiles;
+
+    return canonicaliseProfiles(candidates, activeId);
+  }, [
+    profiles,
+    activeId,
+    user?.displayName,
+    user?.email,
+  ]);
 
   const profile = useMemo(
     () => profiles.find((item) => item.id === activeId) || null,
@@ -530,6 +547,46 @@ function estimatedMinutes(questionsRemaining: number): number {
   return Math.max(1, Math.ceil(questionsRemaining * 0.5));
 }
 
+function canonicaliseProfiles(
+  profiles: ContextualProfile[],
+  preferredId = "",
+): ContextualProfile[] {
+  const modes: ContextMode[] = [
+    "business",
+    "friendship",
+    "community",
+    "sports",
+    "education",
+  ];
+
+  return modes
+    .map((mode) => {
+      const matching = profiles.filter(
+        (item) => item.mode === mode,
+      );
+
+      if (matching.length === 0) {
+        return null;
+      }
+
+      const preferred = matching.find(
+        (item) => item.id === preferredId,
+      );
+
+      if (preferred) {
+        return preferred;
+      }
+
+      return [...matching].sort(
+        (a, b) =>
+          Date.parse(b.updatedAt || b.createdAt || "") -
+          Date.parse(a.updatedAt || a.createdAt || ""),
+      )[0];
+    })
+    .filter(
+      (item): item is ContextualProfile => Boolean(item),
+    );
+}
 function isCurrentUserProfile(
   profile: ContextualProfile,
   displayName?: string | null,
