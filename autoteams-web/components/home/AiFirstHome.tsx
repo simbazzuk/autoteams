@@ -1,4 +1,6 @@
-"use client";
+﻿"use client";
+
+import { appConfig } from "@/lib/app-config";
 
 import Link from "next/link";
 import {
@@ -106,7 +108,7 @@ export function AiFirstHome() {
   if (!ready) {
     return (
       <section className={styles.loading}>
-        Preparing AutoTeams…
+        Preparing AutoTeamsâ€¦
       </section>
     );
   }
@@ -121,7 +123,7 @@ export function AiFirstHome() {
         <div className={`container ${styles.heroGrid}`}>
           <div>
             <span className="eyebrow">
-              AutoTeams 3.1
+              AutoTeams {appConfig.version}
             </span>
 
             <h1>
@@ -142,14 +144,14 @@ export function AiFirstHome() {
                 className="button"
                 href="/team-builder"
               >
-                Build a Team →
+                Build a Team â†’
               </Link>
 
               <Link
                 className="button secondary"
                 href="/gemini-team-coach"
               >
-                ✦ Gemini Team Coach
+                âœ¦ Gemini Team Coach
               </Link>
             </div>
           </div>
@@ -160,7 +162,7 @@ export function AiFirstHome() {
                 label="Gemini Team Coach"
                 size="lg"
               >
-                ✦
+                âœ¦
               </ProductIcon>
 
               <div>
@@ -196,8 +198,8 @@ export function AiFirstHome() {
               href="/gemini-team-coach"
             >
               {profileQuality > 0
-                ? "Continue Team Coach →"
-                : "Start Team Coach →"}
+                ? "Continue Team Coach â†’"
+                : "Start Team Coach â†’"}
             </Link>
           </aside>
         </div>
@@ -216,7 +218,7 @@ export function AiFirstHome() {
 
             <div className={styles.actionGrid}>
               <ActionCard
-                icon="▥"
+                icon="â–¥"
                 title="Build a Team"
                 text={
                   canBuild
@@ -234,7 +236,7 @@ export function AiFirstHome() {
               />
 
               <ActionCard
-                icon="✦"
+                icon="âœ¦"
                 title="Gemini Team Coach"
                 text="Improve recommendation quality by helping Gemini understand how you collaborate."
                 status={`${profileQuality}% profile quality`}
@@ -247,7 +249,7 @@ export function AiFirstHome() {
               />
 
               <ActionCard
-                icon="◇"
+                icon="â—‡"
                 title="Manage My Group"
                 text={
                   workspace
@@ -281,25 +283,25 @@ export function AiFirstHome() {
 
             <div className={styles.metrics}>
               <Metric
-                icon="◇"
+                icon="â—‡"
                 label="Groups"
                 value={workspaces.length}
                 href="/organisation"
               />
               <Metric
-                icon="♙"
+                icon="â™™"
                 label="People"
                 value={workspacePeople.length}
                 href="/people"
               />
               <Metric
-                icon="▥"
+                icon="â–¥"
                 label="Saved teams"
                 value={savedTeams}
                 href="/teams"
               />
               <Metric
-                icon="✦"
+                icon="âœ¦"
                 label="AI profile quality"
                 value={`${profileQuality}%`}
                 href="/gemini-team-coach"
@@ -312,7 +314,7 @@ export function AiFirstHome() {
               label="AI recommendation"
               size="lg"
             >
-              ✦
+              âœ¦
             </ProductIcon>
 
             <div>
@@ -385,7 +387,7 @@ function ActionCard({
         className="button"
         href={href}
       >
-        {label} →
+        {label} â†’
       </Link>
     </article>
   );
@@ -417,7 +419,7 @@ function Metric({
         <strong>{value}</strong>
       </div>
 
-      <span>Open →</span>
+      <span>Open â†’</span>
     </Link>
   );
 }
@@ -529,3 +531,5 @@ function dayPart(): string {
 
   return "evening";
 }
+
+

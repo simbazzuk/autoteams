@@ -1,5 +1,7 @@
 "use client";
 
+import { appConfig } from "@/lib/app-config";
+
 import { AtlasSupport } from "@/components/support/AtlasSupport";
 import { AtlasProfileBanner } from "@/components/atlas-profile/AtlasProfileBanner";
 
@@ -145,7 +147,7 @@ export function Navbar() {
             <em>AI-powered team intelligence</em>
           </span>
 
-          <small>3.1</small>
+          <small>{appConfig.version}</small>
         </Link>
 
         <nav
