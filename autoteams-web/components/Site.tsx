@@ -24,7 +24,6 @@ export function RobotLogo() {
 
 const primaryLinks = [
   { href: "/home", label: "Dashboard" },
-{ href: "/get-started", label: "Get Started" },
   { href: "/people", label: "People" },
   { href: "/members#invite", label: "Invite", invite: true },
   { href: "/team-builder", label: "Build Team" },
@@ -241,9 +240,6 @@ export function Navbar() {
             </summary>
 
             <div className="nav-dropdown-menu">
-              <Link href="/get-started">
-                Get Started
-              </Link>
 
               <Link href="/organisation">
                 My Group
@@ -315,9 +311,6 @@ export function Footer() {
 
         <div className="footer-links">
       <Link href="/">Product Overview</Link>
-          <Link href="/get-started">
-            Get Started
-          </Link>
           <Link href="/people">People</Link>
           <Link href="/team-builder">
             Build Team

@@ -34,7 +34,7 @@ export function AtlasSupport() {
       id: "welcome",
       role: "assistant",
       content:
-        "Hi — I’m Atlas Support. I can help you use AutoTeams, explain Team Science and understand recommendations.",
+        "Hi, I\u2019m Atlas. How can I help? I can help you create profiles, invite people, build teams, understand Team Insights, manage workspaces, or find your way around AutoTeams.",
     },
   ]);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -105,7 +105,7 @@ export function AtlasSupport() {
             <div className={styles.identity}>
               <span className={styles.avatar}>✦</span>
               <div>
-                <strong>Atlas Support</strong>
+                <strong>Ask Atlas</strong>
                 <small>AutoTeams help</small>
               </div>
             </div>

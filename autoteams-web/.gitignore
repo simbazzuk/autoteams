@@ -42,3 +42,6 @@ next-env.d.ts
 
 # AutoTeams patch backups
 .patch-backups/
+
+# AutoTeams patch backups
+.patch-backups/

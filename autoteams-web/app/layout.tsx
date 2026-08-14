@@ -1,3 +1,4 @@
+import { AtlasAutoOpen } from "@/components/support/AtlasAutoOpen";
 import { TeamSaveFeedback } from "@/components/team-builder/TeamSaveFeedback";
 import { TeamPersistenceBridge } from "@/components/team-insights/TeamPersistenceBridge";
 import type { Metadata } from "next";
@@ -48,6 +49,7 @@ export default function RootLayout({
 
       <body>
         <AuthProvider>
+          <AtlasAutoOpen />
           <TeamPersistenceBridge />
           <TeamSaveFeedback />
           {children}
