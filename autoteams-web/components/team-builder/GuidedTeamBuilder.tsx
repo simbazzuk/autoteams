@@ -367,9 +367,32 @@ export function GuidedTeamBuilder() {
     [people, activeWorkspaceId],
   );
 
+  /*
+   * AutoTeams v7.15.1 Team-ready candidate preference.
+   *
+   * If this workspace has Atlas-ready people, only ready selected people are
+   * sent for recommendation. For older/demo workspaces with no ready records,
+   * retain the previous active-person behaviour so existing MVP data still
+   * works.
+   */
+  const readyPeople =
+    activePeople.filter(
+      (person) =>
+        person.teamDnaStatus ===
+        "ready",
+    );
+
+  const readinessAwarePeople =
+    readyPeople.length > 0
+      ? readyPeople
+      : activePeople;
+
   const candidatePeople =
-    activePeople.filter((person) =>
-      selectedPeople.includes(person.id),
+    readinessAwarePeople.filter(
+      (person) =>
+        selectedPeople.includes(
+          person.id,
+        ),
     );
 
   /*
@@ -1730,6 +1753,17 @@ function PeopleStep({
                             )
                         : "Profile not completed"}
                     </em>
+                    <span
+                      className={
+                        person.teamDnaStatus === "ready"
+                          ? "mvp7151-builder-ready ready"
+                          : "mvp7151-builder-ready"
+                      }
+                    >
+                      {person.teamDnaStatus === "ready"
+                        ? "✓ Team ready"
+                        : "○ Complete Atlas Profile"}
+                    </span>
                   </div>
                 </label>
               ),
@@ -2502,6 +2536,154 @@ function RecommendationStep({
           />
         </div>
       )}
+      <section
+        className="mvp7150-atlas-explanation"
+        data-autoteams-mvp-explanation-v7150="true"
+      >
+        <div className="mvp7150-atlas-explanation-head">
+          <div>
+            <span>ATLAS EXPLANATION</span>
+            <h3>Why Atlas chose this team</h3>
+            <p>
+              Atlas combines the team requirement, skills coverage,
+              complementary strengths and the available profile evidence.
+              You remain responsible for the final team decision.
+            </p>
+          </div>
+
+          <button
+            className="button secondary"
+            onClick={async () => {
+              const memberLines = selected.map((item) => {
+                const contribution =
+                  item.reasons.slice(0, 2).join("; ") ||
+                  `${item.person.jobTitle} · ${item.person.department}`;
+
+                return `- ${item.person.name}: ${contribution}`;
+              });
+
+              const strengths =
+                aiResult?.teamStrengths?.length
+                  ? aiResult.teamStrengths.map((item) => `- ${item}`).join("\n")
+                  : "- Balanced against the selected team requirement.";
+
+              const gaps =
+                aiResult?.skillGaps?.length
+                  ? aiResult.skillGaps.map((item) => `- ${item}`).join("\n")
+                  : "- No material skill gap has been highlighted.";
+
+              const risks =
+                aiResult?.risks?.length
+                  ? aiResult.risks.map((item) => `- ${item}`).join("\n")
+                  : "- Continue with normal human review.";
+
+              const summary = [
+                `AutoTeams team summary: ${requirement.name}`,
+                "",
+                `Purpose: ${requirement.purpose}`,
+                `Atlas confidence: ${confidence}%`,
+                "",
+                "Selected people",
+                ...memberLines,
+                "",
+                "Team strengths",
+                strengths,
+                "",
+                "Gaps to consider",
+                gaps,
+                "",
+                "Risks / watch-outs",
+                risks,
+                "",
+                "AutoTeams provides a recommendation. A person makes the final decision.",
+              ].join("\n");
+
+              try {
+                await navigator.clipboard.writeText(summary);
+              } catch {
+                window.prompt("Copy team summary", summary);
+              }
+            }}
+            type="button"
+          >
+            Copy Team Summary
+          </button>
+        </div>
+
+        <div className="mvp7150-person-rationale-grid">
+          {selected.length === 0 ? (
+            <div className="mvp7150-empty-rationale">
+              Select people from the ranking below to see their contribution
+              to the proposed team.
+            </div>
+          ) : (
+            selected.map((item) => (
+              <article key={item.person.id}>
+                <div className="mvp7150-rationale-person">
+                  <span>
+                    {item.person.name.charAt(0).toUpperCase()}
+                  </span>
+
+                  <div>
+                    <strong>{item.person.name}</strong>
+                    <small>
+                      {item.person.jobTitle} · {item.person.department}
+                    </small>
+                  </div>
+
+                  <em>{item.score}% match</em>
+                </div>
+
+                <div className="mvp7150-rationale-signals">
+                  {(item.reasons.length
+                    ? item.reasons.slice(0, 3)
+                    : ["Adds useful capability to the selected requirement."]
+                  ).map((reason) => (
+                    <span key={reason}>✓ {reason}</span>
+                  ))}
+
+                  {item.concerns.slice(0, 1).map((concern) => (
+                    <span
+                      className="mvp7150-rationale-watch"
+                      key={concern}
+                    >
+                      △ {concern}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))
+          )}
+        </div>
+
+        <div className="mvp7150-atlas-next-step">
+          <div>
+            <span>TEAM STRENGTH</span>
+            <strong>
+              {aiResult?.teamStrengths?.[0] ||
+                "The selected people provide complementary evidence for the requirement."}
+            </strong>
+          </div>
+
+          <div>
+            <span>WATCH OUT</span>
+            <strong>
+              {aiResult?.skillGaps?.[0] ||
+                aiResult?.risks?.[0] ||
+                "No major gap has been identified from the available evidence."}
+            </strong>
+          </div>
+
+          <div className="mvp7150-atlas-suggestion">
+            <span>ATLAS SUGGESTION</span>
+            <strong>
+              {aiResult?.skillGaps?.length
+                ? `Before confirming, consider whether the team needs stronger coverage for: ${aiResult.skillGaps[0]}.`
+                : "The team is ready for human review. Check practical constraints before confirming."}
+            </strong>
+          </div>
+        </div>
+      </section>
 
       <div
         className={

@@ -27,6 +27,7 @@ import {
   upsertContextInterview,
 } from "@/lib/atlas-interview-state";
 import { AtlasOrb } from "@/components/AtlasOrb";
+import { loadPeople, savePeople } from "@/lib/workspaces";
 import styles from "./ContextualAtlasInterview.module.css";
 
 type InterviewStage = "core" | "context" | "complete";
@@ -216,6 +217,73 @@ export function ContextualAtlasInterview() {
       completedAt,
       updatedAt: completedAt,
     });
+
+    /*
+     * AutoTeams v7.15.1 readiness sync
+     *
+     * The workspace directory already uses teamDnaStatus as the canonical
+     * Team Builder readiness signal. When the signed-in user completes a
+     * contextual Atlas Profile, mark matching workspace-person records ready.
+     */
+    if (user?.email) {
+      const email =
+        user.email
+          .trim()
+          .toLowerCase();
+
+      const people =
+        loadPeople();
+
+      let changed =
+        false;
+
+      const updatedPeople =
+        people.map((person) => {
+          if (
+            person.email
+              .trim()
+              .toLowerCase() !== email
+          ) {
+            return person;
+          }
+
+          if (
+            person.teamDnaStatus ===
+            "ready"
+          ) {
+            return person;
+          }
+
+          changed =
+            true;
+
+          return {
+            ...person,
+            teamDnaStatus:
+              "ready" as const,
+          };
+        });
+
+      if (changed) {
+        savePeople(
+          updatedPeople,
+        );
+
+        window.dispatchEvent(
+          new CustomEvent(
+            "autoteams:member-readiness-changed",
+            {
+              detail: {
+                email,
+                status:
+                  "ready",
+              },
+            },
+          ),
+        );
+      }
+    }
+
     setStage("complete");
   }
 

@@ -111,6 +111,25 @@ function buildPrompts({
   teams: number;
 }): AssistantPrompt[] {
   const prompts: AssistantPrompt[] = [];
+  /*
+   * AutoTeams v7.15.2 first-run guidance
+   *
+   * New users receive a simple task-led introduction before the more
+   * contextual Atlas prompts. Existing users keep the normal experience.
+   */
+  if (
+    profiles === 0 &&
+    teams === 0 &&
+    recommendations === 0
+  ) {
+    prompts.push({
+      title: "Getting started",
+      response:
+        "Welcome to AutoTeams. I can help you create a profile, invite people or build your first team. What would you like to do?",
+      href: "/profile",
+      action: "Create My Profile",
+    });
+  }
 
   if (!profiles) {
     prompts.push({

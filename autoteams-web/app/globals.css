@@ -23140,3 +23140,334 @@ html[data-theme="light"] .access-page[data-autoteams-invite] .access-side > sect
       39% 38%
     );
 }
+/* AutoTeams v7.15.0 - MVP completion pack */
+
+.mvp7150-atlas-explanation {
+  margin: 20px 0 22px;
+  padding: 20px;
+  border: 1px solid rgba(129,140,248,.27);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 92% 4%, rgba(124,58,237,.10), transparent 28%),
+    linear-gradient(145deg, rgba(15,23,42,.88), rgba(10,18,34,.92));
+  box-shadow: 0 20px 54px rgba(2,6,23,.20);
+}
+
+.mvp7150-atlas-explanation-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.mvp7150-atlas-explanation-head > div { max-width: 760px; }
+
+.mvp7150-atlas-explanation-head span,
+.mvp7150-atlas-next-step span {
+  display: block;
+  color: #9aa9c3;
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .09em;
+}
+
+.mvp7150-atlas-explanation-head h3 {
+  margin: 5px 0 7px;
+  color: #f8fafc;
+  font-size: 1.28rem;
+}
+
+.mvp7150-atlas-explanation-head p {
+  margin: 0;
+  color: #9eacc1;
+  line-height: 1.55;
+}
+
+.mvp7150-person-rationale-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 11px;
+  margin-top: 18px;
+}
+
+.mvp7150-person-rationale-grid > article,
+.mvp7150-empty-rationale {
+  padding: 13px;
+  border: 1px solid rgba(96,165,250,.17);
+  border-radius: 14px;
+  background: rgba(15,23,42,.52);
+}
+
+.mvp7150-empty-rationale {
+  grid-column: 1 / -1;
+  color: #8fa0b8;
+}
+
+.mvp7150-rationale-person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mvp7150-rationale-person > span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg,#3b82f6,#7c3aed);
+  color: white;
+  font-size: .75rem;
+  font-weight: 900;
+}
+
+.mvp7150-rationale-person > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.mvp7150-rationale-person strong,
+.mvp7150-rationale-person small { display: block; }
+
+.mvp7150-rationale-person strong { color: #f8fafc; }
+
+.mvp7150-rationale-person small {
+  margin-top: 2px;
+  color: #8394ac;
+  font-size: .72rem;
+}
+
+.mvp7150-rationale-person em {
+  color: #c4b5fd;
+  font-size: .72rem;
+  font-style: normal;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.mvp7150-rationale-signals {
+  display: grid;
+  gap: 6px;
+  margin-top: 11px;
+}
+
+.mvp7150-rationale-signals span {
+  color: #a7f3d0;
+  font-size: .75rem;
+  line-height: 1.4;
+}
+
+.mvp7150-rationale-signals .mvp7150-rationale-watch { color: #fcd34d; }
+
+.mvp7150-atlas-next-step {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.mvp7150-atlas-next-step > div {
+  min-height: 88px;
+  padding: 12px;
+  border: 1px solid rgba(148,163,184,.14);
+  border-radius: 13px;
+  background: rgba(7,13,27,.48);
+}
+
+.mvp7150-atlas-next-step strong {
+  display: block;
+  margin-top: 7px;
+  color: #e7edf7;
+  font-size: .78rem;
+  line-height: 1.45;
+}
+
+.mvp7150-atlas-next-step .mvp7150-atlas-suggestion {
+  border-color: rgba(129,140,248,.28);
+  background:
+    linear-gradient(145deg,rgba(79,70,229,.10),rgba(7,13,27,.50));
+}
+
+.mvp7150-atlas-suggestion span { color: #a5b4fc; }
+
+.mvp7150-invite-journey {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 13px;
+  padding: 10px 11px;
+  border: 1px solid rgba(129,140,248,.18);
+  border-radius: 13px;
+  background: rgba(79,70,229,.045);
+  overflow-x: auto;
+}
+
+.mvp7150-invite-journey > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: max-content;
+  color: #a6b3c8;
+  font-size: .68rem;
+}
+
+.mvp7150-invite-journey i {
+  display: grid;
+  width: 21px;
+  height: 21px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(99,102,241,.15);
+  color: #c7d2fe;
+  font-size: .62rem;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.mvp7150-invite-journey b {
+  color: #52627a;
+  font-size: .68rem;
+}
+
+.mvp7150-invite-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  border: 1px solid rgba(96,165,250,.20);
+  border-radius: 999px;
+  background: rgba(59,130,246,.07);
+  color: #bfdbfe;
+  font-size: .66rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.mvp7150-invite-status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #60a5fa;
+  box-shadow: 0 0 8px rgba(96,165,250,.65);
+}
+
+.mvp7150-reminder-button {
+  border: 1px solid rgba(129,140,248,.22);
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: rgba(99,102,241,.075);
+  color: #c7d2fe;
+  font: inherit;
+  font-size: .66rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.mvp7150-reminder-button:hover {
+  border-color: rgba(129,140,248,.48);
+  background: rgba(99,102,241,.14);
+}
+
+@media (max-width: 900px) {
+  .mvp7150-person-rationale-grid,
+  .mvp7150-atlas-next-step {
+    grid-template-columns: 1fr;
+  }
+
+  .mvp7150-atlas-explanation-head {
+    flex-direction: column;
+  }
+}
+/* AutoTeams v7.15.1 - live readiness journey */
+
+.mvp7151-readiness {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 7px;
+}
+
+.mvp7151-readiness > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 7px;
+  border: 1px solid rgba(148,163,184,.16);
+  border-radius: 999px;
+  background: rgba(15,23,42,.40);
+  color: #7f90a8;
+  font-size: .62rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.mvp7151-readiness > span i {
+  color: #60718a;
+  font-style: normal;
+}
+
+.mvp7151-readiness > span.done {
+  border-color: rgba(96,165,250,.22);
+  background: rgba(59,130,246,.07);
+  color: #bfdbfe;
+}
+
+.mvp7151-readiness > span.done i {
+  color: #60a5fa;
+}
+
+.mvp7151-readiness > span.ready {
+  border-color: rgba(52,211,153,.26);
+  background: rgba(16,185,129,.08);
+  color: #a7f3d0;
+}
+
+.mvp7151-readiness > span.ready i {
+  color: #34d399;
+}
+
+.mvp7151-builder-ready {
+  display: inline-flex !important;
+  align-items: center;
+  width: max-content;
+  margin-top: 7px;
+  padding: 4px 8px;
+  border: 1px solid rgba(245,158,11,.20);
+  border-radius: 999px;
+  background: rgba(245,158,11,.06);
+  color: #fcd34d !important;
+  font-size: .64rem !important;
+  font-style: normal !important;
+  font-weight: 850;
+}
+
+.mvp7151-builder-ready.ready {
+  border-color: rgba(52,211,153,.25);
+  background: rgba(16,185,129,.08);
+  color: #a7f3d0 !important;
+}
+
+/*
+ * Make the v7.15.0 invitation journey feel like a readiness pipeline rather
+ * than a decorative strip.
+ */
+.mvp7150-invite-journey {
+  position: relative;
+}
+
+.mvp7150-invite-journey::after {
+  content: "Live readiness updates after a member joins and completes Atlas.";
+  margin-left: auto;
+  padding-left: 10px;
+  color: #71829a;
+  font-size: .62rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .mvp7150-invite-journey::after {
+    display: none;
+  }
+}

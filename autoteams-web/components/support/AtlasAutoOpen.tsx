@@ -1,11 +1,13 @@
 "use client";
 
+/* AutoTeams v7.15.2 - first-run Atlas guidance */
+
 import {
   useEffect,
 } from "react";
 
 const SESSION_KEY =
-  "autoteams-atlas-help-opened-v7140";
+  "autoteams-atlas-first-run-guidance-v7152";
 
 const ASK_ATLAS_TEXT =
   /ask\s+atlas/i;
@@ -75,7 +77,7 @@ export function AtlasAutoOpen() {
      */
     try {
       if (
-        window.sessionStorage.getItem(
+        window.localStorage.getItem(
           SESSION_KEY,
         )
       ) {
@@ -96,7 +98,7 @@ export function AtlasAutoOpen() {
       finished = true;
 
       try {
-        window.sessionStorage.setItem(
+        window.localStorage.setItem(
           SESSION_KEY,
           "true",
         );

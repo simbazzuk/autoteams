@@ -108,3 +108,160 @@
   color: #a99cff;
   font-size: 11px;
 }
+
+/* AutoTeams v7.15.2 - colourful Atlas actions */
+
+/*
+ * Give Atlas prompt choices more personality while retaining the restrained
+ * dark AutoTeams design language. Each task category receives a different
+ * accent, making the assistant easier to scan without looking playful or
+ * disconnected from the rest of the product.
+ */
+
+.prompts button {
+  position: relative;
+  overflow: hidden;
+  border-width: 1px;
+  transition:
+    transform .16s ease,
+    border-color .16s ease,
+    background .16s ease,
+    box-shadow .16s ease,
+    color .16s ease;
+}
+
+.prompts button::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  border-radius: inherit;
+  opacity: .9;
+}
+
+/* Profile / getting started - purple */
+.prompts button:nth-child(1) {
+  border-color: rgba(139,92,246,.34);
+  background:
+    linear-gradient(135deg,rgba(124,58,237,.15),rgba(76,29,149,.055));
+  color: #ddd6fe;
+}
+
+.prompts button:nth-child(1)::before {
+  background: #8b5cf6;
+}
+
+.prompts button:nth-child(1):hover,
+.prompts button:nth-child(1).active {
+  border-color: rgba(167,139,250,.72);
+  background:
+    linear-gradient(135deg,rgba(124,58,237,.28),rgba(76,29,149,.12));
+  box-shadow: 0 10px 25px rgba(124,58,237,.14);
+}
+
+/* Atlas profile / interview - blue */
+.prompts button:nth-child(2) {
+  border-color: rgba(59,130,246,.32);
+  background:
+    linear-gradient(135deg,rgba(37,99,235,.14),rgba(30,64,175,.05));
+  color: #bfdbfe;
+}
+
+.prompts button:nth-child(2)::before {
+  background: #3b82f6;
+}
+
+.prompts button:nth-child(2):hover,
+.prompts button:nth-child(2).active {
+  border-color: rgba(96,165,250,.70);
+  background:
+    linear-gradient(135deg,rgba(37,99,235,.26),rgba(30,64,175,.11));
+  box-shadow: 0 10px 25px rgba(37,99,235,.13);
+}
+
+/* Recommendations / team builder - cyan/teal */
+.prompts button:nth-child(3) {
+  border-color: rgba(20,184,166,.30);
+  background:
+    linear-gradient(135deg,rgba(13,148,136,.14),rgba(15,118,110,.05));
+  color: #99f6e4;
+}
+
+.prompts button:nth-child(3)::before {
+  background: #14b8a6;
+}
+
+.prompts button:nth-child(3):hover,
+.prompts button:nth-child(3).active {
+  border-color: rgba(45,212,191,.68);
+  background:
+    linear-gradient(135deg,rgba(13,148,136,.25),rgba(15,118,110,.11));
+  box-shadow: 0 10px 25px rgba(13,148,136,.12);
+}
+
+/* Team DNA - amber */
+.prompts button:nth-child(4) {
+  border-color: rgba(245,158,11,.30);
+  background:
+    linear-gradient(135deg,rgba(217,119,6,.13),rgba(146,64,14,.045));
+  color: #fde68a;
+}
+
+.prompts button:nth-child(4)::before {
+  background: #f59e0b;
+}
+
+.prompts button:nth-child(4):hover,
+.prompts button:nth-child(4).active {
+  border-color: rgba(251,191,36,.66);
+  background:
+    linear-gradient(135deg,rgba(217,119,6,.24),rgba(146,64,14,.10));
+  box-shadow: 0 10px 25px rgba(217,119,6,.11);
+}
+
+/* Invitations - pink */
+.prompts button:nth-child(5) {
+  border-color: rgba(236,72,153,.28);
+  background:
+    linear-gradient(135deg,rgba(219,39,119,.12),rgba(157,23,77,.045));
+  color: #fbcfe8;
+}
+
+.prompts button:nth-child(5)::before {
+  background: #ec4899;
+}
+
+.prompts button:nth-child(5):hover,
+.prompts button:nth-child(5).active {
+  border-color: rgba(244,114,182,.64);
+  background:
+    linear-gradient(135deg,rgba(219,39,119,.23),rgba(157,23,77,.10));
+  box-shadow: 0 10px 25px rgba(219,39,119,.10);
+}
+
+.prompts button:hover {
+  transform: translateY(-1px);
+}
+
+/*
+ * Keep active prompt text especially clear even if an older .active rule is
+ * defined earlier in this CSS module.
+ */
+.prompts button.active {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+/* Give the active response CTA a stronger Atlas gradient. */
+.message :global(.button) {
+  border: 1px solid rgba(129,140,248,.48);
+  background:
+    linear-gradient(135deg,#6366f1 0%,#7c3aed 58%,#9333ea 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(99,102,241,.20);
+}
+
+.message :global(.button):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 13px 28px rgba(99,102,241,.28);
+}

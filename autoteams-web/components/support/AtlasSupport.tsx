@@ -34,7 +34,7 @@ export function AtlasSupport() {
       id: "welcome",
       role: "assistant",
       content:
-        "Hi, I\u2019m Atlas. How can I help? I can help you create profiles, invite people, build teams, understand Team Insights, manage workspaces, or find your way around AutoTeams.",
+        "Welcome to AutoTeams. I can help you create a profile, invite people or build your first team. What would you like to do?",
     },
   ]);
   const inputRef = useRef<HTMLInputElement | null>(null);

@@ -23,7 +23,9 @@ import {
   saveInvitations,
   saveMemberships,
 } from "@/lib/workspace-access";
-import { loadActiveWorkspaceId, loadWorkspaces } from "@/lib/workspaces";
+import { loadActiveWorkspaceId, loadWorkspaces,
+  loadPeople
+} from "@/lib/workspaces";
 import {
   ContextMode,
   ContextualProfile,
@@ -187,6 +189,46 @@ function invitationUrl(token: string) {
   return `${window.location.origin}/invite/${encodeURIComponent(token)}`;
 }
 
+/* AutoTeams v7.15.1-fix1 readiness helper */
+function memberReadinessFor(
+  email: string,
+  people: ReturnType<typeof loadPeople>,
+  workspaceId: string,
+) {
+  const normalised =
+    email
+      .trim()
+      .toLowerCase();
+
+  const person =
+    people.find(
+      (item) =>
+        item.workspaceId ===
+          workspaceId &&
+        item.email
+          .trim()
+          .toLowerCase() ===
+          normalised &&
+        item.status ===
+          "active",
+    );
+
+  const joined =
+    Boolean(person);
+
+  const atlasReady =
+    person?.teamDnaStatus ===
+    "ready";
+
+  return {
+    joined,
+    atlasReady,
+    teamReady:
+      joined &&
+      atlasReady,
+  };
+}
+
 export function MembersPanel() {
   const { user } = useAuth();
   const [workspaceId, setWorkspaceId] = useState("");
@@ -205,6 +247,7 @@ export function MembersPanel() {
   const access = useWorkspaceAccess(workspaceId);
   const workspaces = loadWorkspaces();
   const workspace = workspaces.find((item) => item.id === workspaceId);
+  const workspacePeople = loadPeople();
   const category =
     workspace?.type === "personal" ? "friendship" : "business";
   const canManage = roleCanManageMembers(access.role);
@@ -593,6 +636,66 @@ export function MembersPanel() {
                     <div>
                       <strong>{member.name}</strong>
                       <small>{member.email}</small>
+                       <div
+                         className="mvp7151-readiness"
+                         data-autoteams-live-readiness-v7151="true"
+                       >
+                         {(() => {
+                           const readiness =
+                             memberReadinessFor(member.email, workspacePeople, workspaceId);
+
+                           return (
+                             <>
+                               <span
+                                 className={
+                                   readiness.joined
+                                     ? "done"
+                                     : ""
+                                 }
+                               >
+                                 <i>
+                                   {readiness.joined
+                                     ? "✓"
+                                     : "○"}
+                                 </i>
+                                 Joined
+                               </span>
+
+                               <span
+                                 className={
+                                   readiness.atlasReady
+                                     ? "done"
+                                     : ""
+                                 }
+                               >
+                                 <i>
+                                   {readiness.atlasReady
+                                     ? "✓"
+                                     : "○"}
+                                 </i>
+                                 Atlas ready
+                               </span>
+
+                               <span
+                                 className={
+                                   readiness.teamReady
+                                     ? "ready"
+                                     : ""
+                                 }
+                               >
+                                 <i>
+                                   {readiness.teamReady
+                                     ? "✓"
+                                     : "○"}
+                                 </i>
+                                 {readiness.teamReady
+                                   ? "Team ready"
+                                   : "Not team ready"}
+                               </span>
+                             </>
+                           );
+                         })()}
+                       </div>
                     </div>
 
                     {access.role === "owner" && member.role !== "owner" ? (
@@ -915,7 +1018,19 @@ export function MembersPanel() {
                 </div>
               </div>
 
-              <div className="invitation-list">
+                            <div
+                className="mvp7150-invite-journey"
+                data-autoteams-invite-status-v7150="true"
+              >
+                <span><i>1</i><strong>Invited</strong></span>
+                <b>→</b>
+                <span><i>2</i><strong>Joined</strong></span>
+                <b>→</b>
+                <span><i>3</i><strong>Atlas ready</strong></span>
+                <b>→</b>
+                <span><i>4</i><strong>Team ready</strong></span>
+              </div>
+<div className="invitation-list">
                 {profileInvitations.length === 0 ? (
                   <p>No pending invitations.</p>
                 ) : (
@@ -945,6 +1060,30 @@ export function MembersPanel() {
                       >
                         Copy link
                       </button>
+                      <button
+                        className="mvp7150-reminder-button"
+                        onClick={async () => {
+                          const url = invitationUrl(invitation.token);
+                          const profileName = invitation.profileContext
+                            ? profileModeLabel(invitation.profileContext)
+                            : "AutoTeams";
+
+                          const reminder =
+                            `Hi ${invitation.name || "there"}, just a reminder to join my ${profileName} profile on AutoTeams. Use this invitation link: ${url}`;
+
+                          try {
+                            await navigator.clipboard.writeText(reminder);
+                            setCopyMessage(
+                              `Reminder copied for ${invitation.email}.`,
+                            );
+                          } catch {
+                            setCopyMessage(reminder);
+                          }
+                        }}
+                        type="button"
+                      >
+                        Copy reminder
+                      </button>
                       <span className={styles.pendingContext}>
                         {invitation.profileContext
                           ? `${profileModeIcon(invitation.profileContext)} ${profileModeLabel(
@@ -952,7 +1091,10 @@ export function MembersPanel() {
                             )}`
                           : "No profile selected"}
                       </span>
-                      {canManage && (
+                                            <span className="mvp7150-invite-status">
+                        <i></i>
+                        Invited
+                      </span>{canManage && (
                         <button
                           onClick={() => revoke(invitation.id)}
                           type="button"
