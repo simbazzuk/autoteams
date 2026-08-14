@@ -21918,3 +21918,1225 @@ html[data-theme="light"] .access-page[data-autoteams-invite] .access-side > sect
     border-radius: 18px !important;
   }
 }
+/* AutoTeams v7.14.1 - horizontal contextual invite workflow */
+
+/*
+ * The profile selector is part of the invitation transaction, so it now lives
+ * inside the invite form. The hero-side profile card becomes an explanatory
+ * visual rather than a second disconnected control.
+ */
+
+/* ---------- Hero visual ---------- */
+
+.access-page .access-hero .access-account-summary {
+  position: relative;
+}
+
+/*
+ * MembersPanel's profile-context card is the account-summary element in the
+ * Invite hero. Hide its old interactive contents; the real selector now lives
+ * in the invitation form below.
+ */
+.access-page[data-autoteams-invite] .access-hero .access-account-summary > label {
+  display: none !important;
+}
+
+.access-page[data-autoteams-invite] .access-hero .access-account-summary {
+  min-height: 196px !important;
+  display: grid !important;
+  align-content: center !important;
+  overflow: hidden !important;
+  padding: 24px !important;
+  isolation: isolate;
+}
+
+.access-page[data-autoteams-invite] .access-hero .access-account-summary::before {
+  content: "INVITE WITH CONTEXT" !important;
+  position: relative !important;
+  z-index: 2;
+  display: block !important;
+  margin: 0 0 18px !important;
+  color: #a5b4fc !important;
+  font-size: .72rem !important;
+  font-weight: 900 !important;
+  letter-spacing: .13em !important;
+}
+
+.access-page[data-autoteams-invite] .access-hero .access-account-summary::after {
+  content: "Profile   →   Access   →   Team";
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  min-height: 72px;
+  padding: 18px 20px;
+  border: 1px solid rgba(129,140,248,.28);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(79,70,229,.16), rgba(14,165,233,.07)),
+    rgba(8,15,29,.70);
+  color: #f8fafc;
+  font-size: clamp(.95rem,1.4vw,1.15rem);
+  font-weight: 850;
+  letter-spacing: .01em;
+  word-spacing: .45em;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+/* ---------- Invite panel becomes a wide workflow ---------- */
+
+/*
+ * Current MembersPanel uses access-side for the invitation column. Let the
+ * invitation surface occupy the available content width instead of feeling
+ * like a narrow sidebar.
+ */
+.access-page[data-autoteams-invite] .access-layout:has(.invite7141-form) {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+.access-page[data-autoteams-invite] .access-side:has(.invite7141-form) {
+  width: 100% !important;
+  max-width: none !important;
+  grid-column: 1 / -1 !important;
+}
+
+.access-page[data-autoteams-invite] .access-side:has(.invite7141-form) > #invite {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/*
+ * Profile | Name | Email | Workspace role | Send
+ *
+ * Name remains because it is already part of the invitation data model, but
+ * the three decision points requested by the UX are kept visually dominant.
+ */
+.invite7141-form {
+  display: grid !important;
+  grid-template-columns:
+    minmax(175px, .9fr)
+    minmax(150px, .8fr)
+    minmax(220px, 1.2fr)
+    minmax(285px, 1.35fr)
+    auto !important;
+  align-items: end !important;
+  gap: 14px !important;
+  width: 100% !important;
+  margin-top: 20px !important;
+}
+
+.invite7141-form > label {
+  display: grid !important;
+  align-content: end !important;
+  gap: 7px !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.invite7141-form > label > span,
+.invite7141-form > label:not(.invite7141-profile-field) {
+  color: #aebbd0;
+  font-size: .76rem;
+  font-weight: 800;
+}
+
+.invite7141-form input,
+.invite7141-form select {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 48px !important;
+  margin: 0 !important;
+  border-radius: 12px !important;
+}
+
+/* Profile is now the first-class first step of the invitation. */
+.invite7141-profile-field > span {
+  color: #a5b4fc !important;
+  font-size: .72rem !important;
+  font-weight: 900 !important;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.invite7141-profile-field select {
+  border-color: rgba(129,140,248,.48) !important;
+  background:
+    linear-gradient(145deg, rgba(79,70,229,.10), rgba(7,13,27,.94))
+    !important;
+  color: #f8fafc !important;
+  font-weight: 850 !important;
+  color-scheme: dark;
+}
+
+.invite7141-profile-field option {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.invite7141-profile-field small {
+  min-height: 15px;
+  color: #8495af !important;
+  font-size: .68rem !important;
+  line-height: 1.25 !important;
+}
+
+/*
+ * Existing v7.13.x Workspace Role is a fixed Member information box for free
+ * trial invitations. Flatten it horizontally so the explanation is readable
+ * and does not look squeezed into a small nested card.
+ *
+ * After inserting Profile, the role is the fourth label in the form.
+ */
+.invite7141-form > label:nth-of-type(4) {
+  align-self: end !important;
+}
+
+.invite7141-form > label:nth-of-type(4) > div {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  min-height: 48px !important;
+  padding: 8px 12px !important;
+  border: 1px solid rgba(96,165,250,.22) !important;
+  border-radius: 12px !important;
+  background:
+    linear-gradient(135deg, rgba(59,130,246,.07), rgba(124,58,237,.035)),
+    rgba(15,23,42,.36) !important;
+}
+
+.invite7141-form > label:nth-of-type(4) > div > strong {
+  flex: 0 0 auto;
+  padding-right: 10px;
+  border-right: 1px solid rgba(148,163,184,.18);
+  color: #f8fafc !important;
+  font-size: .78rem !important;
+  white-space: nowrap;
+}
+
+.invite7141-form > label:nth-of-type(4) > div > small {
+  max-width: none !important;
+  margin: 0 !important;
+  color: #91a2ba !important;
+  font-size: .68rem !important;
+  line-height: 1.35 !important;
+}
+
+/* Send is part of the same workflow row. */
+.invite7141-form > button[type="submit"] {
+  min-height: 48px !important;
+  margin: 0 !important;
+  padding-inline: 18px !important;
+  white-space: nowrap;
+  align-self: end;
+}
+
+/*
+ * Success/share feedback must span the whole form instead of trying to fit
+ * into one grid column.
+ */
+.invite7141-form > [class*="inviteCreated"],
+.invite7141-form > [class*="inviteShare"],
+.invite7141-form > [role="status"] {
+  grid-column: 1 / -1 !important;
+}
+
+/* Tablet: keep profile/email useful, move the rest cleanly. */
+@media (max-width: 1180px) {
+  .invite7141-form {
+    grid-template-columns:
+      repeat(2, minmax(0,1fr)) !important;
+  }
+
+  .invite7141-form > button[type="submit"] {
+    width: max-content !important;
+  }
+}
+
+/* Mobile: one clear vertical transaction. */
+@media (max-width: 700px) {
+  .invite7141-form {
+    grid-template-columns: 1fr !important;
+  }
+
+  .invite7141-form > button[type="submit"] {
+    width: 100% !important;
+  }
+
+  .invite7141-form > label:nth-of-type(4) > div {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+  }
+
+  .invite7141-form > label:nth-of-type(4) > div > strong {
+    padding-right: 0;
+    padding-bottom: 5px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(148,163,184,.18);
+  }
+
+  .access-page[data-autoteams-invite] .access-hero .access-account-summary {
+    min-height: 160px !important;
+  }
+}
+/* AutoTeams v7.14.2 - member role width alignment */
+
+/*
+ * Refine v7.14.1:
+ * Put the Workspace Role / Member explanation on its own wide row and let it
+ * run to the same right-hand edge as the Email field.
+ *
+ * Desktop layout:
+ *
+ * Profile | Name | Email | Send
+ * Workspace Role / Member --------------------^
+ *
+ * This keeps the information readable and removes the small squeezed card.
+ */
+
+@media (min-width: 1181px) {
+  .invite7141-form {
+    grid-template-columns:
+      minmax(175px, .9fr)
+      minmax(150px, .8fr)
+      minmax(260px, 1.35fr)
+      auto !important;
+    align-items: end !important;
+  }
+
+  /*
+   * Profile, Name and Email remain in the first row.
+   * Submit sits at the far right.
+   */
+  .invite7141-form > label:nth-of-type(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .invite7141-form > label:nth-of-type(2) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .invite7141-form > label:nth-of-type(3) {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .invite7141-form > button[type="submit"] {
+    grid-column: 4;
+    grid-row: 1;
+  }
+
+  /*
+   * Workspace Role occupies the full width from Profile through Email.
+   * Its right edge therefore lines up exactly with the Email field.
+   */
+  .invite7141-form > label:nth-of-type(4) {
+    grid-column: 1 / 4 !important;
+    grid-row: 2 !important;
+    width: 100% !important;
+    max-width: none !important;
+    align-self: stretch !important;
+  }
+
+  .invite7141-form > label:nth-of-type(4) > div {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 48px !important;
+    box-sizing: border-box !important;
+  }
+
+  .invite7141-form > label:nth-of-type(4) > div > small {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+  }
+
+  /*
+   * Invite-created feedback remains underneath the whole transaction.
+   */
+  .invite7141-form > [class*="inviteCreated"],
+  .invite7141-form > [class*="inviteShare"],
+  .invite7141-form > [role="status"] {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+/*
+ * Keep tablet/mobile behaviour from v7.14.1.
+ */
+@media (max-width: 1180px) {
+  .invite7141-form > label:nth-of-type(4) {
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
+/* AutoTeams v7.14.3 - Atlas invite context artwork */
+
+/*
+ * Replace the v7.14.1 CSS-generated "Profile -> Access -> Team" visual with
+ * the purpose-built Atlas invitation artwork.
+ *
+ * No invitation controls or logic are changed.
+ */
+
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary {
+  min-height: 0 !important;
+  aspect-ratio: 16 / 9 !important;
+  padding: 0 !important;
+  display: block !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(96,165,250,.30) !important;
+  border-radius: 22px !important;
+  background:
+    url("/images/atlas-invite-context.png")
+    center center / cover
+    no-repeat !important;
+  box-shadow:
+    0 24px 70px rgba(2,6,23,.30),
+    inset 0 1px 0 rgba(255,255,255,.04) !important;
+}
+
+/* Remove the previous CSS-generated wording/flow. */
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary::before,
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary::after {
+  content: none !important;
+  display: none !important;
+}
+
+/*
+ * The original hero profile selector remains intentionally hidden because the
+ * functional selector now belongs inside the Invite form.
+ */
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary > * {
+  display: none !important;
+}
+
+/*
+ * The source artwork is wide. On normal desktop widths, favour showing the
+ * complete composition rather than cropping Atlas or the Profile/Access/Team
+ * story.
+ */
+@media (min-width: 901px) {
+  .access-page[data-autoteams-invite]
+  .access-hero
+  .access-account-summary {
+    background-size: contain !important;
+    background-color: #0b1230 !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .access-page[data-autoteams-invite]
+  .access-hero
+  .access-account-summary {
+    aspect-ratio: 16 / 8.8 !important;
+    min-height: 210px !important;
+    background-size: cover !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .access-page[data-autoteams-invite]
+  .access-hero
+  .access-account-summary {
+    min-height: 180px !important;
+    border-radius: 18px !important;
+    background-position: center !important;
+  }
+}
+/* AutoTeams v7.14.4 - Team Builder style Invite visual */
+
+/*
+ * Replace the previous marketing-style Invite artwork with a compact
+ * Team-Builder-style Atlas intelligence diagram.
+ *
+ * The source graphic deliberately mirrors the visual language already used
+ * by Team Builder: central Atlas orb, connected context nodes, restrained
+ * dark surface and a small intelligence panel.
+ */
+
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary {
+  position: relative !important;
+  min-height: 0 !important;
+  aspect-ratio: 1.42 / 1 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(99,102,241,.28) !important;
+  border-radius: 22px !important;
+  background:
+    #0b1124
+    url("/images/atlas-invite-intelligence.png")
+    center center / cover
+    no-repeat !important;
+  box-shadow:
+    0 24px 65px rgba(2,6,23,.28),
+    inset 0 1px 0 rgba(255,255,255,.035) !important;
+}
+
+/* Remove all earlier generated hero copy and controls. */
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary::before,
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary::after {
+  content: none !important;
+  display: none !important;
+}
+
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary > * {
+  display: none !important;
+}
+
+/*
+ * Keep the visual compact. It should support the hero rather than dominate it.
+ */
+@media (min-width: 1100px) {
+  .access-page[data-autoteams-invite]
+  .access-hero
+  .access-account-summary {
+    width: min(100%, 430px) !important;
+    justify-self: end !important;
+  }
+}
+
+@media (max-width: 1099px) {
+  .access-page[data-autoteams-invite]
+  .access-hero
+  .access-account-summary {
+    width: min(100%, 520px) !important;
+    margin-inline: auto !important;
+    background-size: cover !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .access-page[data-autoteams-invite]
+  .access-hero
+  .access-account-summary {
+    width: 100% !important;
+    min-height: 260px !important;
+    aspect-ratio: auto !important;
+    border-radius: 18px !important;
+  }
+}
+/* AutoTeams v7.14.4 - Atlas Team Intelligence Invite */
+
+/*
+ * Invite hero aligned to the Team Builder visual language:
+ * Atlas network + Team Intelligence + Profile / Access / Invite.
+ * This override intentionally supersedes earlier v7.14.3/v7.14.4 hero artwork.
+ */
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary {
+  position: relative !important;
+  width: min(100%, 470px) !important;
+  min-height: 0 !important;
+  aspect-ratio: 1.52 / 1 !important;
+  justify-self: end !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(99,102,241,.30) !important;
+  border-radius: 22px !important;
+  background:
+    #080f25
+    url("/images/atlas-team-intelligence-invite.png")
+    center center / cover
+    no-repeat !important;
+  box-shadow:
+    0 24px 70px rgba(2,6,23,.32),
+    inset 0 1px 0 rgba(255,255,255,.04) !important;
+}
+
+/* Earlier generated hero wording and the old selector stay removed. */
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary::before,
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary::after {
+  content: none !important;
+  display: none !important;
+}
+
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary > * {
+  display: none !important;
+}
+
+/*
+ * Crop the generated reference so the visual concentrates on the Atlas
+ * intelligence area rather than behaving like a full-page screenshot.
+ */
+@media (min-width: 901px) {
+  .access-page[data-autoteams-invite]
+  .access-hero
+  .access-account-summary {
+    background-size: 205% auto !important;
+    background-position: 68% 19% !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .access-page[data-autoteams-invite]
+  .access-hero
+  .access-account-summary {
+    width: min(100%, 540px) !important;
+    margin-inline: auto !important;
+    justify-self: center !important;
+    aspect-ratio: 1.45 / 1 !important;
+    background-size: 205% auto !important;
+    background-position: 68% 19% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .access-page[data-autoteams-invite]
+  .access-hero
+  .access-account-summary {
+    width: 100% !important;
+    min-height: 250px !important;
+    aspect-ratio: auto !important;
+    border-radius: 18px !important;
+  }
+}
+/* AutoTeams v7.14.5-fix1 - Team Builder Invite visual */
+
+/*
+ * Real HTML/CSS visual matching the Team Builder page rather than using
+ * generated artwork.
+ *
+ * Earlier v7.14.x image backgrounds are explicitly neutralised here.
+ */
+
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary {
+  position: relative !important;
+  width: min(100%, 430px) !important;
+  min-width: 0 !important;
+  min-height: 300px !important;
+  aspect-ratio: auto !important;
+  justify-self: end !important;
+  display: block !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+
+  border:
+    1px solid
+    rgba(96,165,250,.25)
+    !important;
+
+  border-radius:
+    22px !important;
+
+  background:
+    radial-gradient(
+      circle at 50% 34%,
+      rgba(99,102,241,.14),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(14,23,43,.99),
+      rgba(7,14,29,.99)
+    )
+    !important;
+
+  background-image:
+    radial-gradient(
+      circle at 50% 34%,
+      rgba(99,102,241,.14),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(14,23,43,.99),
+      rgba(7,14,29,.99)
+    )
+    !important;
+
+  box-shadow:
+    0 24px 70px rgba(2,6,23,.30),
+    inset 0 1px 0 rgba(255,255,255,.035)
+    !important;
+}
+
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary::before,
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary::after {
+  content: none !important;
+  display: none !important;
+}
+
+/*
+ * Hide the old hero Profile Context selector only.
+ * Keep the new Team Builder-style visual visible.
+ */
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary
+> :not(.invite7145-team-builder-visual) {
+  display: none !important;
+}
+
+.invite7145-team-builder-visual {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  overflow: hidden !important;
+  color: #f8fafc;
+}
+
+/* ---------------- Atlas orbital area ---------------- */
+
+.invite7145-orbit {
+  position: absolute;
+  inset: 0 0 82px;
+  overflow: hidden;
+}
+
+.invite7145-ring {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  border:
+    1px solid
+    rgba(99,102,241,.15);
+  border-radius: 999px;
+  transform:
+    translate(-50%,-50%);
+}
+
+.invite7145-ring-one {
+  width: 112px;
+  height: 112px;
+}
+
+.invite7145-ring-two {
+  width: 188px;
+  height: 188px;
+}
+
+.invite7145-ring-three {
+  width: 270px;
+  height: 270px;
+  border-color:
+    rgba(59,130,246,.10);
+}
+
+.invite7145-atlas {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  z-index: 5;
+
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+
+  border:
+    1px solid
+    rgba(129,140,248,.78);
+
+  border-radius: 50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  background:
+    radial-gradient(
+      circle at 36% 28%,
+      rgba(255,255,255,.52),
+      transparent 19%
+    ),
+    linear-gradient(
+      145deg,
+      #60a5fa 0%,
+      #6366f1 48%,
+      #9333ea 100%
+    );
+
+  box-shadow:
+    0 0 0 13px rgba(99,102,241,.07),
+    0 0 38px rgba(99,102,241,.32);
+}
+
+.invite7145-spark {
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  text-shadow:
+    0 0 18px
+    rgba(255,255,255,.70);
+}
+
+.invite7145-atlas-label {
+  position: absolute;
+  left: 50%;
+  top: calc(45% + 45px);
+  z-index: 6;
+
+  transform:
+    translateX(-50%);
+
+  color: #c7d2fe;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+/* ---------------- Candidate nodes ---------------- */
+
+.invite7145-person {
+  position: absolute;
+  z-index: 4;
+
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+
+  border:
+    1px solid
+    rgba(147,197,253,.55);
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #3b82f6,
+      #6366f1
+    );
+
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+
+  box-shadow:
+    0 8px 24px
+    rgba(37,99,235,.18);
+}
+
+.invite7145-person-a {
+  left: 10%;
+  top: 27%;
+}
+
+.invite7145-person-b {
+  right: 10%;
+  top: 23%;
+}
+
+.invite7145-person-c {
+  left: 8%;
+  top: 65%;
+}
+
+.invite7145-person-d {
+  right: 8%;
+  top: 64%;
+}
+
+.invite7145-person-e {
+  left: 50%;
+  top: 6%;
+  transform:
+    translateX(-50%);
+}
+
+/* ---------------- Connections ---------------- */
+
+.invite7145-line {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 45%;
+
+  width: 128px;
+  height: 1px;
+
+  transform-origin:
+    left center;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(129,140,248,.46),
+      rgba(96,165,250,.05)
+    );
+}
+
+.invite7145-line-a {
+  transform: rotate(207deg);
+}
+
+.invite7145-line-b {
+  transform: rotate(330deg);
+}
+
+.invite7145-line-c {
+  transform: rotate(157deg);
+}
+
+.invite7145-line-d {
+  transform: rotate(27deg);
+}
+
+.invite7145-line-e {
+  width: 92px;
+  transform: rotate(-90deg);
+}
+
+/* ---------------- Intelligence footer ---------------- */
+
+.invite7145-intelligence-panel {
+  position: absolute;
+  z-index: 10;
+
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+
+  min-height: 84px;
+  padding: 13px 14px 12px;
+
+  border:
+    1px solid
+    rgba(129,140,248,.25);
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(17,27,50,.97),
+      rgba(12,20,39,.97)
+    );
+
+  box-shadow:
+    0 15px 36px rgba(2,6,23,.28),
+    inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.invite7145-intelligence-panel small {
+  display: block;
+  margin-bottom: 5px;
+
+  color:
+    #8ea2c7 !important;
+
+  font-size:
+    9px !important;
+
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.invite7145-intelligence-panel strong {
+  display: block;
+  color: #f8fafc;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.invite7145-intelligence-chips {
+  display: flex;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.invite7145-intelligence-chips span {
+  padding: 4px 9px;
+
+  border:
+    1px solid
+    rgba(129,140,248,.25);
+
+  border-radius: 999px;
+
+  background:
+    rgba(99,102,241,.08);
+
+  color: #c7d2fe;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 1000px) {
+  .access-page[data-autoteams-invite]
+  .access-hero
+  .access-account-summary {
+    width: min(100%,470px) !important;
+    justify-self: center !important;
+    margin-inline: auto !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .access-page[data-autoteams-invite]
+  .access-hero
+  .access-account-summary {
+    width: 100% !important;
+    min-height: 280px !important;
+    border-radius: 18px !important;
+  }
+
+  .invite7145-ring-three {
+    width: 230px;
+    height: 230px;
+  }
+
+  .invite7145-person {
+    width: 34px;
+    height: 34px;
+  }
+}
+/* AutoTeams v7.14.5-fix2 - reveal Team Builder Invite visual */
+
+/*
+ * Earlier image-based Invite patches included:
+ *
+ * .access-account-summary > * { display:none !important; }
+ *
+ * That selector also hid the new v7.14.5 HTML/CSS Team Builder visual.
+ * Override it with equal/higher specificity and explicitly show the new
+ * visual while continuing to hide the legacy Profile Context control.
+ */
+
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary
+> .invite7145-team-builder-visual {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure every element INSIDE the visual can render as well. */
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary
+> .invite7145-team-builder-visual
+* {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/*
+ * Only the old hero Profile Context control should remain hidden.
+ */
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary
+> label,
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary
+> .workspaceControl,
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary
+> .profileControl {
+  display: none !important;
+}
+
+/*
+ * Reset any image-based background from v7.14.3 / v7.14.4.
+ */
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary {
+  background-image:
+    radial-gradient(
+      circle at 50% 34%,
+      rgba(99,102,241,.14),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(14,23,43,.99),
+      rgba(7,14,29,.99)
+    )
+    !important;
+
+  background-position: center !important;
+  background-size: auto !important;
+}
+
+/*
+ * Defensive reset: several previous versions used pseudo content.
+ */
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary::before,
+.access-page[data-autoteams-invite]
+.access-hero
+.access-account-summary::after {
+  content: none !important;
+  display: none !important;
+}
+/* AutoTeams v7.14.5-fix3 - Atlas orb spark restore */
+
+/*
+ * The Atlas orb rendered correctly but the text-based sparkle was not
+ * reliably visible. Draw the Atlas mark entirely with CSS so it does not
+ * depend on a font glyph, encoding or inherited text styling.
+ */
+
+.access-page[data-autoteams-invite]
+.invite7145-atlas {
+  position: absolute !important;
+  isolation: isolate;
+  overflow: visible !important;
+
+  background:
+    radial-gradient(
+      circle at 34% 28%,
+      rgba(255,255,255,.70) 0 4%,
+      rgba(255,255,255,.22) 10%,
+      transparent 23%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      #7c6cff 0%,
+      #6659f2 54%,
+      #5748df 100%
+    )
+    !important;
+
+  box-shadow:
+    0 0 0 12px rgba(99,102,241,.07),
+    0 0 34px rgba(99,102,241,.36),
+    inset 0 1px 8px rgba(255,255,255,.18)
+    !important;
+}
+
+/* Hide the unreliable text glyph but keep the span for existing JSX. */
+.access-page[data-autoteams-invite]
+.invite7145-atlas
+.invite7145-spark {
+  font-size: 0 !important;
+  color: transparent !important;
+  text-shadow: none !important;
+}
+
+/*
+ * Main four-point Atlas star.
+ */
+.access-page[data-autoteams-invite]
+.invite7145-atlas::before {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 20 !important;
+
+  left: 50% !important;
+  top: 50% !important;
+
+  width: 28px !important;
+  height: 28px !important;
+
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  transform:
+    translate(-50%,-50%)
+    rotate(45deg)
+    !important;
+
+  border-radius:
+    3px 55% 3px 55% !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #ffffff 48%,
+      #dbeafe 100%
+    )
+    !important;
+
+  box-shadow:
+    0 0 9px rgba(255,255,255,.95),
+    0 0 19px rgba(191,219,254,.72)
+    !important;
+
+  clip-path:
+    polygon(
+      50% 0%,
+      61% 38%,
+      100% 50%,
+      61% 62%,
+      50% 100%,
+      39% 62%,
+      0% 50%,
+      39% 38%
+    );
+}
+
+/*
+ * Small secondary glint gives the mark the same polished Atlas feel used
+ * elsewhere in AutoTeams.
+ */
+.access-page[data-autoteams-invite]
+.invite7145-atlas::after {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 21 !important;
+
+  left: 66% !important;
+  top: 31% !important;
+
+  width: 7px !important;
+  height: 7px !important;
+
+  display: block !important;
+  visibility: visible !important;
+  opacity: .92 !important;
+
+  transform:
+    translate(-50%,-50%)
+    rotate(45deg)
+    !important;
+
+  background:
+    #ffffff !important;
+
+  box-shadow:
+    0 0 7px rgba(255,255,255,.85)
+    !important;
+
+  clip-path:
+    polygon(
+      50% 0%,
+      61% 38%,
+      100% 50%,
+      61% 62%,
+      50% 100%,
+      39% 62%,
+      0% 50%,
+      39% 38%
+    );
+}

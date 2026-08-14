@@ -482,6 +482,51 @@ export function MembersPanel() {
           </div>
 
           <div className={`access-account-summary ${styles.contextCard}`}>
+            <div
+              className="invite7145-team-builder-visual"
+              data-autoteams-invite-team-builder-visual="true"
+              aria-label="Atlas Team Intelligence"
+            >
+              <div className="invite7145-orbit" aria-hidden="true">
+                <span className="invite7145-ring invite7145-ring-one"></span>
+                <span className="invite7145-ring invite7145-ring-two"></span>
+                <span className="invite7145-ring invite7145-ring-three"></span>
+
+                <span className="invite7145-person invite7145-person-a">A</span>
+                <span className="invite7145-person invite7145-person-b">B</span>
+                <span className="invite7145-person invite7145-person-c">C</span>
+                <span className="invite7145-person invite7145-person-d">D</span>
+                <span className="invite7145-person invite7145-person-e">E</span>
+
+                <span className="invite7145-line invite7145-line-a"></span>
+                <span className="invite7145-line invite7145-line-b"></span>
+                <span className="invite7145-line invite7145-line-c"></span>
+                <span className="invite7145-line invite7145-line-d"></span>
+                <span className="invite7145-line invite7145-line-e"></span>
+
+                <span className="invite7145-atlas">
+                  <span className="invite7145-spark">✦</span>
+                </span>
+
+                <span className="invite7145-atlas-label">
+                  ATLAS
+                </span>
+              </div>
+
+              <div className="invite7145-intelligence-panel">
+                <small>ATLAS TEAM INTELLIGENCE</small>
+                <strong>Invite people to AutoTeams.</strong>
+
+                <div
+                  className="invite7145-intelligence-chips"
+                  aria-hidden="true"
+                >
+                  <span>Profile</span>
+                  <span>Access</span>
+                  <span>Invite</span>
+                </div>
+              </div>
+            </div>
             <label className={styles.profileControl}>
               <span>
                 Invite to profile
@@ -713,7 +758,27 @@ export function MembersPanel() {
                   </p>
                 </div>
               ) : (
-                <form data-autoteams-invite-form="true" onSubmit={invite}>
+                <form className="invite7141-form" data-autoteams-invite-form="true" data-autoteams-invite-horizontal-v7141="true" onSubmit={invite}>
+                  <label className="invite7141-profile-field">
+                    <span>Invite to profile</span>
+                    <select
+                      value={profileMode}
+                      onChange={(event) => {
+                        const next = event.target.value as ContextMode;
+                        setProfileMode(next);
+                        rememberPreferredProfileMode(next);
+                      }}
+                    >
+                      {profileOptions.map((item) => (
+                        <option key={item.mode} value={item.mode}>
+                          {profileModeLabel(item.mode)}
+                        </option>
+                      ))}
+                    </select>
+                    <small>
+                      {profileOptions.length} profile{profileOptions.length === 1 ? "" : "s"} available
+                    </small>
+                  </label>
                   <label>
                     Name
                     <input
