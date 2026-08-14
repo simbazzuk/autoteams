@@ -23471,3 +23471,52 @@ html[data-theme="light"] .access-page[data-autoteams-invite] .access-side > sect
     display: none;
   }
 }
+/* AutoTeams v7.15.4 - Atlas profile banner scroll/header fix */
+
+/*
+ * The Atlas profile reminder banner was competing with the sticky product
+ * navigation while scrolling. For the MVP the navigation remains sticky,
+ * while the profile reminder behaves like normal page content and scrolls
+ * away with the page.
+ *
+ * This deliberately overrides the older v7.13.62 Atlas Profile Banner rules.
+ */
+.atlas-profile-banner,
+.atlas-profile-banner.is-current {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  z-index: 1 !important;
+}
+
+/*
+ * Do not allow transforms or negative offsets from older banner treatments
+ * to pull the reminder back into the navigation layer.
+ */
+.atlas-profile-banner {
+  transform: none !important;
+}
+
+/*
+ * Keep the profile CTA visually above ordinary page content while remaining
+ * below any sticky/fixed product navigation.
+ */
+.atlas-profile-banner a,
+.atlas-profile-banner button {
+  position: relative;
+  z-index: 2;
+}
+
+/*
+ * On small screens the banner remains part of document flow as well.
+ */
+@media (max-width: 900px) {
+  .atlas-profile-banner,
+  .atlas-profile-banner.is-current {
+    position: static !important;
+    top: auto !important;
+    z-index: 1 !important;
+  }
+}
