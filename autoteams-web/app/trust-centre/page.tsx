@@ -1,3 +1,4 @@
+import { EnterpriseTrustSecurity } from "@/components/trust/EnterpriseTrustSecurity";
 import Link from "next/link";
 import { PageShell } from "@/components/Site";
 import {
@@ -173,6 +174,7 @@ export default function TrustCentrePage() {
           </div>
         </section>
       </main>
-    </PageShell>
+            <EnterpriseTrustSecurity />
+</PageShell>
   );
 }
