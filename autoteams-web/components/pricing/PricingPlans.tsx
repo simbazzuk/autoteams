@@ -160,6 +160,40 @@ export function PricingPlans() {
         may change during early access as AutoTeams develops with user feedback.
       </p>
 
+      {/* AUTO_TEAMS_V7155_PRICING */}
+      <section className={styles.commercialExplainer}>
+        <div className={styles.sectionHeading}>
+          <span>CREDITS &amp; ACCESS</span>
+          <h2>Simple usage. Clear responsibilities.</h2>
+          <p>AutoTeams separates everyday workspace activity from Atlas-powered intelligence. Roles control what people can manage; credits are used when Atlas performs AI-powered analysis.</p>
+        </div>
+        <div className={styles.explainerGrid}>
+          <article className={styles.creditCard}>
+            <div className={styles.explainerTitle}><span className={styles.explainerIcon}>✦</span><div><small>ATLAS CREDITS</small><h3>Use credits when Atlas does the thinking.</h3></div></div>
+            <p>Everyday profile, invitation and workspace activity does not use credits. Credits are reserved for AI-powered recommendations and analysis, making usage easier to understand and manage.</p>
+            <div className={styles.usageList}>
+              <div><span>Create or update a profile</span><strong>NO CREDITS</strong></div>
+              <div><span>Invite people &amp; manage members</span><strong>NO CREDITS</strong></div>
+              <div><span>Build or view saved teams</span><strong>NO CREDITS</strong></div>
+              <div className={styles.creditUse}><span>Generate an Atlas recommendation</span><strong>USES CREDITS</strong></div>
+              <div className={styles.creditUse}><span>Refresh Atlas analysis</span><strong>USES CREDITS</strong></div>
+              <div className={styles.creditUse}><span>Generate Atlas Team Insights</span><strong>USES CREDITS</strong></div>
+            </div>
+            <div className={styles.workspaceCreditNote}><strong>Workspace credits</strong><span>Planned paid-plan credits are shared at workspace level rather than allocated to individual members.</span></div>
+          </article>
+          <article className={styles.roleCard}>
+            <div className={styles.explainerTitle}><span className={styles.explainerIcon}>◎</span><div><small>USER ROLES</small><h3>Give people the access they need.</h3></div></div>
+            <p>Workspace roles define what a person can manage in AutoTeams. They are separate from the profile information Atlas uses for team recommendations.</p>
+            <div className={styles.roleList}>
+              <div><span className={styles.roleBadge}>ADMINISTRATOR</span><strong>Manage the workspace</strong><p>Manage members, invitations, permissions and workspace settings, and build and manage teams.</p></div>
+              <div><span className={styles.roleBadge}>TEAM LEADER</span><strong>Build and understand teams</strong><p>Build teams, use Atlas recommendations and review Team Insights for people available to their workspace.</p></div>
+              <div><span className={styles.roleBadge}>MEMBER</span><strong>Participate and maintain a profile</strong><p>Maintain personal profiles and Atlas information, participate in teams and control profile information used for matching.</p></div>
+            </div>
+          </article>
+        </div>
+        <div className={styles.accessPrinciple}><span>ROLE</span><strong>What can I manage?</strong><b>+</b><span>CREDITS</span><strong>How much Atlas intelligence can the workspace use?</strong></div>
+        <p className={styles.creditsDisclaimer}>Credit quantities and paid-plan allowances are not yet final and may change during early access. Current early-access usage remains subject to the free-plan Atlas AI allowance.</p>
+      </section>
       <section className={styles.proSection}>
         <div className={styles.sectionHeading}>
           <span>WHY PRO?</span>
