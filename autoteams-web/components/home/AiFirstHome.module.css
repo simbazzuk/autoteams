@@ -456,3 +456,88 @@
     font-size: 14px;
   }
 }
+
+/* TEAMSCIENCE_AI_AIFIRSTHOME_ICON_SIZE_PATCH6 */
+
+/* Main action-card icons */
+.actionCard header > span:first-child {
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 58px !important;
+  min-height: 58px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.03em !important;
+}
+
+/* Overview metric icons */
+.metricCard > span:first-child,
+.metrics > a > span:first-child,
+.metrics a > span:first-child {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 12px !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Make short labels such as BT / AI / MG / ST visually balanced. */
+.actionCard header > span:first-child,
+.metricCard > span:first-child,
+.metrics > a > span:first-child,
+.metrics a > span:first-child {
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .actionCard header > span:first-child {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+    font-size: 16px !important;
+  }
+
+  .metricCard > span:first-child,
+  .metrics > a > span:first-child,
+  .metrics a > span:first-child {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    font-size: 12px !important;
+  }
+}
+/* TEAMSCIENCE_AI_HOME_SVG_ICONS_PATCH7_FIX1 */
+.actionCard header > span:first-child svg {
+  width: 30px !important;
+  height: 30px !important;
+  display: block;
+  color: #ffffff;
+}
+
+.metrics a > span:first-child svg,
+.metricCard > span:first-child svg {
+  width: 21px !important;
+  height: 21px !important;
+  display: block;
+  color: #ffffff;
+}
+
+.actionCard header > span:first-child,
+.metrics a > span:first-child,
+.metricCard > span:first-child {
+  font-size: 0 !important;
+}

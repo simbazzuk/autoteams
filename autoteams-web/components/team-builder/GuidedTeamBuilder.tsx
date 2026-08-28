@@ -1030,7 +1030,7 @@ function toggleFinalPerson(
   }
 
   return (
-    <main className={styles.page}>
+    <main className={styles.page} data-teamscience-team-builder="readability-v1">
       <section
         className={styles.hero}
       >

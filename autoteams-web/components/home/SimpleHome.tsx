@@ -120,7 +120,7 @@ export function SimpleHome() {
 
             <div className={styles.actionGrid}>
               <ActionCard
-                icon="▥"
+                icon="BT"
                 title="Build a Team"
                 text={
                   canBuildTeam
@@ -134,7 +134,7 @@ export function SimpleHome() {
               />
 
               <ActionCard
-                icon="♙"
+                icon="AI"
                 title={profileAction.title}
                 text={profileAction.text}
                 label={profileAction.label}
@@ -143,7 +143,7 @@ export function SimpleHome() {
               />
 
               <ActionCard
-                icon="◇"
+                icon="MG"
                 title={organisationAction.title}
                 text={organisationAction.text}
                 label={organisationAction.label}
@@ -217,7 +217,7 @@ function ActionCard({ icon, title, text, label, href, status, primary = false }:
       </header>
       <h3>{title}</h3>
       <p>{text}</p>
-      <Link className="button" href={href}>{label} →</Link>
+      <Link className="button" href={href}>{label} -&gt;</Link>
     </article>
   );
 }
@@ -231,12 +231,12 @@ function ReadinessItem({ number, title, text, complete, href }: {
 }) {
   return (
     <Link href={href}>
-      <span className={complete ? styles.completeStep : styles.incompleteStep}>{complete ? "✓" : number}</span>
+      <span className={complete ? styles.completeStep : styles.incompleteStep}>{complete ? "OK" : number}</span>
       <div>
         <strong>{title}</strong>
         <p>{text}</p>
       </div>
-      <em>{complete ? "Ready" : "Set up"} →</em>
+      <em>{complete ? "Ready" : "Set up"} -&gt;</em>
     </Link>
   );
 }
@@ -246,7 +246,7 @@ function Metric({ label, value, href }: { label: string; value: number; href: st
     <Link href={href}>
       <small>{label}</small>
       <strong>{value}</strong>
-      <span>Open →</span>
+      <span>Open -&gt;</span>
     </Link>
   );
 }

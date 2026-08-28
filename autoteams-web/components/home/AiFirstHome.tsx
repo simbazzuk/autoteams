@@ -1,5 +1,7 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 import { appConfig } from "@/lib/app-config";
 
 import Link from "next/link";
@@ -218,7 +220,7 @@ export function AiFirstHome() {
 
             <div className={styles.actionGrid}>
               <ActionCard
-                icon="â–¥"
+                icon={<TeamScienceHomeIcon kind="team" />}
                 title="Build a Team"
                 text={
                   canBuild
@@ -236,7 +238,7 @@ export function AiFirstHome() {
               />
 
               <ActionCard
-                icon="✦"
+                icon={<TeamScienceHomeIcon kind="sparkles" />}
                 title="Gemini Team Coach"
                 text="Improve recommendation quality by helping Gemini understand how you collaborate."
                 status={`${profileQuality}% profile quality`}
@@ -249,7 +251,7 @@ export function AiFirstHome() {
               />
 
               <ActionCard
-                icon="â—‡"
+                icon={<TeamScienceHomeIcon kind="group" />}
                 title="Manage My Group"
                 text={
                   workspace
@@ -283,25 +285,25 @@ export function AiFirstHome() {
 
             <div className={styles.metrics}>
               <Metric
-                icon="â—‡"
+                icon={<TeamScienceHomeIcon kind="groups" />}
                 label="Groups"
                 value={workspaces.length}
                 href="/organisation"
               />
               <Metric
-                icon="â™™"
+                icon={<TeamScienceHomeIcon kind="person" />}
                 label="People"
                 value={workspacePeople.length}
                 href="/people"
               />
               <Metric
-                icon="â–¥"
+                icon={<TeamScienceHomeIcon kind="bookmark" />}
                 label="Saved teams"
                 value={savedTeams}
                 href="/teams"
               />
               <Metric
-                icon="✦"
+                icon={<TeamScienceHomeIcon kind="chart" />}
                 label="AI profile quality"
                 value={`${profileQuality}%`}
                 href="/gemini-team-coach"
@@ -355,7 +357,7 @@ function ActionCard({
   label,
   primary = false,
 }: {
-  icon: string;
+  icon: ReactNode;
   title: string;
   text: string;
   status: string;
@@ -399,7 +401,7 @@ function Metric({
   value,
   href,
 }: {
-  icon: string;
+  icon: ReactNode;
   label: string;
   value: number | string;
   href: string;
@@ -533,3 +535,93 @@ function dayPart(): string {
 }
 
 
+
+/* TEAMSCIENCE_AI_HOME_SVG_ICONS_PATCH7_FIX1 */
+function TeamScienceHomeIcon({
+  kind,
+}: {
+  kind:
+    | "team"
+    | "sparkles"
+    | "group"
+    | "groups"
+    | "person"
+    | "bookmark"
+    | "chart";
+}) {
+  const common = {
+    width: 28,
+    height: 28,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.9,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+  };
+
+  if (kind === "team" || kind === "groups") {
+    return (
+      <svg {...common}>
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        {kind === "team" ? (
+          <>
+            <path d="M19 8v6" />
+            <path d="M16 11h6" />
+          </>
+        ) : null}
+      </svg>
+    );
+  }
+
+  if (kind === "sparkles") {
+    return (
+      <svg {...common}>
+        <path d="m12 3-1.2 3.3a4 4 0 0 1-2.5 2.5L5 10l3.3 1.2a4 4 0 0 1 2.5 2.5L12 17l1.2-3.3a4 4 0 0 1 2.5-2.5L19 10l-3.3-1.2a4 4 0 0 1-2.5-2.5L12 3Z" />
+        <path d="m19 3 .5 1.5L21 5l-1.5.5L19 7l-.5-1.5L17 5l1.5-.5L19 3Z" />
+      </svg>
+    );
+  }
+
+  if (kind === "group") {
+    return (
+      <svg {...common}>
+        <path d="M3 21h18" />
+        <path d="M5 21V10h14v11" />
+        <path d="m4 10 8-6 8 6" />
+        <path d="M9 14h6" />
+        <path d="M9 18h6" />
+      </svg>
+    );
+  }
+
+  if (kind === "person") {
+    return (
+      <svg {...common}>
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4 21a8 8 0 0 1 16 0" />
+      </svg>
+    );
+  }
+
+  if (kind === "bookmark") {
+    return (
+      <svg {...common}>
+        <path d="M6 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18l-6-4-6 4V4Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg {...common}>
+      <path d="M4 20V10" />
+      <path d="M10 20V4" />
+      <path d="M16 20v-7" />
+      <path d="M22 20V7" />
+    </svg>
+  );
+}
