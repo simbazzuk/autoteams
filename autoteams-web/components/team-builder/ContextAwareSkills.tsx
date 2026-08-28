@@ -534,7 +534,16 @@ export function ContextAwareSkills({
           styles.skills
         }
       >
-        {suggestedSkills.map(
+                {/* TEAMSCIENCE_AI_V715782_BUILD_TEAM_PLUS_LEGEND */}
+        <div
+          data-teamscience-skill-legend-v715782="true"
+          aria-label="Suggested strength controls"
+        >
+          <span aria-hidden="true">+</span>
+          <strong>Add suggested strength</strong>
+          <small>Select a strength to include it in the team requirement.</small>
+        </div>
+{suggestedSkills.map(
           (skill) => {
             const selected =
               selectedSkills.includes(
@@ -563,9 +572,12 @@ export function ContextAwareSkills({
                   )
                 }
               >
-                <span>
+                <span
+                  data-teamscience-skill-toggle-v715782={selected ? "selected" : "add"}
+                  aria-hidden="true"
+                >
                   {selected
-                    ? "✓"
+                    ? "\u2713"
                     : "+"}
                 </span>
 
