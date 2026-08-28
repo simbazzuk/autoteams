@@ -1,3 +1,4 @@
+/* TEAMSCIENCE_AI_V71579_PEOPLE_CARD_COLOUR */
 "use client";
 
 import Link from "next/link";
@@ -289,7 +290,7 @@ export function PeopleDirectory() {
                 );
 
                 return (
-                  <article className="people38-card" key={person.id}>
+                  <article className="people38-card" key={person.id} data-teamscience-people-card-v71579="true">
                     <div className="people38-card-top">
                       <div className="people38-avatar">
                         {initials(person.name || "AT")}
