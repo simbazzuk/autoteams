@@ -25438,3 +25438,142 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
 .teamscience-saved-teams-panel-v7157101 > footer a:hover {
   color: #fed7aa !important;
 }
+/* TEAMSCIENCE_AI_V7157103_MOBILE_ALLOWANCE_BAR */
+
+/*
+ * Mobile fix:
+ * The desktop allowance controls sit at the far right of the header.
+ * On narrow screens they can end up beyond the horizontally scrollable
+ * navigation. Keep the allowance area in normal flow, on its own row,
+ * so Credits and Saved teams are always visible and tappable.
+ */
+@media (max-width: 720px) {
+
+  /* The allowance wrapper already exists around AtlasAiAllowanceBadge. */
+  [data-autoteams-ai-allowance="true"] {
+    position:relative!important;
+    inset:auto!important;
+    top:auto!important;
+    right:auto!important;
+    bottom:auto!important;
+    left:auto!important;
+
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    flex-wrap:nowrap!important;
+    gap:8px!important;
+
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:8px 14px 9px!important;
+
+    overflow:visible!important;
+    transform:none!important;
+    z-index:60!important;
+
+    border-top:1px solid rgba(99,102,241,.16)!important;
+    border-bottom:1px solid rgba(99,102,241,.24)!important;
+    background:
+      linear-gradient(90deg,rgba(15,23,42,.98),rgba(20,27,49,.98))!important;
+    box-sizing:border-box!important;
+  }
+
+  /*
+   * Credits remains compact. v7.15.7.10.1 already separated Saved teams
+   * into its own button.
+   */
+  [data-autoteams-ai-allowance="true"] > button {
+    position:relative!important;
+    flex:0 0 auto!important;
+    min-width:0!important;
+    width:auto!important;
+    max-width:none!important;
+    margin:0!important;
+    transform:none!important;
+  }
+
+  .teamscience-credit-only-row-v7157101 {
+    min-width:0!important;
+    width:auto!important;
+    padding:5px 9px!important;
+  }
+
+  /* Saved teams sits beside Credits rather than disappearing off-screen. */
+  .teamscience-saved-teams-dropdown-v7157101 {
+    position:relative!important;
+    flex:0 0 auto!important;
+    min-width:0!important;
+    width:auto!important;
+    margin:0!important;
+  }
+
+  .teamscience-saved-teams-trigger-v7157101 {
+    min-width:0!important;
+    width:auto!important;
+    max-width:none!important;
+    min-height:32px!important;
+    padding:5px 9px!important;
+  }
+
+  /* Keep both labels readable on iPhone-sized screens. */
+  .teamscience-credit-indicator-label-v7157831,
+  .teamscience-saved-teams-trigger-v7157101 > span:first-child {
+    display:inline!important;
+    white-space:nowrap!important;
+  }
+
+  /*
+   * The Saved Teams panel should open beneath its button while staying
+   * inside the viewport.
+   */
+  .teamscience-saved-teams-panel-v7157101 {
+    position:absolute!important;
+    top:calc(100% + 8px)!important;
+    right:auto!important;
+    left:0!important;
+    width:min(330px,calc(100vw - 28px))!important;
+    max-width:calc(100vw - 28px)!important;
+    z-index:1400!important;
+  }
+
+  /*
+   * Allowance popup from Credits can otherwise inherit desktop positioning.
+   * Keep any immediate popup/panel inside the mobile viewport.
+   */
+  [data-autoteams-ai-allowance="true"] > [role="dialog"],
+  [data-autoteams-ai-allowance="true"] > section {
+    max-width:calc(100vw - 28px)!important;
+  }
+}
+
+/* Very narrow phones: tighten spacing rather than hiding either counter. */
+@media (max-width: 390px) {
+  [data-autoteams-ai-allowance="true"] {
+    gap:6px!important;
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+
+  .teamscience-credit-only-row-v7157101,
+  .teamscience-saved-teams-trigger-v7157101 {
+    padding-left:7px!important;
+    padding-right:7px!important;
+    gap:5px!important;
+  }
+
+  .teamscience-credit-indicator-label-v7157831,
+  .teamscience-saved-teams-trigger-v7157101 > span:first-child {
+    font-size:9px!important;
+  }
+
+  .teamscience-credit-indicator-value-v7157831,
+  .teamscience-saved-teams-trigger-v7157101 > strong {
+    min-width:31px!important;
+    padding-left:5px!important;
+    padding-right:5px!important;
+    font-size:10px!important;
+  }
+}
