@@ -541,3 +541,204 @@
 .metricCard > span:first-child {
   font-size: 0 !important;
 }
+/* TEAMSCIENCE_AI_V71577_HOME_COLOUR_POLISH */
+
+/* Main workflow section gets a subtle colour wash */
+.start,
+.overview {
+  position: relative;
+  overflow: hidden;
+}
+
+.start {
+  border-color: rgba(93, 91, 170, .42);
+  background:
+    radial-gradient(760px 300px at 0% 0%, rgba(139, 92, 246, .12), transparent 70%),
+    radial-gradient(620px 280px at 100% 0%, rgba(59, 130, 246, .10), transparent 72%),
+    linear-gradient(145deg, rgba(24, 31, 53, .97), rgba(18, 27, 45, .98));
+}
+
+.overview {
+  border-color: rgba(72, 91, 130, .45);
+  background:
+    radial-gradient(700px 280px at 0% 0%, rgba(99, 102, 241, .10), transparent 72%),
+    radial-gradient(620px 260px at 100% 0%, rgba(14, 165, 233, .08), transparent 72%),
+    linear-gradient(145deg, rgba(24, 31, 53, .97), rgba(18, 27, 45, .98));
+}
+
+/* Primary action cards */
+.actionGrid > * {
+  border-color: rgba(69, 86, 123, .58);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, .13);
+}
+
+.actionGrid > *:nth-child(1) {
+  border-color: rgba(139, 92, 246, .48);
+  background:
+    radial-gradient(420px 220px at 0% 0%, rgba(139, 92, 246, .20), transparent 74%),
+    linear-gradient(145deg, rgba(34, 29, 69, .98), rgba(17, 25, 43, .98));
+}
+
+.actionGrid > *:nth-child(2) {
+  border-color: rgba(59, 130, 246, .46);
+  background:
+    radial-gradient(420px 220px at 0% 0%, rgba(59, 130, 246, .18), transparent 74%),
+    linear-gradient(145deg, rgba(21, 38, 71, .98), rgba(17, 25, 43, .98));
+}
+
+.actionGrid > *:nth-child(3) {
+  border-color: rgba(16, 185, 129, .44);
+  background:
+    radial-gradient(420px 220px at 0% 0%, rgba(16, 185, 129, .18), transparent 74%),
+    linear-gradient(145deg, rgba(18, 48, 52, .98), rgba(17, 25, 43, .98));
+}
+
+/* Icon circles */
+.actionGrid > *:nth-child(1) header > span {
+  color: #ffffff;
+  border-color: rgba(168, 85, 247, .44);
+  background: linear-gradient(145deg, rgba(126, 34, 206, .48), rgba(79, 70, 229, .26));
+  box-shadow: 0 10px 30px rgba(126, 34, 206, .20);
+}
+
+.actionGrid > *:nth-child(2) header > span {
+  color: #ffffff;
+  border-color: rgba(59, 130, 246, .44);
+  background: linear-gradient(145deg, rgba(37, 99, 235, .48), rgba(59, 130, 246, .22));
+  box-shadow: 0 10px 30px rgba(37, 99, 235, .18);
+}
+
+.actionGrid > *:nth-child(3) header > span {
+  color: #ffffff;
+  border-color: rgba(16, 185, 129, .44);
+  background: linear-gradient(145deg, rgba(5, 150, 105, .48), rgba(16, 185, 129, .22));
+  box-shadow: 0 10px 30px rgba(5, 150, 105, .18);
+}
+
+/* Small status pills */
+.actionGrid > *:nth-child(1) header > small {
+  color: #d8b4fe;
+  background: rgba(126, 34, 206, .18);
+  border-color: rgba(168, 85, 247, .28);
+}
+
+.actionGrid > *:nth-child(2) header > small {
+  color: #93c5fd;
+  background: rgba(37, 99, 235, .18);
+  border-color: rgba(59, 130, 246, .28);
+}
+
+.actionGrid > *:nth-child(3) header > small {
+  color: #86efac;
+  background: rgba(5, 150, 105, .18);
+  border-color: rgba(16, 185, 129, .28);
+}
+
+/* Buttons stay consistent, but inherit subtle card identity */
+.actionGrid > *:nth-child(1) a[class*="button"] {
+  background: linear-gradient(135deg, #8b5cf6, #4f8cff);
+}
+
+.actionGrid > *:nth-child(2) a[class*="button"] {
+  background: linear-gradient(135deg, #6366f1, #0ea5e9);
+}
+
+.actionGrid > *:nth-child(3) a[class*="button"] {
+  background: linear-gradient(135deg, #14b8a6, #10b981);
+}
+
+/* Overview tiles */
+.metrics > * {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(68, 84, 117, .56);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
+}
+
+.metrics > *:nth-child(1) {
+  border-color: rgba(139, 92, 246, .46);
+  background:
+    radial-gradient(320px 150px at 0% 0%, rgba(139, 92, 246, .18), transparent 72%),
+    linear-gradient(145deg, rgba(31, 26, 62, .98), rgba(17, 25, 43, .98));
+}
+
+.metrics > *:nth-child(2) {
+  border-color: rgba(59, 130, 246, .44);
+  background:
+    radial-gradient(320px 150px at 0% 0%, rgba(59, 130, 246, .17), transparent 72%),
+    linear-gradient(145deg, rgba(20, 36, 64, .98), rgba(17, 25, 43, .98));
+}
+
+.metrics > *:nth-child(3) {
+  border-color: rgba(16, 185, 129, .42);
+  background:
+    radial-gradient(320px 150px at 0% 0%, rgba(16, 185, 129, .16), transparent 72%),
+    linear-gradient(145deg, rgba(17, 42, 48, .98), rgba(17, 25, 43, .98));
+}
+
+.metrics > *:nth-child(4) {
+  border-color: rgba(236, 72, 153, .42);
+  background:
+    radial-gradient(320px 150px at 0% 0%, rgba(236, 72, 153, .16), transparent 72%),
+    linear-gradient(145deg, rgba(43, 26, 47, .98), rgba(17, 25, 43, .98));
+}
+
+/* Coloured values and Open links */
+.metrics > *:nth-child(1) strong,
+.metrics > *:nth-child(1) span { color: #a78bfa; }
+
+.metrics > *:nth-child(2) strong,
+.metrics > *:nth-child(2) span { color: #60a5fa; }
+
+.metrics > *:nth-child(3) strong,
+.metrics > *:nth-child(3) span { color: #34d399; }
+
+.metrics > *:nth-child(4) strong,
+.metrics > *:nth-child(4) span { color: #f472b6; }
+
+/* Make icons feel more intentional */
+.metrics > *:nth-child(1) [class*="icon"] {
+  background: rgba(126, 34, 206, .28);
+  border-color: rgba(168, 85, 247, .35);
+}
+
+.metrics > *:nth-child(2) [class*="icon"] {
+  background: rgba(37, 99, 235, .28);
+  border-color: rgba(59, 130, 246, .35);
+}
+
+.metrics > *:nth-child(3) [class*="icon"] {
+  background: rgba(5, 150, 105, .28);
+  border-color: rgba(16, 185, 129, .35);
+}
+
+.metrics > *:nth-child(4) [class*="icon"] {
+  background: rgba(190, 24, 93, .28);
+  border-color: rgba(236, 72, 153, .35);
+}
+
+/* Gentle hover feedback */
+.actionGrid > *,
+.metrics > * {
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.actionGrid > *:hover,
+.metrics > *:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, .18);
+}
+
+@media (max-width: 760px) {
+  .actionGrid > *,
+  .metrics > * {
+    transform: none !important;
+  }
+
+  .start,
+  .overview {
+    background:
+      radial-gradient(520px 220px at 0% 0%, rgba(99, 102, 241, .10), transparent 72%),
+      linear-gradient(145deg, rgba(24, 31, 53, .98), rgba(18, 27, 45, .99));
+  }
+}
