@@ -25577,3 +25577,36 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
     font-size:10px!important;
   }
 }
+/* TEAMSCIENCE_AI_V71571041_HIDE_DUPLICATE_FREE_TRIAL */
+
+/*
+ * Invite page:
+ * Keep the concise explanation inside Workspace role -> Member,
+ * but remove the second standalone Free trial information banner.
+ */
+.access-page .teamscience-free-trial-note-v16,
+.access-page .autoteams-permission-v71376-note.teamscience-free-trial-note-v16 {
+  display: none !important;
+}
+/* TEAMSCIENCE_AI_V71571042_INVITE_DUPLICATE_FINAL_FIX */
+
+/*
+ * Final duplicate-message fix.
+ *
+ * The remaining purple banner is the permission-guide note itself.
+ * Earlier patches targeted a more specific class that is no longer present
+ * in the current rendered markup.
+ *
+ * Keep the Workspace role -> Member explanation inside the invite form,
+ * but suppress the standalone permission-guide note beneath it.
+ */
+.access-page[data-autoteams-invite] .autoteams-permission-v71376-note {
+  display: none !important;
+}
+
+/* Defensive selectors for later invite-page wrappers/variants. */
+.access-page .invite85-permission-panel .autoteams-permission-v71376-note,
+.access-page .invite86-permission-panel .autoteams-permission-v71376-note,
+.access-page [data-autoteams-permission-guide-v71376="true"] .autoteams-permission-v71376-note {
+  display: none !important;
+}

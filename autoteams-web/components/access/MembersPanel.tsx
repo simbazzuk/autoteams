@@ -1200,13 +1200,7 @@ export function MembersPanel() {
               </div>
 
               </section>
-
-<section className="teamscience-free-trial-strip-v21" aria-label="Free trial role guidance">
-  <span className="teamscience-free-trial-strip-icon-v21" aria-hidden="true">i</span>
-  <p className="teamscience-free-trial-strip-copy-v21">
-    <strong>Free trial:</strong> everyone invited joins as a Member. Only the Workspace Owner can promote a Member to Team Leader or return a Team Leader to Member.
-  </p>
-</section>
+                {/* TEAMSCIENCE_AI_V71571043_DUPLICATE_FREE_TRIAL_REMOVED */}
           </aside>
         </div>
       </section>
