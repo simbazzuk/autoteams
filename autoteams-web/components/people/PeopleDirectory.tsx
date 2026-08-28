@@ -160,7 +160,7 @@ export function PeopleDirectory() {
     contexts.find((item) => item.id === context) ?? contexts[0];
 
   return (
-    <main className="people38-page">
+    <main className="people38-page" data-teamscience-people-mobile-v71575="true">
       <section className="people38-hero">
         <div className="container people38-hero-grid">
           <div>
@@ -181,7 +181,7 @@ export function PeopleDirectory() {
             </div>
           </div>
 
-          <aside className="people38-atlas-card">
+          <aside className="people38-atlas-card" data-teamscience-people-help-v71575="true">
             <span className="eyebrow">Powered by Atlas</span>
             <h2>Find the right mix of people.</h2>
             <p>
@@ -198,7 +198,7 @@ export function PeopleDirectory() {
       </section>
 
       <section className="container people38-body">
-        <div className="people38-stats">
+        <div className="people38-stats" data-teamscience-people-metrics-v71575="true">
           <article>
             <small>People in network</small>
             <strong>{people.length}</strong>

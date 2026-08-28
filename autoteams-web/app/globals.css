@@ -24682,3 +24682,23 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
   margin-top:28px!important;
   margin-bottom:34px!important;
 }
+/* TEAMSCIENCE_AI_V71575_PEOPLE_MOBILE_LAYOUT */
+@media (max-width:720px){
+[data-teamscience-people-mobile-v71575="true"]{width:100%!important;max-width:100%!important;overflow-x:hidden!important;padding-bottom:120px!important}
+[data-teamscience-people-mobile-v71575="true"] .container{width:calc(100% - 24px)!important;max-width:none!important;margin-left:12px!important;margin-right:12px!important}
+[data-teamscience-people-mobile-v71575="true"] section,[data-teamscience-people-mobile-v71575="true"] aside,[data-teamscience-people-mobile-v71575="true"] article{max-width:100%!important;box-sizing:border-box!important}
+[data-teamscience-people-help-v71575="true"]{min-height:0!important;height:auto!important;padding:20px!important;margin-bottom:18px!important}
+[data-teamscience-people-help-v71575="true"] h1,[data-teamscience-people-help-v71575="true"] h2{font-size:28px!important;line-height:1.12!important}
+[data-teamscience-people-help-v71575="true"] p{font-size:15px!important;line-height:1.55!important;margin-bottom:12px!important}
+[data-teamscience-people-metrics-v71575="true"]{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;width:100%!important;min-height:0!important;height:auto!important;padding:0!important;margin:16px 0 20px!important;border:0!important;background:transparent!important}
+[data-teamscience-people-metrics-v71575="true"]>*{min-width:0!important;width:auto!important;min-height:116px!important;height:auto!important;padding:16px 12px!important;margin:0!important;border:1px solid rgba(78,94,132,.48)!important;border-radius:14px!important;background:rgba(20,31,54,.86)!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important}
+[data-teamscience-people-metrics-v71575="true"] span,[data-teamscience-people-metrics-v71575="true"] small{font-size:12px!important;line-height:1.35!important}
+[data-teamscience-people-metrics-v71575="true"] strong{margin-top:8px!important;font-size:30px!important;line-height:1!important}
+[data-teamscience-people-mobile-v71575="true"] section+section{margin-top:18px!important}
+[data-teamscience-people-mobile-v71575="true"] .people40-network-actions{padding:18px!important;margin-top:18px!important}
+.atlas-support-launcher,.atlas-support-button,[data-atlas-support-launcher],[aria-label="Ask Atlas"]{bottom:calc(88px + env(safe-area-inset-bottom))!important;right:14px!important;max-width:calc(100vw - 28px)!important}
+}
+@media (max-width:390px){
+[data-teamscience-people-metrics-v71575="true"]>*{min-height:108px!important;padding:14px 8px!important}
+[data-teamscience-people-metrics-v71575="true"] strong{font-size:27px!important}
+}
