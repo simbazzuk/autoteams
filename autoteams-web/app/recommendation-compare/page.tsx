@@ -1,3 +1,4 @@
+import { WorkspaceFeatureGate } from "@/components/entitlements/WorkspaceFeatureGate";
 import {
   PageShell,
 } from "@/components/Site";
@@ -45,7 +46,7 @@ export default function RecommendationComparePage() {
             risk and team health changed.
           </p>
 
-          <RecommendationCompare />
+          <WorkspaceFeatureGate entitlement="compare_teams" title="Compare Teams"><RecommendationCompare /></WorkspaceFeatureGate>
         </div>
       </section>
     </PageShell>

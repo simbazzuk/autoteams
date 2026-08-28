@@ -29,6 +29,12 @@ import { ProductIcon } from "@/components/ui/ProductIcon";
 import { requestTeamRecommendation } from "@/lib/ai/recommendation-client";
 import { persistRecommendation } from "@/lib/firebase/recommendation-persistence";
 import type { GeminiTeamRecommendation } from "@/lib/ai/recommendation-types";
+import {
+  countSavedTeamsForWorkspace,
+  incrementEntitlementUsage,
+  recommendationAllowance,
+} from "@/lib/entitlement-usage";
+import { getWorkspacePlan, planDefinition } from "@/lib/entitlements";
 import styles from "./GuidedTeamBuilder.module.css";
 
 type FriendlyWorkspaceType = Exclude<
@@ -629,6 +635,16 @@ export function GuidedTeamBuilder() {
   async function generateRecommendation(
     event: FormEvent<HTMLFormElement>,
   ) {
+    /* TEAMSCIENCE_V71571_RECOMMENDATION_LIMIT */
+    const entitlementPlan = getWorkspacePlan(activeWorkspaceId);
+    const allowance = recommendationAllowance(activeWorkspaceId, entitlementPlan);
+    if (!allowance.allowed) {
+      setGenerationError(
+        `Free plan recommendation limit reached (${allowance.used}/${allowance.limit}). Upgrade to Pro for unlimited recommendations.`,
+      );
+      return;
+    }
+
     event.preventDefault();
 
     setIsGenerating(true);
@@ -767,6 +783,8 @@ export function GuidedTeamBuilder() {
       setFinalPeople(
         result.recommendedPersonIds,
       );
+      /* TEAMSCIENCE_V71571_RECOMMENDATION_INCREMENT */
+      incrementEntitlementUsage(activeWorkspaceId, "recommendations");
       setStep("recommendation");
     } catch (error) {
       setGenerationError(
@@ -918,6 +936,17 @@ function toggleFinalPerson(
       !activeWorkspace ||
       selectedTeam.length === 0
     ) {
+      return;
+    }
+
+        /* TEAMSCIENCE_V71571_SAVED_TEAM_LIMIT */
+    const entitlementPlan = getWorkspacePlan(activeWorkspaceId);
+    const savedTeamLimit = planDefinition(entitlementPlan).limits.savedTeams;
+    const savedTeamCount = countSavedTeamsForWorkspace(activeWorkspaceId, TEAM_KEY);
+    if (savedTeamLimit !== null && savedTeamCount >= savedTeamLimit) {
+      setMessage(
+        `Free plan saved-team limit reached (${savedTeamCount}/${savedTeamLimit}). Upgrade to Pro for unlimited saved teams.`,
+      );
       return;
     }
 

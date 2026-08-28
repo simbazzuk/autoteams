@@ -1,5 +1,7 @@
 "use client";
 
+import { PlanUsageDashboard } from "@/components/entitlements/PlanUsageDashboard";
+
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { createOwnedWorkspace } from "@/lib/access-bootstrap";
@@ -16,6 +18,9 @@ import {
 } from "@/lib/workspaces";
 import { useWorkspaceAccess } from "@/components/access/AccessContext";
 import { roleLabel } from "@/lib/workspace-access";
+import { getWorkspacePlan, planDefinition } from "@/lib/entitlements";
+import { WorkspacePlanBadge } from "@/components/entitlements/WorkspacePlanBadge";
+import { PlanDevSwitcher } from "@/components/entitlements/PlanDevSwitcher";
 import {
   BusinessIcon,
   CommunityIcon,
@@ -117,6 +122,9 @@ export function WorkspacesPanel() {
 
   return (
     <main className={styles.page}>
+      <div className="container teamscience-plan-usage-placement-v71572">
+        <PlanUsageDashboard />
+      </div>
       <section className={styles.hero}>
         <div className="container">
           <span className="eyebrow">Workspaces</span>
@@ -141,7 +149,7 @@ export function WorkspacesPanel() {
                   inside the active workspace.
                 </p>
               </div>
-              <span>{items.length}</span>
+              <div className="teamscience-workspace-plan-v71571"><WorkspacePlanBadge workspaceId={active} /><span>{items.length}</span></div>
             </div>
 
             <div className={styles.grid}>
@@ -367,7 +375,8 @@ export function WorkspacesPanel() {
           </aside>
         </div>
       </section>
-    </main>
+          <PlanDevSwitcher workspaceId={active} />
+</main>
   );
 }
 

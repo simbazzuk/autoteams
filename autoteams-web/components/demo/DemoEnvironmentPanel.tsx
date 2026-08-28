@@ -1,5 +1,7 @@
 "use client";
 
+import { EntitlementTestPanel } from "@/components/entitlements/EntitlementTestPanel";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
@@ -141,7 +143,10 @@ export function DemoEnvironmentPanel() {
           </section>
         </div>
       </section>
-    </main>
+          <div className="container teamscience-entitlement-test-placement-v71574">
+        <EntitlementTestPanel />
+      </div>
+</main>
   );
 }
 

@@ -23694,3 +23694,991 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
     font-size: 11px !important;
   }
 }
+/* TEAMSCIENCE_AI_INVITE_READABILITY_ALIGNMENT_PATCH12 */
+
+/* Scope readability improvements to the Invite / Members experience only. */
+.access-page {
+  font-size: 15px;
+}
+
+.access-page p {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
+.access-page small {
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+}
+
+.access-page label,
+.access-page input,
+.access-page select,
+.access-page textarea,
+.access-page button {
+  font-size: 14px;
+}
+
+/* Permission Guide heading and intro */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-head h2 {
+  font-size: 28px !important;
+  line-height: 1.15 !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-head p {
+  font-size: 14px !important;
+}
+
+/* Role-card titles */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-title strong {
+  font-size: 17px !important;
+  line-height: 1.25 !important;
+}
+
+/* Role badge / pill text */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-title span {
+  font-size: 11px !important;
+}
+
+/* Role responsibilities */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-items {
+  gap: 11px !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-items span {
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+}
+
+/* Bottom role-card explanatory copy */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-card > p {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+
+/* Free-trial notice: align icon and text properly, remove narrow centered text column. */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note {
+  display: grid !important;
+  grid-template-columns: 42px minmax(0, 1fr) !important;
+  align-items: center !important;
+  column-gap: 16px !important;
+  width: 100% !important;
+  padding: 16px 18px !important;
+  text-align: left !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note > span:first-child,
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note > b:first-child {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  justify-self: center !important;
+  margin: 0 !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note > div,
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note > p {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  text-align: left !important;
+  justify-self: stretch !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note strong {
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note p,
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note span {
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+}
+
+/* Pending Invitations / Invite links */
+.access-page h2,
+.access-page h3 {
+  line-height: 1.2;
+}
+
+.access-page [data-autoteams-pending-invites="true"],
+.access-page [data-autoteams-invite-panel="true"] {
+  font-size: 14px;
+}
+
+/* Invitation tables / rows */
+.access-page table,
+.access-page th,
+.access-page td {
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+}
+
+@media (max-width: 760px) {
+  .access-page {
+    font-size: 14px;
+  }
+
+  [data-autoteams-permission-guide-v71376="true"]
+  .autoteams-permission-v71376-note {
+    grid-template-columns: 36px minmax(0, 1fr) !important;
+    column-gap: 12px !important;
+    padding: 14px !important;
+  }
+
+  [data-autoteams-permission-guide-v71376="true"]
+  .autoteams-permission-v71376-items span {
+    font-size: 12px !important;
+  }
+}
+/* TEAMSCIENCE_AI_INVITE_NOTE_LAYOUT_PATCH13 */
+
+/*
+  Strong override for the Permission Guide free-trial notice.
+  Patch12 improved readability but the existing component styling still
+  constrained the copy into a narrow centered column. Use flex and force
+  the text content to consume the full available width.
+*/
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 18px !important;
+  width: 100% !important;
+  min-height: 86px !important;
+  padding: 18px 22px !important;
+  margin: 14px 0 0 !important;
+  text-align: left !important;
+}
+
+/* Info icon */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note > :first-child {
+  flex: 0 0 34px !important;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  max-width: 34px !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  align-self: center !important;
+}
+
+/* Text content - remove all width constraints inherited from older invite styles. */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note > :not(:first-child) {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+  justify-self: auto !important;
+  align-self: center !important;
+}
+
+/* Handle either direct paragraph markup or a nested wrapper. */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note p,
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note div,
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note div p {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+/* Make the notice read like one concise horizontal explanation. */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note p {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note strong {
+  display: inline !important;
+  font-size: 14px !important;
+  line-height: inherit !important;
+  margin: 0 !important;
+}
+
+/* Prevent legacy rules from forcing narrow fixed widths. */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note * {
+  box-sizing: border-box;
+}
+
+/* Desktop: keep the copy comfortably wide rather than centred in the banner. */
+@media (min-width: 761px) {
+  [data-autoteams-permission-guide-v71376="true"]
+  .autoteams-permission-v71376-note {
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+  }
+}
+
+/* Mobile: stack only when space genuinely becomes limited. */
+@media (max-width: 620px) {
+  [data-autoteams-permission-guide-v71376="true"]
+  .autoteams-permission-v71376-note {
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 15px !important;
+  }
+
+  [data-autoteams-permission-guide-v71376="true"]
+  .autoteams-permission-v71376-note p {
+    font-size: 13px !important;
+  }
+}
+/* TEAMSCIENCE_AI_INVITE_NOTE_STRUCTURE_PATCH14 */
+
+.teamscience-free-trial-note {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 18px !important;
+  width: 100% !important;
+  min-height: 88px !important;
+  padding: 18px 24px !important;
+  margin-top: 14px !important;
+  text-align: left !important;
+}
+
+.teamscience-free-trial-note-icon {
+  flex: 0 0 34px !important;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  background: linear-gradient(135deg, #7868ff, #4f8cff) !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+.teamscience-free-trial-note-content {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  width: auto !important;
+  display: grid !important;
+  gap: 3px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.teamscience-free-trial-note-content p {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+}
+
+.teamscience-free-trial-note-content strong {
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+/* Neutralise older descendant-width rules applied to the same legacy note class. */
+.teamscience-free-trial-note > * {
+  max-width: none !important;
+}
+
+@media (max-width: 620px) {
+  .teamscience-free-trial-note {
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 15px !important;
+  }
+
+  .teamscience-free-trial-note-content p {
+    font-size: 13px !important;
+  }
+}
+/* TEAMSCIENCE_AI_INVITE_NOTE_FINAL_LAYOUT_PATCH15 */
+
+/*
+  Final override for the rebuilt Free Trial banner.
+  The inner content was still inheriting legacy card styles, producing
+  a narrow dark box and a large gap between the icon and copy.
+*/
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note.teamscience-free-trial-note {
+  display: grid !important;
+  grid-template-columns: 40px minmax(0, 1fr) !important;
+  align-items: center !important;
+  justify-content: stretch !important;
+  gap: 14px !important;
+  width: 100% !important;
+  min-height: 84px !important;
+  padding: 18px 22px !important;
+  margin: 14px 0 0 !important;
+  text-align: left !important;
+}
+
+/* Keep the info icon compact and aligned with the copy. */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note.teamscience-free-trial-note
+.teamscience-free-trial-note-icon {
+  grid-column: 1 !important;
+  justify-self: start !important;
+  align-self: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  max-width: 32px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Completely neutralise the old inner-card styling. */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note.teamscience-free-trial-note
+.teamscience-free-trial-note-content {
+  grid-column: 2 !important;
+  display: block !important;
+  justify-self: stretch !important;
+  align-self: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  text-align: left !important;
+}
+
+/* Also reset any generic legacy rules applied to nested divs. */
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note.teamscience-free-trial-note
+.teamscience-free-trial-note-content,
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note.teamscience-free-trial-note
+.teamscience-free-trial-note-content * {
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note.teamscience-free-trial-note
+.teamscience-free-trial-note-content p {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note.teamscience-free-trial-note
+.teamscience-free-trial-note-content p + p {
+  margin-top: 3px !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"]
+.autoteams-permission-v71376-note.teamscience-free-trial-note
+.teamscience-free-trial-note-content strong {
+  display: inline !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 620px) {
+  [data-autoteams-permission-guide-v71376="true"]
+  .autoteams-permission-v71376-note.teamscience-free-trial-note {
+    grid-template-columns: 34px minmax(0, 1fr) !important;
+    gap: 11px !important;
+    padding: 14px !important;
+  }
+
+  [data-autoteams-permission-guide-v71376="true"]
+  .autoteams-permission-v71376-note.teamscience-free-trial-note
+  .teamscience-free-trial-note-content p {
+    font-size: 13px !important;
+  }
+}
+/* TEAMSCIENCE_AI_INVITE_NOTE_HARD_RESET_PATCH16 */
+
+[data-autoteams-permission-guide-v71376="true"]
+.teamscience-free-trial-note-v16 {
+  display: grid !important;
+  grid-template-columns: 34px minmax(0, 1fr) !important;
+  align-items: center !important;
+  column-gap: 14px !important;
+  width: 100% !important;
+  min-height: 82px !important;
+  padding: 16px 22px !important;
+  margin: 14px 0 0 !important;
+  text-align: left !important;
+}
+
+/* Reset the icon so no older permission-card rule can move or resize it. */
+[data-autoteams-permission-guide-v71376="true"]
+.teamscience-free-trial-icon-v16 {
+  all: unset !important;
+  box-sizing: border-box !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #7868ff, #4f8cff) !important;
+  color: #fff !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  justify-self: start !important;
+}
+
+/* Hard reset is deliberate: old invite styles were turning this into a card. */
+[data-autoteams-permission-guide-v71376="true"]
+.teamscience-free-trial-copy-v16 {
+  all: unset !important;
+  box-sizing: border-box !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  color: #eef2ff !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+  white-space: normal !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"]
+.teamscience-free-trial-copy-v16 strong {
+  all: unset !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: 800 !important;
+  line-height: inherit !important;
+  color: #ffffff !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"]
+.teamscience-free-trial-rule-v16 {
+  all: unset !important;
+  display: block !important;
+  margin-top: 2px !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: 400 !important;
+  line-height: inherit !important;
+  color: #dbe4ff !important;
+  white-space: normal !important;
+}
+
+@media (max-width: 620px) {
+  [data-autoteams-permission-guide-v71376="true"]
+  .teamscience-free-trial-note-v16 {
+    grid-template-columns: 32px minmax(0, 1fr) !important;
+    column-gap: 11px !important;
+    padding: 14px !important;
+  }
+
+  [data-autoteams-permission-guide-v71376="true"]
+  .teamscience-free-trial-copy-v16 {
+    font-size: 13px !important;
+  }
+}
+/* TEAMSCIENCE_AI_INVITE_NOTE_ISOLATED_PATCH17 */
+
+[data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-banner-v17 {
+  box-sizing: border-box !important;
+  display: grid !important;
+  grid-template-columns: 34px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 14px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 78px !important;
+  margin: 14px 0 0 !important;
+  padding: 16px 20px !important;
+  border: 1px solid rgba(96, 165, 250, 0.28) !important;
+  border-radius: 12px !important;
+  background: rgba(45, 52, 112, 0.42) !important;
+  box-shadow: none !important;
+  text-align: left !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-icon-v17 {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  max-width: 32px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #7868ff, #4f8cff) !important;
+  color: #ffffff !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  text-align: center !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-copy-v17 {
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #dbe4ff !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-copy-v17 > span {
+  all: unset !important;
+  box-sizing: border-box !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #dbe4ff !important;
+  text-align: left !important;
+  white-space: normal !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-copy-v17 strong {
+  all: unset !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: 800 !important;
+  line-height: inherit !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 620px) {
+  [data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-banner-v17 {
+    grid-template-columns: 32px minmax(0, 1fr) !important;
+    gap: 11px !important;
+    padding: 14px !important;
+  }
+
+  [data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-copy-v17,
+  [data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-copy-v17 > span {
+    font-size: 13px !important;
+  }
+}
+/* TEAMSCIENCE_AI_INVITE_NOTE_FLAT_PATCH18 */
+
+/*
+  Flat structure:
+    icon | first line
+         | second line
+
+  There is deliberately NO inner div/p/card around the text.
+*/
+[data-autoteams-permission-guide-v71376="true"] > .teamscience-free-trial-banner-v18,
+[data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-banner-v18 {
+  box-sizing: border-box !important;
+  display: grid !important;
+  grid-template-columns: 34px minmax(0, 1fr) !important;
+  grid-template-rows: auto auto !important;
+  align-items: center !important;
+  column-gap: 14px !important;
+  row-gap: 2px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  min-height: 78px !important;
+  margin: 14px 0 0 !important;
+  padding: 16px 20px !important;
+  border: 1px solid rgba(96, 165, 250, 0.28) !important;
+  border-radius: 12px !important;
+  background: rgba(45, 52, 112, 0.42) !important;
+  box-shadow: none !important;
+  text-align: left !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-icon-v18 {
+  all: unset !important;
+  box-sizing: border-box !important;
+  grid-column: 1 !important;
+  grid-row: 1 / 3 !important;
+  align-self: center !important;
+  justify-self: start !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  max-width: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #7868ff, #4f8cff) !important;
+  color: #ffffff !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-line1-v18,
+[data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-line2-v18 {
+  all: unset !important;
+  box-sizing: border-box !important;
+  grid-column: 2 !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #dbe4ff !important;
+  text-align: left !important;
+  white-space: normal !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-line1-v18 {
+  grid-row: 1 !important;
+  align-self: end !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-line2-v18 {
+  grid-row: 2 !important;
+  align-self: start !important;
+}
+
+[data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-line1-v18 strong {
+  all: unset !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: 800 !important;
+  line-height: inherit !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 620px) {
+  [data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-banner-v18 {
+    grid-template-columns: 32px minmax(0, 1fr) !important;
+    column-gap: 11px !important;
+    padding: 14px !important;
+  }
+
+  [data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-line1-v18,
+  [data-autoteams-permission-guide-v71376="true"] .teamscience-free-trial-line2-v18 {
+    font-size: 13px !important;
+  }
+}
+/* TEAMSCIENCE_AI_INVITE_NOTE_DETACHED_PATCH20 */
+
+/*
+  This banner intentionally sits OUTSIDE the legacy Permission Guide section.
+  Therefore old selectors scoped under
+  [data-autoteams-permission-guide-v71376="true"]
+  cannot affect it.
+*/
+.teamscience-free-trial-strip-v20 {
+  box-sizing: border-box !important;
+  display: grid !important;
+  grid-template-columns: 36px minmax(0, 1fr) !important;
+  align-items: center !important;
+  column-gap: 14px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  min-height: 78px !important;
+  margin: 14px 0 0 !important;
+  padding: 16px 20px !important;
+  border: 1px solid rgba(96, 165, 250, 0.28) !important;
+  border-radius: 12px !important;
+  background: rgba(45, 52, 112, 0.42) !important;
+  box-shadow: none !important;
+  text-align: left !important;
+}
+
+.teamscience-free-trial-strip-icon-v20 {
+  all: unset !important;
+  box-sizing: border-box !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #7868ff, #4f8cff) !important;
+  color: #ffffff !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+.teamscience-free-trial-strip-copy-v20 {
+  all: unset !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  color: #dbe4ff !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+}
+
+.teamscience-free-trial-strip-copy-v20 > span {
+  all: unset !important;
+  box-sizing: border-box !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #dbe4ff !important;
+  text-align: left !important;
+  white-space: normal !important;
+}
+
+.teamscience-free-trial-strip-copy-v20 strong {
+  all: unset !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: 800 !important;
+  line-height: inherit !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 620px) {
+  .teamscience-free-trial-strip-v20 {
+    grid-template-columns: 32px minmax(0, 1fr) !important;
+    column-gap: 11px !important;
+    padding: 14px !important;
+  }
+
+  .teamscience-free-trial-strip-copy-v20,
+  .teamscience-free-trial-strip-copy-v20 > span {
+    font-size: 13px !important;
+  }
+}
+/* TEAMSCIENCE_AI_INVITE_NOTE_SINGLE_LINE_PATCH21 */
+
+.teamscience-free-trial-strip-v21 {
+  box-sizing: border-box !important;
+  display: grid !important;
+  grid-template-columns: 36px minmax(0, 1fr) !important;
+  align-items: center !important;
+  column-gap: 14px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  min-height: 72px !important;
+  margin: 14px 0 0 !important;
+  padding: 14px 20px !important;
+  border: 1px solid rgba(96, 165, 250, 0.28) !important;
+  border-radius: 12px !important;
+  background: rgba(45, 52, 112, 0.42) !important;
+  box-shadow: none !important;
+  text-align: left !important;
+}
+
+.teamscience-free-trial-strip-icon-v21 {
+  all: unset !important;
+  box-sizing: border-box !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #7868ff, #4f8cff) !important;
+  color: #ffffff !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+.teamscience-free-trial-strip-copy-v21 {
+  all: unset !important;
+  box-sizing: border-box !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #dbe4ff !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+}
+
+.teamscience-free-trial-strip-copy-v21 strong {
+  all: unset !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: 800 !important;
+  line-height: inherit !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 1050px) {
+  .teamscience-free-trial-strip-copy-v21 {
+    white-space: normal !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .teamscience-free-trial-strip-v21 {
+    grid-template-columns: 32px minmax(0, 1fr) !important;
+    column-gap: 11px !important;
+    padding: 14px !important;
+  }
+
+  .teamscience-free-trial-strip-copy-v21 {
+    font-size: 13px !important;
+    white-space: normal !important;
+  }
+}
+/* TEAMSCIENCE_AI_V7157_PRICING_ENTITLEMENTS */
+.teamscience-plan-badge-v7157{display:inline-flex;align-items:center;justify-content:center;padding:5px 10px;border-radius:999px;border:1px solid rgba(129,140,248,.4);background:rgba(79,70,229,.15);color:#c4b5fd;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.teamscience-plan-badge-v7157.plan-pro{background:rgba(79,70,229,.28);color:#fff}
+.teamscience-plan-badge-v7157.plan-organisation{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.45);color:#fdba74}
+.teamscience-entitlement-gate-v7157{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;padding:18px 20px;border:1px solid rgba(129,140,248,.35);border-radius:16px;background:linear-gradient(135deg,rgba(49,46,129,.28),rgba(15,23,42,.72));color:#e5e7eb}
+.teamscience-entitlement-gate-v7157 strong{display:block;color:#fff;font-size:16px}.teamscience-entitlement-gate-v7157 p{margin:4px 0 0;color:#aebee2;font-size:14px;line-height:1.5}
+.teamscience-entitlement-gate-v7157 a{display:inline-flex;padding:10px 14px;border-radius:10px;background:linear-gradient(135deg,#7c68ff,#4f8cff);color:#fff;font-weight:800;text-decoration:none;white-space:nowrap}
+.teamscience-entitlement-lock-v7157{display:inline-flex;align-items:center;justify-content:center;min-width:46px;height:34px;padding:0 8px;border-radius:10px;background:rgba(124,104,255,.18);border:1px solid rgba(124,104,255,.45);color:#c4b5fd;font-size:11px;font-weight:900;letter-spacing:.06em}
+.teamscience-plan-dev-v7157{position:fixed;right:18px;bottom:18px;z-index:1000;width:250px;padding:12px;border:1px solid rgba(129,140,248,.4);border-radius:14px;background:#111827;box-shadow:0 18px 50px rgba(0,0,0,.35);color:#fff}
+.teamscience-plan-dev-v7157>strong,.teamscience-plan-dev-v7157>span{display:block}.teamscience-plan-dev-v7157>span{margin:2px 0 10px;color:#93a4c7;font-size:11px}.teamscience-plan-dev-v7157>div{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.teamscience-plan-dev-v7157 button{border:1px solid #334155;border-radius:8px;padding:7px 5px;background:#172033;color:#b9c7e5;font-size:10px;cursor:pointer}.teamscience-plan-dev-v7157 button.active{border-color:#7c68ff;background:#4338ca;color:#fff}
+@media(max-width:700px){.teamscience-entitlement-gate-v7157{grid-template-columns:auto 1fr}.teamscience-entitlement-gate-v7157 a{grid-column:1/-1;justify-content:center}.teamscience-plan-dev-v7157{right:10px;bottom:10px;left:10px;width:auto}}
+/* TEAMSCIENCE_AI_V7157_MATRIX */
+.teamscience-entitlement-matrix-v7157{margin:28px 0;padding:28px;border:1px solid rgba(129,140,248,.28);border-radius:20px;background:rgba(20,28,48,.72)}
+.teamscience-entitlement-matrix-v7157>div:first-child>span{color:#a78bfa;font-size:12px;font-weight:900;letter-spacing:.12em}.teamscience-entitlement-matrix-v7157 h2{margin:8px 0;font-size:28px;color:#fff}.teamscience-entitlement-matrix-v7157 p{color:#9fb0d2;line-height:1.6}
+.teamscience-entitlement-matrix-grid-v7157{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}.teamscience-entitlement-matrix-grid-v7157 article{padding:18px;border:1px solid #2d3a55;border-radius:14px;background:#101827}.teamscience-entitlement-matrix-grid-v7157 strong,.teamscience-entitlement-matrix-grid-v7157 span,.teamscience-entitlement-matrix-grid-v7157 small{display:block}.teamscience-entitlement-matrix-grid-v7157 strong{color:#fff;font-size:18px}.teamscience-entitlement-matrix-grid-v7157 span{margin:8px 0;color:#c2cce1;font-size:13px;line-height:1.5}.teamscience-entitlement-matrix-grid-v7157 small{color:#7dd3fc;font-size:11px}
+@media(max-width:800px){.teamscience-entitlement-matrix-grid-v7157{grid-template-columns:1fr}}
+/* TEAMSCIENCE_AI_V71571_ENTITLEMENT_ENFORCEMENT */
+.teamscience-entitlement-loading-v71571{margin:30px auto;max-width:900px;padding:22px;border:1px solid #2d3a55;border-radius:16px;background:#111827;color:#aebee2;text-align:center}
+.teamscience-workspace-plan-v71571{display:flex;align-items:center;gap:9px}
+
+/* TEAMSCIENCE_AI_V71572_PLAN_USAGE */
+.teamscience-plan-usage-placement-v71572{padding-top:22px}
+.teamscience-plan-usage-v71572{margin:0 0 24px;padding:22px;border:1px solid rgba(129,140,248,.28);border-radius:18px;background:linear-gradient(135deg,rgba(30,41,59,.92),rgba(17,24,39,.96));box-shadow:0 18px 50px rgba(0,0,0,.18)}
+.teamscience-plan-usage-head-v71572{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px}.teamscience-plan-usage-head-v71572>div:first-child>span{color:#a78bfa;font-size:11px;font-weight:900;letter-spacing:.12em}.teamscience-plan-usage-head-v71572 h2{margin:6px 0 5px;color:#fff;font-size:24px}.teamscience-plan-usage-head-v71572 p{margin:0;color:#93a4c7;font-size:13px}
+.teamscience-plan-usage-actions-v71572{display:flex;align-items:center;gap:10px}.teamscience-plan-usage-actions-v71572 a{padding:9px 12px;border-radius:9px;background:#334155;color:#fff;text-decoration:none;font-size:12px;font-weight:800}
+.teamscience-plan-usage-badge-v71572{display:inline-flex;padding:6px 10px;border-radius:999px;border:1px solid rgba(129,140,248,.42);background:rgba(79,70,229,.16);color:#c4b5fd;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}.teamscience-plan-usage-badge-v71572.plan-organisation{border-color:rgba(249,115,22,.45);background:rgba(249,115,22,.12);color:#fdba74}.teamscience-plan-usage-badge-v71572.plan-pro{background:rgba(79,70,229,.3);color:#fff}
+.teamscience-plan-usage-grid-v71572{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.teamscience-plan-usage-card-v71572{min-height:118px;padding:15px;border:1px solid #2d3a55;border-radius:13px;background:#101827}.teamscience-plan-usage-card-v71572>div:first-child{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.teamscience-plan-usage-card-v71572 strong{color:#fff;font-size:14px}.teamscience-plan-usage-card-v71572 span{color:#9fb0d2;font-size:11px}.teamscience-plan-usage-card-v71572 small{display:block;margin-top:8px;color:#7dd3fc;font-size:11px}
+.teamscience-plan-usage-meter-v71572{height:7px;margin-top:16px;overflow:hidden;border-radius:999px;background:#263249}.teamscience-plan-usage-meter-v71572 i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#7c68ff,#4f8cff)}
+.teamscience-plan-usage-card-v71572.warning{border-color:rgba(249,115,22,.5)}.teamscience-plan-usage-card-v71572.warning small{color:#fdba74}.teamscience-plan-usage-card-v71572.exhausted{border-color:rgba(248,113,113,.5)}.teamscience-plan-usage-card-v71572.exhausted small{color:#fca5a5}
+.teamscience-plan-usage-card-v71572.locked{display:flex;align-items:center;justify-content:space-between}.teamscience-plan-usage-lock-v71572{padding:6px 8px;border-radius:8px;border:1px solid rgba(129,140,248,.35);color:#c4b5fd;font-size:10px;font-weight:900;letter-spacing:.07em}.teamscience-plan-usage-unlimited-v71572{margin-top:16px;color:#86efac;font-size:12px;font-weight:800}.teamscience-plan-usage-note-v71572{margin:12px 0 0;color:#93a4c7;font-size:11px}
+@media(max-width:900px){.teamscience-plan-usage-grid-v71572{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.teamscience-plan-usage-head-v71572{flex-direction:column}.teamscience-plan-usage-grid-v71572{grid-template-columns:1fr}.teamscience-plan-usage-actions-v71572{width:100%;justify-content:space-between}}
+
+/* TEAMSCIENCE_AI_V71574_ENTITLEMENT_TEST */
+.teamscience-entitlement-test-placement-v71574{padding-top:20px;padding-bottom:24px}
+.teamscience-entitlement-test-v71574{margin-top:22px;padding:22px;border:1px solid rgba(124,104,255,.38);border-radius:18px;background:linear-gradient(135deg,rgba(42,31,84,.72),rgba(16,24,39,.94));color:#e8edff}
+.teamscience-entitlement-test-head-v71574{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}.teamscience-entitlement-test-head-v71574>div>span{color:#f59e0b;font-size:10px;font-weight:900;letter-spacing:.12em}.teamscience-entitlement-test-head-v71574 h2{margin:6px 0;font-size:24px;color:#fff}.teamscience-entitlement-test-head-v71574 p{margin:0;max-width:650px;color:#aebbd3;font-size:13px;line-height:1.55}.teamscience-entitlement-test-head-v71574>strong{padding:7px 11px;border-radius:999px;background:rgba(124,104,255,.22);border:1px solid rgba(124,104,255,.45);color:#fff;font-size:12px;text-transform:uppercase}
+.teamscience-entitlement-test-workspace-v71574{display:flex;gap:10px;align-items:center;margin:17px 0 12px;padding:10px 12px;border:1px solid #2d3952;border-radius:10px;background:#111a2a}.teamscience-entitlement-test-workspace-v71574 span{color:#8796b0;font-size:11px}.teamscience-entitlement-test-workspace-v71574 strong{color:#fff;font-size:12px}
+.teamscience-entitlement-plan-buttons-v71574{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:14px}.teamscience-entitlement-plan-buttons-v71574 button{padding:10px 12px;border:1px solid #35435f;border-radius:10px;background:#172135;color:#b8c4d9;font-weight:800;cursor:pointer}.teamscience-entitlement-plan-buttons-v71574 button.active{border-color:#7c68ff;background:linear-gradient(135deg,#5b49d8,#3b74db);color:#fff}
+.teamscience-entitlement-test-grid-v71574{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.teamscience-entitlement-test-grid-v71574 article{padding:14px;border:1px solid #2d3952;border-radius:12px;background:#101827}.teamscience-entitlement-test-grid-v71574 span,.teamscience-entitlement-test-grid-v71574 strong,.teamscience-entitlement-test-grid-v71574 small{display:block}.teamscience-entitlement-test-grid-v71574 span{color:#96a5bf;font-size:11px}.teamscience-entitlement-test-grid-v71574 strong{margin:5px 0 3px;color:#fff;font-size:20px}.teamscience-entitlement-test-grid-v71574 small{color:#7dd3fc;font-size:10px}
+.teamscience-entitlement-test-actions-v71574{display:flex;align-items:center;gap:12px;margin-top:14px}.teamscience-entitlement-test-actions-v71574 button{padding:9px 12px;border:1px solid #40506d;border-radius:9px;background:#1b2940;color:#fff;font-size:12px;font-weight:800;cursor:pointer}.teamscience-entitlement-test-actions-v71574 span{color:#8291aa;font-size:10px;line-height:1.4}
+.teamscience-entitlement-test-message-v71574{margin-top:12px;padding:10px 12px;border:1px solid rgba(34,197,94,.28);border-radius:9px;background:rgba(34,197,94,.08);color:#9be7b5;font-size:12px}
+@media(max-width:700px){.teamscience-entitlement-test-head-v71574{flex-direction:column}.teamscience-entitlement-plan-buttons-v71574,.teamscience-entitlement-test-grid-v71574{grid-template-columns:1fr}.teamscience-entitlement-test-actions-v71574{align-items:flex-start;flex-direction:column}}
+
+/* TEAMSCIENCE_AI_V715741_TESTER_VISIBLE */
+.teamscience-entitlement-test-unified-v715741{
+  margin-top:28px!important;
+  margin-bottom:34px!important;
+}

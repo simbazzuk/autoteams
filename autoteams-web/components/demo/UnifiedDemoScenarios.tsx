@@ -1,5 +1,7 @@
 "use client";
 
+import { EntitlementTestPanel } from "@/components/entitlements/EntitlementTestPanel";
+
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { createOwnedWorkspace } from "@/lib/access-bootstrap";
@@ -884,8 +886,12 @@ export function UnifiedDemoScenarios() {
           role="status"
         >
           {message}
-        </div>
+</div>
       )}
-    </section>
+
+      <section className="container teamscience-entitlement-test-unified-v715741">
+        <EntitlementTestPanel />
+      </section>
+</section>
   );
 }
