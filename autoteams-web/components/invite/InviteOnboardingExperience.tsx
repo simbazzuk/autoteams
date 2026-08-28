@@ -30,7 +30,7 @@ export function InviteOnboardingExperience() {
 
   if (!invite) return null;
 
-  const label = CONTEXT_LABELS[context.toLowerCase()] ?? "TeamScience.ai";
+  const label = CONTEXT_LABELS[context.toLowerCase()] ?? "AutoTeams";
 
   return (
     <section className="invite-onboarding-banner" aria-label="AutoTeams invitation">

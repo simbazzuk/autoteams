@@ -207,7 +207,7 @@ export function MyProfileDashboard() {
 
             <div>
               <span className="eyebrow">Signed-in account</span>
-              <h2>{user?.displayName || "TeamScience.ai User"}</h2>
+              <h2>{user?.displayName || "AutoTeams User"}</h2>
               <p>{user?.email}</p>
               <span
                 className={

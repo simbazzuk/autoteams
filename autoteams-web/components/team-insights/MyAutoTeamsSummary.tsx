@@ -298,7 +298,7 @@ export function MyAutoTeamsSummary({
                       <strong>{team.name}</strong>
                       <small>
                         {team.contextName ??
-                          "TeamScience.ai group"}
+                          "AutoTeams group"}
                       </small>
                     </div>
                   </div>

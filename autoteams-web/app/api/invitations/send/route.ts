@@ -138,10 +138,10 @@ function inviteEmailHtml(
     payload.recipientName.trim().split(/\s+/)[0] || "there";
 
   const inviter =
-    payload.inviterName?.trim() || "A TeamScience.ai member";
+    payload.inviterName?.trim() || "A AutoTeams member";
 
   const profile =
-    PROFILE_LABELS[payload.profileContext ?? ""] || "TeamScience.ai";
+    PROFILE_LABELS[payload.profileContext ?? ""] || "AutoTeams";
 
   const role = ROLE_LABELS[payload.role];
 
@@ -153,7 +153,7 @@ function inviteEmailHtml(
         <div style="font-size:12px;font-weight:800;letter-spacing:.13em;color:#a78bfa">TEAMSCIENCE.AI INVITATION</div>
 
         <h1 style="margin:18px 0 12px;font-size:38px;line-height:1.05;color:#ffffff">
-          You're invited to TeamScience.ai
+          You're invited to AutoTeams
         </h1>
 
         <p style="margin:0 0 22px;color:#aebbd0;font-size:16px;line-height:1.65">
@@ -175,11 +175,11 @@ function inviteEmailHtml(
 
         <a href="${escapeHtml(inviteUrl)}"
            style="display:inline-block;padding:14px 22px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;text-decoration:none;font-weight:800">
-          Join TeamScience.ai →
+          Join AutoTeams →
         </a>
 
         <p style="margin:26px 0 0;color:#718097;font-size:12px;line-height:1.55">
-          TeamScience.ai helps people understand strengths, compatibility and build better teams.
+          AutoTeams helps people understand strengths, compatibility and build better teams.
           This invitation was sent to ${escapeHtml(payload.recipientEmail)}.
         </p>
       </div>
@@ -256,7 +256,7 @@ export async function POST(request: NextRequest) {
         },
         body: JSON.stringify({
           message: {
-            subject: `${payload.inviterName || "Someone"} invited you to TeamScience.ai`,
+            subject: `${payload.inviterName || "Someone"} invited you to AutoTeams`,
             body: {
               contentType: "HTML",
               content: inviteEmailHtml(payload, inviteUrl),

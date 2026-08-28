@@ -26,13 +26,13 @@ export const academyPaths: AcademyPath[] = [
     title: "Team Science Foundations",
     shortTitle: "Foundations",
     description:
-      "Understand what Team Science means in TeamScience.ai and the principles behind effective groups, collaboration, trust and shared purpose.",
+      "Understand what Team Science means in AutoTeams and the principles behind effective groups, collaboration, trust and shared purpose.",
     duration: "20 min",
     level: "Foundation",
     objectives: [
       "Understand the difference between individual capability and team effectiveness.",
       "Recognise why shared purpose, complementary strengths and trust matter.",
-      "Understand why TeamScience.ai treats recommendations as decision support rather than automated decisions.",
+      "Understand why AutoTeams treats recommendations as decision support rather than automated decisions.",
     ],
     lessons: [
       {
@@ -41,7 +41,7 @@ export const academyPaths: AcademyPath[] = [
           "Team Science is the structured study and application of the factors that help groups work effectively together.",
         content: [
           "A strong team is more than a collection of individually capable people. The way people combine, communicate, coordinate and respond to a shared goal can materially affect the result.",
-          "TeamScience.ai uses Team Science as the methodology behind its people and team recommendations. The aim is to make team formation more deliberate, explainable and evidence-based.",
+          "AutoTeams uses Team Science as the methodology behind its people and team recommendations. The aim is to make team formation more deliberate, explainable and evidence-based.",
           "The same principles can apply across project teams, sports squads, friendship groups, communities, education and volunteering because each involves people working or participating together around a purpose.",
         ],
         example:
@@ -55,7 +55,7 @@ export const academyPaths: AcademyPath[] = [
           "Effective groups need a clear reason for existing and a common understanding of what success means.",
         content: [
           "A team objective creates the context for every other decision. Skills that are important for one outcome may be less relevant for another.",
-          "TeamScience.ai therefore begins with the purpose of the team or group before considering who should be included.",
+          "AutoTeams therefore begins with the purpose of the team or group before considering who should be included.",
           "A clear purpose also helps people understand trade-offs. A short-term delivery team may prioritise speed and experience, while a mentoring group may prioritise learning, communication and development.",
         ],
         example:
@@ -70,7 +70,7 @@ export const academyPaths: AcademyPath[] = [
         content: [
           "Complementary strengths allow people to contribute in different ways. One person may provide direction while another brings detailed planning, creativity or relationship-building.",
           "This does not mean every team requires every possible strength. The right balance depends on the objective and context.",
-          "TeamScience.ai surfaces strengths and gaps so a human reviewer can decide whether the proposed mix is appropriate.",
+          "AutoTeams surfaces strengths and gaps so a human reviewer can decide whether the proposed mix is appropriate.",
         ],
         example:
           "A project team with excellent technical ability but no stakeholder communication may struggle to gain support even when the technical solution is strong.",
@@ -84,7 +84,7 @@ export const academyPaths: AcademyPath[] = [
         content: [
           "Teams learn faster when people can raise concerns and make suggestions without unnecessary fear of embarrassment or punishment.",
           "Psychological safety does not mean avoiding challenge. It means creating conditions where respectful challenge can happen.",
-          "TeamScience.ai can highlight balance and potential gaps, but trust is ultimately created through leadership, behaviour and experience over time.",
+          "AutoTeams can highlight balance and potential gaps, but trust is ultimately created through leadership, behaviour and experience over time.",
         ],
         example:
           "A study group becomes more useful when members can admit they do not understand a topic and ask for help.",
@@ -98,7 +98,7 @@ export const academyPaths: AcademyPath[] = [
         content: [
           "Data and AI can surface patterns, gaps and possible combinations that a person might overlook.",
           "However, context is rarely complete. Personal circumstances, relationships, availability and sensitive information may not be represented in the data.",
-          "TeamScience.ai therefore keeps a human review and approval step at the centre of the recommendation lifecycle.",
+          "AutoTeams therefore keeps a human review and approval step at the centre of the recommendation lifecycle.",
         ],
         example:
           "Atlas may identify a highly suitable volunteer, but the organiser may know that person is unavailable for the event date.",
@@ -131,7 +131,7 @@ export const academyPaths: AcademyPath[] = [
         content: [
           "Before selecting people, define the problem, expected outcome, team size and any important constraints.",
           "This prevents a common failure mode where familiar people are selected first and the objective is adapted around them later.",
-          "TeamScience.ai asks for the team requirement before producing a recommendation so the reasoning can be tied back to the stated goal.",
+          "AutoTeams asks for the team requirement before producing a recommendation so the reasoning can be tied back to the stated goal.",
         ],
         example:
           "A six-month cloud migration requires different strengths from a two-hour community fundraising event.",
@@ -145,7 +145,7 @@ export const academyPaths: AcademyPath[] = [
         content: [
           "A team can appear highly skilled while still containing important gaps. Five specialists in one area may leave planning, coordination or communication uncovered.",
           "Role balance is contextual. Formal job titles matter less than the contribution required to achieve the objective.",
-          "TeamScience.ai can compare the desired strengths with the available people and highlight missing or concentrated capabilities.",
+          "AutoTeams can compare the desired strengths with the available people and highlight missing or concentrated capabilities.",
         ],
         example:
           "A sports club committee needs people who can organise, communicate, manage money and engage members, not only people who understand the sport.",
@@ -173,7 +173,7 @@ export const academyPaths: AcademyPath[] = [
         content: [
           "Communication includes listening, explaining, adapting to different audiences and surfacing problems early.",
           "Collaboration involves sharing work, coordinating dependencies and helping the group succeed rather than optimising only individual tasks.",
-          "TeamScience.ai can treat these qualities as explicit strengths when they matter to the objective.",
+          "AutoTeams can treat these qualities as explicit strengths when they matter to the objective.",
         ],
         example:
           "A technically strong project can still fail if the team cannot explain decisions to customers or stakeholders.",
@@ -187,7 +187,7 @@ export const academyPaths: AcademyPath[] = [
         content: [
           "Diversity can include experience, skills, background, thinking styles and approaches to problem solving.",
           "The purpose is not simply to maximise difference. Teams need enough shared understanding to work together while avoiding excessive similarity that can narrow thinking.",
-          "TeamScience.ai should use diversity as one input into a wider balance assessment rather than as a single optimisation target.",
+          "AutoTeams should use diversity as one input into a wider balance assessment rather than as a single optimisation target.",
         ],
         example:
           "An innovation team benefits from different professional perspectives when members also share enough context to collaborate effectively.",
@@ -208,7 +208,7 @@ export const academyPaths: AcademyPath[] = [
     duration: "20 min",
     level: "Core",
     objectives: [
-      "Understand Atlas as the intelligence layer inside TeamScience.ai.",
+      "Understand Atlas as the intelligence layer inside AutoTeams.",
       "Interpret recommendation confidence, strengths, gaps and risks.",
       "Understand the difference between AI recommendation and human decision.",
     ],
@@ -216,9 +216,9 @@ export const academyPaths: AcademyPath[] = [
       {
         title: "What Atlas Does",
         summary:
-          "Atlas helps TeamScience.ai analyse available evidence and produce an explainable recommendation.",
+          "Atlas helps AutoTeams analyse available evidence and produce an explainable recommendation.",
         content: [
-          "Atlas is the intelligence layer inside TeamScience.ai. It evaluates the team objective together with information about the authorised people who may be considered.",
+          "Atlas is the intelligence layer inside AutoTeams. It evaluates the team objective together with information about the authorised people who may be considered.",
           "Its purpose is not to declare a perfect team. It helps surface a plausible combination and explains the evidence behind that suggestion.",
           "The recommendation can then be reviewed, compared, adjusted, approved or rejected by a human.",
         ],
@@ -233,7 +233,7 @@ export const academyPaths: AcademyPath[] = [
           "A recommendation should show the reasoning that led to it.",
         content: [
           "Explainability helps users challenge, validate and improve an AI-assisted decision.",
-          "TeamScience.ai exposes team strengths, skill gaps, risks, confidence and person-level reasons instead of returning only a list of names.",
+          "AutoTeams exposes team strengths, skill gaps, risks, confidence and person-level reasons instead of returning only a list of names.",
           "This creates a more useful conversation between the system and the reviewer because the reviewer can assess the reasoning rather than accepting a black-box output.",
         ],
         example:
@@ -272,10 +272,10 @@ export const academyPaths: AcademyPath[] = [
       {
         title: "Responsible Human Review",
         summary:
-          "Human oversight is part of the TeamScience.ai design, not an optional extra.",
+          "Human oversight is part of the AutoTeams design, not an optional extra.",
         content: [
           "People decisions can affect opportunity, participation and relationships. They therefore deserve review and accountability.",
-          "TeamScience.ai records recommendation lifecycle events so a decision can be understood later.",
+          "AutoTeams records recommendation lifecycle events so a decision can be understood later.",
           "The reviewer should consider context that may not exist in the data and should be able to reject or change the recommendation.",
         ],
         example:
@@ -309,7 +309,7 @@ export const academyPaths: AcademyPath[] = [
         content: [
           "A team that looked balanced when it was formed may change as people leave, priorities shift or new challenges emerge.",
           "Team health therefore considers the current mix of strengths, collaboration patterns, risks and gaps rather than only the original recommendation.",
-          "TeamScience.ai can evolve from team formation into ongoing team intelligence by retaining this history over time.",
+          "AutoTeams can evolve from team formation into ongoing team intelligence by retaining this history over time.",
         ],
         example:
           "A project team may become overloaded after its only experienced planner leaves, even though the original team was well balanced.",
@@ -365,7 +365,7 @@ export const academyPaths: AcademyPath[] = [
         content: [
           "Periodic reflection helps teams understand what is working and what needs to change.",
           "Recommendation history and decision audit data can create a useful evidence base when used responsibly.",
-          "Future TeamScience.ai capabilities can connect team outcomes back to Team Science observations without treating people as fixed scores.",
+          "Future AutoTeams capabilities can connect team outcomes back to Team Science observations without treating people as fixed scores.",
         ],
         example:
           "A volunteer committee can review after each event and adjust roles based on what worked well and where pressure occurred.",

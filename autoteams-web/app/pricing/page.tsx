@@ -4,9 +4,9 @@ import {
 import { PricingPlans } from "@/components/pricing/PricingPlans";
 
 export const metadata = {
-  title: "Pricing & Plans | TeamScience.ai",
+  title: "Pricing & Plans | AutoTeams",
   description:
-    "Explore the planned TeamScience.ai Free, Pro and Business pricing model.",
+    "Explore the planned AutoTeams Free, Pro and Business pricing model.",
 };
 
 export default function PricingPage() {

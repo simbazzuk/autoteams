@@ -6,7 +6,7 @@ import "./globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
-  title: "TeamScience.ai | AI-Powered Team Intelligence",
+  title: "AutoTeams | AI-Powered Team Intelligence",
   description: "Build stronger teams with Atlas, Team DNA and explainable AI recommendations.",
 };
 

@@ -398,7 +398,7 @@ export function MembersPanel() {
           recipientEmail: invitation.email,
           profileContext: invitation.profileContext,
           role: "member",
-          inviterName: user.displayName || "A TeamScience.ai member",
+          inviterName: user.displayName || "A AutoTeams member",
         }),
       });
 
@@ -558,7 +558,7 @@ export function MembersPanel() {
 
               <div className="invite7145-intelligence-panel">
                 <small>ATLAS TEAM INTELLIGENCE</small>
-                <strong>Invite people to TeamScience.ai.</strong>
+                <strong>Invite people to AutoTeams.</strong>
 
                 <div
                   className="invite7145-intelligence-chips"
@@ -590,7 +590,7 @@ export function MembersPanel() {
                 ))}
               </select>
               <small>
-                Choose the TeamScience.ai profile context this invitation relates to.
+                Choose the AutoTeams profile context this invitation relates to.
               </small>
             </label>
           </div>
@@ -807,7 +807,7 @@ export function MembersPanel() {
               </div>
               <div className="invite44-flow">
                 <article><span>01</span><strong>Invite</strong><small>Send a secure invitation.</small></article>
-                <article><span>02</span><strong>Join</strong><small>They connect their TeamScience.ai account.</small></article>
+                <article><span>02</span><strong>Join</strong><small>They connect their AutoTeams account.</small></article>
                 <article><span>03</span><strong>Profile</strong><small>They complete and own their profile.</small></article>
                 <article><span>04</span><strong>Build</strong><small>They become available for team building.</small></article>
               </div>
@@ -847,7 +847,7 @@ export function MembersPanel() {
                 </div>
               </div>
               <p className={styles.inviteIntro}>
-                Invite someone to the selected TeamScience.ai profile. They
+                Invite someone to the selected AutoTeams profile. They
                 create and own their own profile after joining, and can then
                 become available for team building.
               </p>
@@ -1001,7 +1001,7 @@ export function MembersPanel() {
                       )}
 
                       <small className={styles.deliveryNote}>
-                        TeamScience.ai has created the invitation, but no email has
+                        AutoTeams has created the invitation, but no email has
                         been sent automatically yet.
                       </small>
                     </div>
@@ -1066,7 +1066,7 @@ export function MembersPanel() {
                           const url = invitationUrl(invitation.token);
                           const profileName = invitation.profileContext
                             ? profileModeLabel(invitation.profileContext)
-                            : "TeamScience.ai";
+                            : "AutoTeams";
 
                           const reminder =
                             `Hi ${invitation.name || "there"}, just a reminder to join my ${profileName} profile on AutoTeams. Use this invitation link: ${url}`;

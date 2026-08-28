@@ -77,7 +77,7 @@ export function SocialMediaFooter() {
     <section
       className={styles.wrap}
       data-autoteams-social-links="true"
-      aria-label="TeamScience.ai social media"
+      aria-label="AutoTeams social media"
     >
       <div
         className={styles.inner}
@@ -91,14 +91,14 @@ export function SocialMediaFooter() {
 
           <h2>
             Keep up with the
-            TeamScience.ai journey.
+            AutoTeams journey.
           </h2>
 
           <p>
             Follow Team Science
             insights, product
             updates and new ways
-            TeamScience.ai is helping
+            AutoTeams is helping
             people build better
             teams.
           </p>
@@ -121,7 +121,7 @@ export function SocialMediaFooter() {
                 className={
                   styles.socialLink
                 }
-                aria-label={`Follow TeamScience.ai on ${link.name}`}
+                aria-label={`Follow AutoTeams on ${link.name}`}
               >
                 <span
                   className={`${styles.iconTile} ${link.className}`}

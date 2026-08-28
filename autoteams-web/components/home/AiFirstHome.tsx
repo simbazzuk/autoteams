@@ -110,7 +110,7 @@ export function AiFirstHome() {
   if (!ready) {
     return (
       <section className={styles.loading}>
-        Preparing TeamScience.ai…
+        Preparing AutoTeams…
       </section>
     );
   }
@@ -125,7 +125,7 @@ export function AiFirstHome() {
         <div className={`container ${styles.heroGrid}`}>
           <div>
             <span className="eyebrow">
-              TeamScience.ai
+              AutoTeams
             </span>
 
             <h1>
@@ -225,7 +225,7 @@ export function AiFirstHome() {
                 text={
                   canBuild
                     ? `${workspacePeople.length} active people are available in ${workspace?.name}.`
-                    : "TeamScience.ai will guide you through creating a group and adding people."
+                    : "AutoTeams will guide you through creating a group and adding people."
                 }
                 status={
                   canBuild
@@ -275,7 +275,7 @@ export function AiFirstHome() {
             <div className={styles.heading}>
               <div>
                 <span className="eyebrow">
-                  Your TeamScience.ai
+                  Your AutoTeams
                 </span>
                 <h2>
                   Everything in one simple view.
@@ -327,7 +327,7 @@ export function AiFirstHome() {
                 Gemini recommends. You decide.
               </h2>
               <p>
-                TeamScience.ai combines authorised people,
+                AutoTeams combines authorised people,
                 skills and collaboration evidence with
                 Gemini analysis. Every recommendation is
                 explainable and remains subject to human

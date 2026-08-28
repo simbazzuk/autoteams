@@ -166,7 +166,7 @@ export function NotificationsCentre() {
           <aside className="notify130d-side">
             <article className="notify130d-panel">
               <span className="eyebrow">Notification preferences</span>
-              <h2>Choose what TeamScience.ai sends you.</h2>
+              <h2>Choose what AutoTeams sends you.</h2>
 
               {preferences && (
                 <div className="notify130d-preferences">

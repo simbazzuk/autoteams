@@ -436,7 +436,7 @@ export function AtlasTeamBuilder() {
           <section className={styles.help}>
             <div>
               <span className="eyebrow">Not sure where to start?</span>
-              <h2>Learn the complete TeamScience.ai journey first.</h2>
+              <h2>Learn the complete AutoTeams journey first.</h2>
               <p>
                 The Learning Centre explains profiles, workspaces, Talent Pools,
                 Atlas recommendations and Team DNA in the order users encounter

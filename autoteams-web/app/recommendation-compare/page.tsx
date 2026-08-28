@@ -18,7 +18,7 @@ export default function RecommendationComparePage() {
       >
         <div className="container">
           <span className="eyebrow">
-            TeamScience.ai
+            AutoTeams
           </span>
 
           <h1

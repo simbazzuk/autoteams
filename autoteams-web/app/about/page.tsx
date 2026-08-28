@@ -8,10 +8,10 @@ export default function AboutPage() {
       <section className="about-hero">
         <div className="container about-hero-grid">
           <div>
-            <span className="eyebrow">About TeamScience.ai</span>
+            <span className="eyebrow">About AutoTeams</span>
             <h1>Helping people build stronger teams.</h1>
             <p>
-              TeamScience.ai was created to make team decisions clearer, more
+              AutoTeams was created to make team decisions clearer, more
               transparent and easier to review.
             </p>
           </div>
@@ -34,7 +34,7 @@ export default function AboutPage() {
             <span>02</span>
             <h2>The idea</h2>
             <p>
-              TeamScience.ai combines guided conversations, Team DNA and transparent
+              AutoTeams combines guided conversations, Team DNA and transparent
               matching logic so users can understand how each recommendation was
               formed.
             </p>
@@ -51,7 +51,7 @@ export default function AboutPage() {
             <span>04</span>
             <h2>Human decisions</h2>
             <p>
-              TeamScience.ai is designed to support human judgement, not replace it.
+              AutoTeams is designed to support human judgement, not replace it.
               Recommendations should always be reviewed in context.
             </p>
           </article>

@@ -229,7 +229,7 @@ export function TeamDnaOverview() {
               asOptionalString(
                 data.purpose,
               ) ||
-              "Saved TeamScience.ai team",
+              "Saved AutoTeams team",
             memberIds:
               selectedPeople,
             confidence:

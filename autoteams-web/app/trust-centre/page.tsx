@@ -75,7 +75,7 @@ export default function TrustCentrePage() {
         <TrustHero
           eyebrow="Trust Centre"
           title="Trust is part of the product."
-          text="TeamScience.ai combines privacy controls, secure workspace boundaries, explainable AI and human review so team recommendations remain transparent and accountable."
+          text="AutoTeams combines privacy controls, secure workspace boundaries, explainable AI and human review so team recommendations remain transparent and accountable."
           primaryHref="/privacy"
           primaryLabel="View Privacy Centre"
           secondaryHref="/security"
@@ -103,7 +103,7 @@ export default function TrustCentrePage() {
             <div>
               <TrustSectionHeading
                 eyebrow="Trust architecture"
-                title="How information moves through TeamScience.ai."
+                title="How information moves through AutoTeams."
                 text="The process keeps data inside the correct workspace and ensures users understand what happens at every stage."
               />
 
@@ -112,7 +112,7 @@ export default function TrustCentrePage() {
                 <div>
                   <strong>Private workspace boundary</strong>
                   <p>
-                    TeamScience.ai never searches all registered users. Atlas only
+                    AutoTeams never searches all registered users. Atlas only
                     evaluates eligible Talent inside the active workspace.
                   </p>
                 </div>

@@ -17,7 +17,7 @@ export default function RecommendationHistoryPage() {
       >
         <div className="container">
           <span className="eyebrow">
-            TeamScience.ai
+            AutoTeams
           </span>
 
           <h1

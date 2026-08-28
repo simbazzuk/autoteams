@@ -91,7 +91,7 @@ export function GetStartedExperience() {
         action: state.workspace ? "Workspace ready" : "Choose workspace",
       },
       {
-        title: "Add the people TeamScience.ai can consider",
+        title: "Add the people AutoTeams can consider",
         text: "Add or import the authorised people who may be selected for a team.",
         complete: state.people,
         href: "/people",
@@ -128,7 +128,7 @@ export function GetStartedExperience() {
   if (loading) {
     return (
       <section className={styles.loading}>
-        Checking your TeamScience.ai setup...
+        Checking your AutoTeams setup...
       </section>
     );
   }
@@ -143,7 +143,7 @@ export function GetStartedExperience() {
             <h2>
               {workspaceName
                 ? `${workspaceName} setup`
-                : "Set up your first TeamScience.ai workspace"}
+                : "Set up your first AutoTeams workspace"}
             </h2>
 
             <p>

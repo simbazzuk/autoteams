@@ -22,7 +22,7 @@ export function LearningCentre() {
       <section className={styles.hero}>
         <div className="container">
           <span className="eyebrow">Learning Centre</span>
-          <h1>Everything you need to understand TeamScience.ai.</h1>
+          <h1>Everything you need to understand AutoTeams.</h1>
           <p>
             Start with the core journey, follow a real user story or explore a
             specific feature without searching across several pages.
@@ -163,7 +163,7 @@ function TrustPrivacy() {
       <div className={styles.heading}>
         <span className="eyebrow">Trust & Privacy</span>
         <h2>Atlas recommends. People decide.</h2>
-        <p>TeamScience.ai is designed around workspace boundaries, contextual consent, explainable recommendations and human review.</p>
+        <p>AutoTeams is designed around workspace boundaries, contextual consent, explainable recommendations and human review.</p>
       </div>
 
       <div className={styles.cardGrid}>

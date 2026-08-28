@@ -143,7 +143,7 @@ export function Navbar() {
           <RobotLogo />
 
           <span className="commercial-brand-copy">
-            <strong className="teamscience-wordmark">TeamScience.ai</strong>
+            <strong className="teamscience-wordmark">AutoTeams</strong>
             <em>AI-powered team intelligence</em>
           </span>
 
@@ -301,7 +301,7 @@ export function Footer() {
         <div>
           <div className="brand">
             <RobotLogo />
-            <span>TeamScience.ai</span>
+            <span>AutoTeams</span>
           </div>
 
           <p className="muted">

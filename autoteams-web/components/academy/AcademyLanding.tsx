@@ -82,7 +82,7 @@ export function AcademyLanding() {
           <p>
             Build confidence with Atlas Profiles, team design, recommendations,
             Team DNA and responsible human review. Learn in short practical
-            paths and apply the ideas directly in TeamScience.ai.
+            paths and apply the ideas directly in AutoTeams.
           </p>
           <div className="academy81-pills">
             <span>Atlas &amp; Profiles</span>
@@ -98,7 +98,7 @@ export function AcademyLanding() {
           <small>Learn with Atlas</small>
           <strong>Practical guidance, not theory alone.</strong>
           <p>
-            Understand why TeamScience.ai makes a recommendation and what a human
+            Understand why AutoTeams makes a recommendation and what a human
             reviewer should check before acting on it.
           </p>
           <a href="/academy/courses">Browse courses</a>
@@ -129,7 +129,7 @@ export function AcademyLanding() {
               lineHeight: 1.72,
             }}
           >
-            Explore the Team Science principles behind TeamScience.ai and Atlas.
+            Explore the Team Science principles behind AutoTeams and Atlas.
             Learn how purpose, complementary strengths, communication,
             explainability and human judgement can help people build stronger
             groups.

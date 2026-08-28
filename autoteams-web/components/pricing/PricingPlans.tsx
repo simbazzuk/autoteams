@@ -26,7 +26,7 @@ const plans: Plan[] = [
   {
     id: "free",
     name: "Free",
-    audience: "For individuals trying TeamScience.ai",
+    audience: "For individuals trying AutoTeams",
     price: "£0",
     cadence: "during early access",
     badge: "START HERE",
@@ -237,7 +237,7 @@ export function PricingPlans() {
       </details>
 
       <p className={styles.disclaimer}>
-        Early-access plans, prices and limits may change as TeamScience.ai develops.
+        Early-access plans, prices and limits may change as AutoTeams develops.
       </p>
     </main>
   );

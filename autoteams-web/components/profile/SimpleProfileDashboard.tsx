@@ -276,7 +276,7 @@ export function SimpleProfileDashboard() {
         <div className={`container ${styles.heroGrid} ${refresh.heroGrid}`}>
           <div>
             <span className="eyebrow">My Profile</span>
-            <h1>Your TeamScience.ai Profile</h1>
+            <h1>Your AutoTeams Profile</h1>
             <p>
               Help Atlas understand how you communicate, collaborate
               and contribute across different settings.
@@ -293,7 +293,7 @@ export function SimpleProfileDashboard() {
             <div>
               <small>Signed-in account</small>
               <strong>
-                {user?.displayName || "TeamScience.ai User"}
+                {user?.displayName || "AutoTeams User"}
               </strong>
               <p>{user?.email}</p>
               <span
@@ -327,7 +327,7 @@ export function SimpleProfileDashboard() {
               <span className="eyebrow">Start here</span>
               <h2>Create your personal collaboration profile.</h2>
               <p>
-                The interview is short and helps TeamScience.ai explain why
+                The interview is short and helps AutoTeams explain why
                 particular people may work well together.
               </p>
 

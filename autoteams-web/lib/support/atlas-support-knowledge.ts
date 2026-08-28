@@ -50,13 +50,13 @@ export function supportLinksFor(question: string): SupportLink[] {
 export function deterministicAnswer(question: string, pathname: string) {
   const q = question.toLowerCase();
   if (/(what.*team science|team science.*what)/.test(q)) {
-    return "Team Science is the methodology TeamScience.ai uses to understand how people combine around a shared purpose. It considers complementary strengths, communication, leadership balance, collaboration and human judgement.";
+    return "Team Science is the methodology AutoTeams uses to understand how people combine around a shared purpose. It considers complementary strengths, communication, leadership balance, collaboration and human judgement.";
   }
   if (/(how.*build|create.*team|build.*team)/.test(q)) {
     return "Open Build Team and work through five steps: choose the group, choose authorised people, describe the requirement, review Atlas's recommendation, then confirm the human decision.";
   }
   if (/(skill|strength).*suggest|why.*skill/.test(q)) {
-    return "TeamScience.ai uses the team name and desired outcome to infer likely strengths. Communication, Collaboration and Adaptability form the universal core. Other suggestions vary by context, and you decide which ones remain selected.";
+    return "AutoTeams uses the team name and desired outcome to infer likely strengths. Communication, Collaboration and Adaptability form the universal core. Other suggestions vary by context, and you decide which ones remain selected.";
   }
   if (/(confidence|match score|percentage)/.test(q)) {
     return "Confidence is decision-support evidence, not a guarantee of success. Review the strengths, gaps, risks and person-level reasons before making the final decision.";
@@ -70,5 +70,5 @@ export function deterministicAnswer(question: string, pathname: string) {
   if (pathname.startsWith("/team-builder")) {
     return "You are in Build Team. I can explain the requirement fields, context-aware skills, confidence, strengths, gaps or the five-step workflow.";
   }
-  return "I can help with TeamScience.ai navigation, People, Build Team, Atlas recommendations, Team Science, Academy learning, saved teams and recommendation history.";
+  return "I can help with AutoTeams navigation, People, Build Team, Atlas recommendations, Team Science, Academy learning, saved teams and recommendation history.";
 }

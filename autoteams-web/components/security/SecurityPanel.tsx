@@ -58,7 +58,7 @@ export function SecurityPanel() {
       <TrustHero
         eyebrow="Security Centre"
         title="Protect every workspace and account."
-        text="TeamScience.ai combines email verification, role-based permissions, session preferences and an MFA-ready design for higher-risk roles."
+        text="AutoTeams combines email verification, role-based permissions, session preferences and an MFA-ready design for higher-risk roles."
         primaryHref="/members"
         primaryLabel="Review Members & Roles"
         secondaryHref="/privacy"

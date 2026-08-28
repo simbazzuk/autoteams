@@ -88,7 +88,7 @@ export function HomeCommandCentreV2() {
   if (!ready) {
     return (
       <section className={styles.loading}>
-        Preparing your TeamScience.ai home…
+        Preparing your AutoTeams home…
       </section>
     );
   }
@@ -105,7 +105,7 @@ export function HomeCommandCentreV2() {
               )}.
             </h1>
             <p>
-              TeamScience.ai helps you understand people and create better
+              AutoTeams helps you understand people and create better
               teams. Start with the outcome you need today.
             </p>
           </div>
@@ -145,7 +145,7 @@ export function HomeCommandCentreV2() {
                 text={
                   canBuildTeam
                     ? `Choose from ${activePeople.length} active people in ${activeWorkspace?.name}.`
-                    : "TeamScience.ai will guide you through creating a group and adding people first."
+                    : "AutoTeams will guide you through creating a group and adding people first."
                 }
                 status={
                   canBuildTeam
@@ -179,7 +179,7 @@ export function HomeCommandCentreV2() {
                 title="Complete My Profile"
                 text={
                   hasProfile
-                    ? "Review how TeamScience.ai understands your collaboration preferences."
+                    ? "Review how AutoTeams understands your collaboration preferences."
                     : "Complete a short interview so recommendations can consider how you work."
                 }
                 status={
@@ -203,7 +203,7 @@ export function HomeCommandCentreV2() {
                 <span className="eyebrow">Getting ready</span>
                 <h2>Three simple steps before your first team.</h2>
                 <p>
-                  TeamScience.ai checks what is missing and always sends you
+                  AutoTeams checks what is missing and always sends you
                   to the next useful action.
                 </p>
               </div>
@@ -243,7 +243,7 @@ export function HomeCommandCentreV2() {
                 complete={hasPeople}
                 number="2"
                 title="Add people"
-                text="The people TeamScience.ai is allowed to consider when creating teams."
+                text="The people AutoTeams is allowed to consider when creating teams."
                 href={hasGroup ? "/people" : "/organisation"}
               />
 
@@ -261,7 +261,7 @@ export function HomeCommandCentreV2() {
             <div className={styles.sectionHeading}>
               <div>
                 <span className="eyebrow">Overview</span>
-                <h2>Your current TeamScience.ai setup.</h2>
+                <h2>Your current AutoTeams setup.</h2>
               </div>
             </div>
 
@@ -302,7 +302,7 @@ export function HomeCommandCentreV2() {
                 How recommendations work
               </span>
               <h2>
-                TeamScience.ai recommends. You make the final decision.
+                AutoTeams recommends. You make the final decision.
               </h2>
               <p>
                 The recommendation can consider the team requirement,

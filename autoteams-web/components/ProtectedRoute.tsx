@@ -17,7 +17,7 @@ export function ProtectedRoute({ children }: { children: ReactNode }) {
   if (loading || !user) {
     return (
       <div className="container auth-loading">
-        <div className="card">Checking your TeamScience.ai account…</div>
+        <div className="card">Checking your AutoTeams account…</div>
       </div>
     );
   }

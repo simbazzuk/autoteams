@@ -15,7 +15,7 @@ export const academyCourses:AcademyCourse[]=[
 {id:"balance",title:"Balance Over Similarity",summary:"Value complementary rather than identical profiles.",minutes:10},
 {id:"team-risks",title:"Team Risks & Gaps",summary:"Identify missing coverage and collaboration risks.",minutes:10},
 {id:"human-review",title:"Human Review",summary:"Use AI evidence without handing over the decision.",minutes:10},
-{id:"practice",title:"Practical Team Exercise",summary:"Apply the concepts using TeamScience.ai Build Team.",minutes:10}]},
+{id:"practice",title:"Practical Team Exercise",summary:"Apply the concepts using AutoTeams Build Team.",minutes:10}]},
 {slug:"atlas-explainable-ai",icon:"Explainable AI",title:"Atlas & Explainable AI",summary:"Interpret AI-supported recommendations, confidence, evidence and human review.",level:"Intermediate",minutes:55,available:true,pathway:"Explain",modules:[
 {id:"decision-support",title:"AI as Decision Support",summary:"Recommendation versus decision.",minutes:9},
 {id:"evidence",title:"Reading Recommendation Evidence",summary:"Interpret strengths, gaps and reasoning.",minutes:10},

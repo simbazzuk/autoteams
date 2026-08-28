@@ -129,7 +129,7 @@ export function AuthForm({ mode }: { mode: Mode }) {
           {isSignUp ? "Secure registration" : "Welcome back"}
         </span>
         <h2>
-          {isSignUp ? "Create your TeamScience.ai account." : "Log in to TeamScience.ai."}
+          {isSignUp ? "Create your AutoTeams account." : "Log in to AutoTeams."}
         </h2>
         <p>
           {isSignUp
@@ -283,7 +283,7 @@ export function AuthForm({ mode }: { mode: Mode }) {
           <>
             <Link href="/forgot-password">Forgot password?</Link>
             <span>
-              New to TeamScience.ai? <Link href="/signup">Create account</Link>
+              New to AutoTeams? <Link href="/signup">Create account</Link>
             </span>
           </>
         )}

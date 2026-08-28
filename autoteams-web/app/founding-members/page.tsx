@@ -6,7 +6,7 @@ const benefits = [
   {
     icon: "∞",
     title: "Free Pro Access",
-    text: "Unlimited access to premium TeamScience.ai features during Beta.",
+    text: "Unlimited access to premium AutoTeams features during Beta.",
   },
   {
     icon: "◇",
@@ -21,7 +21,7 @@ const benefits = [
   {
     icon: "★",
     title: "Founding Member Badge",
-    text: "Receive exclusive recognition inside your TeamScience.ai account.",
+    text: "Receive exclusive recognition inside your AutoTeams account.",
   },
   {
     icon: "◉",
@@ -49,7 +49,7 @@ export default function FoundingMembersPage() {
       <section className="founding-hero">
         <div className="container founding-hero-grid">
           <div>
-            <span className="eyebrow">TeamScience.ai Early Access</span>
+            <span className="eyebrow">AutoTeams Early Access</span>
             <h1>Become a Founding Member.</h1>
             <p>
               Help shape the future of AI team intelligence while receiving
@@ -102,7 +102,7 @@ export default function FoundingMembersPage() {
             <span className="eyebrow">The journey</span>
             <h2>Help shape what comes next.</h2>
             <p>
-              TeamScience.ai will remain free during early access while the product
+              AutoTeams will remain free during early access while the product
               is tested, improved and validated with real users.
             </p>
           </div>
@@ -125,7 +125,7 @@ export default function FoundingMembersPage() {
         <div className="container">
           <div>
             <span className="eyebrow">Join the first community</span>
-            <h2>Build the future of TeamScience.ai with us.</h2>
+            <h2>Build the future of AutoTeams with us.</h2>
             <p>
               Create a free account, explore Atlas and share your feedback as a
               Founding Member.

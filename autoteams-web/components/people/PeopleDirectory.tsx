@@ -166,7 +166,7 @@ export function PeopleDirectory() {
         <div className="container people38-hero-grid">
           <div>
             <span className="eyebrow">People directory</span>
-            <h1>Your TeamScience.ai network.</h1>
+            <h1>Your AutoTeams network.</h1>
             <p>
               See the people you can build teams with, understand what they
               bring and move directly from discovery into team building.
@@ -366,7 +366,7 @@ export function PeopleDirectory() {
             <span className="eyebrow">Grow your network</span>
             <h2>Turn connections into better teams.</h2>
             <p>
-              TeamScience.ai helps you move from profile to people to team building
+              AutoTeams helps you move from profile to people to team building
               without switching between disconnected admin screens.
             </p>
 
@@ -394,7 +394,7 @@ export function PeopleDirectory() {
               <div className="people40-step-icon">＋</div>
               <span>02</span>
               <h3>Invite</h3>
-              <p>Bring the right people into TeamScience.ai.</p>
+              <p>Bring the right people into AutoTeams.</p>
             </article>
 
             <div className="people40-connector">→</div>

@@ -29,7 +29,7 @@ export function EntitlementGate({ plan, entitlement, title, children }: Props) {
         <strong>{title} is a {planLabel(required)} capability</strong>
         <p>
           Your workspace is currently on the {planLabel(plan)} plan.
-          Upgrade to unlock this TeamScience.ai capability.
+          Upgrade to unlock this AutoTeams capability.
         </p>
       </div>
       <Link href="/pricing">View plans</Link>

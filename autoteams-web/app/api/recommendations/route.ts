@@ -67,7 +67,7 @@ export async function POST(request: Request) {
     const elapsed = Date.now() - startedAt;
 
     console.log(
-      "TeamScience.ai recommendation completed in deterministic mode",
+      "AutoTeams recommendation completed in deterministic mode",
       {
         workspaceId: validatedRequest.workspaceId,
         candidateCount:

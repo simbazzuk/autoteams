@@ -108,7 +108,7 @@ const process = [
   {
     icon: "👤",
     title: "Create profiles",
-    text: "Add the people TeamScience.ai is allowed to consider.",
+    text: "Add the people AutoTeams is allowed to consider.",
   },
   {
     icon: "👥",
@@ -208,11 +208,11 @@ export default function HomePage() {
                   lineHeight: 1.7,
                 }}
               >
-                TeamScience.ai helps people bring the right mix of skills,
+                AutoTeams helps people bring the right mix of skills,
                 strengths, interests and personalities together for the
                 right purpose. Whether you are creating a project team,
                 sports squad, friendship group, community initiative,
-                study group or event, TeamScience.ai helps you make more
+                study group or event, AutoTeams helps you make more
                 informed and explainable people decisions.
               </p>
 
@@ -284,9 +284,9 @@ export default function HomePage() {
         >
           <div className="container">
             <SectionHeading
-              eyebrow="Choose how you use TeamScience.ai"
+              eyebrow="Choose how you use AutoTeams"
               title="One platform. Many ways to bring people together."
-              text="TeamScience.ai is designed for both professional and social use cases, with the same explainable and human-reviewed approach throughout."
+              text="AutoTeams is designed for both professional and social use cases, with the same explainable and human-reviewed approach throughout."
             />
 
             <div
@@ -421,7 +421,7 @@ export default function HomePage() {
                   letterSpacing: "-.035em",
                 }}
               >
-                Atlas is the intelligence layer inside TeamScience.ai.
+                Atlas is the intelligence layer inside AutoTeams.
               </h2>
 
               <p
@@ -516,7 +516,7 @@ export default function HomePage() {
         >
           <div className="container">
             <SectionHeading
-              eyebrow="How TeamScience.ai works"
+              eyebrow="How AutoTeams works"
               title="From people to purpose to explainable recommendation."
               text="The same simple process can be used for a project team, sports squad, friendship circle, community group or event."
             />
@@ -862,7 +862,7 @@ export default function HomePage() {
               >
                 Whether the goal is work, sport, friendship,
                 volunteering, learning or simply meeting people with
-                shared interests, TeamScience.ai helps make the process
+                shared interests, AutoTeams helps make the process
                 more thoughtful, balanced and explainable.
               </p>
 

@@ -117,7 +117,7 @@ export function GuidedOnboarding() {
           </h1>
 
           <p>
-            TeamScience.ai works best when
+            AutoTeams works best when
             your profile and Atlas
             answers are complete.
             Follow these steps in order
@@ -188,7 +188,7 @@ export function GuidedOnboarding() {
 
               <p>
                 Choose your first
-                TeamScience.ai context and
+                AutoTeams context and
                 complete the profile
                 that describes how you
                 want to participate.
@@ -311,7 +311,7 @@ export function GuidedOnboarding() {
               </small>
 
               <h2>
-                Start TeamScience.ai
+                Start AutoTeams
               </h2>
 
               <p>
@@ -345,7 +345,7 @@ export function GuidedOnboarding() {
                     })
                   }
                 >
-                  Start TeamScience.ai →
+                  Start AutoTeams →
                 </Link>
               )}
             </div>
@@ -366,7 +366,7 @@ export function GuidedOnboarding() {
 
             <p>
               Profile first, Atlas
-              second, TeamScience.ai third.
+              second, AutoTeams third.
               This keeps onboarding
               simple and gives Team
               Builder better data from
