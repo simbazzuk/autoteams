@@ -204,7 +204,7 @@ export function TeamSaveFeedback() {
       setFeedback({
         kind: "saving",
         message:
-          "Saving your team to AutoTeams…",
+          "Saving your team to TeamScience.ai…",
       });
 
       /*

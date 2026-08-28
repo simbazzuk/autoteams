@@ -22,7 +22,7 @@ function contextLabel(
     case "education":
       return "Education";
     default:
-      return "AutoTeams";
+      return "TeamScience.ai";
   }
 }
 
@@ -195,7 +195,7 @@ export function InviteRegistrationExperience() {
       </div>
 
       <p className="invite-register-note">
-        Confirm your account details below. Your AutoTeams profile remains
+        Confirm your account details below. Your TeamScience.ai profile remains
         yours; the invitation simply connects you to this profile context.
       </p>
     </section>

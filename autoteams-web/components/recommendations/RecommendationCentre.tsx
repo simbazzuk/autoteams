@@ -162,7 +162,7 @@ export function RecommendationCentre() {
             <span className="eyebrow">Recommendations</span>
             <h1>No team recommendations are available yet.</h1>
             <p>
-              Build and save a team first. AutoTeams will explain the
+              Build and save a team first. TeamScience.ai will explain the
               evidence and points to consider here.
             </p>
           </div>

@@ -65,7 +65,7 @@ export default function RoadmapPage() {
       <section className="roadmap-hero">
         <div className="container">
           <span className="eyebrow">Public roadmap</span>
-          <h1>Building AutoTeams in the open.</h1>
+          <h1>Building TeamScience.ai in the open.</h1>
           <p>
             The roadmap will evolve through Founding Member feedback and
             real-world product validation.

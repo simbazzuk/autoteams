@@ -122,7 +122,7 @@ export function WorkspacesPanel() {
           <span className="eyebrow">Workspaces</span>
           <h1>Create the right boundary for your people and teams.</h1>
           <p>
-            Choose the kind of group you are creating. AutoTeams uses
+            Choose the kind of group you are creating. TeamScience.ai uses
             that choice to recommend the most relevant Atlas Profile
             context for members.
           </p>

@@ -122,7 +122,7 @@ export function ProfileContextSelection() {
 
         <p className={styles.note}>
           You can add other Atlas Profiles later. This choice simply sets up your
-          first AutoTeams profile.
+          first TeamScience.ai profile.
         </p>
       </div>
     </main>

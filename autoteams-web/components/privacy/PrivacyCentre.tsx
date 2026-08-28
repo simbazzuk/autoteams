@@ -26,7 +26,7 @@ export function PrivacyCentre() {
     link.download = "autoteams-my-data.json";
     link.click();
     URL.revokeObjectURL(url);
-    setMessage("Your local AutoTeams profile export has been created.");
+    setMessage("Your local TeamScience.ai profile export has been created.");
   }
 
   function deleteLocalData() {

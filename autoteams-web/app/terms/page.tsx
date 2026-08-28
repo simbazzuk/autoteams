@@ -6,7 +6,7 @@ export default function TermsPage() {
       <main className="v115-legal-page">
         <div className="container">
           <span className="eyebrow">Draft terms</span>
-          <h1>AutoTeams Terms of Use</h1>
+          <h1>TeamScience.ai Terms of Use</h1>
           <p>
             This test release provides decision-support recommendations. Atlas
             does not replace human judgement, professional assessment or an
@@ -15,7 +15,7 @@ export default function TermsPage() {
           <section>
             <h2>Appropriate use</h2>
             <p>
-              Users must not use AutoTeams to discriminate, infer protected
+              Users must not use TeamScience.ai to discriminate, infer protected
               characteristics or make automated decisions with significant
               effects without appropriate review.
             </p>

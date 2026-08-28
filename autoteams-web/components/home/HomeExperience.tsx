@@ -136,7 +136,7 @@ export function HomeExperience() {
               Good {dayPart()}, {firstName(user?.displayName || user?.email)}.
             </h1>
             <p>
-              AutoTeams is ready to guide you from profile creation through to
+              TeamScience.ai is ready to guide you from profile creation through to
               an explainable Atlas team recommendation.
             </p>
 
@@ -224,7 +224,7 @@ export function HomeExperience() {
               <div className="ux14-section-heading">
                 <div>
                   <span className="eyebrow">Guided journey</span>
-                  <h2>How AutoTeams works.</h2>
+                  <h2>How TeamScience.ai works.</h2>
                 </div>
                 <Link href="/product-guide">Full guide →</Link>
               </div>

@@ -12,13 +12,13 @@ export default function SignUpPage() {
           <Link className={styles.brand} href="/">
             <RobotLogo />
             <span>
-              <strong>AutoTeams</strong>
+              <strong>TeamScience.ai</strong>
               <small>AI Team Intelligence</small>
             </span>
           </Link>
 
           <div className={styles.heroCopy}>
-            <span className={styles.eyebrow}>Start your AutoTeams journey</span>
+            <span className={styles.eyebrow}>Start your TeamScience.ai journey</span>
             <h1>Build stronger teams with explainable AI.</h1>
             <p>
               Create contextual profiles, understand how people collaborate and
@@ -67,7 +67,7 @@ export default function SignUpPage() {
           <Link className={styles.brand} href="/">
             <RobotLogo />
             <span>
-              <strong>AutoTeams</strong>
+              <strong>TeamScience.ai</strong>
               <small>AI Team Intelligence</small>
             </span>
           </Link>

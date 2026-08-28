@@ -1079,7 +1079,7 @@ export function TeamInsights() {
 
             <p>
               {error
-                ? "AutoTeams could not load all Team Insights data from Firebase."
+                ? "TeamScience.ai could not load all Team Insights data from Firebase."
                 : selectedTeam
                   ? `${profileLabel(
                       selectedProfile,
@@ -1257,7 +1257,7 @@ export function TeamInsights() {
 
               <p>
                 {loading
-                  ? "AutoTeams is loading teams linked to your authenticated account."
+                  ? "TeamScience.ai is loading teams linked to your authenticated account."
                   : "Teams you own or belong to will appear here when they are available in Firebase."}
               </p>
             </div>

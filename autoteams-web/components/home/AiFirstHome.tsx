@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { appConfig } from "@/lib/app-config";
 
@@ -108,7 +108,7 @@ export function AiFirstHome() {
   if (!ready) {
     return (
       <section className={styles.loading}>
-        Preparing AutoTeamsâ€¦
+        Preparing TeamScience.ai…
       </section>
     );
   }
@@ -123,7 +123,7 @@ export function AiFirstHome() {
         <div className={`container ${styles.heroGrid}`}>
           <div>
             <span className="eyebrow">
-              AutoTeams {appConfig.version}
+              TeamScience.ai
             </span>
 
             <h1>
@@ -144,14 +144,14 @@ export function AiFirstHome() {
                 className="button"
                 href="/team-builder"
               >
-                Build a Team â†’
+                Build a Team →
               </Link>
 
               <Link
                 className="button secondary"
                 href="/gemini-team-coach"
               >
-                âœ¦ Gemini Team Coach
+                ✦ Gemini Team Coach
               </Link>
             </div>
           </div>
@@ -162,7 +162,7 @@ export function AiFirstHome() {
                 label="Gemini Team Coach"
                 size="lg"
               >
-                âœ¦
+                ✦
               </ProductIcon>
 
               <div>
@@ -198,8 +198,8 @@ export function AiFirstHome() {
               href="/gemini-team-coach"
             >
               {profileQuality > 0
-                ? "Continue Team Coach â†’"
-                : "Start Team Coach â†’"}
+                ? "Continue Team Coach →"
+                : "Start Team Coach →"}
             </Link>
           </aside>
         </div>
@@ -223,7 +223,7 @@ export function AiFirstHome() {
                 text={
                   canBuild
                     ? `${workspacePeople.length} active people are available in ${workspace?.name}.`
-                    : "AutoTeams will guide you through creating a group and adding people."
+                    : "TeamScience.ai will guide you through creating a group and adding people."
                 }
                 status={
                   canBuild
@@ -236,7 +236,7 @@ export function AiFirstHome() {
               />
 
               <ActionCard
-                icon="âœ¦"
+                icon="✦"
                 title="Gemini Team Coach"
                 text="Improve recommendation quality by helping Gemini understand how you collaborate."
                 status={`${profileQuality}% profile quality`}
@@ -273,7 +273,7 @@ export function AiFirstHome() {
             <div className={styles.heading}>
               <div>
                 <span className="eyebrow">
-                  Your AutoTeams
+                  Your TeamScience.ai
                 </span>
                 <h2>
                   Everything in one simple view.
@@ -301,7 +301,7 @@ export function AiFirstHome() {
                 href="/teams"
               />
               <Metric
-                icon="âœ¦"
+                icon="✦"
                 label="AI profile quality"
                 value={`${profileQuality}%`}
                 href="/gemini-team-coach"
@@ -314,7 +314,7 @@ export function AiFirstHome() {
               label="AI recommendation"
               size="lg"
             >
-              âœ¦
+              ✦
             </ProductIcon>
 
             <div>
@@ -325,7 +325,7 @@ export function AiFirstHome() {
                 Gemini recommends. You decide.
               </h2>
               <p>
-                AutoTeams combines authorised people,
+                TeamScience.ai combines authorised people,
                 skills and collaboration evidence with
                 Gemini analysis. Every recommendation is
                 explainable and remains subject to human
@@ -387,7 +387,7 @@ function ActionCard({
         className="button"
         href={href}
       >
-        {label} â†’
+        {label} →
       </Link>
     </article>
   );
@@ -419,7 +419,7 @@ function Metric({
         <strong>{value}</strong>
       </div>
 
-      <span>Open â†’</span>
+      <span>Open →</span>
     </Link>
   );
 }

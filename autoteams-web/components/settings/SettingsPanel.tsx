@@ -33,14 +33,14 @@ export function SettingsPanel() {
     <div className="settings-layout">
       <aside className="settings-sidebar">
         <span className="eyebrow">Account settings</span>
-        <h2>Personalise AutoTeams</h2>
+        <h2>Personalise TeamScience.ai</h2>
         <p>Control appearance, notifications and the experience used across your workspace.</p>
       </aside>
 
       <section className="settings-content">
         <div className="settings-card">
           <div className="settings-heading">
-            <div><h3>Profile</h3><p>Your authenticated AutoTeams identity.</p></div>
+            <div><h3>Profile</h3><p>Your authenticated TeamScience.ai identity.</p></div>
             <span className="badge">Firebase</span>
           </div>
           <div className="settings-profile">
@@ -48,7 +48,7 @@ export function SettingsPanel() {
               {(user?.displayName || user?.email || "M").charAt(0).toUpperCase()}
             </span>
             <div>
-              <strong>{user?.displayName || "AutoTeams Member"}</strong>
+              <strong>{user?.displayName || "TeamScience.ai Member"}</strong>
               <small>{user?.email}</small>
             </div>
           </div>
@@ -89,7 +89,7 @@ export function SettingsPanel() {
           </div>
           <Toggle
             title="Email notifications"
-            text="Receive important AutoTeams account updates."
+            text="Receive important TeamScience.ai account updates."
             checked={preferences.emailNotifications}
             onChange={(checked) => update("emailNotifications", checked)}
           />

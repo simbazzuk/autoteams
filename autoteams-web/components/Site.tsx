@@ -143,12 +143,11 @@ export function Navbar() {
           <RobotLogo />
 
           <span className="commercial-brand-copy">
-            <strong>AutoTeams</strong>
+            <strong className="teamscience-wordmark">TeamScience.ai</strong>
             <em>AI-powered team intelligence</em>
           </span>
 
-          <small>{appConfig.version}</small>
-        </Link>
+</Link>
 
         <nav
           className="product-nav-links atlas-nav-links"
@@ -302,7 +301,7 @@ export function Footer() {
         <div>
           <div className="brand">
             <RobotLogo />
-            <span>AutoTeams</span>
+            <span>TeamScience.ai</span>
           </div>
 
           <p className="muted">

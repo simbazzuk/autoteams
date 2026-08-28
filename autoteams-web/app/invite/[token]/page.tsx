@@ -23,7 +23,7 @@ function profileLabel(
     case "education":
       return "Education";
     default:
-      return "AutoTeams";
+      return "TeamScience.ai";
   }
 }
 
@@ -138,7 +138,7 @@ export default function InvitePage() {
         </div>
 
         <p style={footnoteStyle}>
-          Your AutoTeams profile belongs to you. This invitation gives you
+          Your TeamScience.ai profile belongs to you. This invitation gives you
           access to participate in the selected profile context.
         </p>
       </section>

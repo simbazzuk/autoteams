@@ -249,7 +249,7 @@ function LocalAccountMenu() {
     emailDisplayName(
       user?.email,
     ) ||
-    "AutoTeams User";
+    "TeamScience.ai User";
 
   const email =
     user?.email || "";

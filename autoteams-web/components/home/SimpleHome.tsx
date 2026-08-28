@@ -48,7 +48,7 @@ export function SimpleHome() {
   const profileAction = myProfiles.length === 0
     ? {
         title: "Complete My Profile",
-        text: "Tell AutoTeams how you naturally collaborate with other people.",
+        text: "Tell TeamScience.ai how you naturally collaborate with other people.",
         label: "Start My Profile",
         href: "/profile",
         status: "Not started",
@@ -63,7 +63,7 @@ export function SimpleHome() {
         }
       : {
           title: "Review My Profile",
-          text: "Review how AutoTeams understands your collaboration preferences.",
+          text: "Review how TeamScience.ai understands your collaboration preferences.",
           label: "Open My Profile",
           href: "/profile",
           status: "Ready",
@@ -94,7 +94,7 @@ export function SimpleHome() {
           <div>
             <span className="eyebrow">Home</span>
             <h1>Good {dayPart()}, {firstName(user?.displayName || user?.email)}.</h1>
-            <p>AutoTeams helps you understand people and build better teams. Choose what you want to do today.</p>
+            <p>TeamScience.ai helps you understand people and build better teams. Choose what you want to do today.</p>
           </div>
 
           <aside className={styles.contextCard}>
@@ -125,7 +125,7 @@ export function SimpleHome() {
                 text={
                   canBuildTeam
                     ? `Choose from ${workspacePeople.length} people in ${activeWorkspace?.name}.`
-                    : "Add people to your group before asking AutoTeams to recommend a team."
+                    : "Add people to your group before asking TeamScience.ai to recommend a team."
                 }
                 label={canBuildTeam ? "Build My Team" : "Add People First"}
                 href={canBuildTeam ? "/team-builder" : "/people"}
@@ -163,7 +163,7 @@ export function SimpleHome() {
 
             <div className={styles.readinessGrid}>
               <ReadinessItem number="1" title="A group" text="Your company, club, community or friendship group." complete={Boolean(activeWorkspace)} href="/organisation" />
-              <ReadinessItem number="2" title="People" text="The members AutoTeams is allowed to consider." complete={workspacePeople.length > 0} href="/people" />
+              <ReadinessItem number="2" title="People" text="The members TeamScience.ai is allowed to consider." complete={workspacePeople.length > 0} href="/people" />
               <ReadinessItem number="3" title="Profiles" text="Collaboration preferences that improve recommendations." complete={completedProfiles > 0} href="/profile" />
             </div>
           </section>
@@ -172,7 +172,7 @@ export function SimpleHome() {
             <div className={styles.sectionHeading}>
               <div>
                 <span className="eyebrow">Overview</span>
-                <h2>Your AutoTeams activity.</h2>
+                <h2>Your TeamScience.ai activity.</h2>
               </div>
             </div>
 
@@ -186,10 +186,10 @@ export function SimpleHome() {
 
           <section className={styles.explanation}>
             <div>
-              <span className="eyebrow">AutoTeams intelligence</span>
-              <h2>You make the decision. AutoTeams explains the evidence.</h2>
+              <span className="eyebrow">TeamScience.ai intelligence</span>
+              <h2>You make the decision. TeamScience.ai explains the evidence.</h2>
               <p>
-                AutoTeams considers the team requirement, eligible people, availability, skills and collaboration preferences. It then presents an explainable recommendation for human review.
+                TeamScience.ai considers the team requirement, eligible people, availability, skills and collaboration preferences. It then presents an explainable recommendation for human review.
               </p>
             </div>
             <Link className="button secondary" href="/learning-centre">Learn How It Works</Link>

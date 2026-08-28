@@ -119,7 +119,7 @@ export function TeamBuilderSetupGate({
     saveActiveWorkspaceId(created.id);
     setGroupName("");
     setGroupDescription("");
-    setNotice(`${created.name} is ready. Now add the people AutoTeams can consider.`);
+    setNotice(`${created.name} is ready. Now add the people TeamScience.ai can consider.`);
     refreshState();
   }
 
@@ -301,7 +301,7 @@ export function TeamBuilderSetupGate({
               <span className="eyebrow">Step 2 of 3</span>
               <h1>Add people to {activeWorkspace.name}.</h1>
               <p>
-                These are the people AutoTeams may consider when
+                These are the people TeamScience.ai may consider when
                 recommending a team.
               </p>
             </div>
@@ -477,7 +477,7 @@ function SetupShell({
     {
       number: 2,
       title: "Add people",
-      text: "Who AutoTeams can consider",
+      text: "Who TeamScience.ai can consider",
     },
     {
       number: 3,
@@ -494,7 +494,7 @@ function SetupShell({
           <h1>Let’s get everything ready in one place.</h1>
           <p>
             You do not need to leave Team Builder. Complete each step
-            below and AutoTeams will move you forward automatically.
+            below and TeamScience.ai will move you forward automatically.
           </p>
         </div>
       </section>

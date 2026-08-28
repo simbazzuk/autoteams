@@ -17,7 +17,7 @@ export type WorkspaceMembership = {
   status: "active" | "invited";
   joinedAt: string | null;
   /**
-   * AutoTeams profile contexts this member participates in.
+   * TeamScience.ai profile contexts this member participates in.
    * Optional for backward compatibility with legacy workspace membership data.
    */
   profileContexts?: Array<

@@ -16,7 +16,7 @@ export const courseAssessments: Record<
     {
       id: "tsf-1",
       question:
-        "Which statement best reflects the AutoTeams view of Team Science?",
+        "Which statement best reflects the TeamScience.ai view of Team Science?",
       options: [
         "The strongest team is always made up of the highest-scoring individuals.",
         "Team effectiveness depends on how people combine around a shared purpose.",
@@ -44,7 +44,7 @@ export const courseAssessments: Record<
     {
       id: "tsf-3",
       question:
-        "What role should AI play in an AutoTeams recommendation?",
+        "What role should AI play in an TeamScience.ai recommendation?",
       options: [
         "Make the final decision automatically.",
         "Replace the team leader.",
@@ -53,7 +53,7 @@ export const courseAssessments: Record<
       ],
       correctIndex: 2,
       explanation:
-        "AutoTeams follows the principle that AI recommends and humans decide.",
+        "TeamScience.ai follows the principle that AI recommends and humans decide.",
     },
   ],
 
@@ -120,7 +120,7 @@ export const courseAssessments: Record<
     {
       id: "aea-2",
       question:
-        "Why does explainability matter in AutoTeams?",
+        "Why does explainability matter in TeamScience.ai?",
       options: [
         "It allows the recommendation to be inspected and challenged.",
         "It hides uncertainty from the user.",
@@ -137,7 +137,7 @@ export const courseAssessments: Record<
         "Which statement best describes Atlas?",
       options: [
         "Atlas is the final decision-maker.",
-        "Atlas is the AutoTeams intelligence layer that supports explainable recommendations.",
+        "Atlas is the TeamScience.ai intelligence layer that supports explainable recommendations.",
         "Atlas is only a navigation menu.",
         "Atlas replaces Team Science.",
       ],

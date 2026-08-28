@@ -36,7 +36,7 @@ export function PasswordResetForm() {
     <div className="auth-card card">
       <span className="eyebrow">Account recovery</span>
       <h2>Reset your password.</h2>
-      <p className="lead">Enter the email address associated with AutoTeams.</p>
+      <p className="lead">Enter the email address associated with TeamScience.ai.</p>
 
       <form className="auth-form" onSubmit={submit}>
         <label>

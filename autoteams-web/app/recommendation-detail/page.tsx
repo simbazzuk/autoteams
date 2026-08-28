@@ -17,7 +17,7 @@ export default function RecommendationDetailPage() {
       >
         <div className="container">
           <span className="eyebrow">
-            AutoTeams v6.1.1
+            TeamScience.ai
           </span>
 
           <div

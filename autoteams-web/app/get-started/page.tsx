@@ -12,7 +12,7 @@ export default function GetStartedPage() {
         }}
       >
         <div className="container">
-          <span className="eyebrow">AutoTeams</span>
+          <span className="eyebrow">TeamScience.ai</span>
 
           <h1
             style={{
@@ -37,7 +37,7 @@ export default function GetStartedPage() {
           >
             Set up your workspace, add people and create
             your first explainable team recommendation.
-            AutoTeams will track your progress as you go.
+            TeamScience.ai will track your progress as you go.
           </p>
 
                   {/* AUTOTEAMS_V71381_CURRENT_JOURNEY */}
@@ -45,7 +45,7 @@ export default function GetStartedPage() {
           <div className="getstarted81-head">
             <div>
               <span className="getstarted81-kicker">
-                How AutoTeams works now
+                How TeamScience.ai works now
               </span>
 
               <h1>

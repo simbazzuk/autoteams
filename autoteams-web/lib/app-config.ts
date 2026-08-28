@@ -1,5 +1,5 @@
 export const appConfig = {
-  name: "AutoTeams",
+  name: "TeamScience.ai",
   version:
     process.env.NEXT_PUBLIC_APP_VERSION?.trim() ||
     "1.0.0",

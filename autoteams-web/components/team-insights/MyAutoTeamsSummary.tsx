@@ -131,8 +131,8 @@ export function MyAutoTeamsSummary({
     >
       <header className={styles.header}>
         <div>
-          <span>✦ MY AUTOTEAMS</span>
-          <h2>My AutoTeams Summary</h2>
+          <span>✦ MY TEAMSCIENCE</span>
+          <h2>My TeamScience Summary</h2>
           <p>
             Your profiles and teams at a glance. Jump straight into the profile or team you want to explore.
           </p>
@@ -298,7 +298,7 @@ export function MyAutoTeamsSummary({
                       <strong>{team.name}</strong>
                       <small>
                         {team.contextName ??
-                          "AutoTeams group"}
+                          "TeamScience.ai group"}
                       </small>
                     </div>
                   </div>

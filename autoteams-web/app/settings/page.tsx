@@ -9,7 +9,7 @@ export default function SettingsPage() {
       <ProtectedRoute>
         <ProductPage
           eyebrow="Workspace settings"
-          title="Make AutoTeams yours."
+          title="Make TeamScience.ai yours."
           text="Manage your account experience, appearance and product notifications."
         >
           <SettingsPanel />

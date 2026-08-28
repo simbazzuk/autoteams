@@ -106,7 +106,7 @@ export function PricingPlans() {
         <span className={styles.eyebrow}>PRICING & PLANS</span>
         <h1>Start free. Upgrade when your teams need more intelligence.</h1>
         <p>
-          AutoTeams is currently in early access. Core Team Science capabilities
+          TeamScience.ai is currently in early access. Core Team Science capabilities
           remain free while we develop our future Pro and Business plans.
         </p>
         <strong>No payment is required today.</strong>
@@ -199,7 +199,7 @@ export function PricingPlans() {
           <span>WHY PRO?</span>
           <h2>Move from building teams to designing them.</h2>
           <p>
-            AutoTeams Pro is planned around deeper Team Science intelligence,
+            TeamScience.ai Pro is planned around deeper Team Science intelligence,
             rather than simply placing ordinary product features behind a paywall.
           </p>
         </div>
@@ -250,7 +250,7 @@ export function PricingPlans() {
       <section className={styles.founding}>
         <div>
           <span>EARLY ACCESS</span>
-          <h2>Help shape AutoTeams.</h2>
+          <h2>Help shape TeamScience.ai.</h2>
           <p>
             AutoTeams is being developed with early users. Founding members can
             explore new capabilities as they are introduced and help influence

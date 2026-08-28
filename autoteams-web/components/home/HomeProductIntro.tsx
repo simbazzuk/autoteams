@@ -3,7 +3,7 @@ import Link from "next/link";
 export function HomeProductIntro() {
   return (
     <section
-      aria-label="About AutoTeams"
+      aria-label="About TeamScience.ai"
       style={{
         display: "grid",
         gap: 16,
@@ -22,7 +22,7 @@ export function HomeProductIntro() {
             marginBottom: 8,
           }}
         >
-          What is AutoTeams?
+          What is TeamScience.ai?
         </span>
 
         <h2
@@ -45,7 +45,7 @@ export function HomeProductIntro() {
             lineHeight: 1.65,
           }}
         >
-          AutoTeams helps organisations create balanced teams from the
+          TeamScience.ai helps organisations create balanced teams from the
           people they already have. It combines team objectives, skills,
           strengths and explainable AI recommendations so users can make
           better-informed team decisions while retaining human review and

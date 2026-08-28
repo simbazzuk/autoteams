@@ -46,7 +46,7 @@ export function SmartDashboard() {
     <div className="smart-dashboard">
       <section className="dashboard-welcome">
         <div>
-          <span className="eyebrow">Your AutoTeams workspace</span>
+          <span className="eyebrow">Your TeamScience.ai workspace</span>
           <h1>Welcome back, {firstName} 👋</h1>
           <p>Build your Team DNA, improve your profiles and create teams around a real purpose.</p>
         </div>

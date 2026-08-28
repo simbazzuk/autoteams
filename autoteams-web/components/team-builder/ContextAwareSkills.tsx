@@ -273,7 +273,7 @@ export function ContextAwareSkills({
         !teamName.trim() &&
         !outcome.trim()
       ) {
-        return "Add a team name or desired outcome so AutoTeams can infer a more meaningful Team Science context.";
+        return "Add a team name or desired outcome so TeamScience.ai can infer a more meaningful Team Science context.";
       }
 
       if (
@@ -340,7 +340,7 @@ export function ContextAwareSkills({
           </h3>
 
           <p>
-            AutoTeams uses the team
+            TeamScience.ai uses the team
             name and desired outcome
             to infer a starting
             context. Review the

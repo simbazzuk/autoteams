@@ -12,7 +12,7 @@ export default function LoginPage() {
           <Link className={styles.brand} href="/">
             <RobotLogo />
             <span>
-              <strong>AutoTeams</strong>
+              <strong>TeamScience.ai</strong>
               <small>AI Team Intelligence</small>
             </span>
           </Link>
@@ -63,7 +63,7 @@ export default function LoginPage() {
           <Link className={styles.brand} href="/">
             <RobotLogo />
             <span>
-              <strong>AutoTeams</strong>
+              <strong>TeamScience.ai</strong>
               <small>AI Team Intelligence</small>
             </span>
           </Link>
@@ -95,7 +95,7 @@ export default function LoginPage() {
         </div>
 
         <div className={styles.signUpPrompt}>
-          New to AutoTeams? <Link href="/signup">Create an account</Link>
+          New to TeamScience.ai? <Link href="/signup">Create an account</Link>
         </div>
       </section>
     </main>

@@ -48,7 +48,7 @@ export function EnterpriseTrustSecurity() {
         <span>ENTERPRISE TRUST &amp; SECURITY</span>
         <h2>Understand who can access what — and what Atlas can see.</h2>
         <p>
-          Corporate adoption depends on clear boundaries. AutoTeams separates
+          Corporate adoption depends on clear boundaries. TeamScience.ai separates
           account access, workspace permissions, profile privacy and Atlas
           processing so organisations can understand how people and data are
           used.
@@ -115,7 +115,7 @@ export function EnterpriseTrustSecurity() {
           <span className={styles.kicker}>ATLAS &amp; YOUR DATA</span>
           <h3>Only the context needed for the task.</h3>
           <p>
-            When Atlas generates a recommendation or Team Insight, AutoTeams
+            When Atlas generates a recommendation or Team Insight, TeamScience.ai
             should send the profile, team and requirement information needed
             for that analysis — not passwords, authentication credentials or
             unrelated workspace information.
@@ -130,7 +130,7 @@ export function EnterpriseTrustSecurity() {
             <b>→</b>
             <div>
               <small>02</small>
-              <strong>AutoTeams</strong>
+              <strong>TeamScience.ai</strong>
               <span>Applies workspace and profile controls</span>
             </div>
             <b>→</b>
@@ -152,7 +152,7 @@ export function EnterpriseTrustSecurity() {
             <span>
               Model-provider training, processing location, retention and
               sub-processor statements must match the production configuration
-              and contractual terms. AutoTeams should not make stronger claims
+              and contractual terms. TeamScience.ai should not make stronger claims
               until those settings and terms are verified.
             </span>
           </div>
@@ -162,7 +162,7 @@ export function EnterpriseTrustSecurity() {
       <div className={styles.controls}>
         <div>
           <span className={styles.kicker}>CURRENT PRODUCT CONTROLS</span>
-          <h3>Controls AutoTeams can explain today.</h3>
+          <h3>Controls TeamScience.ai can explain today.</h3>
         </div>
         <div className={styles.controlGrid}>
           {currentControls.map(([title, text]) => (
@@ -196,7 +196,7 @@ export function EnterpriseTrustSecurity() {
       <div className={styles.dataLifecycle}>
         <div>
           <span className={styles.kicker}>DATA LIFECYCLE</span>
-          <h3>Corporate questions AutoTeams should answer clearly.</h3>
+          <h3>Corporate questions TeamScience.ai should answer clearly.</h3>
         </div>
 
         <div>
@@ -211,7 +211,7 @@ export function EnterpriseTrustSecurity() {
 
       <div className={styles.footer}>
         <p>
-          This page describes AutoTeams product controls and intended design
+          This page describes TeamScience.ai product controls and intended design
           principles. It is not a certification, contractual security schedule
           or final legal privacy notice.
         </p>

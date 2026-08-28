@@ -138,10 +138,10 @@ function inviteEmailHtml(
     payload.recipientName.trim().split(/\s+/)[0] || "there";
 
   const inviter =
-    payload.inviterName?.trim() || "An AutoTeams member";
+    payload.inviterName?.trim() || "A TeamScience.ai member";
 
   const profile =
-    PROFILE_LABELS[payload.profileContext ?? ""] || "AutoTeams";
+    PROFILE_LABELS[payload.profileContext ?? ""] || "TeamScience.ai";
 
   const role = ROLE_LABELS[payload.role];
 
@@ -150,10 +150,10 @@ function inviteEmailHtml(
   <body style="margin:0;background:#08111f;font-family:Arial,Helvetica,sans-serif;color:#eaf0ff">
     <div style="max-width:680px;margin:0 auto;padding:40px 20px">
       <div style="padding:34px;border:1px solid #293650;border-radius:24px;background:linear-gradient(145deg,#121d31,#0b1322)">
-        <div style="font-size:12px;font-weight:800;letter-spacing:.13em;color:#a78bfa">AUTOTEAMS INVITATION</div>
+        <div style="font-size:12px;font-weight:800;letter-spacing:.13em;color:#a78bfa">TEAMSCIENCE.AI INVITATION</div>
 
         <h1 style="margin:18px 0 12px;font-size:38px;line-height:1.05;color:#ffffff">
-          You're invited to AutoTeams
+          You're invited to TeamScience.ai
         </h1>
 
         <p style="margin:0 0 22px;color:#aebbd0;font-size:16px;line-height:1.65">
@@ -175,11 +175,11 @@ function inviteEmailHtml(
 
         <a href="${escapeHtml(inviteUrl)}"
            style="display:inline-block;padding:14px 22px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;text-decoration:none;font-weight:800">
-          Join AutoTeams →
+          Join TeamScience.ai →
         </a>
 
         <p style="margin:26px 0 0;color:#718097;font-size:12px;line-height:1.55">
-          AutoTeams helps people understand strengths, compatibility and build better teams.
+          TeamScience.ai helps people understand strengths, compatibility and build better teams.
           This invitation was sent to ${escapeHtml(payload.recipientEmail)}.
         </p>
       </div>
@@ -256,7 +256,7 @@ export async function POST(request: NextRequest) {
         },
         body: JSON.stringify({
           message: {
-            subject: `${payload.inviterName || "Someone"} invited you to AutoTeams`,
+            subject: `${payload.inviterName || "Someone"} invited you to TeamScience.ai`,
             body: {
               contentType: "HTML",
               content: inviteEmailHtml(payload, inviteUrl),

@@ -34,7 +34,7 @@ export function AtlasSupport() {
       id: "welcome",
       role: "assistant",
       content:
-        "Welcome to AutoTeams. I can help you create a profile, invite people or build your first team. What would you like to do?",
+        "Welcome to TeamScience.ai. I can help you create a profile, invite people or build your first team. What would you like to do?",
     },
   ]);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -106,7 +106,7 @@ export function AtlasSupport() {
               <span className={styles.avatar}>✦</span>
               <div>
                 <strong>Ask Atlas</strong>
-                <small>AutoTeams help</small>
+                <small>TeamScience.ai help</small>
               </div>
             </div>
             <button
@@ -148,7 +148,7 @@ export function AtlasSupport() {
 
                 {message.role === "assistant" && message.source && (
                   <small className={styles.source}>
-                    {message.source === "gemini" ? "Atlas AI" : "AutoTeams support"}
+                    {message.source === "gemini" ? "Atlas AI" : "TeamScience.ai support"}
                   </small>
                 )}
               </article>
@@ -178,7 +178,7 @@ export function AtlasSupport() {
               ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about AutoTeams..."
+              placeholder="Ask about TeamScience.ai..."
               maxLength={3000}
             />
             <button type="submit" disabled={sending || !input.trim()}>

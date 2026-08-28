@@ -23520,3 +23520,54 @@ html[data-theme="light"] .access-page[data-autoteams-invite] .access-side > sect
     z-index: 1 !important;
   }
 }
+/* TEAMSCIENCE_AI_BRANDING_PATCH2 */
+.teamscience-wordmark {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.teamscience-wordmark::after {
+  content: none !important;
+  display: none !important;
+}
+@media (max-width: 760px) {
+  .teamscience-wordmark::after {
+  content: none !important;
+  display: none !important;
+}
+}
+/* TEAMSCIENCE_AI_HEADER_POLISH_FIX1 */
+.teamscience-wordmark {
+  font-size: 1.04rem;
+  line-height: 1.05;
+  font-weight: 850;
+  letter-spacing: -0.025em;
+}
+
+/* Hide common public header/version badge variants if still present. */
+.product-brand .version,
+.product-brand .version-badge,
+.product-brand [data-version],
+.product-logo .version,
+.product-logo .version-badge,
+.product-nav-brand .version,
+.product-nav-brand .version-badge,
+header .app-version,
+header .version-badge {
+  display: none !important;
+}
+
+/* Keep the existing real tagline below the wordmark readable but secondary. */
+.product-brand small,
+.product-logo small,
+.product-nav-brand small {
+  opacity: 0.68;
+  font-size: 0.62rem;
+  line-height: 1.15;
+}
+
+@media (max-width: 760px) {
+  .teamscience-wordmark {
+    font-size: 0.98rem;
+  }
+}
