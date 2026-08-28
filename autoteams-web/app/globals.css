@@ -24791,3 +24791,148 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
     padding-left:33px;
   }
 }
+/* TEAMSCIENCE_AI_V715783_CREDIT_ALLOWANCE_INDICATOR */
+[data-teamscience-credit-indicator-v715783="true"] {
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  min-height:32px!important;
+  padding:5px 10px!important;
+  border:1px solid rgba(52,211,153,.46)!important;
+  border-radius:999px!important;
+  background:
+    linear-gradient(135deg,rgba(5,150,105,.24),rgba(13,148,136,.17))!important;
+  color:#d1fae5!important;
+  box-shadow:0 7px 20px rgba(5,150,105,.12)!important;
+  cursor:pointer!important;
+  white-space:nowrap!important;
+  transition:border-color .18s ease,background .18s ease,transform .18s ease!important;
+}
+
+[data-teamscience-credit-indicator-v715783="true"]:hover {
+  border-color:rgba(110,231,183,.82)!important;
+  background:
+    linear-gradient(135deg,rgba(5,150,105,.36),rgba(13,148,136,.28))!important;
+  transform:translateY(-1px);
+}
+
+[data-teamscience-credit-indicator-v715783="true"]:focus-visible {
+  outline:2px solid #6ee7b7!important;
+  outline-offset:3px!important;
+}
+
+.teamscience-credit-indicator-label-v715783 {
+  color:#a7f3d0!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  line-height:1!important;
+  letter-spacing:.02em!important;
+}
+
+.teamscience-credit-indicator-value-v715783 {
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:34px!important;
+  padding:4px 7px!important;
+  border-radius:999px!important;
+  background:rgba(6,78,59,.56)!important;
+  color:#ffffff!important;
+  font-size:11px!important;
+  font-weight:900!important;
+  line-height:1!important;
+}
+
+.teamscience-credit-indicator-chevron-v715783 {
+  color:#6ee7b7!important;
+  font-size:10px!important;
+  font-weight:900!important;
+  line-height:1!important;
+}
+
+@media(max-width:640px){
+  [data-teamscience-credit-indicator-v715783="true"] {
+    min-height:34px!important;
+    padding:6px 9px!important;
+    gap:6px!important;
+  }
+
+  .teamscience-credit-indicator-label-v715783 {
+    font-size:10px!important;
+  }
+}
+/* TEAMSCIENCE_AI_V7157831_CREDIT_ALLOWANCE_INDICATOR */
+
+/*
+ * Safe follow-up to v7.15.7.8.3.
+ * The trigger keeps its existing CSS-module class and click handler.
+ * These child classes only change the visible credit labelling.
+ */
+.teamscience-credit-indicator-label-v7157831,
+.teamscience-credit-indicator-value-v7157831,
+.teamscience-credit-indicator-chevron-v7157831 {
+  position:relative;
+  z-index:1;
+}
+
+[data-autoteams-ai-allowance="true"] > button {
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  min-height:32px!important;
+  padding:5px 10px!important;
+  border:1px solid rgba(52,211,153,.50)!important;
+  border-radius:999px!important;
+  background:linear-gradient(135deg,rgba(5,150,105,.27),rgba(13,148,136,.18))!important;
+  color:#d1fae5!important;
+  box-shadow:0 7px 20px rgba(5,150,105,.13)!important;
+  white-space:nowrap!important;
+}
+
+[data-autoteams-ai-allowance="true"] > button:hover {
+  border-color:rgba(110,231,183,.84)!important;
+  background:linear-gradient(135deg,rgba(5,150,105,.39),rgba(13,148,136,.29))!important;
+}
+
+.teamscience-credit-indicator-label-v7157831 {
+  color:#a7f3d0!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  line-height:1!important;
+  letter-spacing:.02em!important;
+}
+
+.teamscience-credit-indicator-value-v7157831 {
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:36px!important;
+  padding:4px 7px!important;
+  border-radius:999px!important;
+  background:rgba(6,78,59,.58)!important;
+  color:#ffffff!important;
+  font-size:11px!important;
+  font-weight:900!important;
+  line-height:1!important;
+}
+
+.teamscience-credit-indicator-chevron-v7157831 {
+  color:#6ee7b7!important;
+  font-size:10px!important;
+  font-weight:900!important;
+  line-height:1!important;
+}
+
+@media(max-width:640px) {
+  [data-autoteams-ai-allowance="true"] > button {
+    min-height:34px!important;
+    padding:6px 9px!important;
+    gap:6px!important;
+  }
+
+  .teamscience-credit-indicator-label-v7157831 {
+    font-size:10px!important;
+  }
+}

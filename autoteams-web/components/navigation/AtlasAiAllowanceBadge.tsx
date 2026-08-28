@@ -102,16 +102,20 @@ export function AtlasAiAllowanceBadge() {
         onClick={() => setOpen((value) => !value)}
         type="button"
       >
-        <span className={styles.spark} aria-hidden="true">
-          ✦
-        </span>
-        <span className={styles.label}>
-          <strong>Atlas AI</strong>
-        </span>
-        <span className={styles.count}>
-          {usage.remaining}/{usage.limit}
-        </span>
-      </button>
+          {/* TEAMSCIENCE_AI_V7157831_CREDIT_ALLOWANCE_INDICATOR */}
+          <span className="teamscience-credit-indicator-label-v7157831">
+            Credits
+          </span>
+          <strong className="teamscience-credit-indicator-value-v7157831">
+            {usage.remaining}/{usage.limit}
+          </strong>
+          <span
+            className="teamscience-credit-indicator-chevron-v7157831"
+            aria-hidden="true"
+          >
+            v
+          </span>
+        </button>
 
       {open && (
         <div className={styles.popover}>
