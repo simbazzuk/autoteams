@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./AtlasAiAllowanceBadge.module.css";
+import { SavedTeamsAllowanceDropdown } from "./SavedTeamsAllowanceDropdown";
 
 type UsageState = {
   plan: "free";
@@ -102,20 +103,24 @@ export function AtlasAiAllowanceBadge() {
         onClick={() => setOpen((value) => !value)}
         type="button"
       >
-          {/* TEAMSCIENCE_AI_V7157831_CREDIT_ALLOWANCE_INDICATOR */}
-          <span className="teamscience-credit-indicator-label-v7157831">
-            Credits
-          </span>
-          <strong className="teamscience-credit-indicator-value-v7157831">
-            {usage.remaining}/{usage.limit}
-          </strong>
-          <span
-            className="teamscience-credit-indicator-chevron-v7157831"
-            aria-hidden="true"
-          >
-            v
+          {/* TEAMSCIENCE_AI_V7157101_SAVED_TEAMS_DROPDOWN */}
+          <span className="teamscience-credit-row-v715710 teamscience-credit-only-row-v7157101">
+            <span className="teamscience-credit-indicator-label-v7157831">
+              Credits
+            </span>
+            <strong className="teamscience-credit-indicator-value-v7157831">
+              {usage.remaining}/{usage.limit}
+            </strong>
+            <span
+              className="teamscience-credit-indicator-chevron-v7157831"
+              aria-hidden="true"
+            >
+              v
+            </span>
           </span>
         </button>
+
+        <SavedTeamsAllowanceDropdown />
 
       {open && (
         <div className={styles.popover}>

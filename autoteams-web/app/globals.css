@@ -25068,3 +25068,306 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
     bottom:-75px;
   }
 }
+/* TEAMSCIENCE_AI_V715710_SAVED_TEAM_CREDIT_INDICATOR */
+
+/* Stack the two Free-plan allowances inside the existing clickable allowance control. */
+[data-autoteams-ai-allowance="true"] > button {
+  align-items:stretch!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+
+.teamscience-credit-stack-v715710 {
+  display:inline-flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  min-width:126px!important;
+}
+
+.teamscience-credit-row-v715710 {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:7px!important;
+  min-height:31px!important;
+  padding:5px 9px!important;
+}
+
+.teamscience-saved-team-row-v715710 {
+  border-top:1px solid rgba(110,231,183,.20)!important;
+  background:rgba(4,120,87,.10)!important;
+}
+
+.teamscience-saved-team-label-v715710 {
+  margin-right:auto!important;
+  color:#a7f3d0!important;
+  font-size:10px!important;
+  font-weight:800!important;
+  line-height:1!important;
+  letter-spacing:.01em!important;
+}
+
+.teamscience-saved-team-value-v715710 {
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:28px!important;
+  padding:4px 7px!important;
+  border-radius:999px!important;
+  background:rgba(6,78,59,.64)!important;
+  color:#ffffff!important;
+  font-size:11px!important;
+  font-weight:900!important;
+  line-height:1!important;
+}
+
+/* Keep the original Credits row visually balanced. */
+.teamscience-credit-stack-v715710 .teamscience-credit-indicator-label-v7157831 {
+  margin-right:auto!important;
+}
+
+@media(max-width:640px) {
+  .teamscience-credit-stack-v715710 {
+    min-width:116px!important;
+  }
+
+  .teamscience-credit-row-v715710 {
+    min-height:30px!important;
+    padding:5px 8px!important;
+    gap:5px!important;
+  }
+
+  .teamscience-saved-team-label-v715710 {
+    font-size:9px!important;
+  }
+}
+/* TEAMSCIENCE_AI_V7157101_SAVED_TEAMS_DROPDOWN */
+
+/* Restore the Credits trigger to a single compact row. */
+[data-autoteams-ai-allowance="true"] > button {
+  padding:0!important;
+  overflow:hidden!important;
+}
+
+.teamscience-credit-only-row-v7157101 {
+  min-width:126px!important;
+}
+
+/* Saved Teams gets its own independent blue/purple action. */
+.teamscience-saved-teams-dropdown-v7157101 {
+  position:relative;
+  display:inline-flex;
+}
+
+.teamscience-saved-teams-trigger-v7157101 {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-width:126px;
+  min-height:32px;
+  padding:5px 9px;
+  border:1px solid rgba(129,140,248,.52);
+  border-radius:999px;
+  background:linear-gradient(135deg,rgba(79,70,229,.28),rgba(37,99,235,.20));
+  color:#e0e7ff;
+  font:inherit;
+  cursor:pointer;
+  box-shadow:0 7px 20px rgba(79,70,229,.12);
+}
+
+.teamscience-saved-teams-trigger-v7157101:hover {
+  border-color:rgba(165,180,252,.84);
+  background:linear-gradient(135deg,rgba(79,70,229,.40),rgba(37,99,235,.30));
+}
+
+.teamscience-saved-teams-trigger-v7157101 > span:first-child {
+  margin-right:auto;
+  color:#c7d2fe;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.01em;
+}
+
+.teamscience-saved-teams-trigger-v7157101 > strong {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:34px;
+  padding:4px 7px;
+  border-radius:999px;
+  background:rgba(30,41,99,.74);
+  color:#fff;
+  font-size:11px;
+  font-weight:900;
+  line-height:1;
+}
+
+.teamscience-saved-teams-trigger-v7157101 > span:last-child {
+  color:#a5b4fc;
+  font-size:10px;
+  font-weight:900;
+}
+
+.teamscience-saved-teams-panel-v7157101 {
+  position:absolute;
+  top:calc(100% + 10px);
+  right:0;
+  z-index:1200;
+  width:min(360px,calc(100vw - 24px));
+  padding:14px;
+  border:1px solid rgba(99,102,241,.40);
+  border-radius:16px;
+  background:linear-gradient(150deg,rgba(17,24,39,.99),rgba(13,22,40,.995));
+  color:#e5e7eb;
+  box-shadow:0 24px 60px rgba(0,0,0,.38);
+}
+
+.teamscience-saved-teams-panel-v7157101 > header {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding-bottom:11px;
+  border-bottom:1px solid rgba(148,163,184,.14);
+}
+
+.teamscience-saved-teams-panel-v7157101 > header div {
+  display:grid;
+  gap:3px;
+}
+
+.teamscience-saved-teams-panel-v7157101 > header small {
+  color:#a78bfa;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.teamscience-saved-teams-panel-v7157101 > header strong {
+  color:#fff;
+  font-size:15px;
+}
+
+.teamscience-saved-teams-panel-v7157101 > header button {
+  width:28px;
+  height:28px;
+  border:0;
+  border-radius:8px;
+  background:rgba(148,163,184,.10);
+  color:#aab6c8;
+  cursor:pointer;
+  font-size:17px;
+}
+
+.teamscience-saved-teams-list-v7157101 {
+  display:grid;
+  gap:7px;
+  padding:10px 0;
+}
+
+.teamscience-saved-teams-list-v7157101 article {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:9px 10px;
+  border:1px solid rgba(99,102,241,.18);
+  border-radius:10px;
+  background:rgba(30,41,59,.46);
+}
+
+.teamscience-saved-teams-list-v7157101 article > div {
+  min-width:0;
+  display:grid;
+  gap:2px;
+}
+
+.teamscience-saved-teams-list-v7157101 article strong {
+  overflow:hidden;
+  color:#f8fafc;
+  font-size:12px;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.teamscience-saved-teams-list-v7157101 article small {
+  overflow:hidden;
+  color:#8ea0b8;
+  font-size:10px;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.teamscience-saved-teams-list-v7157101 article a {
+  flex:0 0 auto;
+  color:#93c5fd;
+  font-size:10px;
+  font-weight:800;
+  text-decoration:none;
+}
+
+.teamscience-saved-teams-list-v7157101 article a:hover {
+  color:#bfdbfe;
+}
+
+.teamscience-saved-teams-empty-v7157101 {
+  display:grid;
+  gap:5px;
+  margin:10px 0;
+  padding:13px;
+  border:1px dashed rgba(129,140,248,.28);
+  border-radius:10px;
+  background:rgba(79,70,229,.06);
+}
+
+.teamscience-saved-teams-empty-v7157101 strong {
+  color:#eef2ff;
+  font-size:12px;
+}
+
+.teamscience-saved-teams-empty-v7157101 span {
+  color:#93a4ba;
+  font-size:10px;
+  line-height:1.45;
+}
+
+.teamscience-saved-teams-panel-v7157101 > footer {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding-top:10px;
+  border-top:1px solid rgba(148,163,184,.14);
+}
+
+.teamscience-saved-teams-panel-v7157101 > footer span {
+  color:#9aa9bc;
+  font-size:10px;
+}
+
+.teamscience-saved-teams-panel-v7157101 > footer span strong {
+  color:#c4b5fd;
+}
+
+.teamscience-saved-teams-panel-v7157101 > footer a {
+  color:#a5b4fc;
+  font-size:10px;
+  font-weight:850;
+  text-decoration:none;
+}
+
+.teamscience-saved-teams-panel-v7157101 > footer a:hover {
+  color:#c7d2fe;
+}
+
+@media(max-width:640px) {
+  .teamscience-saved-teams-trigger-v7157101,
+  .teamscience-credit-only-row-v7157101 {
+    min-width:116px!important;
+  }
+
+  .teamscience-saved-teams-panel-v7157101 {
+    right:-4px;
+    width:min(330px,calc(100vw - 16px));
+  }
+}
