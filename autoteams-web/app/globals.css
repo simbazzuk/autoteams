@@ -27752,3 +27752,151 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
     margin-bottom:6px;
   }
 }
+
+
+/* AUTOTEAMS_V715714282_MOBILE_HOW_WORKS_ICON_FIX
+   Mobile-only cleanup for the How AutoTeams Works journey.
+   Desktop remains unchanged.
+*/
+@media (max-width: 700px) {
+  /* Keep the section comfortably inside the viewport. */
+  .how-v2-v71571425 {
+    overflow: hidden !important;
+  }
+
+  /* The large hero/orbit graphic was sitting too high and dominating mobile. */
+  .how-v2-v71571425__visual {
+    width: 170px !important;
+    height: 145px !important;
+    min-height: 0 !important;
+    margin: 10px auto 28px !important;
+    transform: none !important;
+    overflow: visible !important;
+  }
+
+  .how-v2-v71571425__visual-orbit,
+  .how-v2-v71571425__visual-ring,
+  .how-v2-v71571425__orbit {
+    transform: scale(.72) !important;
+    transform-origin: center !important;
+  }
+
+  /* Cards become a clean single-column mobile journey. */
+  .how-v2-v71571425__steps,
+  .how-v2-v71571425__grid,
+  .how-v2-v71571425__journey {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    position: relative !important;
+  }
+
+  .how-v2-v71571425__step,
+  .how-v2-v71571425__card {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: 76px minmax(0, 1fr) !important;
+    column-gap: 18px !important;
+    align-items: center !important;
+    min-height: 126px !important;
+    padding: 20px 22px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Number stays as the primary visual marker on the left. */
+  .how-v2-v71571425__number,
+  .how-v2-v71571425__step-number {
+    position: static !important;
+    grid-column: 1 !important;
+    grid-row: 1 / span 2 !important;
+    align-self: center !important;
+    justify-self: center !important;
+    margin: 0 !important;
+  }
+
+  /* Text sits in a consistent second column. */
+  .how-v2-v71571425__step h3,
+  .how-v2-v71571425__card h3,
+  .how-v2-v71571425__title {
+    grid-column: 2 !important;
+    margin-top: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .how-v2-v71571425__step p,
+  .how-v2-v71571425__card p,
+  .how-v2-v71571425__copy {
+    grid-column: 2 !important;
+    padding-left: 0 !important;
+  }
+
+  /*
+   * Hide desktop-only floating icon/connector treatment.
+   * The screenshot showed these bubbles between cards, which is the main
+   * source of the mobile overlap.
+   */
+  .how-v2-v71571425__connector,
+  .how-v2-v71571425__arrow,
+  .how-v2-v71571425__step-arrow,
+  .how-v2-v71571425__flow-arrow,
+  .how-v2-v71571425__floating-icon,
+  .how-v2-v71571425__step-icon-float,
+  .how-v2-v71571425__between-icon {
+    display: none !important;
+  }
+
+  /* Catch decorative elements positioned outside each card. */
+  .how-v2-v71571425__steps > i,
+  .how-v2-v71571425__steps > span[aria-hidden="true"],
+  .how-v2-v71571425__grid > i,
+  .how-v2-v71571425__grid > span[aria-hidden="true"],
+  .how-v2-v71571425__journey > i,
+  .how-v2-v71571425__journey > span[aria-hidden="true"] {
+    display: none !important;
+  }
+
+  /* Prevent pseudo-element connector lines from running between cards. */
+  .how-v2-v71571425__step::before,
+  .how-v2-v71571425__step::after,
+  .how-v2-v71571425__card::before,
+  .how-v2-v71571425__card::after {
+    max-height: 100% !important;
+  }
+}
+
+/*
+ * Strong screenshot-specific fallback: on narrow phones, hide any
+ * absolutely-positioned direct child used as a connector/icon between cards.
+ * Content inside the cards remains untouched.
+ */
+@media (max-width: 520px) {
+  .how-v2-v71571425__steps > [style*="position: absolute"],
+  .how-v2-v71571425__grid > [style*="position: absolute"],
+  .how-v2-v71571425__journey > [style*="position: absolute"] {
+    display: none !important;
+  }
+
+  .how-v2-v71571425__step,
+  .how-v2-v71571425__card {
+    grid-template-columns: 68px minmax(0, 1fr) !important;
+    gap: 14px !important;
+    min-height: 118px !important;
+    padding: 18px 16px !important;
+    border-radius: 24px !important;
+  }
+
+  .how-v2-v71571425__step h3,
+  .how-v2-v71571425__card h3,
+  .how-v2-v71571425__title {
+    font-size: 19px !important;
+    line-height: 1.18 !important;
+  }
+
+  .how-v2-v71571425__step p,
+  .how-v2-v71571425__card p,
+  .how-v2-v71571425__copy {
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+  }
+}
