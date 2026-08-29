@@ -26603,3 +26603,647 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
     text-align: center !important;
   }
 }
+/* AUTOTEAMS_V71571423_SECTION_DIFFERENTIATION */
+
+/* ============================================================
+   HOW AUTOTEAMS WORKS
+   Change from a generic card grid into a connected journey.
+   ============================================================ */
+[data-autoteams-home-how-v71571423="true"]{
+  background:
+    radial-gradient(680px 300px at 5% 15%,rgba(14,165,233,.12),transparent 72%),
+    linear-gradient(180deg,#081322,#0a1627)!important;
+  border-top:1px solid rgba(56,189,248,.10)!important;
+  border-bottom:1px solid rgba(56,189,248,.10)!important;
+}
+
+[data-autoteams-home-how-v71571423="true"] article{
+  position:relative!important;
+  overflow:visible!important;
+  border-radius:16px!important;
+  background:rgba(11,24,43,.88)!important;
+  border:1px solid rgba(56,189,248,.22)!important;
+  box-shadow:none!important;
+}
+
+[data-autoteams-home-how-v71571423="true"] article::before{
+  content:""!important;
+  position:absolute!important;
+  top:50%!important;
+  right:-20px!important;
+  width:20px!important;
+  height:2px!important;
+  background:linear-gradient(90deg,rgba(56,189,248,.70),rgba(139,92,246,.45))!important;
+}
+
+[data-autoteams-home-how-v71571423="true"] article::after{
+  content:"→"!important;
+  position:absolute!important;
+  right:-27px!important;
+  top:calc(50% - 10px)!important;
+  color:#7dd3fc!important;
+  font-size:18px!important;
+  line-height:1!important;
+  font-weight:900!important;
+}
+
+[data-autoteams-home-how-v71571423="true"] article:nth-of-type(3)::before,
+[data-autoteams-home-how-v71571423="true"] article:nth-of-type(3)::after,
+[data-autoteams-home-how-v71571423="true"] article:nth-of-type(6)::before,
+[data-autoteams-home-how-v71571423="true"] article:nth-of-type(6)::after{
+  display:none!important;
+}
+
+[data-autoteams-home-how-v71571423="true"] article > span:first-child{
+  background:rgba(14,165,233,.12)!important;
+  border:1px solid rgba(56,189,248,.22)!important;
+  box-shadow:none!important;
+}
+
+[data-autoteams-home-how-v71571423="true"] article:nth-of-type(4),
+[data-autoteams-home-how-v71571423="true"] article:nth-of-type(5),
+[data-autoteams-home-how-v71571423="true"] article:nth-of-type(6){
+  border-color:rgba(139,92,246,.22)!important;
+  background:rgba(20,20,48,.76)!important;
+}
+
+/* ============================================================
+   TEAM SCIENCE ACADEMY
+   Make this a learning destination, not another six-card grid.
+   First card becomes the featured course.
+   ============================================================ */
+[data-autoteams-home-academy-v71571423="true"]{
+  background:
+    radial-gradient(720px 360px at 90% 12%,rgba(124,58,237,.18),transparent 72%),
+    radial-gradient(520px 280px at 10% 90%,rgba(59,130,246,.10),transparent 72%),
+    linear-gradient(180deg,#11132d,#0b1120)!important;
+  border-top:1px solid rgba(167,139,250,.14)!important;
+  border-bottom:1px solid rgba(167,139,250,.14)!important;
+}
+
+[data-autoteams-home-academy-v71571423="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))){
+  display:grid!important;
+  grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)!important;
+  grid-template-rows:repeat(3,minmax(0,1fr))!important;
+  gap:12px!important;
+  align-items:stretch!important;
+}
+
+[data-autoteams-home-academy-v71571423="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) > :first-child{
+  grid-row:1 / 4!important;
+  min-height:100%!important;
+  padding:26px!important;
+  border-radius:22px!important;
+  border:1px solid rgba(167,139,250,.38)!important;
+  background:
+    radial-gradient(460px 220px at 0% 0%,rgba(139,92,246,.30),transparent 72%),
+    linear-gradient(150deg,rgba(49,46,129,.75),rgba(15,23,42,.96))!important;
+  box-shadow:0 20px 46px rgba(76,29,149,.18)!important;
+}
+
+[data-autoteams-home-academy-v71571423="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) > :first-child::after{
+  content:"FEATURED LEARNING"!important;
+  display:inline-flex!important;
+  width:max-content!important;
+  margin-top:auto!important;
+  padding:6px 9px!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.08)!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  color:#ddd6fe!important;
+  font-size:9px!important;
+  font-weight:900!important;
+  letter-spacing:.08em!important;
+}
+
+[data-autoteams-home-academy-v71571423="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) > :not(:first-child){
+  min-height:96px!important;
+  padding:16px 18px!important;
+  border-radius:16px!important;
+  background:rgba(16,24,40,.84)!important;
+  border:1px solid rgba(148,163,184,.16)!important;
+  box-shadow:none!important;
+}
+
+[data-autoteams-home-academy-v71571423="true"] a[href="/academy"]{
+  border-radius:14px!important;
+  background:linear-gradient(135deg,#7c3aed,#3b82f6)!important;
+  box-shadow:0 14px 30px rgba(76,29,149,.20)!important;
+}
+
+/* ============================================================
+   MOBILE RESET
+   Keep Academy simple, readable and deliberately different.
+   ============================================================ */
+@media(max-width:700px){
+
+  [data-autoteams-home-how-v71571423="true"] article::before{
+    top:auto!important;
+    right:auto!important;
+    left:22px!important;
+    bottom:-18px!important;
+    width:2px!important;
+    height:18px!important;
+    background:linear-gradient(180deg,rgba(56,189,248,.70),rgba(139,92,246,.45))!important;
+  }
+
+  [data-autoteams-home-how-v71571423="true"] article::after{
+    content:"↓"!important;
+    right:auto!important;
+    left:15px!important;
+    top:auto!important;
+    bottom:-27px!important;
+  }
+
+  [data-autoteams-home-how-v71571423="true"] article:nth-of-type(3)::before,
+  [data-autoteams-home-how-v71571423="true"] article:nth-of-type(3)::after{
+    display:block!important;
+  }
+
+  [data-autoteams-home-how-v71571423="true"] article:last-child::before,
+  [data-autoteams-home-how-v71571423="true"] article:last-child::after{
+    display:none!important;
+  }
+
+  /* Hard reset Academy outer section */
+  [data-autoteams-home-academy-v71571423="true"]{
+    display:block!important;
+    width:100%!important;
+    padding:36px 20px 42px!important;
+    margin:0!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+
+  [data-autoteams-home-academy-v71571423="true"] > div{
+    display:block!important;
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  [data-autoteams-home-academy-v71571423="true"] > div > div:first-child{
+    display:block!important;
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  /* Academy eyebrow: small horizontal pill only */
+  [data-autoteams-home-academy-v71571423="true"] > div > div:first-child > span:first-child{
+    display:inline-flex!important;
+    width:auto!important;
+    height:auto!important;
+    min-width:0!important;
+    min-height:0!important;
+    max-width:100%!important;
+    margin:0 0 16px!important;
+    padding:8px 13px!important;
+    border-radius:999px!important;
+    border:1px solid rgba(139,92,246,.28)!important;
+    background:rgba(255,255,255,.96)!important;
+    color:#8b5cf6!important;
+    box-shadow:none!important;
+    writing-mode:horizontal-tb!important;
+    white-space:nowrap!important;
+    font-size:12px!important;
+    line-height:1.15!important;
+    letter-spacing:.10em!important;
+    font-weight:900!important;
+  }
+
+  [data-autoteams-home-academy-v71571423="true"] h2{
+    display:block!important;
+    width:100%!important;
+    max-width:12ch!important;
+    margin:0 0 14px!important;
+    padding:0!important;
+    font-size:42px!important;
+    line-height:1!important;
+    letter-spacing:-.04em!important;
+    text-align:left!important;
+  }
+
+  [data-autoteams-home-academy-v71571423="true"] > div > div:first-child > p{
+    display:block!important;
+    width:100%!important;
+    max-width:none!important;
+    margin:0 0 18px!important;
+    padding:0!important;
+    font-size:16px!important;
+    line-height:1.55!important;
+    text-align:left!important;
+  }
+
+  [data-autoteams-home-academy-v71571423="true"] a[href="/academy"]{
+    display:inline-flex!important;
+    width:auto!important;
+    height:auto!important;
+    min-width:0!important;
+    min-height:46px!important;
+    max-width:100%!important;
+    margin:0 0 24px!important;
+    padding:11px 18px!important;
+    border-radius:12px!important;
+    align-items:center!important;
+    justify-content:center!important;
+    white-space:nowrap!important;
+    writing-mode:horizontal-tb!important;
+    font-size:15px!important;
+    line-height:1.2!important;
+  }
+
+  /* Featured course first, compact course tiles below */
+  [data-autoteams-home-academy-v71571423="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))){
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-template-rows:auto!important;
+    gap:12px!important;
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  [data-autoteams-home-academy-v71571423="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) > :first-child{
+    grid-column:1 / -1!important;
+    grid-row:auto!important;
+    min-height:172px!important;
+    padding:20px!important;
+    border-radius:18px!important;
+  }
+
+  [data-autoteams-home-academy-v71571423="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) > :not(:first-child){
+    min-width:0!important;
+    min-height:120px!important;
+    padding:14px!important;
+    border-radius:16px!important;
+  }
+
+  [data-autoteams-home-academy-v71571423="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) > * > span:first-child{
+    display:inline-flex!important;
+    width:auto!important;
+    height:auto!important;
+    min-width:0!important;
+    min-height:0!important;
+    padding:0!important;
+    margin:0 0 14px!important;
+    border:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    font-size:26px!important;
+    line-height:1!important;
+  }
+}
+
+@media(max-width:390px){
+  [data-autoteams-home-academy-v71571423="true"]{
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+
+  [data-autoteams-home-academy-v71571423="true"] h2{
+    font-size:38px!important;
+  }
+
+  [data-autoteams-home-academy-v71571423="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))){
+    grid-template-columns:1fr!important;
+  }
+
+  [data-autoteams-home-academy-v71571423="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) > :first-child{
+    grid-column:auto!important;
+  }
+}
+/* AUTOTEAMS_V71571424_ACADEMY_STRUCTURAL_LAYOUT */
+
+/*
+ * Dedicated Academy homepage component.
+ * No :has() selectors, no inferred wrappers, no dependency on old Academy markup.
+ */
+.home-academy-feature-v71571424{
+  position:relative;
+  padding:58px 0;
+  overflow:hidden;
+  background:
+    radial-gradient(720px 360px at 88% 18%,rgba(124,58,237,.20),transparent 70%),
+    radial-gradient(520px 260px at 10% 90%,rgba(59,130,246,.10),transparent 72%),
+    linear-gradient(180deg,#11152f,#0b1323);
+  border-top:1px solid rgba(167,139,250,.14);
+  border-bottom:1px solid rgba(167,139,250,.14);
+}
+
+.home-academy-feature-v71571424__layout{
+  display:grid;
+  grid-template-columns:minmax(280px,.82fr) minmax(0,1.5fr);
+  gap:34px;
+  align-items:center;
+}
+
+.home-academy-feature-v71571424__intro{
+  min-width:0;
+}
+
+.home-academy-feature-v71571424__eyebrow{
+  display:inline-flex;
+  width:auto;
+  padding:8px 13px;
+  border-radius:999px;
+  background:rgba(255,255,255,.96);
+  border:1px solid rgba(139,92,246,.25);
+  color:#8b5cf6;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.home-academy-feature-v71571424__intro h2{
+  max-width:10ch;
+  margin:18px 0 14px;
+  color:#fff;
+  font-size:clamp(38px,4.8vw,62px);
+  line-height:.98;
+  letter-spacing:-.045em;
+}
+
+.home-academy-feature-v71571424__intro p{
+  max-width:500px;
+  margin:0;
+  color:#9eacc0;
+  font-size:14px;
+  line-height:1.7;
+}
+
+.home-academy-feature-v71571424__cta{
+  display:inline-flex;
+  align-items:center;
+  gap:18px;
+  margin-top:22px;
+  padding:12px 18px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#7c3aed,#3b82f6);
+  color:#fff;
+  font-size:12px;
+  font-weight:850;
+  box-shadow:0 14px 30px rgba(76,29,149,.22);
+}
+
+.home-academy-feature-v71571424__courses{
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(240px,.85fr);
+  gap:14px;
+  min-width:0;
+}
+
+.home-academy-feature-v71571424__featured{
+  display:flex;
+  flex-direction:column;
+  min-height:360px;
+  padding:24px;
+  border:1px solid rgba(167,139,250,.40);
+  border-radius:22px;
+  background:
+    radial-gradient(460px 220px at 0% 0%,rgba(139,92,246,.30),transparent 72%),
+    linear-gradient(150deg,rgba(49,46,129,.80),rgba(15,23,42,.96));
+  box-shadow:0 20px 46px rgba(76,29,149,.18);
+}
+
+.home-academy-feature-v71571424__featured-top{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+}
+
+.home-academy-feature-v71571424__featured-icon{
+  display:grid;
+  place-items:center;
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.12);
+  font-size:24px;
+}
+
+.home-academy-feature-v71571424__status{
+  padding:6px 9px;
+  border-radius:999px;
+  background:rgba(52,211,153,.11);
+  border:1px solid rgba(52,211,153,.20);
+  color:#86efac;
+  font-size:9px;
+  font-weight:850;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+.home-academy-feature-v71571424__featured small{
+  display:block;
+  margin-top:28px;
+  color:#c4b5fd;
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:.07em;
+}
+
+.home-academy-feature-v71571424__featured h3{
+  margin:8px 0 8px;
+  color:#fff;
+  font-size:26px;
+  line-height:1.08;
+}
+
+.home-academy-feature-v71571424__featured p{
+  margin:0;
+  color:#c0c8d8;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.home-academy-feature-v71571424__progress-row{
+  margin-top:auto;
+  padding-top:24px;
+}
+
+.home-academy-feature-v71571424__progress-row>div:first-child{
+  display:flex;
+  justify-content:space-between;
+  color:#cbd5e1;
+  font-size:10px;
+}
+
+.home-academy-feature-v71571424__progress{
+  height:6px;
+  margin-top:8px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255,255,255,.10);
+}
+
+.home-academy-feature-v71571424__progress i{
+  display:block;
+  width:0%;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#a78bfa,#60a5fa);
+}
+
+.home-academy-feature-v71571424__start{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:18px;
+  padding-top:15px;
+  border-top:1px solid rgba(255,255,255,.10);
+  color:#ddd6fe;
+  font-size:11px;
+  font-weight:850;
+}
+
+.home-academy-feature-v71571424__secondary{
+  display:grid;
+  grid-template-rows:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+
+.home-academy-feature-v71571424__secondary article{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  grid-template-rows:auto auto;
+  column-gap:13px;
+  align-items:center;
+  min-height:100px;
+  padding:15px 16px;
+  border:1px solid rgba(148,163,184,.16);
+  border-radius:17px;
+  background:rgba(15,24,41,.88);
+}
+
+.home-academy-feature-v71571424__secondary-icon{
+  grid-row:1 / 3;
+  display:grid;
+  place-items:center;
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:rgba(124,58,237,.12);
+  border:1px solid rgba(167,139,250,.16);
+  font-size:20px;
+}
+
+.home-academy-feature-v71571424__secondary h3{
+  margin:0;
+  color:#fff;
+  font-size:14px;
+}
+
+.home-academy-feature-v71571424__secondary p{
+  margin:4px 0 0;
+  color:#8fa0b6;
+  font-size:9px;
+  line-height:1.45;
+}
+
+.home-academy-feature-v71571424__secondary a{
+  grid-column:2;
+  display:flex;
+  justify-content:space-between;
+  margin-top:8px;
+  color:#a78bfa;
+  font-size:9px;
+  font-weight:850;
+}
+
+/* Mobile: clean vertical learning layout */
+@media(max-width:700px){
+  .home-academy-feature-v71571424{
+    padding:38px 0 42px;
+  }
+
+  .home-academy-feature-v71571424__layout{
+    display:block;
+  }
+
+  .home-academy-feature-v71571424__intro{
+    width:100%;
+  }
+
+  .home-academy-feature-v71571424__eyebrow{
+    font-size:10px;
+    padding:8px 12px;
+  }
+
+  .home-academy-feature-v71571424__intro h2{
+    max-width:11ch;
+    margin-top:17px;
+    font-size:clamp(40px,11vw,52px);
+  }
+
+  .home-academy-feature-v71571424__intro p{
+    max-width:none;
+    font-size:16px;
+    line-height:1.58;
+  }
+
+  .home-academy-feature-v71571424__cta{
+    margin-top:18px;
+    margin-bottom:26px;
+    font-size:15px;
+  }
+
+  .home-academy-feature-v71571424__courses{
+    display:block;
+  }
+
+  .home-academy-feature-v71571424__featured{
+    min-height:300px;
+    padding:20px;
+  }
+
+  .home-academy-feature-v71571424__featured h3{
+    font-size:24px;
+  }
+
+  .home-academy-feature-v71571424__secondary{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-rows:auto;
+    gap:12px;
+    margin-top:12px;
+  }
+
+  .home-academy-feature-v71571424__secondary article{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    min-height:150px;
+    padding:15px;
+  }
+
+  .home-academy-feature-v71571424__secondary-icon{
+    width:38px;
+    height:38px;
+    margin-bottom:18px;
+  }
+
+  .home-academy-feature-v71571424__secondary a{
+    margin-top:auto;
+    padding-top:12px;
+    width:100%;
+  }
+}
+
+@media(max-width:390px){
+  .home-academy-feature-v71571424__secondary{
+    grid-template-columns:1fr;
+  }
+
+  .home-academy-feature-v71571424__secondary article{
+    min-height:125px;
+  }
+}
