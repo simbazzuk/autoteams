@@ -4,6 +4,7 @@ import { PageShell } from "@/components/Site";
 import { LandingCtaPalette } from "@/components/home/LandingCtaPalette";
 import { HomeAvailableTeams } from "@/components/home/HomeAvailableTeams";
 import { HomeAcademyFeature } from "@/components/home/HomeAcademyFeature";
+import { HomeHowAutoTeamsWorksV2 } from "@/components/home/HomeHowAutoTeamsWorksV2";
 const useCases = [
   {
     icon: "🏢",
@@ -511,96 +512,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section
-          style={{
-            padding: "56px 0",
-          }}
-         data-autoteams-home-how-v71571421="true" data-autoteams-home-how-v71571423="true">
-          <div className="container">
-            {/* AUTOTEAMS_V715714_OPEN_TEAMS */}
-            <HomeAvailableTeams />
-
-            <SectionHeading
-              eyebrow="How AutoTeams works"
-              title="From people to purpose to explainable recommendation."
-              text="The same simple process can be used for a project team, sports squad, friendship circle, community group or event."
-            />
-
-            {/* AUTOTEAMS_V7157121_HOW_GRID */}
-<div
-              className="v671-process-grid"
-              style={{
-                display: "grid",
-                gridTemplateColumns:
-                  "repeat(auto-fit,minmax(200px,1fr))",
-                gap: 12,
-                marginTop: 26,
-              }}
-             data-autoteams-how-grid-v7157121="true">
-              {process.map((step, index) => (
-                <article
-                  key={step.title}
-                  style={{
-                    position: "relative",
-                    display: "grid",
-                    gap: 10,
-                    padding: 18,
-                    background: "#171e2d",
-                    border: "1px solid #2a3448",
-                    borderRadius: 16,
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      gap: 8,
-                    }}
-                  >
-                    <span
-                      aria-hidden="true"
-                      style={{
-                        fontSize: 29,
-                      }}
-                    >
-                      {step.icon}
-                    </span>
-
-                    <small
-                      style={{
-                        color: "#6f7c91",
-                        fontSize: 9,
-                        fontWeight: 900,
-                      }}
-                    >
-                      {String(index + 1).padStart(2, "0")}
-                    </small>
-                  </div>
-
-                  <strong
-                    style={{
-                      fontSize: 14,
-                    }}
-                  >
-                    {step.title}
-                  </strong>
-
-                  <p
-                    style={{
-                      margin: 0,
-                      color: "#8f9bb0",
-                      fontSize: 11,
-                      lineHeight: 1.55,
-                    }}
-                  >
-                    {step.text}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+              {/* AUTOTEAMS_V71571425_HOW_COMPONENT */}
+      <HomeHowAutoTeamsWorksV2 />
 
 
 
