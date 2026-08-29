@@ -1,7 +1,8 @@
 import { SocialMediaFooter } from "@/components/landing/SocialMediaFooter";
 import Link from "next/link";
 import { PageShell } from "@/components/Site";
-import { LandingCtaPalette } from "@/components/home/LandingCtaPalette";
+import { LandingCtaPalette } from "@/components/home/LandingCtaPalette";
+import { HomeAvailableTeams } from "@/components/home/HomeAvailableTeams";
 const useCases = [
   {
     icon: "🏢",
@@ -515,6 +516,9 @@ export default function HomePage() {
           }}
         >
           <div className="container">
+            {/* AUTOTEAMS_V715714_OPEN_TEAMS */}
+            <HomeAvailableTeams />
+
             <SectionHeading
               eyebrow="How AutoTeams works"
               title="From people to purpose to explainable recommendation."
