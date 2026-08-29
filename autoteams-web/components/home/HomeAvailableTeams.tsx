@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useAuth } from "@/components/AuthProvider";
 import { SectionOrbIcon } from "@/components/home/SectionOrbIcon";
 
 const opportunities = [
@@ -10,6 +11,8 @@ const opportunities = [
 ];
 
 export function HomeAvailableTeams() {
+  /* AUTOTEAMS_V715714283_AUTH_AWARE_TEAM_CTA */
+  const { user } = useAuth();
   return (
     <section className="home-open-teams-v715714" aria-labelledby="home-open-teams-title-v715714">
       <div className="container">
@@ -51,8 +54,8 @@ export function HomeAvailableTeams() {
                 </div>
                 <div className="home-open-team-card-v715714__progress"><i style={{width:`${percent}%`}} /></div>
                 <div className="home-open-team-card-v715714__tags">{team.tags.map(tag=><span key={tag}>{tag}</span>)}</div>
-                <Link href={`/signup?team=${encodeURIComponent(team.id)}&intent=join`} className="home-open-team-card-v715714__cta">
-                  Create profile to explore <span aria-hidden="true">→</span>
+                <Link href={user ? `/team-builder?team=${encodeURIComponent(team.id)}&intent=join` : `/signup?team=${encodeURIComponent(team.id)}&intent=join`} className="home-open-team-card-v715714__cta">
+                  {user ? "Explore team" : "Create profile to explore"} <span aria-hidden="true">→</span>
                 </Link>
               </article>
             );
