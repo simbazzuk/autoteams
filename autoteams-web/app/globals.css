@@ -25610,3 +25610,28 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
 .access-page [data-autoteams-permission-guide-v71376="true"] .autoteams-permission-v71376-note {
   display: none !important;
 }
+/* AUTOTEAMS_V7157121_HOW_GRID */
+[data-autoteams-how-grid-v7157121="true"]{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+[data-autoteams-how-grid-v7157121="true"]>*{
+  min-width:0!important;
+  width:100%!important;
+  height:100%!important;
+  box-sizing:border-box!important;
+}
+@media(max-width:980px){
+  [data-autoteams-how-grid-v7157121="true"]{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:16px!important;
+  }
+}
+@media(max-width:640px){
+  [data-autoteams-how-grid-v7157121="true"]{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:14px!important;
+  }
+}

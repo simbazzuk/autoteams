@@ -521,7 +521,8 @@ export default function HomePage() {
               text="The same simple process can be used for a project team, sports squad, friendship circle, community group or event."
             />
 
-            <div
+            {/* AUTOTEAMS_V7157121_HOW_GRID */}
+<div
               className="v671-process-grid"
               style={{
                 display: "grid",
@@ -530,7 +531,7 @@ export default function HomePage() {
                 gap: 12,
                 marginTop: 26,
               }}
-            >
+             data-autoteams-how-grid-v7157121="true">
               {process.map((step, index) => (
                 <article
                   key={step.title}
