@@ -26407,3 +26407,199 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
     border-radius:18px!important;
   }
 }
+/* AUTOTEAMS_V71571422_ACADEMY_MOBILE_RESET */
+/*
+ * Corrective override for the homepage Academy section.
+ * This deliberately sits after v7.15.7.14.2 and v7.15.7.14.2.1 CSS
+ * so the mobile layout wins over the later unified-card styling.
+ */
+@media (max-width: 700px) {
+
+  [data-autoteams-home-academy-v7157142="true"] {
+    display: block !important;
+    width: 100% !important;
+    padding: 38px 22px 42px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  /*
+   * Kill desktop two-column/flex behaviour throughout the top Academy
+   * composition. Direct wrappers become full-width vertical blocks.
+   */
+  [data-autoteams-home-academy-v7157142="true"] > div {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] > div > div:first-child {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /*
+   * Reset the Team Science Academy eyebrow. The previous generic card/icon
+   * rules were turning this into the giant white vertical capsule.
+   */
+  [data-autoteams-home-academy-v7157142="true"] > div > div:first-child > span:first-child {
+    display: inline-flex !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: calc(100vw - 44px) !important;
+    margin: 0 0 18px !important;
+    padding: 9px 15px !important;
+    border: 1px solid rgba(139,92,246,.30) !important;
+    border-radius: 999px !important;
+    background: rgba(255,255,255,.96) !important;
+    box-shadow: none !important;
+    color: #8b5cf6 !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    white-space: nowrap !important;
+    font-size: 13px !important;
+    line-height: 1.15 !important;
+    letter-spacing: .10em !important;
+    font-weight: 850 !important;
+    writing-mode: horizontal-tb !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] h2 {
+    display: block !important;
+    width: 100% !important;
+    max-width: 12ch !important;
+    margin: 0 0 16px !important;
+    padding: 0 !important;
+    color: #f8fafc !important;
+    font-size: clamp(42px, 12vw, 56px) !important;
+    line-height: .98 !important;
+    letter-spacing: -.04em !important;
+    text-align: left !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] > div > div:first-child > p {
+    display: block !important;
+    width: 100% !important;
+    max-width: 34rem !important;
+    margin: 0 0 20px !important;
+    padding: 0 !important;
+    color: #9eacc0 !important;
+    font-size: 17px !important;
+    line-height: 1.58 !important;
+    text-align: left !important;
+  }
+
+  /*
+   * Reset Explore Academy from the huge blue vertical capsule to a
+   * conventional homepage CTA.
+   */
+  [data-autoteams-home-academy-v7157142="true"] a[href="/academy"] {
+    display: inline-flex !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 48px !important;
+    max-width: 100% !important;
+    margin: 0 0 26px !important;
+    padding: 12px 20px !important;
+    border-radius: 14px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    writing-mode: horizontal-tb !important;
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+    font-weight: 800 !important;
+    box-shadow: 0 12px 28px rgba(59,130,246,.18) !important;
+  }
+
+  /*
+   * Academy topic cards. The card container is the four-item descendant.
+   * Restore a compact 2 x 2 layout beneath the intro.
+   */
+  [data-autoteams-home-academy-v7157142="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    align-items: stretch !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) > * {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 142px !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 16px 14px !important;
+    border-radius: 18px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  /*
+   * Undo oversized generic first-span/icon styling inside Academy cards.
+   */
+  [data-autoteams-home-academy-v7157142="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) > * > span:first-child {
+    display: inline-flex !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 0 18px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    font-size: 28px !important;
+    line-height: 1 !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) h3,
+  [data-autoteams-home-academy-v7157142="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) strong {
+    margin: 0 !important;
+    color: #f8fafc !important;
+    font-size: 15px !important;
+    line-height: 1.25 !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+@media (max-width: 390px) {
+  [data-autoteams-home-academy-v7157142="true"] {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] h2 {
+    font-size: 40px !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] > div > div:first-child > p {
+    font-size: 16px !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] a[href="/academy"] {
+    white-space: normal !important;
+    text-align: center !important;
+  }
+}
