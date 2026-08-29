@@ -25635,3 +25635,450 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
     gap:14px!important;
   }
 }
+/* AUTOTEAMS_V715713_HACKATHON_SCENARIO */
+.hackathon-demo-v715713{margin:24px auto;padding:22px;max-width:1180px;border:1px solid rgba(249,115,22,.38);border-radius:20px;background:radial-gradient(560px 280px at 0% 0%,rgba(249,115,22,.16),transparent 68%),radial-gradient(420px 220px at 100% 100%,rgba(168,85,247,.10),transparent 72%),linear-gradient(145deg,rgba(35,26,42,.98),rgba(13,24,43,.99));box-shadow:0 22px 48px rgba(0,0,0,.18)}
+.hackathon-demo-v715713__heading{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+.hackathon-demo-v715713__heading span,.hackathon-demo-v715713__challenge small{color:#fb923c;font-size:10px;font-weight:900;letter-spacing:.08em}
+.hackathon-demo-v715713__heading h2{margin:5px 0 7px;color:#fff;font-size:26px}
+.hackathon-demo-v715713__heading p{max-width:760px;margin:0;color:#aebbd0;font-size:13px;line-height:1.6}
+.hackathon-demo-v715713__icon{display:grid;place-items:center;width:52px;height:52px;flex:0 0 52px;border-radius:15px;background:linear-gradient(135deg,#f97316,#9333ea);color:#fff;font-size:21px;font-weight:900}
+.hackathon-demo-v715713__challenge{display:grid;gap:5px;margin-top:18px;padding:14px 16px;border:1px solid rgba(249,115,22,.18);border-radius:13px;background:rgba(124,45,18,.12)}
+.hackathon-demo-v715713__challenge strong{color:#fff;font-size:14px;line-height:1.45}
+.hackathon-demo-v715713__capabilities{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.hackathon-demo-v715713__capabilities span{padding:7px 10px;border:1px solid rgba(251,146,60,.20);border-radius:999px;background:rgba(124,45,18,.16);color:#fed7aa;font-size:10px;font-weight:800}
+.hackathon-demo-v715713__footer{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-top:19px;padding-top:16px;border-top:1px solid rgba(148,163,184,.12)}
+.hackathon-demo-v715713__footer>div:first-child{display:grid;gap:3px}
+.hackathon-demo-v715713__footer strong{color:#f8fafc;font-size:12px}
+.hackathon-demo-v715713__footer small{color:#8495ad;font-size:10px}
+.hackathon-demo-v715713__actions{display:flex;gap:9px;align-items:center}
+.hackathon-demo-v715713__actions button,.hackathon-demo-v715713__actions a{min-height:36px;padding:9px 13px;border-radius:10px;font-size:10px;font-weight:850;text-decoration:none;cursor:pointer}
+.hackathon-demo-v715713__actions button{border:1px solid rgba(249,115,22,.48);background:linear-gradient(135deg,#c2410c,#ea580c);color:#fff}
+.hackathon-demo-v715713__actions a{display:inline-flex;align-items:center;border:1px solid rgba(168,85,247,.40);background:rgba(88,28,135,.20);color:#e9d5ff}
+.hackathon-demo-v715713__message{margin:12px 0 0;padding:9px 11px;border-radius:9px;background:rgba(5,150,105,.12);color:#a7f3d0;font-size:10px;font-weight:700}
+@media(max-width:700px){.hackathon-demo-v715713{margin:16px 12px;padding:17px}.hackathon-demo-v715713__heading h2{font-size:21px}.hackathon-demo-v715713__footer{align-items:stretch;flex-direction:column}.hackathon-demo-v715713__actions{align-items:stretch;flex-direction:column}.hackathon-demo-v715713__actions button,.hackathon-demo-v715713__actions a{justify-content:center;width:100%;box-sizing:border-box}}
+/* AUTOTEAMS_V7157132_HACKATHON_CONTEXT */
+.hackathon-context-v7157132{
+  grid-column:1/-1;
+  padding:22px;
+  border:1px solid rgba(249,115,22,.40);
+  border-radius:20px;
+  background:
+    radial-gradient(600px 260px at 0% 0%,rgba(249,115,22,.12),transparent 70%),
+    radial-gradient(420px 240px at 100% 0%,rgba(168,85,247,.10),transparent 72%),
+    rgba(15,23,42,.86);
+  box-shadow:0 18px 44px rgba(0,0,0,.16);
+}
+.hackathon-context-v7157132__head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+.hackathon-context-v7157132__head>div:first-child small{color:#fb923c;font-size:10px;font-weight:900;letter-spacing:.08em}
+.hackathon-context-v7157132__head h3{margin:6px 0;color:#fff;font-size:17px}
+.hackathon-context-v7157132__head p{margin:0;max-width:720px;color:#b6c2d5;font-size:12px;line-height:1.55}
+.hackathon-context-v7157132__inferred{display:flex;align-items:center;gap:10px;min-width:220px;padding:12px 14px;border:1px solid rgba(249,115,22,.28);border-radius:14px;background:rgba(9,18,33,.82)}
+.hackathon-context-v7157132__inferred>span{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#f97316,#9333ea);color:#fff;font-weight:900}
+.hackathon-context-v7157132__inferred div{display:grid;gap:2px}
+.hackathon-context-v7157132__inferred small{color:#8fa1b8;font-size:10px}
+.hackathon-context-v7157132__inferred strong{color:#fff;font-size:11px}
+.hackathon-context-v7157132__tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.hackathon-context-v7157132__tabs button{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border:1px solid rgba(116,135,168,.30);border-radius:999px;background:rgba(8,18,33,.54);color:#c7d2e6;font-size:11px;font-weight:750;cursor:pointer}
+.hackathon-context-v7157132__tabs button.active{border-color:rgba(251,146,60,.85);background:linear-gradient(135deg,rgba(194,65,12,.58),rgba(126,34,206,.38));color:#fff;box-shadow:0 8px 20px rgba(249,115,22,.12)}
+.hackathon-context-v7157132__reason{display:flex;gap:12px;align-items:center;margin-top:18px;padding:13px 15px;border:1px solid rgba(116,135,168,.22);border-radius:12px;background:rgba(34,44,77,.44);font-size:11px}
+.hackathon-context-v7157132__reason strong{color:#fff;white-space:nowrap}
+.hackathon-context-v7157132__reason span{color:#b7c4d8}
+.hackathon-context-v7157132__coverage{position:relative;margin-top:18px;padding:15px;border:1px solid rgba(116,135,168,.22);border-radius:13px;background:rgba(7,16,30,.58)}
+.hackathon-context-v7157132__coverage>div:first-child{display:grid;gap:2px}
+.hackathon-context-v7157132__coverage small{color:#8292aa;font-size:9px}
+.hackathon-context-v7157132__coverage strong{color:#fff;font-size:11px}
+.hackathon-context-v7157132__coverage>b{position:absolute;right:15px;top:16px;color:#fb923c;font-size:21px}
+.hackathon-context-v7157132__bar{height:7px;margin-top:10px;border-radius:99px;background:#28354b;overflow:hidden}
+.hackathon-context-v7157132__bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#f97316,#a855f7)}
+.hackathon-context-v7157132__coverage p{margin:10px 0 0;color:#aebbd0;font-size:10px}
+.hackathon-context-v7157132__skills{margin-top:18px}
+.hackathon-context-v7157132__skills-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.hackathon-context-v7157132__skills-title strong{color:#fff;font-size:12px}
+.hackathon-context-v7157132__skills-title span{padding:4px 8px;border-radius:999px;background:rgba(249,115,22,.14);color:#fdba74;font-size:9px;font-weight:850}
+.hackathon-context-v7157132__chips{display:flex;flex-wrap:wrap;gap:8px}
+.hackathon-context-v7157132__chips button{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid rgba(116,135,168,.24);border-radius:10px;background:rgba(10,20,38,.70);color:#c6d2e6;font-size:10px;font-weight:750;cursor:pointer}
+.hackathon-context-v7157132__chips button span{color:#fb923c;font-size:13px;font-weight:900}
+.hackathon-context-v7157132__chips button.selected{border-color:rgba(249,115,22,.65);background:linear-gradient(135deg,rgba(194,65,12,.46),rgba(126,34,206,.25));color:#fff}
+.hackathon-context-v7157132__core{display:flex;gap:10px;align-items:flex-start;margin-top:18px;padding-top:14px;border-top:1px solid rgba(116,135,168,.16);color:#9eacc1;font-size:10px}
+.hackathon-context-v7157132__core>span{color:#fb923c;font-size:14px}
+.hackathon-context-v7157132__core p{margin:0}.hackathon-context-v7157132__core strong{color:#fed7aa}
+@media(max-width:720px){
+  .hackathon-context-v7157132{padding:16px}
+  .hackathon-context-v7157132__head{flex-direction:column}
+  .hackathon-context-v7157132__inferred{width:100%;min-width:0;box-sizing:border-box}
+  .hackathon-context-v7157132__reason{align-items:flex-start;flex-direction:column;gap:4px}
+  .hackathon-context-v7157132__tabs{gap:6px}
+  .hackathon-context-v7157132__tabs button{padding:7px 10px;font-size:10px}
+}
+/* AUTOTEAMS_V7157133_CONTEXT_COLOURS */
+
+/*
+ * Consistent visual identity for all six Team Science contexts.
+ * The surrounding panel remains neutral; only the active context pill
+ * and inferred/selected context card adopt the context accent.
+ */
+
+/* Business — blue / indigo */
+[data-autoteams-active-context="business"] .hackathon-context-v7157132__tabs button.active {
+  border-color:rgba(96,165,250,.90)!important;
+  background:linear-gradient(135deg,rgba(37,99,235,.58),rgba(79,70,229,.42))!important;
+  box-shadow:0 8px 20px rgba(59,130,246,.16)!important;
+}
+[data-autoteams-active-context="business"] .hackathon-context-v7157132__inferred {
+  border-color:rgba(96,165,250,.45)!important;
+}
+[data-autoteams-active-context="business"] .hackathon-context-v7157132__inferred>span {
+  background:linear-gradient(135deg,#2563eb,#4f46e5)!important;
+}
+
+/* Sports — cyan / blue */
+[data-autoteams-active-context="sports"] .hackathon-context-v7157132__tabs button.active {
+  border-color:rgba(34,211,238,.88)!important;
+  background:linear-gradient(135deg,rgba(8,145,178,.58),rgba(37,99,235,.40))!important;
+  box-shadow:0 8px 20px rgba(34,211,238,.14)!important;
+}
+[data-autoteams-active-context="sports"] .hackathon-context-v7157132__inferred {
+  border-color:rgba(34,211,238,.42)!important;
+}
+[data-autoteams-active-context="sports"] .hackathon-context-v7157132__inferred>span {
+  background:linear-gradient(135deg,#0891b2,#2563eb)!important;
+}
+
+/* Friendship — pink / purple */
+[data-autoteams-active-context="friendship"] .hackathon-context-v7157132__tabs button.active {
+  border-color:rgba(244,114,182,.88)!important;
+  background:linear-gradient(135deg,rgba(219,39,119,.52),rgba(147,51,234,.40))!important;
+  box-shadow:0 8px 20px rgba(244,114,182,.14)!important;
+}
+[data-autoteams-active-context="friendship"] .hackathon-context-v7157132__inferred {
+  border-color:rgba(244,114,182,.42)!important;
+}
+[data-autoteams-active-context="friendship"] .hackathon-context-v7157132__inferred>span {
+  background:linear-gradient(135deg,#db2777,#9333ea)!important;
+}
+
+/* Community — green / teal */
+[data-autoteams-active-context="community"] .hackathon-context-v7157132__tabs button.active {
+  border-color:rgba(52,211,153,.88)!important;
+  background:linear-gradient(135deg,rgba(5,150,105,.55),rgba(13,148,136,.42))!important;
+  box-shadow:0 8px 20px rgba(52,211,153,.14)!important;
+}
+[data-autoteams-active-context="community"] .hackathon-context-v7157132__inferred {
+  border-color:rgba(52,211,153,.42)!important;
+}
+[data-autoteams-active-context="community"] .hackathon-context-v7157132__inferred>span {
+  background:linear-gradient(135deg,#059669,#0d9488)!important;
+}
+
+/* Education — violet / blue */
+[data-autoteams-active-context="education"] .hackathon-context-v7157132__tabs button.active {
+  border-color:rgba(167,139,250,.90)!important;
+  background:linear-gradient(135deg,rgba(124,58,237,.56),rgba(37,99,235,.40))!important;
+  box-shadow:0 8px 20px rgba(139,92,246,.15)!important;
+}
+[data-autoteams-active-context="education"] .hackathon-context-v7157132__inferred {
+  border-color:rgba(167,139,250,.44)!important;
+}
+[data-autoteams-active-context="education"] .hackathon-context-v7157132__inferred>span {
+  background:linear-gradient(135deg,#7c3aed,#2563eb)!important;
+}
+
+/* Hackathon — orange / purple */
+[data-autoteams-active-context="hackathon"] .hackathon-context-v7157132__tabs button.active {
+  border-color:rgba(251,146,60,.90)!important;
+  background:linear-gradient(135deg,rgba(194,65,12,.58),rgba(126,34,206,.42))!important;
+  box-shadow:0 8px 20px rgba(249,115,22,.16)!important;
+}
+[data-autoteams-active-context="hackathon"] .hackathon-context-v7157132__inferred {
+  border-color:rgba(251,146,60,.46)!important;
+}
+[data-autoteams-active-context="hackathon"] .hackathon-context-v7157132__inferred>span {
+  background:linear-gradient(135deg,#f97316,#9333ea)!important;
+}
+/* AUTOTEAMS_V7157135_FILLED_CONTEXT_COLOURS */
+
+/*
+ * Make the active context visually obvious.
+ * v7.15.7.13.3 introduced context-specific borders; this version adds
+ * deliberate translucent fills to BOTH:
+ *   1) the active context pill
+ *   2) the inferred / selected context summary card
+ *
+ * Text remains high contrast and the main Team Science panel stays neutral.
+ */
+
+/* BUSINESS — blue / indigo */
+[data-autoteams-active-context="business"] .hackathon-context-v7157132__tabs button.active {
+  background:
+    linear-gradient(135deg,rgba(37,99,235,.86),rgba(79,70,229,.72))!important;
+  border-color:rgba(129,140,248,.95)!important;
+  color:#fff!important;
+  box-shadow:
+    0 10px 24px rgba(37,99,235,.24),
+    inset 0 1px 0 rgba(255,255,255,.12)!important;
+}
+[data-autoteams-active-context="business"] .hackathon-context-v7157132__inferred {
+  background:
+    linear-gradient(135deg,rgba(30,64,175,.34),rgba(49,46,129,.28))!important;
+  border-color:rgba(96,165,250,.72)!important;
+  box-shadow:0 12px 28px rgba(37,99,235,.12)!important;
+}
+
+/* SPORTS — cyan / blue */
+[data-autoteams-active-context="sports"] .hackathon-context-v7157132__tabs button.active {
+  background:
+    linear-gradient(135deg,rgba(8,145,178,.88),rgba(37,99,235,.72))!important;
+  border-color:rgba(34,211,238,.96)!important;
+  color:#fff!important;
+  box-shadow:
+    0 10px 24px rgba(34,211,238,.20),
+    inset 0 1px 0 rgba(255,255,255,.12)!important;
+}
+[data-autoteams-active-context="sports"] .hackathon-context-v7157132__inferred {
+  background:
+    linear-gradient(135deg,rgba(8,145,178,.30),rgba(30,64,175,.28))!important;
+  border-color:rgba(34,211,238,.72)!important;
+  box-shadow:0 12px 28px rgba(34,211,238,.10)!important;
+}
+
+/* FRIENDSHIP — pink / purple */
+[data-autoteams-active-context="friendship"] .hackathon-context-v7157132__tabs button.active {
+  background:
+    linear-gradient(135deg,rgba(219,39,119,.86),rgba(147,51,234,.74))!important;
+  border-color:rgba(244,114,182,.96)!important;
+  color:#fff!important;
+  box-shadow:
+    0 10px 24px rgba(244,114,182,.20),
+    inset 0 1px 0 rgba(255,255,255,.12)!important;
+}
+[data-autoteams-active-context="friendship"] .hackathon-context-v7157132__inferred {
+  background:
+    linear-gradient(135deg,rgba(157,23,77,.30),rgba(107,33,168,.28))!important;
+  border-color:rgba(244,114,182,.70)!important;
+  box-shadow:0 12px 28px rgba(244,114,182,.10)!important;
+}
+
+/* COMMUNITY — green / teal */
+[data-autoteams-active-context="community"] .hackathon-context-v7157132__tabs button.active {
+  background:
+    linear-gradient(135deg,rgba(5,150,105,.88),rgba(13,148,136,.74))!important;
+  border-color:rgba(52,211,153,.96)!important;
+  color:#fff!important;
+  box-shadow:
+    0 10px 24px rgba(52,211,153,.20),
+    inset 0 1px 0 rgba(255,255,255,.12)!important;
+}
+[data-autoteams-active-context="community"] .hackathon-context-v7157132__inferred {
+  background:
+    linear-gradient(135deg,rgba(6,95,70,.32),rgba(15,118,110,.27))!important;
+  border-color:rgba(52,211,153,.70)!important;
+  box-shadow:0 12px 28px rgba(52,211,153,.10)!important;
+}
+
+/* EDUCATION — violet / blue */
+[data-autoteams-active-context="education"] .hackathon-context-v7157132__tabs button.active {
+  background:
+    linear-gradient(135deg,rgba(124,58,237,.88),rgba(37,99,235,.74))!important;
+  border-color:rgba(167,139,250,.96)!important;
+  color:#fff!important;
+  box-shadow:
+    0 10px 24px rgba(139,92,246,.22),
+    inset 0 1px 0 rgba(255,255,255,.12)!important;
+}
+[data-autoteams-active-context="education"] .hackathon-context-v7157132__inferred {
+  background:
+    linear-gradient(135deg,rgba(91,33,182,.32),rgba(30,64,175,.27))!important;
+  border-color:rgba(167,139,250,.72)!important;
+  box-shadow:0 12px 28px rgba(139,92,246,.11)!important;
+}
+
+/* HACKATHON — orange / purple */
+[data-autoteams-active-context="hackathon"] .hackathon-context-v7157132__tabs button.active {
+  background:
+    linear-gradient(135deg,rgba(234,88,12,.90),rgba(126,34,206,.78))!important;
+  border-color:rgba(251,146,60,.98)!important;
+  color:#fff!important;
+  box-shadow:
+    0 10px 24px rgba(249,115,22,.24),
+    inset 0 1px 0 rgba(255,255,255,.12)!important;
+}
+[data-autoteams-active-context="hackathon"] .hackathon-context-v7157132__inferred {
+  background:
+    linear-gradient(135deg,rgba(154,52,18,.34),rgba(88,28,135,.30))!important;
+  border-color:rgba(251,146,60,.74)!important;
+  box-shadow:0 12px 28px rgba(249,115,22,.12)!important;
+}
+
+/* Keep context summary text bright over the filled cards. */
+[data-autoteams-active-context] .hackathon-context-v7157132__inferred strong {
+  color:#fff!important;
+}
+[data-autoteams-active-context] .hackathon-context-v7157132__inferred small {
+  color:rgba(226,232,240,.78)!important;
+}
+
+/* Give the icon a little separation from the filled parent card. */
+[data-autoteams-active-context] .hackathon-context-v7157132__inferred>span {
+  border:1px solid rgba(255,255,255,.16)!important;
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.16)!important;
+}
+/* AUTOTEAMS_V7157136_SKILLS_ALIGNMENT */
+
+/*
+ * Align the legend with the left edge of the skill cards.
+ * Fieldset browser defaults add their own padding/border behaviour, which
+ * caused the heading to sit a few pixels left of the grid.
+ */
+.autoteams-skills-fieldset-v7157136 {
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+}
+
+.autoteams-skills-fieldset-v7157136 > legend {
+  display:block!important;
+  width:100%!important;
+  margin:0 0 10px!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+  font-size:14px!important;
+  font-weight:700!important;
+  line-height:1.4!important;
+  color:inherit!important;
+}
+
+/*
+ * Keep the skills grid and heading on precisely the same horizontal origin.
+ */
+.autoteams-skills-fieldset-v7157136 > div {
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
+/* Mobile keeps the same alignment without extra browser fieldset inset. */
+@media(max-width:640px){
+  .autoteams-skills-fieldset-v7157136 {
+    padding:0!important;
+  }
+
+  .autoteams-skills-fieldset-v7157136 > legend {
+    margin-bottom:9px!important;
+  }
+}
+/* AUTOTEAMS_V71571361_SKILLS_HEADING_TEXT_ALIGNMENT */
+
+/*
+ * v7.15.7.13.6 aligned the legend to the card boundary.
+ * Visually the heading should instead line up with the skill LABELS,
+ * after the checkbox column.
+ */
+.autoteams-skills-fieldset-v7157136 > legend {
+  padding-left:49px!important;
+  padding-right:0!important;
+  box-sizing:border-box!important;
+}
+
+/*
+ * On narrower screens the checkbox/card inset is slightly tighter,
+ * so use a smaller text-origin offset.
+ */
+@media(max-width:640px){
+  .autoteams-skills-fieldset-v7157136 > legend {
+    padding-left:46px!important;
+  }
+}
+/* AUTOTEAMS_V71571362_SKILLS_SECTION_FORMATTING */
+
+/*
+ * v7.15.7.13.6.1 over-corrected the legend by pushing it into the
+ * checkbox/text column. Restore the section heading to the natural
+ * left edge of the skills grid and give the section clearer spacing.
+ */
+.autoteams-skills-fieldset-v7157136 {
+  margin-top:4px!important;
+}
+
+.autoteams-skills-fieldset-v7157136 > legend {
+  display:block!important;
+  width:100%!important;
+  padding-left:0!important;
+  padding-right:0!important;
+  margin:0 0 12px!important;
+  line-height:1.35!important;
+  font-size:14px!important;
+  font-weight:800!important;
+}
+
+/* Keep heading and first card on exactly the same left origin. */
+.autoteams-skills-fieldset-v7157136 > div {
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
+/* Give actions a little breathing room from the skill grid. */
+.autoteams-skills-fieldset-v7157136 + * {
+  margin-top:4px;
+}
+
+@media(max-width:640px){
+  .autoteams-skills-fieldset-v7157136 > legend {
+    padding-left:0!important;
+    margin-bottom:10px!important;
+  }
+}
+/* AUTOTEAMS_V71571363_SKILLS_FORM_GRID_ALIGNMENT */
+
+/*
+ * Option 3:
+ * Treat Important skills or strengths as a normal full-width form-grid item,
+ * exactly like Team size, Location preference and Team style.
+ *
+ * Do not use fieldset/legend positioning for this section.
+ */
+.autoteams-skills-section-v71571363 {
+  grid-column:1 / -1!important;
+  min-width:0!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+}
+
+.autoteams-skills-title-v71571363 {
+  display:block!important;
+  width:100%!important;
+  margin:0 0 10px!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+  font-size:14px!important;
+  font-weight:700!important;
+  line-height:1.4!important;
+  color:inherit!important;
+}
+
+/*
+ * The skills grid now follows the exact same full-width origin as the
+ * surrounding requirement-form controls.
+ */
+.autoteams-skills-section-v71571363 > div[class*="skillGrid"] {
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+}
+
+/* Neutralise the three previous fieldset/legend alignment experiments. */
+.autoteams-skills-section-v71571363 .autoteams-skills-fieldset-v7157136,
+.autoteams-skills-fieldset-v7157136 > legend {
+  margin:0!important;
+  padding:0!important;
+}
+
+@media(max-width:640px){
+  .autoteams-skills-title-v71571363 {
+    margin-bottom:9px!important;
+  }
+}

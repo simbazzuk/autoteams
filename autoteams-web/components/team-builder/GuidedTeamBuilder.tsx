@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { filterCandidatesForRequirement } from "@/lib/team-builder/context-candidate-filter";
 import { SportsTeamRequirements } from "@/components/team-builder/SportsTeamRequirements";
-import { ContextAwareSkills } from "@/components/team-builder/ContextAwareSkills";
+import { ContextAwareSkillsHackathon as ContextAwareSkills } from "@/components/team-builder/ContextAwareSkillsHackathon";
 
 import Link from "next/link";
 import {
@@ -356,6 +356,37 @@ export function GuidedTeamBuilder() {
     setReady(true);
   }, []);
 
+  /* AUTOTEAMS_V7157132_HACKATHON_PREFILL */
+  useEffect(() => {
+    if (!ready) return;
+
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("context") !== "hackathon") return;
+
+      const raw = localStorage.getItem("autoteams-hackathon-preset-v715713");
+      if (!raw) return;
+
+      const preset = JSON.parse(raw) as Partial<TeamRequirement>;
+
+      setRequirement((current) => ({
+        ...current,
+        name: typeof preset.name === "string" ? preset.name : current.name,
+        purpose:
+          typeof preset.purpose === "string" ? preset.purpose : current.purpose,
+        size: typeof preset.size === "number" ? preset.size : current.size,
+        skills: Array.isArray(preset.skills)
+          ? preset.skills.filter((item): item is string => typeof item === "string")
+          : current.skills,
+        workingStyle:
+          typeof preset.workingStyle === "string"
+            ? preset.workingStyle
+            : current.workingStyle,
+      }));
+    } catch {
+      // Keep normal Team Builder defaults if the demo preset cannot be read.
+    }
+  }, [ready]);
   const activeWorkspace =
     workspaces.find(
       (workspace) =>
@@ -2309,20 +2340,9 @@ function RequirementStep({
 
           <SportsTeamRequirements teamName={requirement.name} outcome={requirement.purpose} />
 
-        <fieldset
-          className={
-            styles.fullWidth
-          }
-        >
-          <legend
-            style={{
-              fontSize: 14,
-              fontWeight: 700,
-              marginBottom: 10,
-            }}
-          >
-            Important skills or strengths
-          </legend>
+        {/* AUTOTEAMS_V71571363_SKILLS_FORM_GRID_ALIGNMENT */}
+        <div className={`${styles.fullWidth} autoteams-skills-section-v71571363`}>
+                    <div className="autoteams-skills-title-v71571363">Important skills or strengths</div>
 
           <div
             className={
@@ -2371,7 +2391,7 @@ function RequirementStep({
               ),
             )}
           </div>
-        </fieldset>
+        </div>
 
         {generationError && (
           <div
