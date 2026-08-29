@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { SectionOrbIcon } from "@/components/home/SectionOrbIcon";
 
 const opportunities = [
   { id:"ai-for-good-hackathon", category:"Hackathon", icon:"⚡", title:"AI for Good Hackathon", description:"Join a small cross-functional team to prototype an AI idea with a positive community impact.", joined:3, capacity:5, location:"Leeds · Hybrid", tags:["AI / Data","Product","Design"], tone:"hackathon", badge:"2 places", avatars:["A","J","P"] },
@@ -13,6 +14,14 @@ export function HomeAvailableTeams() {
     <section className="home-open-teams-v715714" aria-labelledby="home-open-teams-title-v715714">
       <div className="container">
         <div className="home-open-teams-v715714__intro">
+          {/* AUTOTEAMS_V71571428_TEAMS_ORB */}
+          <div className="home-open-teams-v71571428__orb-wrap">
+            <SectionOrbIcon
+              symbol="👥"
+              ariaLabel="Find your next team"
+              variant="teams"
+            />
+          </div>
           <div>
             <span className="home-open-teams-v715714__eyebrow">FIND YOUR NEXT TEAM</span>
             <h2 id="home-open-teams-title-v715714">Teams looking for people.</h2>

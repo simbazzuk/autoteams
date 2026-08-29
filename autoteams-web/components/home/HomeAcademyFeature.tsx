@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { SectionOrbIcon } from "@/components/home/SectionOrbIcon";
 
 const secondaryCourses = [
   {
@@ -29,6 +30,14 @@ export function HomeAcademyFeature() {
     >
       <div className="container home-academy-feature-v71571424__layout">
         <div className="home-academy-feature-v71571424__intro">
+          {/* AUTOTEAMS_V71571428_ACADEMY_ORB */}
+          <div className="home-academy-feature-v71571428__orb-wrap">
+            <SectionOrbIcon
+              symbol="🧠"
+              ariaLabel="Team Science Academy"
+              variant="academy"
+            />
+          </div>
           <span className="home-academy-feature-v71571424__eyebrow">
             Team Science Academy
           </span>

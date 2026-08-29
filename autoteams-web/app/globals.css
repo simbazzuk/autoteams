@@ -27568,3 +27568,187 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
 .home-open-team-card-v715714__cta{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:18px;color:#fff;font-size:11px;font-weight:850}
 .home-open-teams-v715714__note{display:flex;gap:9px;margin-top:16px;padding:11px 13px;border:1px solid rgba(148,163,184,.11);border-radius:12px;background:rgba(15,23,42,.46)}.home-open-teams-v715714__note p{margin:0;color:#8190a6;font-size:9px}
 @media(max-width:640px){.home-open-teams-v715714__intro{flex-direction:column;align-items:flex-start}.home-open-teams-v715714__signal{width:100%}.home-open-teams-v715714__grid{display:flex;overflow-x:auto;gap:13px;scroll-snap-type:x mandatory}.home-open-team-card-v715714{min-width:84vw;scroll-snap-align:start}}
+/* AUTOTEAMS_V71571428_MATCHING_SECTION_ORBS */
+
+/*
+ * Shared orbital section icons, visually aligned to the
+ * How AutoTeams Works hero orb.
+ */
+.home-section-orb-v71571428{
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:180px;
+  height:150px;
+  flex:0 0 auto;
+}
+
+.home-section-orb-v71571428__core{
+  position:relative;
+  z-index:3;
+  display:grid;
+  place-items:center;
+  width:88px;
+  height:88px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 34% 28%,rgba(255,255,255,.22),transparent 28%),
+    linear-gradient(135deg,#4338ca,#312e81);
+  border:1px solid rgba(167,139,250,.34);
+  box-shadow:
+    0 18px 44px rgba(67,56,202,.30),
+    inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+.home-section-orb-v71571428__core span{
+  font-size:34px;
+  line-height:1;
+  filter:drop-shadow(0 8px 18px rgba(0,0,0,.22));
+}
+
+.home-section-orb-v71571428__orbit{
+  position:absolute;
+  width:152px;
+  height:54px;
+  border:1px solid rgba(139,92,246,.48);
+  border-radius:50%;
+  transform:rotate(-12deg);
+}
+
+.home-section-orb-v71571428__orbit.orbit-b{
+  width:174px;
+  height:62px;
+  transform:rotate(20deg);
+  border-color:rgba(56,189,248,.38);
+}
+
+.home-section-orb-v71571428__orbit.orbit-c{
+  width:134px;
+  height:90px;
+  transform:rotate(53deg);
+  border-color:rgba(52,211,153,.28);
+}
+
+.home-section-orb-v71571428__orbit b{
+  position:absolute;
+  top:-4px;
+  left:48%;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#8b5cf6;
+  box-shadow:0 0 12px rgba(139,92,246,.85);
+}
+
+.home-section-orb-v71571428__orbit.orbit-b b{
+  background:#38bdf8;
+  box-shadow:0 0 12px rgba(56,189,248,.85);
+}
+
+.home-section-orb-v71571428__orbit.orbit-c b{
+  background:#34d399;
+  box-shadow:0 0 12px rgba(52,211,153,.85);
+}
+
+/* Team discovery gets blue/purple identity */
+.home-section-orb-v71571428--teams .home-section-orb-v71571428__core{
+  background:
+    radial-gradient(circle at 34% 28%,rgba(255,255,255,.22),transparent 28%),
+    linear-gradient(135deg,#4f46e5,#1d4ed8);
+}
+
+/* Academy gets purple/violet identity */
+.home-section-orb-v71571428--academy .home-section-orb-v71571428__core{
+  background:
+    radial-gradient(circle at 34% 28%,rgba(255,255,255,.22),transparent 28%),
+    linear-gradient(135deg,#7c3aed,#4338ca);
+}
+
+/* Place icon beside heading area, like How AutoTeams Works */
+.home-open-teams-v715714__intro{
+  display:grid!important;
+  grid-template-columns:auto minmax(0,1fr) auto!important;
+  align-items:center!important;
+  column-gap:22px!important;
+}
+
+.home-open-teams-v71571428__orb-wrap{
+  display:grid;
+  place-items:center;
+}
+
+.home-academy-feature-v71571424__intro{
+  position:relative;
+}
+
+.home-academy-feature-v71571428__orb-wrap{
+  display:flex;
+  justify-content:flex-start;
+  margin:0 0 10px;
+}
+
+.home-academy-feature-v71571428__orb-wrap .home-section-orb-v71571428{
+  width:150px;
+  height:128px;
+}
+
+/*
+ * Keep existing label + headings, but the orb becomes the dominant
+ * visual identifier, consistent with How AutoTeams Works.
+ */
+@media(max-width:920px){
+  .home-open-teams-v715714__intro{
+    grid-template-columns:auto minmax(0,1fr)!important;
+  }
+
+  .home-open-teams-v715714__signal{
+    grid-column:1 / -1;
+    width:max-content;
+    max-width:100%;
+  }
+}
+
+@media(max-width:700px){
+  .home-open-teams-v715714__intro{
+    display:block!important;
+  }
+
+  .home-open-teams-v71571428__orb-wrap{
+    justify-content:flex-start;
+    margin-bottom:8px;
+  }
+
+  .home-open-teams-v71571428__orb-wrap .home-section-orb-v71571428,
+  .home-academy-feature-v71571428__orb-wrap .home-section-orb-v71571428{
+    width:136px;
+    height:112px;
+  }
+
+  .home-section-orb-v71571428__core{
+    width:70px;
+    height:70px;
+  }
+
+  .home-section-orb-v71571428__core span{
+    font-size:27px;
+  }
+
+  .home-section-orb-v71571428__orbit{
+    width:116px;
+    height:42px;
+  }
+
+  .home-section-orb-v71571428__orbit.orbit-b{
+    width:132px;
+    height:48px;
+  }
+
+  .home-section-orb-v71571428__orbit.orbit-c{
+    width:104px;
+    height:70px;
+  }
+
+  .home-academy-feature-v71571428__orb-wrap{
+    margin-bottom:6px;
+  }
+}
