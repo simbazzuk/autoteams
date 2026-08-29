@@ -514,7 +514,7 @@ export default function HomePage() {
           style={{
             padding: "56px 0",
           }}
-        >
+         data-autoteams-home-how-v71571421="true">
           <div className="container">
             {/* AUTOTEAMS_V715714_OPEN_TEAMS */}
             <HomeAvailableTeams />
@@ -726,7 +726,7 @@ export default function HomePage() {
               "linear-gradient(135deg,rgba(120,104,255,.10),rgba(79,140,255,.04))",
             borderTop: "1px solid #222b3c",
           }}
-        >
+         data-autoteams-home-academy-v7157142="true" data-autoteams-home-academy-unified-v71571421="true">
           <div
             className="container"
             style={{
@@ -827,7 +827,7 @@ export default function HomePage() {
           style={{
             padding: "0 0 74px",
           }}
-        >
+         data-autoteams-home-possibilities-v71571421="true">
           <div className="container">
             <div
               style={{

@@ -26107,3 +26107,303 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
 .home-open-teams-v715714__note{display:flex;gap:9px;align-items:flex-start;margin-top:16px;padding:11px 13px;border:1px solid rgba(148,163,184,.11);border-radius:12px;background:rgba(15,23,42,.46)}.home-open-teams-v715714__note>span{color:#8b5cf6;font-size:13px}.home-open-teams-v715714__note p{margin:0;color:#8190a6;font-size:9px;line-height:1.5}.home-open-teams-v715714__note strong{color:#b6c2d4}
 @media(max-width:920px){.home-open-teams-v715714__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-open-team-card-v715714:last-child{grid-column:1/-1}}
 @media(max-width:640px){.home-open-teams-v715714{padding:38px 0 42px}.home-open-teams-v715714__intro{align-items:flex-start;flex-direction:column}.home-open-teams-v715714__intro h2{font-size:28px}.home-open-teams-v715714__signal{width:100%;box-sizing:border-box}.home-open-teams-v715714__grid{display:flex;overflow-x:auto;gap:13px;padding:2px 2px 12px;scroll-snap-type:x mandatory}.home-open-team-card-v715714{min-width:84vw;scroll-snap-align:start}.home-open-team-card-v715714:last-child{grid-column:auto}}
+/* AUTOTEAMS_V7157142_HOME_ACADEMY_MOBILE */
+
+/*
+ * Mobile repair for the homepage Team Science Academy promo.
+ * Desktop/tablet layout is untouched.
+ */
+@media (max-width: 700px) {
+  [data-autoteams-home-academy-v7157142="true"] {
+    padding-top: 34px !important;
+    padding-bottom: 36px !important;
+  }
+
+  /*
+   * The live section uses a two-column content/card composition on desktop.
+   * Force the immediate content wrapper into a single-column mobile flow.
+   */
+  [data-autoteams-home-academy-v7157142="true"] > div {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 22px !important;
+    align-items: start !important;
+  }
+
+  /*
+   * Copy column: full width, natural line lengths and no desktop max-width
+   * squeezing the heading into a narrow left column.
+   */
+  [data-autoteams-home-academy-v7157142="true"] > div > div:first-child {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] > div > div:first-child > span {
+    display: inline-flex !important;
+    width: auto !important;
+    max-width: 100% !important;
+    padding: 8px 14px !important;
+    white-space: normal !important;
+    line-height: 1.25 !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] h2 {
+    max-width: 11ch !important;
+    margin-top: 18px !important;
+    margin-bottom: 12px !important;
+    font-size: clamp(40px, 12vw, 54px) !important;
+    line-height: .98 !important;
+    letter-spacing: -.035em !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] p {
+    max-width: 33rem !important;
+    margin: 0 !important;
+    font-size: 17px !important;
+    line-height: 1.58 !important;
+  }
+
+  /*
+   * Keep the Academy CTA on one readable line and stop it becoming
+   * an oversized two-line pill.
+   */
+  [data-autoteams-home-academy-v7157142="true"] a[href="/academy"] {
+    display: inline-flex !important;
+    width: auto !important;
+    max-width: 100% !important;
+    min-height: 48px !important;
+    margin-top: 18px !important;
+    padding: 12px 20px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+  }
+
+  /*
+   * Card area follows below the copy as a clean 2 x 2 grid.
+   * Select the first descendant that owns four direct children.
+   */
+  [data-autoteams-home-academy-v7157142="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) > * {
+    min-width: 0 !important;
+    width: 100% !important;
+    min-height: 138px !important;
+    padding: 16px 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) h3,
+  [data-autoteams-home-academy-v7157142="true"] div:has(> :nth-child(4)):not(:has(> :nth-child(5))) strong {
+    font-size: 15px !important;
+    line-height: 1.25 !important;
+  }
+
+  /*
+   * Reduce the large gap before the following homepage section.
+   */
+  [data-autoteams-home-academy-v7157142="true"] + section {
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 390px) {
+  [data-autoteams-home-academy-v7157142="true"] h2 {
+    font-size: 39px !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] p {
+    font-size: 16px !important;
+  }
+
+  [data-autoteams-home-academy-v7157142="true"] a[href="/academy"] {
+    white-space: normal !important;
+    text-align: center !important;
+  }
+}
+/* AUTOTEAMS_V71571421_HOMEPAGE_UNIFIED_CARDS */
+
+/*
+ * Shared homepage visual language based on the Teams Looking for People section:
+ * stronger section framing, tinted cards, consistent radii, icon blocks,
+ * clearer hierarchy and more deliberate spacing.
+ */
+
+[data-autoteams-home-how-v71571421="true"],
+[data-autoteams-home-possibilities-v71571421="true"],
+[data-autoteams-home-atlas-v71571421="true"],
+[data-autoteams-home-academy-unified-v71571421="true"]{
+  position:relative!important;
+  margin-top:0!important;
+  padding-top:54px!important;
+  padding-bottom:54px!important;
+  background:
+    radial-gradient(520px 260px at 8% 10%,rgba(99,102,241,.10),transparent 72%),
+    radial-gradient(480px 240px at 92% 85%,rgba(14,165,233,.08),transparent 72%),
+    linear-gradient(180deg,rgba(13,21,38,.98),rgba(8,15,28,.99))!important;
+  border-top:1px solid rgba(148,163,184,.09)!important;
+  border-bottom:1px solid rgba(148,163,184,.09)!important;
+}
+
+/* Section headings */
+[data-autoteams-home-how-v71571421="true"] h2,
+[data-autoteams-home-possibilities-v71571421="true"] h2,
+[data-autoteams-home-atlas-v71571421="true"] h2,
+[data-autoteams-home-academy-unified-v71571421="true"] h2{
+  color:#fff!important;
+  letter-spacing:-.03em!important;
+}
+
+/*
+ * Make likely card collections feel related to the new opportunity cards.
+ * We target direct article/div cards with conservative selectors.
+ */
+[data-autoteams-home-how-v71571421="true"] article,
+[data-autoteams-home-possibilities-v71571421="true"] article,
+[data-autoteams-home-atlas-v71571421="true"] article,
+[data-autoteams-home-academy-unified-v71571421="true"] article{
+  border-radius:20px!important;
+  border:1px solid rgba(148,163,184,.16)!important;
+  background:
+    radial-gradient(320px 160px at 0% 0%,rgba(99,102,241,.13),transparent 72%),
+    rgba(14,24,42,.90)!important;
+  box-shadow:0 18px 42px rgba(0,0,0,.16)!important;
+  overflow:hidden!important;
+}
+
+/* How AutoTeams works: 3 x 2 card treatment */
+[data-autoteams-home-how-v71571421="true"] article:nth-of-type(1),
+[data-autoteams-home-how-v71571421="true"] article:nth-of-type(4){
+  border-color:rgba(96,165,250,.28)!important;
+  background:radial-gradient(320px 160px at 0% 0%,rgba(37,99,235,.16),transparent 72%),rgba(14,24,42,.92)!important;
+}
+[data-autoteams-home-how-v71571421="true"] article:nth-of-type(2),
+[data-autoteams-home-how-v71571421="true"] article:nth-of-type(5){
+  border-color:rgba(167,139,250,.28)!important;
+  background:radial-gradient(320px 160px at 0% 0%,rgba(124,58,237,.16),transparent 72%),rgba(14,24,42,.92)!important;
+}
+[data-autoteams-home-how-v71571421="true"] article:nth-of-type(3),
+[data-autoteams-home-how-v71571421="true"] article:nth-of-type(6){
+  border-color:rgba(52,211,153,.24)!important;
+  background:radial-gradient(320px 160px at 0% 0%,rgba(16,185,129,.14),transparent 72%),rgba(14,24,42,.92)!important;
+}
+
+/* One platform, many possibilities: context/category card palette */
+[data-autoteams-home-possibilities-v71571421="true"] article:nth-of-type(1){border-color:rgba(96,165,250,.30)!important}
+[data-autoteams-home-possibilities-v71571421="true"] article:nth-of-type(2){border-color:rgba(34,211,238,.28)!important}
+[data-autoteams-home-possibilities-v71571421="true"] article:nth-of-type(3){border-color:rgba(244,114,182,.26)!important}
+[data-autoteams-home-possibilities-v71571421="true"] article:nth-of-type(4){border-color:rgba(52,211,153,.26)!important}
+[data-autoteams-home-possibilities-v71571421="true"] article:nth-of-type(5){border-color:rgba(167,139,250,.28)!important}
+[data-autoteams-home-possibilities-v71571421="true"] article:nth-of-type(6){border-color:rgba(251,146,60,.30)!important}
+
+/* Atlas: stronger premium/intelligence treatment */
+[data-autoteams-home-atlas-v71571421="true"]{
+  background:
+    radial-gradient(620px 300px at 85% 20%,rgba(124,58,237,.15),transparent 72%),
+    radial-gradient(480px 220px at 10% 80%,rgba(59,130,246,.11),transparent 72%),
+    linear-gradient(180deg,rgba(13,21,38,.98),rgba(8,15,28,.99))!important;
+}
+[data-autoteams-home-atlas-v71571421="true"] article{
+  border-color:rgba(129,140,248,.24)!important;
+  background:
+    radial-gradient(340px 180px at 0% 0%,rgba(99,102,241,.18),transparent 72%),
+    rgba(14,24,42,.92)!important;
+}
+
+/* Academy: same card family, but with violet/blue learning accents */
+[data-autoteams-home-academy-unified-v71571421="true"] article{
+  border-color:rgba(167,139,250,.26)!important;
+  background:
+    radial-gradient(340px 180px at 0% 0%,rgba(124,58,237,.15),transparent 72%),
+    rgba(14,24,42,.92)!important;
+}
+
+/* Consistent card titles/body */
+[data-autoteams-home-how-v71571421="true"] article h3,
+[data-autoteams-home-possibilities-v71571421="true"] article h3,
+[data-autoteams-home-atlas-v71571421="true"] article h3,
+[data-autoteams-home-academy-unified-v71571421="true"] article h3,
+[data-autoteams-home-how-v71571421="true"] article strong,
+[data-autoteams-home-possibilities-v71571421="true"] article strong,
+[data-autoteams-home-atlas-v71571421="true"] article strong,
+[data-autoteams-home-academy-unified-v71571421="true"] article strong{
+  color:#f8fafc!important;
+}
+
+[data-autoteams-home-how-v71571421="true"] article p,
+[data-autoteams-home-possibilities-v71571421="true"] article p,
+[data-autoteams-home-atlas-v71571421="true"] article p,
+[data-autoteams-home-academy-unified-v71571421="true"] article p{
+  color:#9eacc0!important;
+}
+
+/* Give icon/emoji blocks a card-like badge treatment without touching normal text spans */
+[data-autoteams-home-how-v71571421="true"] article > span:first-child,
+[data-autoteams-home-possibilities-v71571421="true"] article > span:first-child,
+[data-autoteams-home-atlas-v71571421="true"] article > span:first-child,
+[data-autoteams-home-academy-unified-v71571421="true"] article > span:first-child{
+  display:inline-grid!important;
+  place-items:center!important;
+  min-width:40px!important;
+  min-height:40px!important;
+  padding:6px!important;
+  border-radius:12px!important;
+  background:linear-gradient(135deg,rgba(99,102,241,.82),rgba(59,130,246,.78))!important;
+  box-shadow:0 10px 24px rgba(59,130,246,.14)!important;
+}
+
+/* CTA consistency */
+[data-autoteams-home-how-v71571421="true"] a,
+[data-autoteams-home-possibilities-v71571421="true"] a,
+[data-autoteams-home-atlas-v71571421="true"] a,
+[data-autoteams-home-academy-unified-v71571421="true"] a{
+  font-weight:800!important;
+}
+
+/* Hover polish on desktop */
+@media (hover:hover){
+  [data-autoteams-home-how-v71571421="true"] article,
+  [data-autoteams-home-possibilities-v71571421="true"] article,
+  [data-autoteams-home-atlas-v71571421="true"] article,
+  [data-autoteams-home-academy-unified-v71571421="true"] article{
+    transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease!important;
+  }
+
+  [data-autoteams-home-how-v71571421="true"] article:hover,
+  [data-autoteams-home-possibilities-v71571421="true"] article:hover,
+  [data-autoteams-home-atlas-v71571421="true"] article:hover,
+  [data-autoteams-home-academy-unified-v71571421="true"] article:hover{
+    transform:translateY(-3px)!important;
+    box-shadow:0 24px 52px rgba(0,0,0,.22)!important;
+  }
+}
+
+/* Mobile: keep the same visual language but prioritise readability */
+@media(max-width:700px){
+  [data-autoteams-home-how-v71571421="true"],
+  [data-autoteams-home-possibilities-v71571421="true"],
+  [data-autoteams-home-atlas-v71571421="true"],
+  [data-autoteams-home-academy-unified-v71571421="true"]{
+    padding-top:38px!important;
+    padding-bottom:40px!important;
+  }
+
+  [data-autoteams-home-how-v71571421="true"] article,
+  [data-autoteams-home-possibilities-v71571421="true"] article,
+  [data-autoteams-home-atlas-v71571421="true"] article,
+  [data-autoteams-home-academy-unified-v71571421="true"] article{
+    border-radius:18px!important;
+  }
+}
