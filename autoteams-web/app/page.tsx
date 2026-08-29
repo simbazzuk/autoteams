@@ -513,6 +513,9 @@ export default function HomePage() {
         </section>
 
               {/* AUTOTEAMS_V71571425_HOW_COMPONENT */}
+      {/* AUTOTEAMS_V71571426_RESTORE_TEAM_DISCOVERY */}
+      <HomeAvailableTeams />
+
       <HomeHowAutoTeamsWorksV2 />
 
 
