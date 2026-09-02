@@ -262,7 +262,7 @@ export function MyTeamsHub() {
     <main className={styles.page}>
       <section className={styles.hero}>
         <div>
-          <span className={styles.eyebrow}>TeamScience.ai Teams</span>
+          <span className={styles.eyebrow}>TEAM WORKSPACE</span>
           <h1>My Teams</h1>
           <p>
             One place for the teams you have built, recruited and shaped with
