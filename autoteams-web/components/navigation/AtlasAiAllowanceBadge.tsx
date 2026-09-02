@@ -92,7 +92,7 @@ export function AtlasAiAllowanceBadge() {
     <div className={styles.wrapper} data-autoteams-ai-allowance="true">
       <button
         aria-expanded={open}
-        title={`${usage.remaining} of ${usage.limit} Atlas AI recommendations remaining`}
+        title={`${usage.remaining} of ${usage.limit} Atlas Credits remaining`}
         className={`${styles.badge} ${
           empty
             ? styles.empty
@@ -105,9 +105,7 @@ export function AtlasAiAllowanceBadge() {
       >
           {/* TEAMSCIENCE_AI_V7157101_SAVED_TEAMS_DROPDOWN */}
           <span className="teamscience-credit-row-v715710 teamscience-credit-only-row-v7157101">
-            <span className="teamscience-credit-indicator-label-v7157831">
-              Credits
-            </span>
+            <span className="teamscience-credit-indicator-label-v7157831">Atlas Credits</span>
             <strong className="teamscience-credit-indicator-value-v7157831">
               {usage.remaining}/{usage.limit}
             </strong>
@@ -128,7 +126,7 @@ export function AtlasAiAllowanceBadge() {
             <div>
               <span>Free plan allowance</span>
               <strong>
-                {usage.remaining} Atlas AI recommendation
+                {usage.remaining} Atlas Credit
                 {usage.remaining === 1 ? "" : "s"} remaining
               </strong>
             </div>
@@ -176,7 +174,7 @@ export function AtlasAiAllowanceBadge() {
 
           <p>
             AI-powered team recommendations use your monthly
-            Atlas AI allowance. Profiles, Team DNA, saved
+            Atlas Credits allowance. Profiles, Team DNA, saved
             recommendations and deterministic team building remain
             available without using an AI recommendation.
           </p>

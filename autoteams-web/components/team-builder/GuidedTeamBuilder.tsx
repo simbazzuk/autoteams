@@ -36,6 +36,7 @@ import {
 } from "@/lib/entitlement-usage";
 import { getWorkspacePlan, planDefinition } from "@/lib/entitlements";
 import styles from "./GuidedTeamBuilder.module.css";
+import { BuildTeamAtlasCredits } from "@/components/team-builder/BuildTeamAtlasCredits";
 
 type FriendlyWorkspaceType = Exclude<
   WorkspaceType,
@@ -1194,7 +1195,9 @@ function toggleFinalPerson(
             </div>
           )}
 
-          <StepNavigation
+                    <BuildTeamAtlasCredits />
+
+<StepNavigation
             currentStepIndex={
               currentStepIndex
             }
