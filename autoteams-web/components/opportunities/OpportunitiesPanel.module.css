@@ -141,3 +141,378 @@
     grid-template-columns:1fr;
   }
 }
+
+/* AUTOTEAMS_V715715115_OPPORTUNITY_CARD_COLOURS_START */
+
+/*
+ * TeamScience.ai Opportunities visual polish.
+ * Adds richer colour treatment without changing Opportunity behaviour.
+ */
+
+.grid > .card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(111, 143, 214, 0.26);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(111, 83, 255, 0.13), transparent 36%),
+    linear-gradient(145deg, rgba(15, 28, 52, 0.98), rgba(8, 22, 42, 0.96));
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.grid > .card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.68;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(124, 83, 255, 0.13),
+      transparent 38%
+    );
+}
+
+.grid > .card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.grid > .card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(133, 162, 255, 0.48);
+  box-shadow:
+    0 20px 42px rgba(0, 0, 0, 0.22),
+    0 0 28px rgba(75, 105, 220, 0.08);
+}
+
+/* Purple */
+.grid > .card:nth-child(6n + 1) {
+  border-color: rgba(138, 83, 255, 0.38);
+  background:
+    radial-gradient(circle at 6% 0%, rgba(132, 77, 255, 0.22), transparent 38%),
+    linear-gradient(145deg, rgba(26, 24, 61, 0.98), rgba(9, 22, 43, 0.96));
+}
+
+.grid > .card:nth-child(6n + 1)::before {
+  background: linear-gradient(90deg, rgba(135, 76, 255, 0.14), transparent 42%);
+}
+
+/* Blue */
+.grid > .card:nth-child(6n + 2) {
+  border-color: rgba(47, 142, 255, 0.38);
+  background:
+    radial-gradient(circle at 6% 0%, rgba(39, 135, 255, 0.21), transparent 38%),
+    linear-gradient(145deg, rgba(12, 36, 70, 0.98), rgba(8, 22, 43, 0.96));
+}
+
+.grid > .card:nth-child(6n + 2)::before {
+  background: linear-gradient(90deg, rgba(36, 135, 255, 0.13), transparent 42%);
+}
+
+/* Teal */
+.grid > .card:nth-child(6n + 3) {
+  border-color: rgba(25, 203, 173, 0.34);
+  background:
+    radial-gradient(circle at 6% 0%, rgba(24, 199, 168, 0.19), transparent 38%),
+    linear-gradient(145deg, rgba(9, 48, 59, 0.98), rgba(8, 22, 43, 0.96));
+}
+
+.grid > .card:nth-child(6n + 3)::before {
+  background: linear-gradient(90deg, rgba(23, 198, 167, 0.12), transparent 42%);
+}
+
+/* Amber */
+.grid > .card:nth-child(6n + 4) {
+  border-color: rgba(255, 147, 42, 0.33);
+  background:
+    radial-gradient(circle at 6% 0%, rgba(245, 130, 29, 0.18), transparent 38%),
+    linear-gradient(145deg, rgba(57, 31, 27, 0.98), rgba(9, 22, 43, 0.96));
+}
+
+.grid > .card:nth-child(6n + 4)::before {
+  background: linear-gradient(90deg, rgba(245, 129, 29, 0.11), transparent 42%);
+}
+
+/* Pink */
+.grid > .card:nth-child(6n + 5) {
+  border-color: rgba(236, 70, 153, 0.34);
+  background:
+    radial-gradient(circle at 6% 0%, rgba(226, 62, 145, 0.18), transparent 38%),
+    linear-gradient(145deg, rgba(54, 24, 49, 0.98), rgba(9, 22, 43, 0.96));
+}
+
+.grid > .card:nth-child(6n + 5)::before {
+  background: linear-gradient(90deg, rgba(225, 64, 147, 0.11), transparent 42%);
+}
+
+/* Indigo */
+.grid > .card:nth-child(6n) {
+  border-color: rgba(111, 95, 235, 0.34);
+  background:
+    radial-gradient(circle at 6% 0%, rgba(105, 86, 229, 0.19), transparent 38%),
+    linear-gradient(145deg, rgba(26, 29, 65, 0.98), rgba(9, 22, 43, 0.96));
+}
+
+.grid > .card:nth-child(6n)::before {
+  background: linear-gradient(90deg, rgba(107, 90, 232, 0.12), transparent 42%);
+}
+
+/* Make skill/capability tags feel part of the coloured card treatment. */
+.skills span,
+.top span {
+  border-color: rgba(131, 166, 233, 0.2);
+  background: rgba(70, 105, 182, 0.12);
+}
+
+/* Owner-management areas stay visually clear inside the richer card. */
+.manager,
+.blueprint,
+.formTeamBar {
+  background: rgba(5, 18, 34, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+/* Mobile keeps colour but reduces visual weight. */
+@media (max-width: 720px) {
+  .grid > .card {
+    box-shadow: none;
+  }
+
+  .grid > .card:hover {
+    transform: none;
+  }
+}
+
+/* AUTOTEAMS_V715715115_OPPORTUNITY_CARD_COLOURS_END */
+
+/* AUTOTEAMS_V715715116_STRONG_OPPORTUNITY_COLOURS_START */
+
+/*
+ * Stronger Opportunity colour treatment.
+ * The previous release intentionally used subtle tinting. This release makes
+ * the visual identity obvious and aligns better with other TeamScience.ai pages.
+ */
+
+.grid > .card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-width: 1px !important;
+  border-style: solid !important;
+  box-shadow:
+    0 18px 38px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045) !important;
+}
+
+.grid > .card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: inherit inherit 0 0;
+}
+
+.grid > .card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Purple */
+.grid > .card:nth-child(6n + 1) {
+  border-color: rgba(145, 79, 255, 0.72) !important;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(144, 78, 255, 0.34), transparent 43%),
+    linear-gradient(145deg, rgba(43, 25, 82, 0.98), rgba(12, 23, 48, 0.98)) !important;
+}
+
+.grid > .card:nth-child(6n + 1)::after {
+  background: linear-gradient(90deg, #8f48ff, #b267ff);
+}
+
+.grid > .card:nth-child(6n + 1) .top span,
+.grid > .card:nth-child(6n + 1) .skills span {
+  color: #cfb3ff !important;
+  border-color: rgba(145, 82, 255, 0.36) !important;
+  background: rgba(124, 67, 224, 0.24) !important;
+}
+
+.grid > .card:nth-child(6n + 1) .action :global(.button) {
+  border-color: transparent !important;
+  background: linear-gradient(135deg, #7b45ff, #ad5eff) !important;
+}
+
+/* Blue */
+.grid > .card:nth-child(6n + 2) {
+  border-color: rgba(37, 145, 255, 0.7) !important;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(34, 144, 255, 0.34), transparent 43%),
+    linear-gradient(145deg, rgba(15, 45, 86, 0.98), rgba(10, 24, 49, 0.98)) !important;
+}
+
+.grid > .card:nth-child(6n + 2)::after {
+  background: linear-gradient(90deg, #177cff, #38b4ff);
+}
+
+.grid > .card:nth-child(6n + 2) .top span,
+.grid > .card:nth-child(6n + 2) .skills span {
+  color: #96d0ff !important;
+  border-color: rgba(36, 142, 255, 0.34) !important;
+  background: rgba(23, 104, 205, 0.26) !important;
+}
+
+.grid > .card:nth-child(6n + 2) .action :global(.button) {
+  border-color: transparent !important;
+  background: linear-gradient(135deg, #1478ed, #29b2ff) !important;
+}
+
+/* Teal */
+.grid > .card:nth-child(6n + 3) {
+  border-color: rgba(25, 208, 170, 0.66) !important;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(25, 210, 170, 0.31), transparent 43%),
+    linear-gradient(145deg, rgba(11, 57, 64, 0.98), rgba(8, 25, 45, 0.98)) !important;
+}
+
+.grid > .card:nth-child(6n + 3)::after {
+  background: linear-gradient(90deg, #15b996, #35e4bd);
+}
+
+.grid > .card:nth-child(6n + 3) .top span,
+.grid > .card:nth-child(6n + 3) .skills span {
+  color: #7af0d4 !important;
+  border-color: rgba(24, 203, 167, 0.34) !important;
+  background: rgba(17, 134, 114, 0.25) !important;
+}
+
+.grid > .card:nth-child(6n + 3) .action :global(.button) {
+  border-color: transparent !important;
+  background: linear-gradient(135deg, #0ea887, #23d5ad) !important;
+}
+
+/* Amber */
+.grid > .card:nth-child(6n + 4) {
+  border-color: rgba(255, 151, 27, 0.67) !important;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(255, 147, 24, 0.31), transparent 43%),
+    linear-gradient(145deg, rgba(68, 39, 24, 0.98), rgba(13, 24, 45, 0.98)) !important;
+}
+
+.grid > .card:nth-child(6n + 4)::after {
+  background: linear-gradient(90deg, #ef8611, #ffb42c);
+}
+
+.grid > .card:nth-child(6n + 4) .top span,
+.grid > .card:nth-child(6n + 4) .skills span {
+  color: #ffd087 !important;
+  border-color: rgba(238, 139, 24, 0.34) !important;
+  background: rgba(151, 87, 19, 0.27) !important;
+}
+
+.grid > .card:nth-child(6n + 4) .action :global(.button) {
+  border-color: transparent !important;
+  background: linear-gradient(135deg, #d8740a, #f6a713) !important;
+}
+
+/* Pink */
+.grid > .card:nth-child(6n + 5) {
+  border-color: rgba(236, 71, 153, 0.67) !important;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(230, 61, 146, 0.31), transparent 43%),
+    linear-gradient(145deg, rgba(66, 27, 57, 0.98), rgba(12, 23, 46, 0.98)) !important;
+}
+
+.grid > .card:nth-child(6n + 5)::after {
+  background: linear-gradient(90deg, #df3b8d, #f36aab);
+}
+
+.grid > .card:nth-child(6n + 5) .top span,
+.grid > .card:nth-child(6n + 5) .skills span {
+  color: #ffacd3 !important;
+  border-color: rgba(230, 67, 148, 0.34) !important;
+  background: rgba(151, 43, 105, 0.27) !important;
+}
+
+.grid > .card:nth-child(6n + 5) .action :global(.button) {
+  border-color: transparent !important;
+  background: linear-gradient(135deg, #c92f7a, #ed5ba4) !important;
+}
+
+/* Indigo */
+.grid > .card:nth-child(6n) {
+  border-color: rgba(108, 95, 237, 0.68) !important;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(108, 92, 237, 0.31), transparent 43%),
+    linear-gradient(145deg, rgba(36, 34, 79, 0.98), rgba(11, 23, 47, 0.98)) !important;
+}
+
+.grid > .card:nth-child(6n)::after {
+  background: linear-gradient(90deg, #6758e8, #8b7bff);
+}
+
+.grid > .card:nth-child(6n) .top span,
+.grid > .card:nth-child(6n) .skills span {
+  color: #c0b8ff !important;
+  border-color: rgba(107, 94, 231, 0.34) !important;
+  background: rgba(76, 65, 166, 0.27) !important;
+}
+
+.grid > .card:nth-child(6n) .action :global(.button) {
+  border-color: transparent !important;
+  background: linear-gradient(135deg, #5b4fda, #8678fa) !important;
+}
+
+/* Stronger hover, but still subtle enough for a dashboard. */
+.grid > .card:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.05);
+}
+
+/* Keep manager cards practical and readable. */
+.ownerCard {
+  border-color: rgba(109, 137, 207, 0.3);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(113, 85, 255, 0.13), transparent 40%),
+    rgba(9, 21, 40, 0.96);
+}
+
+/* Give the three route summary tiles a little more colour too. */
+.modes article:nth-child(1) {
+  border-color: rgba(139, 79, 255, 0.42);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(132, 76, 255, 0.18), transparent 48%),
+    rgba(13, 27, 50, 0.94);
+}
+
+.modes article:nth-child(2) {
+  border-color: rgba(38, 145, 255, 0.4);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(37, 139, 255, 0.18), transparent 48%),
+    rgba(13, 27, 50, 0.94);
+}
+
+.modes article:nth-child(3) {
+  border-color: rgba(26, 206, 171, 0.38);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(25, 199, 169, 0.17), transparent 48%),
+    rgba(13, 27, 50, 0.94);
+}
+
+@media (max-width: 720px) {
+  .grid > .card:hover {
+    transform: none;
+    filter: none;
+  }
+}
+
+/* AUTOTEAMS_V715715116_STRONG_OPPORTUNITY_COLOURS_END */
