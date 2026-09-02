@@ -82,6 +82,99 @@ service cloud.firestore {
     allow delete: if request.auth != null
       && resource.data.createdBy == request.auth.uid;
   }
+// AUTOTEAMS_V7157156_SHARED_OPPORTUNITIES
+    match /opportunities/{opportunityId} {
+      allow read: if request.auth != null
+        && (
+          resource.data.status == "open"
+          || resource.data.ownerId == request.auth.uid
+        );
+
+      allow create: if request.auth != null
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow update, delete: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && request.resource.data.ownerId == request.auth.uid;
+    }
+
+    match /opportunityInterests/{interestId} {
+      allow create: if request.auth != null
+        && request.resource.data.userId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && (
+          resource.data.userId == request.auth.uid
+          || get(
+            /databases/$(database)/documents/opportunities/$(resource.data.opportunityId)
+          ).data.ownerId == request.auth.uid
+        );
+
+      allow update: if request.auth != null
+        && (
+          resource.data.userId == request.auth.uid
+          || get(
+            /databases/$(database)/documents/opportunities/$(resource.data.opportunityId)
+          ).data.ownerId == request.auth.uid
+        );
+
+      allow delete: if request.auth != null
+        && (
+          resource.data.userId == request.auth.uid
+          || get(
+            /databases/$(database)/documents/opportunities/$(resource.data.opportunityId)
+          ).data.ownerId == request.auth.uid
+        );
+    }
+
+    
+    // AutoTeams Opportunity invitations - v7.15.7.15.9.1
+    // Owners create/manage invitations. Recipients may read and respond only.
+    match /opportunityInvitations/{invitationId} {
+      allow create: if request.auth != null
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && (
+          resource.data.ownerId == request.auth.uid
+          || resource.data.recipientId == request.auth.uid
+        );
+
+      allow update: if request.auth != null
+        && (
+          (
+            resource.data.ownerId == request.auth.uid
+            && request.resource.data.ownerId == resource.data.ownerId
+            && request.resource.data.recipientId == resource.data.recipientId
+          )
+          ||
+          (
+            resource.data.recipientId == request.auth.uid
+            && request.resource.data.ownerId == resource.data.ownerId
+            && request.resource.data.recipientId == resource.data.recipientId
+            && request.resource.data.opportunityId == resource.data.opportunityId
+            && request.resource.data.interestId == resource.data.interestId
+            && request.resource.data.diff(resource.data).affectedKeys()
+              .hasOnly(["status", "respondedAt", "updatedAt"])
+            && request.resource.data.status in ["accepted", "declined"]
+          )
+        );
+
+      allow delete: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    // A recipient may update only their own Opportunity interest response.
+    // Existing Opportunity interest rules continue to govern all other access.
+    match /opportunityInterests/{interestId} {
+      allow update: if request.auth != null
+        && resource.data.userId == request.auth.uid
+        && request.resource.data.userId == resource.data.userId
+        && request.resource.data.opportunityId == resource.data.opportunityId
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(["status", "updatedAt"])
+        && request.resource.data.status in ["accepted", "declined"];
+    }
 match /{document=**} {
       allow read, write: if false;
     }

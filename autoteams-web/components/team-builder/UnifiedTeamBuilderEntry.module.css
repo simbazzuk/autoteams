@@ -1,0 +1,398 @@
+.shell {
+  width: min(1240px, calc(100% - 32px));
+  margin: 28px auto 32px;
+  padding: 34px 30px 28px;
+  border: 0;
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(129, 90, 255, 0.08), transparent 34%),
+    radial-gradient(circle at 92% 6%, rgba(43, 176, 255, 0.07), transparent 32%);
+}
+
+.hero {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+
+.eyebrow,
+.routeLabel {
+  display: inline-block;
+  color: #9bbcff;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 8px 0 10px;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.05;
+}
+
+.hero p {
+  margin: 0 auto;
+  color: rgba(226, 235, 248, 0.78);
+  line-height: 1.65;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 30px 0 22px;
+  color: #a77cff;
+  font-weight: 900;
+  justify-content: center;
+}
+
+.sectionTitle::before,
+.sectionTitle::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  max-width: 280px;
+  background: linear-gradient(90deg, transparent, rgba(143, 91, 255, 0.6));
+}
+
+.sectionTitle::after {
+  background: linear-gradient(90deg, rgba(143, 91, 255, 0.6), transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 42px;
+  align-items: stretch;
+}
+
+.route {
+  position: relative;
+  display: grid;
+  grid-template-rows: 150px 1fr auto auto;
+  min-width: 0;
+  padding: 8px 0 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.route + .route {
+  border-left: 1px solid rgba(111, 142, 205, 0.14);
+  padding-left: 42px;
+}
+
+.numberBadge {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  z-index: 2;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7a61ff, #36b7ff);
+  color: white;
+  font-weight: 900;
+}
+
+.hybridRoute .numberBadge {
+  background: linear-gradient(135deg, #17a785, #24d1a9);
+}
+
+.visual {
+  position: relative;
+  display: grid;
+  height: 150px;
+  place-items: center;
+}
+
+.peopleIcon,
+.searchIcon,
+.puzzleIcon {
+  position: relative;
+  width: 116px;
+  height: 92px;
+}
+
+.personMain,
+.personLeft,
+.personRight,
+.searchPerson {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9b78ff, #5d46d9);
+  box-shadow: 0 0 24px rgba(135, 89, 255, 0.45);
+}
+
+.personMain {
+  width: 44px;
+  height: 44px;
+  top: 12px;
+  left: 36px;
+}
+
+.personLeft,
+.personRight {
+  width: 32px;
+  height: 32px;
+  top: 28px;
+}
+
+.personLeft { left: 4px; }
+.personRight { right: 4px; }
+
+.shield {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 2px solid #c5b7ff;
+  border-radius: 10px;
+  color: white;
+}
+
+.searchPerson {
+  width: 42px;
+  height: 42px;
+  top: 18px;
+  left: 28px;
+  background: linear-gradient(135deg, #7ac7ff, #246fe7);
+}
+
+.searchRing {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  left: 18px;
+  top: 3px;
+  border: 7px solid rgba(133, 196, 255, 0.82);
+  border-radius: 50%;
+  box-shadow: 0 0 28px rgba(38, 140, 255, 0.38);
+}
+
+.searchHandle {
+  position: absolute;
+  width: 42px;
+  height: 8px;
+  left: 74px;
+  top: 66px;
+  transform: rotate(45deg);
+  border-radius: 999px;
+  background: #6bb7ff;
+}
+
+.puzzleOne,
+.puzzleTwo,
+.puzzleThree,
+.puzzleGap {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+}
+
+.puzzleOne {
+  left: 3px;
+  top: 8px;
+  background: linear-gradient(135deg, #21d4a3, #128e85);
+}
+
+.puzzleTwo {
+  left: 58px;
+  top: 8px;
+  background: linear-gradient(135deg, #57d9c4, #308a9e);
+}
+
+.puzzleThree {
+  left: 30px;
+  top: 50px;
+  background: linear-gradient(135deg, #32c5b0, #1a7f8c);
+}
+
+.puzzleGap {
+  left: 76px;
+  top: 48px;
+  border: 2px dashed rgba(132, 255, 225, 0.7);
+  background: rgba(47, 209, 175, 0.04);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+}
+
+.route h2 {
+  margin: 7px 0 4px;
+  font-size: 1.35rem;
+}
+
+.oneLine {
+  min-height: 40px;
+  margin-bottom: 14px;
+  color: #a7c5ff;
+  font-size: 0.95rem;
+}
+
+.hybridRoute .oneLine {
+  color: #4ee0bc;
+}
+
+.route ul {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.route li {
+  position: relative;
+  padding-left: 24px;
+  color: rgba(235, 241, 250, 0.88);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.route li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #75d7ff;
+}
+
+.hybridRoute li::before {
+  color: #41ddb6;
+}
+
+.action {
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  width: 100%;
+  border: 0;
+  border-radius: 14px;
+  padding: 0 18px;
+  background: linear-gradient(135deg, #765cff, #35b8ff);
+  color: white;
+  font: inherit;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hybridRoute .action {
+  background: linear-gradient(135deg, #18b89d, #26d3af);
+}
+
+.action:hover {
+  filter: brightness(1.08);
+}
+
+.route small {
+  display: block;
+  min-height: 44px;
+  margin-top: 14px;
+  color: rgba(185, 205, 239, 0.72);
+  line-height: 1.5;
+}
+
+.route small b {
+  color: #8ebcff;
+}
+
+.hybridRoute small b {
+  color: #43d9b4;
+}
+
+.atlasPanel {
+  display: grid;
+  grid-template-columns: 1.3fr repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 30px;
+  padding: 20px 0 0;
+  border-top: 1px solid rgba(95, 131, 206, 0.18);
+  background: transparent;
+}
+
+.atlasIntro {
+  display: flex;
+  gap: 12px;
+}
+
+.atlasIcon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(111, 85, 255, 0.18);
+  color: #a981ff;
+  font-size: 1.25rem;
+}
+
+.atlasPanel strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.atlasPanel span {
+  color: rgba(226, 235, 248, 0.72);
+  line-height: 1.5;
+  font-size: 0.88rem;
+}
+
+.atlasBenefit {
+  padding-left: 16px;
+  border-left: 1px solid rgba(114, 149, 221, 0.2);
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .route {
+    grid-template-rows: 130px auto auto auto;
+    padding: 0;
+  }
+
+  .route + .route {
+    border-left: 0;
+    border-top: 1px solid rgba(111, 142, 205, 0.14);
+    padding-left: 0;
+    padding-top: 28px;
+  }
+
+  .atlasPanel {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .shell {
+    width: min(100% - 20px, 1240px);
+    padding: 24px 4px;
+  }
+
+  .atlasPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .atlasBenefit {
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid rgba(114, 149, 221, 0.2);
+    padding-top: 12px;
+  }
+}
