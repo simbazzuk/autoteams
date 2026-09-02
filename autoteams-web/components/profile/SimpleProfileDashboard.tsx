@@ -271,7 +271,7 @@ export function SimpleProfileDashboard() {
   }
 
   return (
-    <main className={styles.page} data-autoteams-profile="v7.13.23">
+    <main className={styles.page} data-autoteams-profile="v7.13.23" data-ts-profile-refresh="v715715213">
       <section className={`${styles.hero} ${refresh.hero}`}>
         <div className={`container ${styles.heroGrid} ${refresh.heroGrid}`}>
           <div>
@@ -622,7 +622,118 @@ export function SimpleProfileDashboard() {
                 </div>
               </section>
 
-              <section className={styles.controls}>
+                      {/* AUTOTEAMS_V715715212_CV_CARD */}
+        <section
+          style={{
+            marginBottom: 22,
+            border: "1px solid rgba(91, 121, 255, .28)",
+            borderRadius: 20,
+            padding: 22,
+            background:
+              "linear-gradient(135deg, rgba(71, 57, 154, .22), rgba(8, 24, 45, .78))",
+            display: "grid",
+            gridTemplateColumns: "minmax(0,1fr) auto",
+            gap: 20,
+            alignItems: "center",
+          }}
+         data-ts-profile-zone="career">
+          <div>
+            <span
+              style={{
+                display: "inline-block",
+                marginBottom: 9,
+                borderRadius: 999,
+                padding: "5px 10px",
+                background: "rgba(255,255,255,.96)",
+                color: "#7657ff",
+                fontSize: 11,
+                fontWeight: 900,
+                letterSpacing: ".08em",
+                textTransform: "uppercase",
+              }}
+            >
+              Career & Experience
+            </span>
+
+            <h2
+              style={{
+                margin: "0 0 8px",
+                fontSize: 24,
+              }}
+            >
+              Give Atlas your CV evidence.
+            </h2>
+
+            <p
+              style={{
+                margin: 0,
+                maxWidth: 760,
+                lineHeight: 1.6,
+                color: "rgba(205, 220, 239, .76)",
+              }}
+            >
+              Upload your CV so Atlas can extract roles, skills, experience and
+              qualifications for future Opportunity matching. Your CV supports
+              the Atlas Profile rather than replacing it.
+            </p>
+
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 8,
+                marginTop: 14,
+              }}
+            >
+              <span
+                style={{
+                  borderRadius: 999,
+                  padding: "6px 9px",
+                  background: "rgba(79, 142, 247, .10)",
+                  border: "1px solid rgba(79, 142, 247, .18)",
+                  fontSize: 12,
+                }}
+              >
+                Skills & roles
+              </span>
+              <span
+                style={{
+                  borderRadius: 999,
+                  padding: "6px 9px",
+                  background: "rgba(45, 211, 171, .09)",
+                  border: "1px solid rgba(45, 211, 171, .18)",
+                  fontSize: 12,
+                }}
+              >
+                Experience evidence
+              </span>
+              <span
+                style={{
+                  borderRadius: 999,
+                  padding: "6px 9px",
+                  background: "rgba(168, 85, 247, .09)",
+                  border: "1px solid rgba(168, 85, 247, .18)",
+                  fontSize: 12,
+                }}
+              >
+                Opportunity matching
+              </span>
+            </div>
+          </div>
+
+          <Link
+            className="button"
+            href="/profile/cv"
+            style={{
+              minWidth: 190,
+              textAlign: "center",
+            }}
+          >
+            CV & Atlas Intelligence
+          </Link>
+        </section>
+
+<section className={styles.controls} data-ts-profile-zone="controls">
                 <div className={styles.sectionHeading}>
                   <div>
                     <span className="eyebrow">
@@ -660,7 +771,7 @@ export function SimpleProfileDashboard() {
                 </div>
               </section>
 
-              <section className={styles.advanced}>
+              <section className={styles.advanced} data-ts-profile-zone="advanced">
                 <button
                   className={styles.advancedToggle}
                   onClick={() =>
@@ -877,7 +988,7 @@ function ProfileMetric({
   return (
     <article
       className={`${refresh.profileMetric} ${refresh[tone]}`}
-    >
+     data-ts-profile-zone="work">
       <span>{label}</span>
       <strong>{value}</strong>
       <small>{detail}</small>

@@ -333,7 +333,48 @@ export function MyProfileDashboard() {
           </section>
 
           <section className={styles.twoColumns}>
-            <article className={styles.panel}>
+                      {/* AUTOTEAMS_V71571521_CV_INTELLIGENCE_CARD */}
+          <section
+            style={{
+              marginBottom: 22,
+              border: "1px solid rgba(91, 121, 255, .24)",
+              borderRadius: 20,
+              padding: 22,
+              background:
+                "linear-gradient(135deg, rgba(78, 57, 166, .18), rgba(8, 24, 45, .74))",
+              display: "grid",
+              gridTemplateColumns: "minmax(0,1fr) auto",
+              gap: 18,
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <span className="eyebrow">Career & Experience</span>
+              <h2 style={{ marginBottom: 8 }}>
+                Give Atlas your CV evidence.
+              </h2>
+              <p
+                style={{
+                  margin: 0,
+                  maxWidth: 760,
+                  lineHeight: 1.55,
+                }}
+              >
+                Upload a CV so Atlas can extract skills, roles, experience and
+                qualifications for future Opportunity matching. You stay in
+                control of whether that evidence is used or shared.
+              </p>
+            </div>
+
+            <Link
+              className="button"
+              href="/profile/cv"
+            >
+              CV & Atlas Intelligence
+            </Link>
+          </section>
+
+<article className={styles.panel}>
               <div className={styles.panelHeading}>
                 <span className="eyebrow">
                   Workspace membership
