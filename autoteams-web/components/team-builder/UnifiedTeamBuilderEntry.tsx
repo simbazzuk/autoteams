@@ -153,6 +153,54 @@ export function UnifiedTeamBuilderEntry({
               <strong style={{ color: "#79b9ff" }}>Invite</strong>
             </p>
 
+              {/* AUTOTEAMS_V715715223_OPPORTUNITY_TAGLINE */}
+              <div
+                style={{
+                  margin: "12px 0 10px",
+                  borderRadius: 12,
+                  padding: "9px 11px",
+                  border: "1px solid rgba(79,142,247,.24)",
+                  background:
+                    "linear-gradient(135deg, rgba(79,142,247,.10), rgba(118,87,255,.08))",
+                }}
+              >
+                <span
+                  style={{
+                    display: "block",
+                    color: "#8ec5ff",
+                    fontSize: 9,
+                    fontWeight: 900,
+                    letterSpacing: ".08em",
+                    textTransform: "uppercase",
+                    marginBottom: 3,
+                  }}
+                >
+                  More than recruitment
+                </span>
+
+                <strong
+                  style={{
+                    display: "block",
+                    color: "#eef5ff",
+                    fontSize: 11,
+                    lineHeight: 1.45,
+                  }}
+                >
+                  Not a job board. Not a CV database.
+                </strong>
+
+                <span
+                  style={{
+                    display: "block",
+                    marginTop: 2,
+                    color: "#a9c8ff",
+                    fontSize: 10,
+                    lineHeight: 1.4,
+                  }}
+                >
+                  An AI-powered team and opportunity matching network.
+                </span>
+              </div>
 <Link className={styles.action} href="/opportunities">
             Create an Opportunity
             <span aria-hidden="true">→</span>

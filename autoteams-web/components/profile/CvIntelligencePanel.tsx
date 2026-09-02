@@ -158,7 +158,38 @@ export function CvIntelligencePanel() {
             Opportunity recommendations without making the CV itself the
             decision.
           </p>
-        </section>
+        
+          {/* AUTOTEAMS_V7157152211_TOP_OPPORTUNITIES_CTA */}
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 10,
+              marginTop: 18,
+            }}
+          >
+            <Link
+              className="button"
+              href="/opportunities"
+              style={{
+                background:
+                  "linear-gradient(135deg, #7657ff, #4f8ef7)",
+                color: "#fff",
+                border: 0,
+                boxShadow:
+                  "0 14px 32px rgba(91,84,255,.24)",
+              }}
+            >
+              Explore recommended Opportunities
+            </Link>
+
+            <Link
+              className="button secondary"
+              href="/profile"
+            >
+              Back to Profile
+            </Link>
+          </div></section>
 
         <section
           style={{
@@ -353,7 +384,73 @@ export function CvIntelligencePanel() {
                 Remove CV intelligence
               </button>
             </div>
-          </section>
+          
+            {/* AUTOTEAMS_V7157152211_NEXT_STEP */}
+            <div
+              data-cv-opportunities-next-step="v7157152211"
+              style={{
+                marginTop: 22,
+                borderRadius: 18,
+                padding: 18,
+                border:
+                  "1px solid rgba(155,104,255,.30)",
+                background:
+                  "linear-gradient(135deg, rgba(118,87,255,.12), rgba(79,142,247,.07))",
+              }}
+            >
+              <span
+                style={{
+                  display: "block",
+                  color: "#c9cfff",
+                  fontSize: 10,
+                  fontWeight: 900,
+                  letterSpacing: ".09em",
+                  textTransform: "uppercase",
+                  marginBottom: 6,
+                }}
+              >
+                Your next step
+              </span>
+
+              <strong
+                style={{
+                  display: "block",
+                  fontSize: 18,
+                  marginBottom: 6,
+                }}
+              >
+                Atlas is ready to find Opportunities for you.
+              </strong>
+
+              <p
+                style={{
+                  margin: "0 0 14px",
+                  color:
+                    "rgba(210,222,238,.72)",
+                  lineHeight: 1.55,
+                }}
+              >
+                Your approved CV intelligence can now be compared
+                with open Opportunities so Atlas can rank the
+                strongest matches and explain why they may fit.
+              </p>
+
+              <Link
+                className="button"
+                href="/opportunities"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #7657ff, #4f8ef7)",
+                  color: "#fff",
+                  border: 0,
+                  boxShadow:
+                    "0 14px 32px rgba(91,84,255,.24)",
+                }}
+              >
+                View my recommended Opportunities
+              </Link>
+            </div>
+</section>
         ) : null}
       </div>
     </main>
