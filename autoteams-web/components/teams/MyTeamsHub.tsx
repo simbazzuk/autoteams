@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/AuthProvider";
 import { persistSavedTeamForInsights } from "@/components/team-insights/TeamPersistenceBridge";
+import { TeamLifecycleControl } from "@/components/teams/TeamLifecycleControl";
+import { RecruitmentSpotlight } from "@/components/teams/RecruitmentSpotlight";
 import styles from "./MyTeamsHub.module.css";
 
 const TEAM_KEY = "autoteams-v20-saved-teams";
@@ -161,7 +163,18 @@ export function MyTeamsHub() {
     refresh();
 
     const timer = window.setInterval(refresh, 1200);
-    return () => window.clearInterval(timer);
+
+    window.addEventListener(
+      "autoteams:team-lifecycle-changed",
+      refresh,
+    );
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener(
+        "autoteams:team-lifecycle-changed",
+        refresh,
+      );
+    };
   }, []);
 
   const sorted = useMemo(
@@ -281,6 +294,8 @@ export function MyTeamsHub() {
         </article>
       </section>
 
+            <RecruitmentSpotlight />
+
       {sorted.length === 0 ? (
         <section className={styles.empty}>
           <div className={styles.emptyIcon} aria-hidden="true">
@@ -313,6 +328,7 @@ export function MyTeamsHub() {
               <article
                 className={`${styles.card} ${styles[`route${route}`]}`}
                 key={team.id}
+                data-team-status={String((team as { status?: string }).status || "active").toLowerCase()}
               >
                 <div className={styles.topline}>
                   <div className={styles.routeBadge}>
@@ -388,7 +404,17 @@ export function MyTeamsHub() {
                   )}
                 </div>
 
-                <div className={styles.actions}>
+                                <TeamLifecycleControl
+                  team={team}
+                  onChanged={() =>
+                    setTeams(
+                      uniqueTeams(
+                        readTeams(),
+                      ),
+                    )
+                  }
+                />
+<div className={styles.actions}>
                   <button
                     type="button"
                     onClick={() => void openInsights(team)}
