@@ -11,6 +11,9 @@ export function UnifiedTeamBuilderEntry() {
   function continueWithBuilder(mode: Exclude<BuildMode, "opportunity">) {
     try {
       localStorage.setItem(MODE_KEY, mode);
+      if (mode === "hybrid") {
+        localStorage.removeItem("autoteams-active-hybrid-team-v715121");
+      }
     } catch {}
 
     const target = document.getElementById(

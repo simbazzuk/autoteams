@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useAuth } from "@/components/AuthProvider";
@@ -41,6 +42,8 @@ const TEAM_KEY =
 
 const PROFILE_KEY =
   "autoteams-team-insights-selected-profile-v7122";
+const DIRECT_TEAM_KEY =
+  "autoteams-team-insights-direct-team-v715136";
 const AUTOTEAMS_DELETED_TEAM_IDS =
   "autoteams-deleted-team-ids-v71317";
 
@@ -449,6 +452,8 @@ function scoreTeamMembers(
 }
 
 export function TeamInsights() {
+  const searchParams =
+    useSearchParams();
   const auth =
     useAuth() as unknown as {
       user?: {
@@ -670,13 +675,220 @@ export function TeamInsights() {
       ],
     );
 
+    // AUTOTEAMS_V715715137_URL_TEAM_SELECTION
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+
+    const requestedTeamId =
+      searchParams.get("teamId")?.trim() ?? "";
+
+    if (!requestedTeamId) {
+      return;
+    }
+
+    const requestedName =
+      searchParams.get("teamName")?.trim() ?? "";
+
+    const requestedWorkspaceId =
+      searchParams.get("workspaceId")?.trim() ?? "";
+
+    /*
+     * URL navigation from My Teams is authoritative.
+     *
+     * Match order:
+     * 1. Firebase document/team id
+     * 2. legacyId written by TeamPersistenceBridge
+     * 3. exact name + workspace fallback for older migrated records
+     */
+    const requestedTeam =
+      teams.find((team) => {
+        const extended =
+          team as FirebaseInsightTeam & {
+            legacyId?: string | null;
+            workspaceId?: string | null;
+            contextId?: string | null;
+          };
+
+        if (team.id === requestedTeamId) {
+          return true;
+        }
+
+        if (
+          extended.legacyId &&
+          extended.legacyId === requestedTeamId
+        ) {
+          return true;
+        }
+
+        if (!requestedName) {
+          return false;
+        }
+
+        const sameName =
+          team.name === requestedName;
+
+        const firebaseWorkspace =
+          extended.workspaceId ??
+          extended.contextId ??
+          "";
+
+        const sameWorkspace =
+          !requestedWorkspaceId ||
+          firebaseWorkspace === requestedWorkspaceId;
+
+        return sameName && sameWorkspace;
+      });
+
+    if (!requestedTeam) {
+      return;
+    }
+
+    const requestedProfile =
+      normaliseProfileType(
+        requestedTeam.profileType,
+      );
+
+    setContext({});
+    setSelectedProfile(
+      requestedProfile,
+    );
+    setSelectedTeamId(
+      requestedTeam.id,
+    );
+
+    try {
+      localStorage.removeItem(
+        CONTEXT_KEY,
+      );
+
+      localStorage.removeItem(
+        DIRECT_TEAM_KEY,
+      );
+
+      localStorage.setItem(
+        PROFILE_KEY,
+        requestedProfile,
+      );
+
+      localStorage.setItem(
+        TEAM_KEY,
+        requestedTeam.id,
+      );
+    } catch {}
+  }, [
+    loading,
+    teams,
+    searchParams,
+  ]);
+// AUTOTEAMS_V715715136_DIRECT_TEAM_SELECTION
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+    // AUTOTEAMS_V715715137_URL_GUARD
+    if (searchParams.get("teamId")) {
+      return;
+    }
+
+    let directTeamId = "";
+
+    try {
+      directTeamId =
+        localStorage.getItem(
+          DIRECT_TEAM_KEY,
+        ) ?? "";
+    } catch {
+      directTeamId = "";
+    }
+
+    if (!directTeamId) {
+      return;
+    }
+
+    /*
+     * Direct navigation from My Teams is authoritative.
+     * Search the complete Firebase team list before profile/context filtering.
+     * If the Firestore listener has not received the just-persisted team yet,
+     * leave the direct key in place and wait for the teams dependency to update.
+     */
+    const directTeam =
+      teams.find(
+        (team) =>
+          team.id ===
+          directTeamId,
+      );
+
+    if (!directTeam) {
+      return;
+    }
+
+    const directProfile =
+      normaliseProfileType(
+        directTeam.profileType,
+      );
+
+    setContext({});
+    setSelectedProfile(
+      directProfile,
+    );
+    setSelectedTeamId(
+      directTeam.id,
+    );
+
+    try {
+      localStorage.removeItem(
+        CONTEXT_KEY,
+      );
+
+      localStorage.setItem(
+        PROFILE_KEY,
+        directProfile,
+      );
+
+      localStorage.setItem(
+        TEAM_KEY,
+        directTeam.id,
+      );
+
+      /*
+       * Delay consumption until the next browser task. This allows the normal
+       * contextual selector effect in this commit to see DIRECT_TEAM_KEY and
+       * avoid clearing the just-selected team before React applies state.
+       */
+      window.setTimeout(() => {
+        try {
+          localStorage.removeItem(
+            DIRECT_TEAM_KEY,
+          );
+        } catch {}
+      }, 0);
+    } catch {}
+  }, [
+    teams,
+    loading,
+  ]);
   useEffect(() => {
     if (loading) {
       return;
     }
 
     try {
-      const persistedTeam =
+                        // AUTOTEAMS_V715715137_CONTEXTUAL_GUARD
+      if (searchParams.get("teamId")) {
+        return;
+      }
+// AUTOTEAMS_V715715136_DIRECT_GUARD
+      const directTeamId =
+        localStorage.getItem(
+          DIRECT_TEAM_KEY,
+        );
+
+      if (directTeamId) {
+        return;
+      }
+const persistedTeam =
         localStorage.getItem(
           TEAM_KEY,
         );

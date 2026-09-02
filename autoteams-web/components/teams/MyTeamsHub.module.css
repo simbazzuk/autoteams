@@ -1,0 +1,445 @@
+.page {
+  width: min(1240px, calc(100% - 32px));
+  margin: 28px auto 60px;
+}
+
+.hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+  padding: 30px;
+  border: 1px solid rgba(112, 92, 255, 0.28);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(119, 76, 255, 0.2), transparent 36%),
+    radial-gradient(circle at 94% 6%, rgba(39, 172, 255, 0.12), transparent 32%),
+    rgba(9, 21, 41, 0.92);
+}
+
+.eyebrow {
+  color: #9f85ff;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 8px 0 8px;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  line-height: 1;
+}
+
+.hero p {
+  margin: 0;
+  color: rgba(225, 234, 248, 0.76);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.createButton {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 14px;
+  padding: 0 18px;
+  background: linear-gradient(135deg, #765aff, #34b7ff);
+  color: white;
+  font-weight: 900;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.createButton > span {
+  font-size: 1.3rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.stats article {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 78px;
+  padding: 16px 18px;
+  border: 1px solid rgba(107, 138, 201, 0.2);
+  border-radius: 16px;
+  background: rgba(10, 24, 44, 0.78);
+}
+
+.stats span {
+  color: rgba(183, 205, 235, 0.75);
+  font-size: 0.86rem;
+}
+
+.stats strong {
+  font-size: 1.6rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  min-height: 480px;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 22px;
+  border: 1px solid rgba(112, 139, 204, 0.25);
+  border-radius: 20px;
+  background: rgba(9, 22, 42, 0.94);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.routepeople {
+  border-color: rgba(140, 82, 255, 0.42);
+}
+
+.routepeople::before {
+  background: radial-gradient(
+    circle at 8% 0%,
+    rgba(133, 74, 255, 0.24),
+    transparent 38%
+  );
+}
+
+.routeopportunity {
+  border-color: rgba(37, 145, 255, 0.42);
+}
+
+.routeopportunity::before {
+  background: radial-gradient(
+    circle at 8% 0%,
+    rgba(37, 143, 255, 0.22),
+    transparent 38%
+  );
+}
+
+.routehybrid {
+  border-color: rgba(29, 204, 170, 0.42);
+}
+
+.routehybrid::before {
+  background: radial-gradient(
+    circle at 8% 0%,
+    rgba(26, 203, 168, 0.22),
+    transparent 38%
+  );
+}
+
+.topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.routeBadge,
+.profileBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.73rem;
+  font-weight: 900;
+}
+
+.routeBadge {
+  background: rgba(103, 81, 222, 0.17);
+  color: #c3b6ff;
+}
+
+.routeBadge > span {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(139, 94, 255, 0.28);
+}
+
+.routeopportunity .routeBadge {
+  background: rgba(33, 126, 231, 0.18);
+  color: #95d0ff;
+}
+
+.routehybrid .routeBadge {
+  background: rgba(19, 157, 130, 0.18);
+  color: #74efd4;
+}
+
+.profileBadge {
+  border: 1px solid rgba(126, 154, 215, 0.18);
+  background: rgba(23, 40, 67, 0.62);
+  color: rgba(205, 220, 243, 0.78);
+}
+
+.teamIcon {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  margin: 22px 0 14px;
+  place-items: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #7258ff, #3caeff);
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 900;
+  box-shadow: 0 10px 28px rgba(85, 86, 236, 0.2);
+}
+
+.routeopportunity .teamIcon {
+  background: linear-gradient(135deg, #176fe2, #35b8ff);
+}
+
+.routehybrid .teamIcon {
+  background: linear-gradient(135deg, #13a382, #2dd4ac);
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.purpose {
+  min-height: 58px;
+  margin: 0 0 18px;
+  color: rgba(224, 234, 248, 0.76);
+  line-height: 1.55;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.metrics > div {
+  padding: 12px;
+  border: 1px solid rgba(107, 140, 205, 0.16);
+  border-radius: 13px;
+  background: rgba(5, 17, 35, 0.46);
+}
+
+.metrics span {
+  display: block;
+  margin-bottom: 4px;
+  color: rgba(163, 190, 225, 0.7);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.metrics strong {
+  font-size: 1.15rem;
+}
+
+.confidenceBar {
+  height: 7px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(96, 122, 170, 0.14);
+}
+
+.confidenceBar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #765aff, #36b9ff);
+}
+
+.routehybrid .confidenceBar span {
+  background: linear-gradient(90deg, #12a886, #2ed6ae);
+}
+
+.atlasBlock {
+  margin-top: 2px;
+  padding: 13px 14px;
+  border-left: 3px solid rgba(125, 88, 255, 0.7);
+  border-radius: 0 12px 12px 0;
+  background: rgba(9, 19, 38, 0.48);
+}
+
+.routeopportunity .atlasBlock {
+  border-left-color: rgba(48, 153, 255, 0.78);
+}
+
+.routehybrid .atlasBlock {
+  border-left-color: rgba(38, 210, 171, 0.78);
+}
+
+.atlasLabel {
+  display: block;
+  margin-bottom: 4px;
+  color: #a58bff;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.routeopportunity .atlasLabel {
+  color: #75c5ff;
+}
+
+.routehybrid .atlasLabel {
+  color: #64e7c8;
+}
+
+.atlasBlock p {
+  margin: 0;
+  color: rgba(222, 233, 248, 0.78);
+  font-size: 0.87rem;
+  line-height: 1.48;
+}
+
+.signalRow {
+  display: flex;
+  min-height: 32px;
+  gap: 7px;
+  margin: 13px 0 18px;
+  flex-wrap: wrap;
+}
+
+.signalRow span {
+  align-self: flex-start;
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: rgba(88, 74, 190, 0.18);
+  color: #c8bcff;
+  font-size: 0.72rem;
+}
+
+.signalRow .gapSignal {
+  background: rgba(37, 171, 145, 0.14);
+  color: #6be9cc;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: auto;
+}
+
+.actions button,
+.secondaryAction {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 12px;
+  padding: 0 12px;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.actions button {
+  background: linear-gradient(135deg, #7258ff, #34b6ff);
+  color: white;
+}
+
+.secondaryAction {
+  border: 1px solid rgba(124, 153, 213, 0.25) !important;
+  background: rgba(11, 27, 49, 0.7) !important;
+  color: rgba(227, 237, 249, 0.88) !important;
+}
+
+.created {
+  display: block;
+  margin-top: 11px;
+  color: rgba(151, 178, 212, 0.6);
+}
+
+.empty {
+  display: grid;
+  max-width: 720px;
+  margin: 70px auto;
+  place-items: center;
+  padding: 42px;
+  border: 1px dashed rgba(116, 145, 207, 0.28);
+  border-radius: 22px;
+  text-align: center;
+  background: rgba(8, 22, 42, 0.58);
+}
+
+.emptyIcon {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 16px;
+  place-items: center;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #765aff, #35b8ff);
+  color: white;
+  font-size: 1.6rem;
+}
+
+.empty h2 {
+  margin: 8px 0;
+}
+
+.empty p {
+  max-width: 540px;
+  margin: 0 0 20px;
+  color: rgba(222, 233, 247, 0.72);
+  line-height: 1.6;
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .page {
+    width: min(100% - 20px, 1240px);
+  }
+
+  .hero {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 22px;
+  }
+
+  .stats,
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: auto;
+  }
+}

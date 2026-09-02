@@ -1,0 +1,267 @@
+.shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 28px auto 48px;
+  padding: 26px;
+  border: 1px solid rgba(34, 211, 174, 0.25);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(34, 211, 174, 0.12), transparent 34%),
+    radial-gradient(circle at 4% 0%, rgba(105, 83, 255, 0.1), transparent 32%),
+    rgba(8, 23, 40, 0.9);
+}
+
+.heading {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  color: #52dfbd;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.heading h2 {
+  margin: 7px 0 8px;
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+}
+
+.heading p,
+.teamSummary p,
+.gapCard p,
+.empty span,
+.noGaps p,
+.capacityCard p {
+  color: rgba(226, 235, 248, 0.76);
+  line-height: 1.6;
+}
+
+.atlasMark {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  place-items: center;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #785cff, #23d2ae);
+  color: white;
+  font-weight: 900;
+}
+
+.empty,
+.noGaps,
+.teamSummary,
+.capacityCard {
+  margin-top: 20px;
+  border: 1px solid rgba(102, 145, 208, 0.18);
+  border-radius: 16px;
+  padding: 18px;
+  background: rgba(9, 25, 43, 0.72);
+}
+
+.empty {
+  display: grid;
+  gap: 5px;
+}
+
+.teamSummary {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.55fr) 1.45fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.teamSummary span {
+  display: block;
+  margin-bottom: 4px;
+  color: rgba(160, 190, 231, 0.72);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.teamSummary strong {
+  font-size: 1.08rem;
+}
+
+.teamSummary p {
+  margin: 0;
+}
+
+.sectionBlock {
+  margin-top: 20px;
+}
+
+.subheading {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.subheading > span {
+  color: #5ce7c5;
+  font-weight: 900;
+}
+
+.subheading small {
+  color: rgba(176, 202, 232, 0.7);
+}
+
+.gapGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.gapCard {
+  display: flex;
+  min-height: 250px;
+  flex-direction: column;
+  border: 1px solid rgba(36, 210, 173, 0.28);
+  border-radius: 18px;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(37, 211, 174, 0.16), transparent 42%),
+    rgba(8, 27, 44, 0.86);
+}
+
+.gapTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gapTop > span {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(34, 211, 174, 0.16);
+  color: #58e7c6;
+  font-weight: 900;
+}
+
+.gapTop b {
+  color: #58e7c6;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.gapCard h3 {
+  margin: 15px 0 6px;
+  font-size: 1.1rem;
+}
+
+.gapCard p {
+  margin: 0 0 18px;
+}
+
+.gapCard button,
+.capacityCard button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 12px;
+  padding: 0 15px;
+  background: linear-gradient(135deg, #12aa89, #28d5b0);
+  color: white;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.gapCard button {
+  display: inline-flex;
+  margin-top: auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.capacityCard {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  border-color: rgba(76, 146, 255, 0.22);
+  background:
+    radial-gradient(circle at 2% 0%, rgba(60, 139, 255, 0.12), transparent 44%),
+    rgba(9, 25, 43, 0.72);
+}
+
+.capacityCard > div {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.capacityBadge {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(67, 142, 255, 0.16);
+  color: #8fc5ff;
+  font-weight: 900;
+}
+
+.capacityCard p {
+  margin: 4px 0 0;
+}
+
+.noGaps {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.noGaps > span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(34, 211, 174, 0.14);
+  color: #55e1bf;
+  font-weight: 900;
+}
+
+.noGaps p {
+  margin: 4px 0 0;
+}
+
+@media (max-width: 860px) {
+  .gapGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .gapCard {
+    min-height: auto;
+  }
+
+  .teamSummary {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .capacityCard {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .shell {
+    width: min(100% - 20px, 1180px);
+    padding: 20px;
+  }
+}

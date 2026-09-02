@@ -865,6 +865,20 @@ async function persistRawValue(
   }
 }
 
+export async function persistSavedTeamForInsights(
+  team: Record<string, unknown>,
+  ownerId: string,
+) {
+  if (!ownerId) {
+    throw new Error("A signed-in user is required before opening Team Insights.");
+  }
+
+  await persistCandidate(
+    team,
+    ownerId,
+    "autoteams-v20-saved-teams",
+  );
+}
 async function scanExistingTeams(
   ownerId: string,
 ) {

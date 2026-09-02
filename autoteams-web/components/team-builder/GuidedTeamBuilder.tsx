@@ -1043,6 +1043,16 @@ function toggleFinalPerson(
       team,
     ]);
     try {
+      if (
+        localStorage.getItem("autoteams-build-route-v71511") === "hybrid"
+      ) {
+        localStorage.setItem(
+          "autoteams-active-hybrid-team-v715121",
+          team.id,
+        );
+      }
+    } catch {}
+    try {
       window.localStorage.setItem(
         "autoteams-team-dna-route-v71357",
         JSON.stringify({
