@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/AuthProvider";
 import { persistSavedTeamForInsights } from "@/components/team-insights/TeamPersistenceBridge";
 import { TeamLifecycleControl } from "@/components/teams/TeamLifecycleControl";
+import { AtlasCandidateMatching } from "@/components/teams/AtlasCandidateMatching";
 import { RecruitmentSpotlight } from "@/components/teams/RecruitmentSpotlight";
 import styles from "./MyTeamsHub.module.css";
 
@@ -404,7 +405,17 @@ export function MyTeamsHub() {
                   )}
                 </div>
 
-                                <TeamLifecycleControl
+                                                <AtlasCandidateMatching
+                  team={team}
+                  onChanged={() =>
+                    setTeams(
+                      uniqueTeams(
+                        readTeams(),
+                      ),
+                    )
+                  }
+                />
+<TeamLifecycleControl
                   team={team}
                   onChanged={() =>
                     setTeams(
