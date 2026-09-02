@@ -155,13 +155,13 @@ export function AtlasRecruitGaps() {
     <section
       className={styles.shell}
       data-autoteams-atlas-recruit-gaps="v7.15.7.15.12.1"
-    >
+     id="atlas-recruit-gaps">
       <div className={styles.heading}>
         <div>
-          <span className={styles.eyebrow}>Atlas Recruit Gaps</span>
+          <span className={styles.eyebrow}>Hybrid &middot; Stage 2 of 2 &middot; Atlas Recruit Gaps</span>
           <h2>Complete the team by recruiting only what is missing.</h2>
           <p>
-            Atlas now stays bound to the exact hybrid team you just saved.
+            Your initial team is saved. Atlas is now bound to this exact team so it can analyse what is missing and recruit specifically for those gaps.
             Capability gaps and remaining team capacity are shown separately.
           </p>
         </div>
@@ -170,9 +170,9 @@ export function AtlasRecruitGaps() {
 
       {!team && (
         <div className={styles.empty}>
-          <strong>Save the hybrid team you are building.</strong>
+          <strong>Initial team saved. Now identify and recruit what is missing.</strong>
           <span>
-            Recruit Gaps will then attach to that exact saved team instead of
+            Atlas is attached to this exact saved team and will analyse its capability gaps before
             using another team from your history.
           </span>
         </div>

@@ -245,6 +245,21 @@ const suggestedSkills = [
   "Adaptability",
 ];
 
+function isHybridBuildRoute() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  try {
+    return (
+      localStorage.getItem(
+        "autoteams-build-route-v71511",
+      ) === "hybrid"
+    );
+  } catch {
+    return false;
+  }
+}
 export function GuidedTeamBuilder() {
   const [step, setStep] =
     useState<BuilderStep>("group");
@@ -1051,6 +1066,21 @@ function toggleFinalPerson(
           "autoteams-active-hybrid-team-v715121",
           team.id,
         );
+        window.dispatchEvent(
+          new Event(
+            "autoteams:hybrid-team-saved",
+          ),
+        );
+        // AUTOTEAMS_V715715204_AUTO_RECRUIT_GAPS
+        window.setTimeout(() => {
+          window.location.hash = "atlas-recruit-gaps";
+          document
+            .getElementById("atlas-recruit-gaps")
+            ?.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+        }, 120);
       }
     } catch {}
     try {
@@ -1196,6 +1226,55 @@ function toggleFinalPerson(
           )}
 
                     <BuildTeamAtlasCredits />
+
+          {/* AUTOTEAMS_V715715204_TRUE_HYBRID_BANNER */}
+          {isHybridBuildRoute() && (
+            <section
+              style={{
+                marginBottom: 18,
+                border: "1px solid rgba(45, 211, 171, .30)",
+                borderRadius: 16,
+                padding: "16px 18px",
+                background:
+                  "linear-gradient(135deg, rgba(9, 91, 75, .32), rgba(8, 30, 48, .76))",
+              }}
+            >
+              <span
+                style={{
+                  display: "block",
+                  marginBottom: 5,
+                  color: "#55e0bf",
+                  fontSize: 12,
+                  fontWeight: 900,
+                  letterSpacing: ".08em",
+                  textTransform: "uppercase",
+                }}
+              >
+                HYBRID &middot; STAGE 1 OF 2
+              </span>
+              <strong
+                style={{
+                  display: "block",
+                  marginBottom: 5,
+                  color: "#f4fbf9",
+                  fontSize: 18,
+                }}
+              >
+                Build the initial team &mdash; it does not need to be complete.
+              </strong>
+              <p
+                style={{
+                  margin: 0,
+                  color: "rgba(211, 229, 239, .78)",
+                  lineHeight: 1.55,
+                }}
+              >
+                Select the strongest people you already have. When you save,
+                Atlas will move straight to capability-gap analysis for this
+                exact team and help you recruit the missing capabilities.
+              </p>
+            </section>
+          )}
 
 <StepNavigation
             currentStepIndex={
@@ -1378,6 +1457,11 @@ function toggleFinalPerson(
                 )
               }
               onSave={saveTeam}
+              saveLabel={
+                isHybridBuildRoute()
+                  ? "Save initial team & analyse gaps"
+                  : "Save Team"
+              }
               onStartAgain={
                 startAgain
               }
@@ -2905,6 +2989,7 @@ function ConfirmStep({
   aiResult,
   onBack,
   onSave,
+  saveLabel,
   onStartAgain,
 }: {
   workspace?: Workspace;
@@ -2914,6 +2999,7 @@ function ConfirmStep({
   aiResult: GeminiTeamRecommendation | null;
   onBack: () => void;
   onSave: () => void;
+  saveLabel?: string;
   onStartAgain: () => void;
 }) {
   return (
@@ -3077,7 +3163,7 @@ function ConfirmStep({
           onClick={onSave}
           type="button"
         >
-          Save Team
+          {saveLabel || "Save Team"}
         </button>
 
         <button

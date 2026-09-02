@@ -1,18 +1,12 @@
 import { PageShell } from "@/components/Site";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { GuidedTeamBuilder } from "@/components/team-builder/GuidedTeamBuilder";
-import { UnifiedTeamBuilderEntry } from "@/components/team-builder/UnifiedTeamBuilderEntry";
-import { AtlasRecruitGaps } from "@/components/team-builder/AtlasRecruitGaps";
+import { TeamBuilderExperience } from "@/components/team-builder/TeamBuilderExperience";
 
 export default function TeamBuilderPage() {
   return (
     <PageShell>
       <ProtectedRoute>
-        <UnifiedTeamBuilderEntry />
-        <div id="autoteams-guided-team-builder">
-          <GuidedTeamBuilder />
-        </div>
-        <AtlasRecruitGaps />
+        <TeamBuilderExperience />
       </ProtectedRoute>
     </PageShell>
   );

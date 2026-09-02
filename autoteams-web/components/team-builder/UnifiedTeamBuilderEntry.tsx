@@ -7,7 +7,11 @@ type BuildMode = "people" | "opportunity" | "hybrid";
 
 const MODE_KEY = "autoteams-build-route-v71511";
 
-export function UnifiedTeamBuilderEntry() {
+export function UnifiedTeamBuilderEntry({
+  onModeSelected,
+}: {
+  onModeSelected?: (mode: BuildMode) => void;
+}) {
   function continueWithBuilder(mode: Exclude<BuildMode, "opportunity">) {
     try {
       localStorage.setItem(MODE_KEY, mode);
@@ -62,7 +66,7 @@ export function UnifiedTeamBuilderEntry() {
 
           <div className={styles.copy}>
             <span className={styles.routeLabel}>My people</span>
-            <h2>Build from my people</h2>
+            <h2>Build from existing people</h2>
             <strong className={styles.oneLine}>
               I already have people in mind.
             </strong>
@@ -74,12 +78,32 @@ export function UnifiedTeamBuilderEntry() {
             </ul>
           </div>
 
-          <button
+                                  {/* AUTOTEAMS_V7157152031_PEOPLE_FLOW */}
+            <p
+              style={{
+                margin: "12px 0 14px",
+                color: "rgba(174, 196, 222, .78)",
+                fontSize: 12,
+                lineHeight: 1.45,
+              }}
+            >
+              <strong style={{ color: "#9fc2ff" }}>People</strong>
+              {" "}&rarr;{" "}
+              <strong style={{ color: "#9fc2ff" }}>Atlas recommends</strong>
+              {" "}&rarr;{" "}
+              <strong style={{ color: "#9fc2ff" }}>Save</strong>
+            </p>
+
+<button
             className={styles.action}
             type="button"
-            onClick={() => continueWithBuilder("people")}
+            onClick={() => {
+              // AUTOTEAMS_V7157152042_PEOPLE_MODE
+              onModeSelected?.("people");
+              continueWithBuilder("people");
+            }}
           >
-            Start with my people
+            Build from existing people
             <span aria-hidden="true">→</span>
           </button>
 
@@ -113,7 +137,23 @@ export function UnifiedTeamBuilderEntry() {
             </ul>
           </div>
 
-          <Link className={styles.action} href="/opportunities">
+                      {/* AUTOTEAMS_V7157152033_OPPORTUNITY_FLOW */}
+            <p
+              style={{
+                margin: "12px 0 14px",
+                color: "rgba(174, 202, 235, .80)",
+                fontSize: 12,
+                lineHeight: 1.45,
+              }}
+            >
+              <strong style={{ color: "#79b9ff" }}>Publish</strong>
+              {" "}&rarr;{" "}
+              <strong style={{ color: "#79b9ff" }}>Discover</strong>
+              {" "}&rarr;{" "}
+              <strong style={{ color: "#79b9ff" }}>Invite</strong>
+            </p>
+
+<Link className={styles.action} href="/opportunities">
             Create an Opportunity
             <span aria-hidden="true">→</span>
           </Link>
@@ -137,7 +177,18 @@ export function UnifiedTeamBuilderEntry() {
 
           <div className={styles.copy}>
             <span className={styles.routeLabel}>Hybrid</span>
-            <h2>Build &amp; recruit gaps</h2>
+            <h2>Build an initial team, then recruit gaps</h2>
+            {/* AUTOTEAMS_V715715204_HYBRID_STAGES */}
+            <p
+              style={{
+                margin: "8px 0 0",
+                color: "rgba(189, 224, 216, .78)",
+                fontSize: 12,
+                fontWeight: 700,
+              }}
+            >
+              Stage 1: form the initial team. Stage 2: Atlas analyses and fills the gaps.
+            </p>
             <strong className={styles.oneLine}>
               I have part of the team.
             </strong>
@@ -149,12 +200,32 @@ export function UnifiedTeamBuilderEntry() {
             </ul>
           </div>
 
-          <button
+                                  {/* AUTOTEAMS_V7157152031_HYBRID_FLOW */}
+            <p
+              style={{
+                margin: "12px 0 14px",
+                color: "rgba(174, 214, 205, .82)",
+                fontSize: 12,
+                lineHeight: 1.45,
+              }}
+            >
+              <strong style={{ color: "#67e4c6" }}>Build</strong>
+              {" "}&rarr;{" "}
+              <strong style={{ color: "#67e4c6" }}>Analyse gaps</strong>
+              {" "}&rarr;{" "}
+              <strong style={{ color: "#67e4c6" }}>Recruit</strong>
+            </p>
+
+<button
             className={styles.action}
             type="button"
-            onClick={() => continueWithBuilder("hybrid")}
+            onClick={() => {
+              // AUTOTEAMS_V7157152042_HYBRID_MODE
+              onModeSelected?.("hybrid");
+              continueWithBuilder("hybrid");
+            }}
           >
-            Start team &amp; recruit gaps
+            Start hybrid team
             <span aria-hidden="true">→</span>
           </button>
 
