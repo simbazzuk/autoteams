@@ -947,3 +947,113 @@
     min-height: 68px;
   }
 }
+/* ==========================================================================
+   AUTOTEAMS_V7157152531_DISCOVERY_STYLES
+   ========================================================================== */
+
+.discoveryNav {
+  display: grid;
+  grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
+  gap: 18px;
+  align-items: center;
+  margin: 0 0 24px;
+  padding: 20px;
+  border: 1px solid rgba(102, 93, 223, .28);
+  border-radius: 20px;
+  background:
+    radial-gradient(420px 180px at 0% 0%, rgba(108, 76, 237, .18), transparent 72%),
+    linear-gradient(145deg, rgba(20, 32, 61, .96), rgba(12, 23, 43, .98));
+}
+
+.discoveryNavIntro > strong {
+  display: block;
+  margin: 5px 0;
+  color: #f5f7ff;
+  font-size: 18px;
+}
+
+.discoveryNavIntro p {
+  margin: 0;
+  color: rgba(193, 206, 227, .66);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.discoveryNavActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.discoveryPrimary,
+.discoverySecondary {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  min-height: 76px;
+  padding: 12px 13px;
+  border-radius: 15px;
+  cursor: pointer;
+  text-align: left;
+  transition: transform .16s ease, border-color .16s ease, background .16s ease;
+}
+
+.discoveryPrimary {
+  border: 1px solid rgba(112, 91, 241, .48);
+  background: linear-gradient(135deg, rgba(101, 77, 222, .34), rgba(52, 105, 194, .27));
+  color: #f7f8ff;
+}
+
+.discoverySecondary {
+  border: 1px solid rgba(93, 113, 170, .24);
+  background: rgba(16, 29, 52, .78);
+  color: #edf2ff;
+}
+
+.discoveryPrimary:hover,
+.discoverySecondary:hover {
+  transform: translateY(-1px);
+  border-color: rgba(125, 101, 247, .58);
+}
+
+.discoveryPrimary > span,
+.discoverySecondary > span {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 11px;
+  background: rgba(108, 87, 231, .16);
+  color: #d6d9ff;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.discoveryPrimary div,
+.discoverySecondary div {
+  display: grid;
+  gap: 3px;
+}
+
+.discoveryPrimary strong,
+.discoverySecondary strong {
+  font-size: 12px;
+}
+
+.discoveryPrimary small,
+.discoverySecondary small {
+  color: rgba(190, 203, 224, .58);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+@media (max-width: 820px) {
+  .discoveryNav {
+    grid-template-columns: 1fr;
+  }
+
+  .discoveryNavActions {
+    grid-template-columns: 1fr;
+  }
+}

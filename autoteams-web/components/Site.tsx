@@ -30,6 +30,10 @@ const primaryLinks = [
   { href: "/people", label: "People" },
   { href: "/members#invite", label: "Invite", invite: true },
   { href: "/team-builder", label: "Build Team" },
+  {
+    href: "/opportunities",
+    label: "Opportunities",
+  },
   { href: "/teams", label: "My Teams" },
   {
     href: "/gemini-team-coach",

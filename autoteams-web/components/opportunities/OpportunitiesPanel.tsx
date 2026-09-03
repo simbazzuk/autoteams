@@ -126,6 +126,53 @@ function openOpportunityManager(o:Opportunity){setManageId(o.id);const existing=
  async function respondInvite(invitation:OpportunityInvitation,response:"accepted"|"declined"){if(!user)return;setInviteBusy(invitation.id);try{await respondToOpportunityInvitation(invitation,response);const next=await loadOpportunityInvitationsForUser(user.uid);setIncomingInvites(next);await refresh();setMessage(response==="accepted"?`You accepted the invitation to ${invitation.opportunityTitle}.`:`You declined the invitation to ${invitation.opportunityTitle}.`)}catch(error){console.error("[AutoTeams] Opportunity invitation response failed",error);setMessage("The invitation response could not be saved. Please try again.")}finally{setInviteBusy("")}}
  const myInterestIds=user?interests.filter(x=>x.userId===user.uid).map(x=>x.opportunityId):[];const owned=user?items.filter(x=>x.ownerId===user.uid):[];
  return <main className={styles.page}>
+      {/* AUTOTEAMS_V7157152531_DISCOVERY_NAV */}
+      <section className={styles.discoveryNav}>
+        <div className={styles.discoveryNavIntro}>
+          <span className={styles.eyebrow}>Opportunity network</span>
+          <strong>What would you like to do?</strong>
+          <p>
+            Discover teams looking for people, or publish an opportunity of your own.
+          </p>
+        </div>
+
+        <div className={styles.discoveryNavActions}>
+          <button
+            className={styles.discoveryPrimary}
+            type="button"
+            onClick={() =>
+              document
+                .getElementById("open-opportunities")
+                ?.scrollIntoView({ behavior: "smooth", block: "start" })
+            }
+          >
+            <span aria-hidden="true">◎</span>
+            <div>
+              <strong>Discover Opportunities</strong>
+              <small>Find teams and opportunities you can contribute to.</small>
+            </div>
+          </button>
+
+          <button
+            className={styles.discoverySecondary}
+            type="button"
+            onClick={() => {
+              setCreating(true);
+              window.setTimeout(() => {
+                document
+                  .getElementById("autoteams-opportunity-create-form")
+                  ?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }, 0);
+            }}
+          >
+            <span aria-hidden="true">+</span>
+            <div>
+              <strong>Create Opportunity</strong>
+              <small>Publish a need and discover people for your team.</small>
+            </div>
+          </button>
+        </div>
+      </section>
   <section className={styles.hero}><div><span className={styles.eyebrow}>AutoTeams Opportunities</span><h1>People looking for teams. Teams looking for people.</h1><p>Form teams around an objective. Opportunities are not freelance jobs: Atlas supports team formation and humans make the final selection.</p></div>{user&&<button className={styles.createOpportunityButton} type="button" onClick={()=>setCreating(x=>!x)}><span className={styles.createOpportunityIcon} aria-hidden="true">+</span><span>{creating?"Close":"Create Opportunity"}</span></button>}</section>
   
   {/* AUTOTEAMS_V715715222_POSITIONING */}
