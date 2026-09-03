@@ -258,7 +258,31 @@ function FirebaseAccountMenu() {
           </span>
         </Link>
 
+                {/* AUTOTEAMS_V7157152521_ACADEMY_ACCOUNT_MENU */}
         <Link
+          className={styles.academyMenuItem}
+          href="/academy"
+        >
+          <span
+            className={styles.academyMenuIcon}
+            aria-hidden="true"
+          >
+            A
+          </span>
+
+          <span className={styles.academyMenuLabel}>
+            TeamScience Academy
+          </span>
+
+          <span
+            className={styles.academyMenuChevron}
+            aria-hidden="true"
+          >
+            &gt;
+          </span>
+        </Link>
+
+<Link
           className={styles.menuItem}
           href="/settings"
         >
@@ -455,7 +479,31 @@ function LocalAccountMenu() {
           </span>
         </Link>
 
+                {/* AUTOTEAMS_V7157152521_ACADEMY_ACCOUNT_MENU */}
         <Link
+          className={styles.academyMenuItem}
+          href="/academy"
+        >
+          <span
+            className={styles.academyMenuIcon}
+            aria-hidden="true"
+          >
+            A
+          </span>
+
+          <span className={styles.academyMenuLabel}>
+            TeamScience Academy
+          </span>
+
+          <span
+            className={styles.academyMenuChevron}
+            aria-hidden="true"
+          >
+            &gt;
+          </span>
+        </Link>
+
+<Link
           className={styles.menuItem}
           href="/settings"
         >

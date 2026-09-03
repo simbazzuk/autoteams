@@ -519,3 +519,75 @@
     height: 36px;
   }
 }
+/* ==========================================================================
+   AUTOTEAMS_V7157152522_ACADEMY_MENU
+   Academy row aligned with Profile / CV / Privacy / Settings menu styling.
+   ========================================================================== */
+
+.academyMenuItem {
+  display: grid !important;
+  grid-template-columns: 38px minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 11px !important;
+  width: 100% !important;
+  min-height: 58px !important;
+  margin: 4px 0 !important;
+  padding: 9px 11px !important;
+  border: 1px solid rgba(92, 114, 170, .20) !important;
+  border-radius: 12px !important;
+  background: rgba(17, 31, 55, .72) !important;
+  color: #eef3ff !important;
+  text-decoration: none !important;
+  transition:
+    transform .16s ease,
+    border-color .16s ease,
+    background .16s ease !important;
+}
+
+.academyMenuItem:hover {
+  transform: translateY(-1px) !important;
+  border-color: rgba(113, 88, 239, .48) !important;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(88, 61, 191, .42),
+      rgba(44, 79, 151, .34)
+    ) !important;
+}
+
+.academyMenuIcon {
+  display: grid !important;
+  width: 38px !important;
+  height: 38px !important;
+  place-items: center !important;
+  border: 1px solid rgba(139, 110, 255, .42) !important;
+  border-radius: 10px !important;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(111, 78, 219, .58),
+      rgba(71, 77, 180, .48)
+    ) !important;
+  color: #e5ddff !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  letter-spacing: .04em !important;
+}
+
+.academyMenuLabel {
+  min-width: 0 !important;
+  color: #f2f5ff !important;
+  font-size: 13px !important;
+  font-weight: 760 !important;
+  line-height: 1.25 !important;
+}
+
+.academyMenuChevron {
+  color: rgba(190, 202, 225, .66) !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+}
+
+.academyMenuItem:hover .academyMenuChevron {
+  color: #d9e3ff !important;
+}

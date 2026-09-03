@@ -37,7 +37,6 @@ const primaryLinks = [
     ai: true,
   },
   { href: "/messages", label: "Messages" },
-  { href: "/academy", label: "Academy" },
 ];
 
 function isActivePath(
