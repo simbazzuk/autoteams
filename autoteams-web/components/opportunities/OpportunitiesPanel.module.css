@@ -516,3 +516,434 @@
 }
 
 /* AUTOTEAMS_V715715116_STRONG_OPPORTUNITY_COLOURS_END */
+
+/* ==========================================================================
+   AUTOTEAMS_V715715231_OPPORTUNITY_NETWORK_STYLES
+   ========================================================================== */
+
+.organisationSection {
+  margin-top: 8px;
+  padding: 18px;
+  border: 1px solid rgba(91,125,214,.22);
+  border-radius: 18px;
+  background:
+    radial-gradient(360px 150px at 0% 0%, rgba(91,77,255,.12), transparent 72%),
+    linear-gradient(135deg, rgba(21,34,63,.76), rgba(15,27,49,.80));
+}
+
+.organisationHeading { display:grid; gap:5px; }
+.organisationHeading strong { color:#f4f7ff; font-size:18px; }
+.organisationHeading p {
+  margin:0;
+  color:rgba(203,215,235,.66);
+  font-size:12px;
+  line-height:1.55;
+}
+
+.organisationTrail {
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:6px 0 4px;
+}
+
+.organisationTrail span {
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid rgba(103,128,205,.20);
+  background:rgba(67,94,162,.12);
+  color:#b9c9ee;
+  font-size:10px;
+  font-weight:750;
+}
+
+.interestOverlay {
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  background:rgba(3,8,20,.74);
+  backdrop-filter:blur(10px);
+}
+
+.interestPanel {
+  width:min(640px,100%);
+  max-height:calc(100vh - 40px);
+  overflow:auto;
+  padding:24px;
+  border-radius:24px;
+  border:1px solid rgba(119,98,255,.34);
+  background:
+    radial-gradient(500px 220px at 0% 0%, rgba(124,78,255,.20), transparent 70%),
+    linear-gradient(150deg,#15223e,#0d182c);
+  box-shadow:0 32px 90px rgba(0,0,0,.48);
+}
+
+.interestPanelHeader {
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-start;
+}
+.interestPanelHeader h2 { margin:5px 0; font-size:28px; }
+.interestPanelHeader p { margin:0; color:#aebad1; }
+
+.closeInterest {
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  border:1px solid rgba(132,145,181,.20);
+  background:rgba(21,34,59,.72);
+  color:#dfe6f7;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.shareSummary {
+  display:grid;
+  gap:7px;
+  margin:20px 0;
+  padding:16px;
+  border-radius:16px;
+  border:1px solid rgba(57,197,158,.18);
+  background:rgba(25,110,87,.10);
+}
+.shareSummary strong { color:#7be1be; margin-bottom:3px; }
+.shareSummary span { color:rgba(220,231,243,.78); font-size:12px; }
+
+.interestNote { display:grid; gap:8px; font-weight:800; }
+.interestNote textarea { width:100%; resize:vertical; }
+
+.cvConsent {
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:12px;
+  align-items:flex-start;
+  margin-top:16px;
+  padding:15px;
+  border-radius:15px;
+  border:1px solid rgba(115,93,232,.22);
+  background:rgba(91,68,196,.09);
+}
+.cvConsent input { margin-top:4px; }
+.cvConsent span { display:grid; gap:4px; }
+.cvConsent strong { color:#e9e4ff; }
+.cvConsent small,.consentNote {
+  color:rgba(193,205,225,.65);
+  font-size:11px;
+  line-height:1.5;
+}
+.consentNote { margin:12px 0 0; }
+
+.interestActions {
+  display:flex;
+  justify-content:flex-end;
+  gap:9px;
+  margin-top:18px;
+}
+
+.myJourney { margin:28px 0; }
+.journeyGrid { display:grid; gap:14px; }
+
+.journeyCard {
+  padding:18px;
+  border-radius:19px;
+  border:1px solid rgba(99,120,190,.20);
+  background:
+    radial-gradient(420px 160px at 100% 0%, rgba(83,74,215,.11), transparent 70%),
+    rgba(15,27,48,.72);
+}
+
+.journeyTop {
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:flex-start;
+}
+.journeyTop > div { display:grid; gap:4px; }
+.journeyTop strong { font-size:17px; }
+.journeyTop span { color:#aab8d0; font-size:11px; }
+.journeyTop em {
+  padding:5px 9px;
+  border-radius:999px;
+  background:rgba(99,78,225,.13);
+  color:#c8cfff;
+  font-size:10px;
+  font-style:normal;
+  font-weight:850;
+}
+
+.lifecycle {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+  margin:16px 0 12px;
+}
+.lifecycle > div {
+  display:grid;
+  justify-items:center;
+  gap:5px;
+  padding:9px 5px;
+  border-radius:12px;
+  background:rgba(35,48,74,.54);
+  color:#7f8ca5;
+}
+.lifecycle b {
+  display:grid;
+  place-items:center;
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:rgba(118,130,163,.12);
+  font-size:10px;
+}
+.lifecycle span { font-size:9px; font-weight:800; }
+.lifecycleActive {
+  color:#e9edff !important;
+  background:linear-gradient(135deg,rgba(99,79,224,.28),rgba(63,103,193,.20)) !important;
+}
+.lifecycleActive b {
+  background:linear-gradient(135deg,#7657ff,#4f8ef7);
+  color:white;
+}
+.journeyCard > p {
+  margin:0;
+  color:rgba(198,210,229,.67);
+  font-size:11px;
+  line-height:1.5;
+}
+
+.networkFlow {
+  display:grid;
+  grid-template-columns:minmax(190px,1.5fr) repeat(6,minmax(90px,.65fr));
+  gap:9px;
+  align-items:stretch;
+  margin:24px 0;
+  padding:16px;
+  border-radius:18px;
+  border:1px solid rgba(92,111,173,.20);
+  background:rgba(12,22,40,.66);
+}
+.networkFlow > div:first-child {
+  display:grid;
+  align-content:center;
+  gap:4px;
+}
+.networkFlow > div:first-child strong { font-size:17px; }
+
+.networkStep {
+  display:grid;
+  justify-items:center;
+  align-content:center;
+  gap:5px;
+  min-height:70px;
+  padding:7px;
+  border-radius:13px;
+  background:rgba(31,44,69,.60);
+}
+.networkStep b {
+  display:grid;
+  width:24px;
+  height:24px;
+  place-items:center;
+  border-radius:8px;
+  background:rgba(105,88,230,.16);
+  color:#c7cdff;
+  font-size:9px;
+}
+.networkStep span {
+  text-align:center;
+  color:#b2bed3;
+  font-size:9px;
+  font-weight:750;
+}
+
+.interestMessage {
+  display:block;
+  margin-top:5px;
+  max-width:520px;
+  color:rgba(223,229,241,.74);
+  font-size:10px;
+  font-style:italic;
+  line-height:1.45;
+}
+.shareStatus {
+  display:inline-block;
+  margin-top:5px;
+  color:#7dcfb2;
+  font-size:9px;
+  font-weight:800;
+}
+
+@media (max-width:900px) {
+  .networkFlow { grid-template-columns:repeat(3,1fr); }
+  .networkFlow > div:first-child { grid-column:1 / -1; }
+}
+
+@media (max-width:560px) {
+  .interestPanel { padding:18px; }
+  .interestPanelHeader h2 { font-size:23px; }
+  .lifecycle { grid-template-columns:repeat(2,1fr); }
+  .networkFlow { grid-template-columns:repeat(2,1fr); }
+  .interestActions { flex-direction:column-reverse; }
+  .interestActions button { width:100%; }
+}
+/* ==========================================================================
+   AUTOTEAMS_V715715232_LIFECYCLE_COLOUR
+   Clear visual progression for Opportunity lifecycle.
+   ========================================================================== */
+
+/* Default / not yet reached */
+.lifecycle > div {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(116, 130, 165, .14);
+  background:
+    linear-gradient(145deg, rgba(29, 39, 61, .72), rgba(24, 34, 55, .72));
+  color: #7f8ca5;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
+}
+
+.lifecycle > div b {
+  background: rgba(120, 132, 164, .14);
+  color: #8d98af;
+}
+
+/* Stage 1 — Interested / green */
+.lifecycle > div:nth-child(1).lifecycleActive {
+  border-color: rgba(30, 214, 155, .48) !important;
+  background:
+    radial-gradient(220px 90px at 0% 0%, rgba(24, 206, 146, .20), transparent 74%),
+    linear-gradient(145deg, rgba(18, 89, 72, .72), rgba(12, 52, 45, .78)) !important;
+  color: #9ff1d3 !important;
+  box-shadow:
+    0 10px 28px rgba(17, 170, 119, .12),
+    inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.lifecycle > div:nth-child(1).lifecycleActive b {
+  background: linear-gradient(135deg, #1ed69b, #13aa79) !important;
+  color: #ffffff !important;
+  box-shadow: 0 5px 14px rgba(24, 206, 146, .24);
+}
+
+/* Stage 2 — Review / blue */
+.lifecycle > div:nth-child(2).lifecycleActive {
+  border-color: rgba(65, 151, 255, .48) !important;
+  background:
+    radial-gradient(220px 90px at 0% 0%, rgba(54, 142, 255, .20), transparent 74%),
+    linear-gradient(145deg, rgba(21, 68, 126, .76), rgba(15, 47, 93, .80)) !important;
+  color: #abd2ff !important;
+  box-shadow:
+    0 10px 28px rgba(47, 121, 226, .13),
+    inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.lifecycle > div:nth-child(2).lifecycleActive b {
+  background: linear-gradient(135deg, #4197ff, #2975df) !important;
+  color: #ffffff !important;
+  box-shadow: 0 5px 14px rgba(65, 151, 255, .24);
+}
+
+/* Stage 3 — Shortlist / purple */
+.lifecycle > div:nth-child(3).lifecycleActive {
+  border-color: rgba(157, 102, 255, .50) !important;
+  background:
+    radial-gradient(220px 90px at 0% 0%, rgba(153, 91, 255, .22), transparent 74%),
+    linear-gradient(145deg, rgba(68, 43, 130, .78), rgba(44, 29, 92, .82)) !important;
+  color: #d4b8ff !important;
+  box-shadow:
+    0 10px 28px rgba(123, 74, 222, .14),
+    inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.lifecycle > div:nth-child(3).lifecycleActive b {
+  background: linear-gradient(135deg, #9d66ff, #7846df) !important;
+  color: #ffffff !important;
+  box-shadow: 0 5px 14px rgba(157, 102, 255, .24);
+}
+
+/* Stage 4 — Invite / amber */
+.lifecycle > div:nth-child(4).lifecycleActive {
+  border-color: rgba(246, 174, 51, .54) !important;
+  background:
+    radial-gradient(220px 90px at 0% 0%, rgba(246, 174, 51, .22), transparent 74%),
+    linear-gradient(145deg, rgba(105, 70, 22, .80), rgba(65, 44, 18, .84)) !important;
+  color: #ffd58a !important;
+  box-shadow:
+    0 10px 28px rgba(213, 135, 24, .15),
+    inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.lifecycle > div:nth-child(4).lifecycleActive b {
+  background: linear-gradient(135deg, #f6ae33, #db8617) !important;
+  color: #ffffff !important;
+  box-shadow: 0 5px 14px rgba(246, 174, 51, .26);
+}
+
+/* Completed-stage check indicator */
+.lifecycle > div.lifecycleActive b::after {
+  content: "✓";
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  display: grid;
+  width: 14px;
+  height: 14px;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid #111c31;
+  background: currentColor;
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 950;
+  line-height: 1;
+}
+
+/* Keep number visible while adding the check. */
+.lifecycle > div.lifecycleActive b {
+  position: relative;
+}
+
+/* Status badge gains matching semantic colour. */
+.journeyTop em {
+  border: 1px solid rgba(112, 124, 177, .20);
+}
+
+.journeyCard:has(.lifecycle > div:nth-child(4).lifecycleActive) .journeyTop em {
+  border-color: rgba(30, 214, 155, .34);
+  background: rgba(20, 151, 104, .15);
+  color: #7ee8bd;
+}
+
+.journeyCard:has(.lifecycle > div:nth-child(3).lifecycleActive):not(:has(.lifecycle > div:nth-child(4).lifecycleActive)) .journeyTop em {
+  border-color: rgba(157, 102, 255, .30);
+  background: rgba(121, 76, 212, .14);
+  color: #cdb0ff;
+}
+
+.journeyCard:has(.lifecycle > div:nth-child(2).lifecycleActive):not(:has(.lifecycle > div:nth-child(3).lifecycleActive)) .journeyTop em {
+  border-color: rgba(65, 151, 255, .30);
+  background: rgba(48, 117, 213, .14);
+  color: #acd2ff;
+}
+
+.journeyCard:has(.lifecycle > div:nth-child(1).lifecycleActive):not(:has(.lifecycle > div:nth-child(2).lifecycleActive)) .journeyTop em {
+  border-color: rgba(30, 214, 155, .28);
+  background: rgba(20, 151, 104, .12);
+  color: #8beac3;
+}
+
+/* Make progress obvious even at a glance. */
+.lifecycle > div.lifecycleActive span {
+  color: inherit;
+  font-weight: 900;
+}
+
+@media (max-width: 560px) {
+  .lifecycle > div {
+    min-height: 68px;
+  }
+}

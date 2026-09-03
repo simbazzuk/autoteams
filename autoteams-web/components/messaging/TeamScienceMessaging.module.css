@@ -1,0 +1,541 @@
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 34px 24px 72px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(112,93,235,.30);
+  background:
+    radial-gradient(520px 220px at 0% 0%, rgba(119,78,255,.20), transparent 70%),
+    radial-gradient(480px 220px at 100% 100%, rgba(46,137,255,.10), transparent 70%),
+    linear-gradient(145deg, rgba(25,35,71,.96), rgba(12,24,46,.98));
+}
+
+.chatIcon {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border-radius: 17px;
+  background: linear-gradient(135deg,#7657ff,#4f8ef7);
+  color: white;
+  font-size: 24px;
+  box-shadow: 0 14px 32px rgba(79,94,230,.25);
+}
+
+.eyebrow {
+  color: #aeb7ff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 5px 0 7px;
+  font-size: clamp(25px,3vw,38px);
+  line-height: 1.08;
+}
+
+.hero p {
+  max-width: 720px;
+  margin: 0;
+  color: rgba(202,214,233,.70);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.liveBadge {
+  padding: 7px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(43,211,160,.24);
+  background: rgba(31,151,113,.10);
+  color: #82e7c2;
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.chatShell {
+  margin-top: 18px;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(93,112,169,.22);
+  background: rgba(11,21,39,.90);
+  box-shadow: 0 24px 60px rgba(2,7,19,.18);
+}
+
+.contextBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  border-bottom: 1px solid rgba(102,118,166,.16);
+  background: rgba(22,33,57,.66);
+}
+
+.contextBar > div {
+  display: grid;
+  gap: 3px;
+}
+
+.contextBar strong {
+  color: #f5f7ff;
+  font-size: 13px;
+}
+
+.contextBar span {
+  color: rgba(192,204,224,.58);
+  font-size: 10px;
+}
+
+.backLink {
+  color: #9fc4ff;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.error {
+  margin: 14px 16px 0;
+  padding: 11px 13px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,92,119,.20);
+  background: rgba(156,47,67,.10);
+  color: #ff9daf;
+  font-size: 11px;
+}
+
+.messages {
+  min-height: 390px;
+  max-height: 58vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: 20px;
+}
+
+.welcome {
+  align-self: center;
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+  padding: 26px;
+  border-radius: 18px;
+  border: 1px dashed rgba(108,124,177,.22);
+  background: rgba(25,37,61,.30);
+}
+
+.welcomeIcon {
+  font-size: 26px;
+  margin-bottom: 9px;
+}
+
+.welcome strong {
+  display: block;
+  font-size: 16px;
+}
+
+.welcome p {
+  margin: 7px 0 0;
+  color: rgba(195,207,226,.64);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.message {
+  max-width: min(690px,82%);
+  padding: 12px 14px;
+  border-radius: 16px 16px 16px 5px;
+  border: 1px solid rgba(91,111,168,.16);
+  background: rgba(31,44,70,.66);
+}
+
+.mine {
+  align-self: flex-end;
+  border-radius: 16px 16px 5px 16px;
+  border-color: rgba(117,87,255,.24);
+  background:
+    linear-gradient(135deg, rgba(95,73,213,.35), rgba(53,94,176,.30));
+}
+
+.messageMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 5px;
+}
+
+.messageMeta strong {
+  color: #dce4fb;
+  font-size: 10px;
+}
+
+.messageMeta span {
+  color: rgba(178,191,214,.48);
+  font-size: 9px;
+}
+
+.message p {
+  margin: 0;
+  color: #eef3ff;
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.composer {
+  padding: 14px 16px 16px;
+  border-top: 1px solid rgba(101,116,165,.16);
+  background: rgba(15,26,47,.90);
+}
+
+.composer textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 78px;
+  padding: 12px 13px;
+  border-radius: 14px;
+  border: 1px solid rgba(101,119,177,.22);
+  background: rgba(7,16,32,.72);
+  color: #eef3ff;
+  outline: none;
+}
+
+.composer textarea:focus {
+  border-color: rgba(116,95,255,.54);
+  box-shadow: 0 0 0 3px rgba(116,95,255,.09);
+}
+
+.composerFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-top: 9px;
+}
+
+.composerFooter span {
+  color: rgba(176,188,211,.48);
+  font-size: 9px;
+}
+
+.atlasHint {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  margin-top: 16px;
+  padding: 15px 17px;
+  border-radius: 16px;
+  border: 1px solid rgba(119,87,255,.19);
+  background: rgba(73,54,155,.07);
+}
+
+.atlasHint > span {
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(118,87,255,.15);
+  color: #c7ceff;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.atlasHint strong {
+  font-size: 12px;
+}
+
+.atlasHint p {
+  margin: 4px 0 0;
+  color: rgba(193,205,226,.60);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.empty {
+  max-width: 760px;
+  margin: 70px auto;
+  padding: 34px;
+  text-align: center;
+  border-radius: 24px;
+  border: 1px solid rgba(102,119,179,.22);
+  background:
+    radial-gradient(440px 180px at 50% 0%, rgba(111,79,255,.15), transparent 72%),
+    rgba(15,26,47,.84);
+}
+
+.empty h1 {
+  margin: 7px 0 10px;
+}
+
+.empty p {
+  color: rgba(198,210,230,.66);
+  line-height: 1.6;
+}
+
+.emptyActions {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 20px;
+}
+
+@media (max-width: 700px) {
+  .page { padding: 20px 14px 54px; }
+  .hero { grid-template-columns: auto 1fr; padding: 19px; }
+  .liveBadge { grid-column: 1 / -1; justify-self: start; }
+  .messages { min-height: 330px; padding: 14px; }
+  .message { max-width: 92%; }
+  .composerFooter { align-items: stretch; flex-direction: column; }
+  .composerFooter button { width: 100%; }
+  .emptyActions { flex-direction: column; }
+}
+/* ==========================================================================
+   AUTOTEAMS_V71571525_INBOX_STYLES
+   ========================================================================== */
+
+.inboxHero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  padding: 26px;
+  border-radius: 24px;
+  border: 1px solid rgba(110, 92, 237, .28);
+  background:
+    radial-gradient(520px 210px at 0% 0%, rgba(117, 79, 255, .19), transparent 72%),
+    linear-gradient(145deg, rgba(24, 35, 70, .96), rgba(12, 24, 46, .98));
+}
+
+.inboxHero h1 {
+  margin: 5px 0 6px;
+  font-size: clamp(30px, 4vw, 44px);
+}
+
+.inboxHero p {
+  margin: 0;
+  color: rgba(201, 213, 232, .68);
+  font-size: 13px;
+}
+
+.inboxSummary {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 3px 9px;
+  min-width: 160px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(9, 18, 35, .46);
+  border: 1px solid rgba(103, 119, 171, .16);
+}
+
+.inboxSummary strong,
+.inboxSummary b {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.inboxSummary b {
+  color: #8fe5c5;
+}
+
+.inboxSummary span {
+  align-self: center;
+  color: rgba(187, 199, 220, .58);
+  font-size: 10px;
+}
+
+.inboxSection {
+  margin-top: 22px;
+}
+
+.inboxSectionHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.inboxSectionHeading h2 {
+  margin: 4px 0 0;
+  font-size: 20px;
+}
+
+.inboxSectionHeading > span {
+  display: grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: rgba(105, 84, 222, .13);
+  color: #c7ceff;
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.inboxList {
+  display: grid;
+  gap: 9px;
+}
+
+.inboxItem {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 13px;
+  align-items: center;
+  padding: 15px 16px;
+  border-radius: 17px;
+  border: 1px solid rgba(94, 112, 167, .18);
+  background: rgba(15, 27, 49, .76);
+  color: inherit;
+  text-decoration: none;
+  transition: transform .16s ease, border-color .16s ease, background .16s ease;
+}
+
+.inboxItem:hover {
+  transform: translateY(-1px);
+  border-color: rgba(105, 91, 235, .34);
+  background: rgba(21, 34, 61, .92);
+}
+
+.inboxUnread {
+  border-color: rgba(77, 132, 255, .34);
+  background:
+    radial-gradient(330px 110px at 0% 0%, rgba(76, 112, 244, .12), transparent 74%),
+    rgba(17, 30, 55, .90);
+}
+
+.inboxIcon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 13px;
+  background: linear-gradient(135deg, rgba(116, 85, 255, .30), rgba(68, 130, 238, .25));
+  color: #dbe3ff;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.inboxBody {
+  min-width: 0;
+}
+
+.inboxTitleRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.inboxTitleRow strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #f3f6ff;
+  font-size: 13px;
+}
+
+.inboxTitleRow span {
+  flex: 0 0 auto;
+  color: rgba(175, 188, 210, .48);
+  font-size: 9px;
+}
+
+.inboxBody p {
+  overflow: hidden;
+  margin: 5px 0 7px;
+  color: rgba(195, 207, 226, .67);
+  font-size: 11px;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inboxMeta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.inboxMeta span {
+  color: #91a5c9;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.inboxMeta b {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(35, 185, 135, .13);
+  color: #7ee2bd;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.inboxArrow {
+  color: #8ea8dd;
+  font-size: 16px;
+}
+
+.inboxEmpty {
+  margin-top: 22px;
+  padding: 42px 26px;
+  text-align: center;
+  border-radius: 22px;
+  border: 1px dashed rgba(103, 119, 172, .22);
+  background: rgba(14, 25, 45, .54);
+}
+
+.inboxEmpty > div:first-child {
+  font-size: 30px;
+}
+
+.inboxEmpty h2 {
+  margin: 11px 0 7px;
+}
+
+.inboxEmpty p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: rgba(194, 206, 225, .64);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+@media (max-width: 700px) {
+  .inboxHero {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .inboxSummary {
+    width: 100%;
+  }
+
+  .inboxItem {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .inboxArrow {
+    display: none;
+  }
+
+  .inboxTitleRow {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+}

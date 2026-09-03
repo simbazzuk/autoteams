@@ -1312,6 +1312,16 @@ const persistedTeam =
               styles.selectorStack
             }
           >
+            {/* AUTOTEAMS_V715715243_TEAM_CHAT */}
+            {selectedTeam && (
+              <Link
+                className="button secondary"
+                href={`/messages?type=team&id=${encodeURIComponent(selectedTeamId)}&title=${encodeURIComponent(selectedTeam.name)}`}
+                aria-label={`Open team chat for ${selectedTeam.name}`}
+              >
+                Team Chat
+              </Link>
+            )}
             <label
               className={
                 styles.teamSelect

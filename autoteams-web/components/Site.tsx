@@ -10,7 +10,8 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { AccountMenu } from "@/components/navigation/AccountMenu";
 import { AtlasAiAllowanceBadge } from "@/components/navigation/AtlasAiAllowanceBadge";
-
+
+import { MessagesNavIcon } from "@/components/messaging/MessagesNavIcon";
 export function RobotLogo() {
   return (
     <span className="robot-logo" aria-hidden="true">
@@ -35,6 +36,7 @@ const primaryLinks = [
     label: "Team Insights",
     ai: true,
   },
+  { href: "/messages", label: "Messages" },
   { href: "/academy", label: "Academy" },
 ];
 
@@ -229,39 +231,24 @@ export function Navbar() {
                   </span>
                 )}
 
-                <span>{link.label}</span>
+                <span>{link.href === "/messages" ? <MessagesNavIcon /> : link.label}</span>
               </Link>
             );
           })}
         </nav>
 
         <div data-autoteams-workspace-trigger="true" className="product-nav-actions">
-          <details className="nav-dropdown">
+          {/* AUTOTEAMS_V715715227_WORKSPACE_SIMPLIFIED */}
+{/* AUTOTEAMS_V7157152271_WORKSPACE_SIMPLIFIED */}
+{/* AUTOTEAMS_V7157152272_WORKSPACE_STRUCTURAL_FIX */}
+<details className="nav-dropdown">
             <summary>
               Workspace <span>⌄</span>
             </summary>
 
             <div className="nav-dropdown-menu">
 
-              <Link href="/organisation">
-                My Group
-              </Link>
-
-              <Link href="/gemini-team-coach">
-                Gemini Team Coach
-              </Link>
-
-              <Link href="/profile/privacy">
-                Profile Privacy
-              </Link>
-
-              <Link href="/notifications">
-                Notifications
-              </Link>
-
-              <Link href="/settings">
-                Settings
-              </Link>
+              <Link href="/organisation">Manage My Group</Link>
 
               <hr />
 
@@ -369,3 +356,5 @@ export function PageHero({
     </section>
   );
 }
+
+// AUTOTEAMS_V715715251_MESSAGE_ICON

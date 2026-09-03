@@ -175,6 +175,119 @@ service cloud.firestore {
           .hasOnly(["status", "updatedAt"])
         && request.resource.data.status in ["accepted", "declined"];
     }
+
+    // ----------------------------------------------------------------------
+    // AUTOTEAMS_V715715245_MESSAGING_RULES
+    // Participant-aware TeamScience messaging.
+    // ----------------------------------------------------------------------
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function teamDocument(teamId) {
+      return get(/databases/$(database)/documents/teams/$(teamId));
+    }
+
+    function opportunityDocument(opportunityId) {
+      return get(/databases/$(database)/documents/opportunities/$(opportunityId));
+    }
+
+    function canUseTeamConversation(data) {
+      return signedIn()
+        && data.type == "team"
+        && data.entityId is string
+        && exists(/databases/$(database)/documents/teams/$(data.entityId))
+        && (
+          teamDocument(data.entityId).data.ownerId == request.auth.uid
+          || (
+            teamDocument(data.entityId).data.memberIds is list
+            && request.auth.uid in teamDocument(data.entityId).data.memberIds
+          )
+        );
+    }
+
+    function validOpportunityConversation(data) {
+      return signedIn()
+        && data.type == "opportunity"
+        && data.entityId is string
+        && data.ownerId is string
+        && data.candidateId is string
+        && data.scope == data.candidateId
+        && data.participantIds is list
+        && data.participantIds.size() == 2
+        && data.ownerId in data.participantIds
+        && data.candidateId in data.participantIds
+        && request.auth.uid in data.participantIds
+        && exists(/databases/$(database)/documents/opportunities/$(data.entityId))
+        && opportunityDocument(data.entityId).data.ownerId == data.ownerId;
+    }
+
+    function canUseConversation(data) {
+      return canUseTeamConversation(data)
+        || validOpportunityConversation(data);
+    }
+
+    match /conversations/{conversationId} {
+      // A conversation can only be created by an authenticated participant.
+      // Opportunity ownership is checked against the authoritative
+      // opportunities document. Team access is checked against the team doc.
+      allow create: if canUseConversation(request.resource.data);
+
+      // Existing conversation metadata can only be read by authorised users.
+      allow read: if canUseConversation(resource.data);
+
+      // Participants may update only an existing conversation they can use,
+      // and must preserve security-defining fields.
+      allow update: if canUseConversation(resource.data)
+        && request.resource.data.type == resource.data.type
+        && request.resource.data.entityId == resource.data.entityId
+        && request.resource.data.scope == resource.data.scope
+        && request.resource.data.ownerId == resource.data.ownerId
+        && request.resource.data.candidateId == resource.data.candidateId
+        && request.resource.data.participantIds == resource.data.participantIds;
+
+      allow delete: if false;
+
+      match /messages/{messageId} {
+        allow read: if canUseConversation(
+          get(/databases/$(database)/documents/conversations/$(conversationId)).data
+        );
+
+        allow create: if canUseConversation(
+            get(/databases/$(database)/documents/conversations/$(conversationId)).data
+          )
+          && request.resource.data.senderId == request.auth.uid
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0
+          && request.resource.data.text.size() <= 2000;
+
+        allow update, delete: if false;
+      }
+    }
+
+    // ----------------------------------------------------------------------
+    // AUTOTEAMS_V71571525_MESSAGE_INBOX_RULES
+    // Per-user message inbox references.
+    // ----------------------------------------------------------------------
+    match /messageInboxes/{userId}/conversations/{conversationId} {
+      allow read: if request.auth != null
+        && request.auth.uid == userId;
+
+      allow create, update: if request.auth != null
+        && exists(/databases/$(database)/documents/conversations/$(conversationId))
+        && request.auth.uid in get(
+          /databases/$(database)/documents/conversations/$(conversationId)
+        ).data.participantIds
+        && userId in get(
+          /databases/$(database)/documents/conversations/$(conversationId)
+        ).data.participantIds
+        && request.resource.data.userId == userId
+        && request.resource.data.conversationId == conversationId;
+
+      allow delete: if request.auth != null
+        && request.auth.uid == userId;
+    }
 match /{document=**} {
       allow read, write: if false;
     }

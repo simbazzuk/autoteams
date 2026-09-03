@@ -28343,3 +28343,572 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
     justify-content: flex-start;
   }
 }
+/* ==========================================================================
+   AUTOTEAMS_V715715226_WORKSPACE_MENU_ALIGN
+   Align Workspace dropdown with the richer Profile account-menu language.
+   ========================================================================== */
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown {
+  position: relative;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown > summary {
+  min-height: 46px !important;
+  padding: 5px 12px 5px 7px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(102, 119, 181, .26) !important;
+  background:
+    linear-gradient(145deg, rgba(25, 36, 62, .94), rgba(16, 27, 48, .98)) !important;
+  color: #edf3ff !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.035),
+    0 10px 26px rgba(4, 10, 28, .16);
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown > summary:hover {
+  border-color: rgba(119, 105, 255, .42) !important;
+  background:
+    linear-gradient(145deg, rgba(36, 44, 80, .96), rgba(19, 31, 55, .99)) !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown > summary::before {
+  content: "W";
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  border-radius: 9px;
+  background:
+    linear-gradient(135deg, rgba(118,87,255,.94), rgba(79,142,247,.90));
+  color: #fff;
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: .04em;
+  box-shadow:
+    0 7px 18px rgba(80, 84, 225, .25),
+    inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu {
+  width: min(368px, calc(100vw - 24px)) !important;
+  min-width: 338px !important;
+  padding: 12px !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(91, 110, 170, .29) !important;
+  background:
+    radial-gradient(420px 180px at 0% 0%, rgba(92, 73, 255, .14), transparent 72%),
+    linear-gradient(155deg, rgba(17, 27, 48, .995), rgba(10, 20, 37, .998)) !important;
+  box-shadow:
+    0 24px 60px rgba(2, 8, 22, .43),
+    inset 0 1px 0 rgba(255,255,255,.035) !important;
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+}
+
+/* First workspace destination doubles as the workspace identity row. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: 40px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 11px;
+  min-height: 62px;
+  margin: 3px 0;
+  padding: 10px 10px !important;
+  border: 1px solid transparent !important;
+  border-radius: 14px !important;
+  color: #f1f5ff !important;
+  background: transparent !important;
+  font-size: 0 !important;
+  text-decoration: none !important;
+  transition:
+    transform .16s ease,
+    border-color .16s ease,
+    background .16s ease,
+    box-shadow .16s ease;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:hover {
+  transform: translateY(-1px);
+  border-color: rgba(92, 130, 220, .21) !important;
+  background:
+    linear-gradient(135deg, rgba(38, 65, 108, .23), rgba(31, 46, 78, .20)) !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a::before {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  border: 1px solid rgba(255,255,255,.06);
+  color: #dfe7ff;
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: .04em;
+  box-sizing: border-box;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a::after {
+  content: ">";
+  justify-self: end;
+  align-self: center;
+  color: rgba(199, 211, 232, .58);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Re-create each label with a richer two-line hierarchy. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a {
+  --ws-title: "Workspace";
+  --ws-desc: "Open this section";
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a > * {
+  font-size: initial;
+}
+
+/* Preserve hidden original anchor text while presenting structured copy. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a {
+  text-indent: -9999px;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a span,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a strong,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a small {
+  text-indent: 0;
+}
+
+/* Create the title/subtitle in the middle grid column. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a::marker {
+  display: none;
+}
+
+/* We use a nested text surface generated with a background-free box-shadow
+   trick via a childless pseudo label on the anchor itself. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a {
+  text-indent: 0;
+  color: transparent !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a::before {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a::after {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+/* Middle column labels use a secondary absolute block so the existing
+   destinations remain untouched. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a {
+  padding-left: 10px !important;
+}
+
+/* Individual rows */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(1)::before {
+  content: "WG";
+  background: linear-gradient(135deg, rgba(111,81,255,.62), rgba(62,110,230,.44));
+  border-color: rgba(140,124,255,.24);
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(2)::before {
+  content: "AI";
+  background: rgba(94, 63, 189, .28);
+  color: #d7c6ff;
+  border-color: rgba(149,112,255,.18);
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(3)::before {
+  content: "P";
+  background: rgba(27, 138, 107, .22);
+  color: #7fe2bd;
+  border-color: rgba(54, 199, 157, .18);
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(4)::before {
+  content: "N";
+  background: rgba(171, 117, 8, .23);
+  color: #ffd36a;
+  border-color: rgba(227, 167, 37, .17);
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(5)::before {
+  content: "S";
+  background: rgba(43, 103, 181, .23);
+  color: #91c5ff;
+  border-color: rgba(73, 145, 231, .17);
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(6)::before {
+  content: "PG";
+  background: rgba(42, 104, 183, .19);
+  color: #92c7ff;
+  border-color: rgba(73, 145, 231, .15);
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(7)::before {
+  content: "TC";
+  background: rgba(24, 133, 92, .22);
+  color: #7de3b1;
+  border-color: rgba(49, 194, 139, .17);
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(8)::before {
+  content: "D";
+  background: rgba(108, 67, 176, .25);
+  color: #d0b8ff;
+  border-color: rgba(157, 112, 225, .17);
+}
+
+/* The existing anchor text stays accessible to assistive tech; visually we
+   overlay compact title/description labels using an inset wrapper effect. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a {
+  color: #f3f6ff !important;
+  font-size: 13px !important;
+  font-weight: 820 !important;
+  line-height: 1.2;
+}
+
+/* Subtitle is generated below each existing label. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(1) {
+  background:
+    linear-gradient(135deg, rgba(71, 55, 160, .22), rgba(31, 66, 133, .16)) !important;
+  border-color: rgba(111, 95, 245, .22) !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(1)::after,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(2)::after,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(3)::after,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(4)::after,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(5)::after,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(6)::after,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(7)::after,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(8)::after {
+  content: ">";
+}
+
+/* Give the bottom utility group more breathing room. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(6) {
+  margin-top: 10px;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(6)::after,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(7)::after,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(8)::after {
+  opacity: .72;
+}
+
+/* Add visual separators without touching the JSX. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(1) {
+  margin-bottom: 8px;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(5) {
+  margin-bottom: 12px;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(5)::after {
+  box-shadow: 0 16px 0 -15px rgba(126, 142, 181, .18);
+}
+
+/* Make the row labels larger than the old menu. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a {
+  min-height: 58px;
+  font-size: 13px !important;
+  letter-spacing: 0;
+}
+
+/* Helper descriptions are added using title-specific href selectors where
+   the existing route names match the current application. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="group"] {
+  --ws-desc: "View and manage workspace";
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="gemini-team-coach"] {
+  --ws-desc: "AI-powered team insights";
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="privacy"] {
+  --ws-desc: "Control profile visibility and consent";
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="notification"] {
+  --ws-desc: "View your alerts and updates";
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="settings"] {
+  --ws-desc: "Manage workspace settings";
+}
+
+/* Since the existing Workspace menu is plain anchor text, retain that text
+   as the primary label and add a subtle description using a text shadow row. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="group"],
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="gemini-team-coach"],
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="privacy"],
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="notification"],
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="settings"] {
+  padding-top: 10px !important;
+  padding-bottom: 18px !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="group"]::selection,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="gemini-team-coach"]::selection,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="privacy"]::selection,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="notification"]::selection,
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a[href*="settings"]::selection {
+  background: rgba(118,87,255,.35);
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+  [data-autoteams-workspace-trigger="true"] .nav-dropdown-menu {
+    min-width: 0 !important;
+    width: min(342px, calc(100vw - 18px)) !important;
+  }
+
+  [data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a {
+    grid-template-columns: 36px minmax(0, 1fr) 16px;
+    min-height: 54px;
+    padding: 8px 9px !important;
+  }
+
+  [data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a::before {
+    width: 36px;
+    height: 36px;
+  }
+}
+/* ==========================================================================
+   AUTOTEAMS_V715715227_WORKSPACE_SIMPLIFIED_STYLE
+   Workspace = group context only. Profile/global actions live elsewhere.
+   ========================================================================== */
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu {
+  padding: 12px !important;
+}
+
+/* Simplified menu now contains:
+   1 Manage My Group
+   2 Saved People Groups
+   3 Trust Centre
+   4 Demo Environment
+*/
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(1) {
+  margin: 3px 0 9px !important;
+  border-color: rgba(111, 95, 245, .30) !important;
+  background:
+    radial-gradient(250px 90px at 0% 50%, rgba(117, 78, 255, .20), transparent 72%),
+    linear-gradient(135deg, rgba(59, 48, 132, .48), rgba(29, 67, 133, .32)) !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(1)::before {
+  content: "WG" !important;
+  background:
+    linear-gradient(135deg, rgba(111,81,255,.70), rgba(62,110,230,.52)) !important;
+  color: #fff !important;
+  border-color: rgba(150,135,255,.28) !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(2) {
+  margin-top: 10px !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(2)::before {
+  content: "PG" !important;
+  background: rgba(42, 104, 183, .21) !important;
+  color: #92c7ff !important;
+  border-color: rgba(73, 145, 231, .17) !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(3)::before {
+  content: "TC" !important;
+  background: rgba(24, 133, 92, .24) !important;
+  color: #7de3b1 !important;
+  border-color: rgba(49, 194, 139, .18) !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(4)::before {
+  content: "D" !important;
+  background: rgba(108, 67, 176, .27) !important;
+  color: #d0b8ff !important;
+  border-color: rgba(157, 112, 225, .18) !important;
+}
+
+/* Remove old spacing assumptions from the eight-item menu. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(4),
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(5),
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(6),
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(7),
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(8) {
+  margin-bottom: 3px;
+}
+
+/* Give the compact Workspace menu a clear context heading. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu::before {
+  content: "WORKSPACE";
+  display: block;
+  padding: 4px 9px 7px;
+  color: rgba(176, 188, 224, .62);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+/* Utility divider before Saved People Groups. */
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(2) {
+  position: relative;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(2)::after {
+  content: ">" !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(2) {
+  box-shadow:
+    0 -9px 0 -8px rgba(126, 142, 181, .18);
+}
+
+@media (max-width: 520px) {
+  [data-autoteams-workspace-trigger="true"] .nav-dropdown-menu {
+    width: min(342px, calc(100vw - 18px)) !important;
+  }
+}
+/* ==========================================================================
+   AUTOTEAMS_V7157152271_WORKSPACE_COMPACT_FIX
+   ========================================================================== */
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(1)::before {
+  content: "WG" !important;
+  background: linear-gradient(135deg, rgba(111,81,255,.70), rgba(62,110,230,.52)) !important;
+  color: #fff !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(2)::before {
+  content: "PG" !important;
+  background: rgba(42,104,183,.21) !important;
+  color: #92c7ff !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(3)::before {
+  content: "TC" !important;
+  background: rgba(24,133,92,.24) !important;
+  color: #7de3b1 !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(4)::before {
+  content: "D" !important;
+  background: rgba(108,67,176,.27) !important;
+  color: #d0b8ff !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(2) {
+  margin-top: 10px !important;
+  box-shadow: 0 -9px 0 -8px rgba(126,142,181,.18);
+}
+/* ==========================================================================
+   AUTOTEAMS_V7157152272_FINAL_WORKSPACE_MENU
+   ========================================================================== */
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(1)::before {
+  content: "WG" !important;
+  background: linear-gradient(135deg, rgba(111,81,255,.72), rgba(62,110,230,.54)) !important;
+  color: #fff !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(2)::before {
+  content: "PG" !important;
+  background: rgba(42,104,183,.22) !important;
+  color: #92c7ff !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(3)::before {
+  content: "TC" !important;
+  background: rgba(24,133,92,.24) !important;
+  color: #7de3b1 !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(4)::before {
+  content: "D" !important;
+  background: rgba(108,67,176,.28) !important;
+  color: #d0b8ff !important;
+}
+
+[data-autoteams-workspace-trigger="true"] .nav-dropdown-menu a:nth-of-type(2) {
+  margin-top: 10px !important;
+  box-shadow: 0 -9px 0 -8px rgba(126,142,181,.18);
+}
+/* ==========================================================================
+   AUTOTEAMS_V715715251_MESSAGE_NAV_STYLES
+   ========================================================================== */
+
+.product-nav-links a[href="/messages"] {
+  position: relative;
+  min-width: 42px;
+  justify-content: center;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.teamscience-message-nav-icon {
+  position: relative;
+  display: inline-grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  color: currentColor;
+  vertical-align: middle;
+}
+
+.teamscience-message-nav-svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.teamscience-message-nav-badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  display: grid;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  place-items: center;
+  border: 2px solid #11182a;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff4d7d, #dc315e);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(222, 50, 96, .34);
+  font-size: 8px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.product-nav-links a[href="/messages"]:hover .teamscience-message-nav-icon,
+.product-nav-links a[href="/messages"].active .teamscience-message-nav-icon,
+.product-nav-links a[href="/messages"][aria-current="page"] .teamscience-message-nav-icon {
+  color: #ffffff;
+}
+
+.product-nav-links a[href="/messages"]:has(.teamscience-message-nav-badge) {
+  border-color: rgba(133, 98, 255, .34);
+  background:
+    radial-gradient(circle at 75% 20%, rgba(255, 80, 125, .12), transparent 35%),
+    rgba(74, 65, 160, .10);
+}
+
+@media (max-width: 920px) {
+  .product-nav-links a[href="/messages"] {
+    min-width: 38px;
+  }
+
+  .teamscience-message-nav-icon {
+    width: 25px;
+    height: 25px;
+  }
+}
