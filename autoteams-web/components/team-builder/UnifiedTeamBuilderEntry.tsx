@@ -112,8 +112,8 @@ export function UnifiedTeamBuilderEntry({
           </small>
         </article>
 
-        <article className={`${styles.route} ${styles.findRoute}`} data-teamscience-opportunity-card="find-people">
-          <div className={styles.numberBadge}>2</div>
+        <article className={`${styles.route} ${styles.findRoute}`} data-teamscience-opportunity-card="find-people" data-teamscience-option-column="find-people">
+          <div className={styles.numberBadge} data-teamscience-option-badge="find-people">2</div>
 
           <div className={styles.visual} aria-hidden="true">
             <div className={styles.searchIcon}>
@@ -316,3 +316,5 @@ export function UnifiedTeamBuilderEntry({
 // AUTOTEAMS_V71571525321_FIND_PEOPLE_ORANGE
 
 // AUTOTEAMS_V71571525323_FIND_PEOPLE_ORANGE_FINAL
+
+// AUTOTEAMS_V71571525326_OPTION2_ORANGE_ACCENTS

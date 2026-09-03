@@ -29104,3 +29104,60 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
 [data-teamscience-opportunity-card="find-people"] [class*="kicker"] {
   color: #ff9d38 !important;
 }
+
+/* ==========================================================================
+   AUTOTEAMS_V71571525326_OPTION2_ORANGE_ACCENT_STYLES
+   Option 2 uses orange as its accent colour while keeping the column open.
+   ========================================================================== */
+
+/* Step badge 2 */
+[data-teamscience-option-badge="find-people"] {
+  border-color: rgba(255, 161, 61, .62) !important;
+  background: linear-gradient(135deg, #ff6a12 0%, #ff9f22 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px rgba(249, 115, 22, .22) !important;
+}
+
+/* Opportunity eyebrow */
+[data-teamscience-option-column="find-people"] [class*="eyebrow"],
+[data-teamscience-option-column="find-people"] [class*="kicker"] {
+  color: #ff982e !important;
+}
+
+/* Blue subtitle/accent copy becomes orange. */
+[data-teamscience-option-column="find-people"] [class*="subtitle"],
+[data-teamscience-option-column="find-people"] [class*="accent"],
+[data-teamscience-option-column="find-people"] [class*="process"],
+[data-teamscience-option-column="find-people"] [class*="route"],
+[data-teamscience-option-column="find-people"] [class*="journey"] {
+  color: #ff9b32 !important;
+}
+
+/* Checklist accent marks become orange; checklist text remains white. */
+[data-teamscience-option-column="find-people"] li::marker,
+[data-teamscience-option-column="find-people"] [class*="check"],
+[data-teamscience-option-column="find-people"] [class*="tick"] {
+  color: #ff922b !important;
+}
+
+[data-teamscience-option-column="find-people"] li {
+  color: #f4f7ff !important;
+}
+
+/* Supporting recruitment label adopts the same orange identity. */
+[data-teamscience-opportunity-support="find-people"] [class*="eyebrow"],
+[data-teamscience-opportunity-support="find-people"] [class*="label"] {
+  color: #ff982e !important;
+}
+
+/* Best-when label only; explanatory copy stays muted. */
+[data-teamscience-option-column="find-people"] [class*="best"] strong,
+[data-teamscience-option-column="find-people"] [class*="best"] b {
+  color: #ff982e !important;
+}
+
+/* Preserve the existing orange CTA from the prior patch. */
+[data-teamscience-opportunity-cta="find-people"] {
+  background: linear-gradient(100deg, #ff6a12 0%, #ff8617 48%, #ffad21 100%) !important;
+  color: #ffffff !important;
+}
