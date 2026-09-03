@@ -112,7 +112,7 @@ export function UnifiedTeamBuilderEntry({
           </small>
         </article>
 
-        <article className={`${styles.route} ${styles.findRoute}`}>
+        <article className={`${styles.route} ${styles.findRoute}`} data-teamscience-opportunity-card="find-people">
           <div className={styles.numberBadge}>2</div>
 
           <div className={styles.visual} aria-hidden="true">
@@ -123,7 +123,7 @@ export function UnifiedTeamBuilderEntry({
             </div>
           </div>
 
-          <div className={styles.copy}>
+          <div className={styles.copy} data-teamscience-find-people-orange="true">
             <span className={styles.routeLabel}>Opportunity</span>
             <h2>Find people</h2>
             <strong className={styles.oneLine}>
@@ -163,7 +163,7 @@ export function UnifiedTeamBuilderEntry({
                   background:
                     "linear-gradient(135deg, rgba(79,142,247,.10), rgba(118,87,255,.08))",
                 }}
-              >
+               data-teamscience-opportunity-support="find-people">
                 <span
                   style={{
                     display: "block",
@@ -201,7 +201,7 @@ export function UnifiedTeamBuilderEntry({
                   An AI-powered team and opportunity matching network.
                 </span>
               </div>
-<Link className={styles.action} href="/opportunities">
+<Link className={styles.action} href="/opportunities" data-teamscience-opportunity-cta="find-people">
             Create an Opportunity
             <span aria-hidden="true">→</span>
           </Link>
@@ -312,3 +312,7 @@ export function UnifiedTeamBuilderEntry({
     </section>
   );
 }
+
+// AUTOTEAMS_V71571525321_FIND_PEOPLE_ORANGE
+
+// AUTOTEAMS_V71571525323_FIND_PEOPLE_ORANGE_FINAL

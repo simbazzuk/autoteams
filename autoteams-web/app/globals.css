@@ -28912,3 +28912,195 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
     height: 25px;
   }
 }
+
+
+/* ==========================================================================
+   AUTOTEAMS_V71571525323_FIND_PEOPLE_ORANGE_FINAL_STYLES
+   Precise orange visual identity for the Find People opportunity route.
+   ========================================================================== */
+
+/* Main Find People panel: keep it navy, only outline and accents go orange. */
+[data-teamscience-opportunity-card="find-people"] {
+  position: relative !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 145, 37, .68) !important;
+  border-radius: 18px !important;
+  background:
+    radial-gradient(380px 150px at 0% 0%, rgba(255, 140, 31, .07), transparent 70%),
+    linear-gradient(145deg, #101a2e 0%, #0d1728 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 0 0 1px rgba(255,145,37,.04),
+    0 14px 34px rgba(0,0,0,.16) !important;
+}
+
+/* Slim orange identity rail on the left. */
+[data-teamscience-opportunity-card="find-people"]::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 auto 0 0 !important;
+  width: 3px !important;
+  background: linear-gradient(180deg, #ff9d2e, #f97316) !important;
+  border-radius: 18px 0 0 18px !important;
+}
+
+/* Opportunity label. */
+[data-teamscience-opportunity-card="find-people"] [class*="eyebrow"],
+[data-teamscience-opportunity-card="find-people"] [class*="kicker"] {
+  color: #ff9d38 !important;
+}
+
+/* Keep main copy consistent with TeamScience navy UI. */
+[data-teamscience-opportunity-card="find-people"] h1,
+[data-teamscience-opportunity-card="find-people"] h2,
+[data-teamscience-opportunity-card="find-people"] h3 {
+  color: #f7f9ff !important;
+}
+
+[data-teamscience-opportunity-card="find-people"] p {
+  color: #a9c8ff !important;
+}
+
+/* Orange checkmarks, white checklist text. */
+[data-teamscience-opportunity-card="find-people"] li {
+  color: #f3f6fc !important;
+}
+
+[data-teamscience-opportunity-card="find-people"] li::marker,
+[data-teamscience-opportunity-card="find-people"] [class*="check"],
+[data-teamscience-opportunity-card="find-people"] [class*="tick"] {
+  color: #ff932f !important;
+}
+
+/* Process line. */
+[data-teamscience-opportunity-card="find-people"] [class*="process"],
+[data-teamscience-opportunity-card="find-people"] [class*="route"],
+[data-teamscience-opportunity-card="find-people"] [class*="journey"] {
+  color: #ff9d38 !important;
+  font-weight: 800 !important;
+}
+
+/* Supporting statement card: navy with fine orange outline. */
+[data-teamscience-opportunity-support="find-people"] {
+  border: 1px solid rgba(255, 145, 37, .42) !important;
+  border-radius: 14px !important;
+  background: linear-gradient(145deg, rgba(18,31,55,.96), rgba(14,25,45,.98)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.02) !important;
+}
+
+[data-teamscience-opportunity-support="find-people"] [class*="eyebrow"],
+[data-teamscience-opportunity-support="find-people"] [class*="label"],
+[data-teamscience-opportunity-support="find-people"] strong:first-child {
+  color: #ff9d38 !important;
+}
+
+/* CTA: force the actual button/link orange. */
+[data-teamscience-opportunity-cta="find-people"] {
+  border: 1px solid rgba(255, 176, 69, .82) !important;
+  background:
+    linear-gradient(100deg, #ff6a12 0%, #ff8617 48%, #ffad21 100%) !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 10px 26px rgba(249, 115, 22, .24),
+    inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+
+[data-teamscience-opportunity-cta="find-people"]:hover {
+  filter: brightness(1.06) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Final supporting Best when accent. */
+[data-teamscience-opportunity-card="find-people"]
+  ~ * [class*="best"] strong,
+[data-teamscience-opportunity-card="find-people"]
+  ~ * [class*="best"] b {
+  color: #ff9d38 !important;
+}
+
+/* ==========================================================================
+   AUTOTEAMS_V71571525324_REMOVE_ORANGE_BORDER
+   Keep the orange CTA/accent identity, remove orange card borders.
+   ========================================================================== */
+
+[data-teamscience-opportunity-card="find-people"] {
+  border-color: rgba(64, 82, 117, .42) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 14px 34px rgba(0,0,0,.16) !important;
+}
+
+/* Remove the orange left rail introduced by the previous patch. */
+[data-teamscience-opportunity-card="find-people"]::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Keep support panel visually neutral as well. */
+[data-teamscience-opportunity-support="find-people"] {
+  border-color: rgba(74, 95, 137, .42) !important;
+}
+
+/* Preserve orange CTA as the main visual differentiator. */
+[data-teamscience-opportunity-cta="find-people"] {
+  border-color: rgba(255, 176, 69, .82) !important;
+  background:
+    linear-gradient(100deg, #ff6a12 0%, #ff8617 48%, #ffad21 100%) !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 10px 26px rgba(249, 115, 22, .24),
+    inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+
+/* ==========================================================================
+   AUTOTEAMS_V71571525325_OPTION2_REMOVE_BACKGROUND_CARD
+   Make Option 2 structurally match Options 1 and 3:
+   no outer card background, border, radius or shadow.
+   Keep orange Opportunity identity and orange CTA.
+   ========================================================================== */
+
+[data-teamscience-opportunity-card="find-people"] {
+  border: 0 !important;
+  border-color: transparent !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  overflow: visible !important;
+}
+
+/* Remove any decorative rail/pseudo-element from previous orange patches. */
+[data-teamscience-opportunity-card="find-people"]::before,
+[data-teamscience-opportunity-card="find-people"]::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Keep the small supporting message as its own contained information box. */
+[data-teamscience-opportunity-support="find-people"] {
+  border: 1px solid rgba(74, 95, 137, .52) !important;
+  border-radius: 14px !important;
+  background: rgba(17, 29, 53, .88) !important;
+  box-shadow: none !important;
+}
+
+/* Preserve the orange CTA. */
+[data-teamscience-opportunity-cta="find-people"] {
+  border: 1px solid rgba(255, 176, 69, .82) !important;
+  border-radius: 14px !important;
+  background: linear-gradient(100deg, #ff6a12 0%, #ff8617 48%, #ffad21 100%) !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 10px 26px rgba(249, 115, 22, .20),
+    inset 0 1px 0 rgba(255,255,255,.16) !important;
+}
+
+/* Opportunity remains orange as the route identity. */
+[data-teamscience-opportunity-card="find-people"] [class*="eyebrow"],
+[data-teamscience-opportunity-card="find-people"] [class*="kicker"] {
+  color: #ff9d38 !important;
+}
