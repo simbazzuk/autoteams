@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import styles from "./UnifiedTeamBuilderEntry.module.css";
@@ -60,7 +60,7 @@ export function UnifiedTeamBuilderEntry({
               <span className={styles.personMain}></span>
               <span className={styles.personLeft}></span>
               <span className={styles.personRight}></span>
-              <span className={styles.shield}>✓</span>
+              <span className={styles.shield}>âœ“</span>
             </div>
           </div>
 
@@ -100,11 +100,11 @@ export function UnifiedTeamBuilderEntry({
             onClick={() => {
               // AUTOTEAMS_V7157152042_PEOPLE_MODE
               onModeSelected?.("people");
-              continueWithBuilder("people");
+              (sessionStorage.setItem("autoteams-team-builder-selected-flow-v71571325", "people"), continueWithBuilder("people"));
             }}
           >
             Build from existing people
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true">â†’</span>
           </button>
 
           <small>
@@ -203,7 +203,7 @@ export function UnifiedTeamBuilderEntry({
               </div>
 <Link className={styles.action} href="/opportunities" data-teamscience-opportunity-cta="find-people">
             Create an Opportunity
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true">â†’</span>
           </Link>
 
           <small>
@@ -270,11 +270,11 @@ export function UnifiedTeamBuilderEntry({
             onClick={() => {
               // AUTOTEAMS_V7157152042_HYBRID_MODE
               onModeSelected?.("hybrid");
-              continueWithBuilder("hybrid");
+              (sessionStorage.setItem("autoteams-team-builder-selected-flow-v71571325", "hybrid"), continueWithBuilder("hybrid"));
             }}
           >
             Start hybrid team
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true">â†’</span>
           </button>
 
           <small>
@@ -285,7 +285,7 @@ export function UnifiedTeamBuilderEntry({
 
       <div className={styles.atlasPanel}>
         <div className={styles.atlasIntro}>
-          <span className={styles.atlasIcon} aria-hidden="true">✦</span>
+          <span className={styles.atlasIcon} aria-hidden="true">âœ¦</span>
           <div>
             <strong>Why use Atlas?</strong>
             <span>
@@ -318,3 +318,4 @@ export function UnifiedTeamBuilderEntry({
 // AUTOTEAMS_V71571525323_FIND_PEOPLE_ORANGE_FINAL
 
 // AUTOTEAMS_V71571525326_OPTION2_ORANGE_ACCENTS
+
