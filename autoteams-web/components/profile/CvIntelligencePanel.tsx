@@ -136,9 +136,44 @@ export function CvIntelligencePanel() {
   }
 
   return (
-    <main style={{ padding: "34px 0 70px" }}>
+    <main style={{ padding: "34px 0 70px" }} data-cv-career-dashboard="v715715225">
       <div className="container">
-        <section
+              {/* AUTOTEAMS_V715715225_CV_PAGE_INTRO */}
+      <section
+        className="teamscience-cv-dashboard-intro-v715715225"
+        aria-label="CV and Career"
+      >
+        <div className="teamscience-cv-dashboard-icon-v715715225" aria-hidden="true">
+          CV
+        </div>
+
+        <div className="teamscience-cv-dashboard-copy-v715715225">
+          <span>CV &amp; CAREER</span>
+          <h1>Turn your experience into Atlas intelligence.</h1>
+          <p>
+            Manage your CV, review the career evidence Atlas understands and
+            use it to discover stronger Opportunity matches.
+          </p>
+        </div>
+
+        <div className="teamscience-cv-dashboard-flow-v715715225">
+          <div>
+            <b>1</b>
+            <span>Upload</span>
+          </div>
+          <i aria-hidden="true">-&gt;</i>
+          <div>
+            <b>2</b>
+            <span>Atlas analyses</span>
+          </div>
+          <i aria-hidden="true">-&gt;</i>
+          <div>
+            <b>3</b>
+            <span>Match</span>
+          </div>
+        </div>
+      </section>
+<section
           style={{
             border: "1px solid rgba(104, 120, 255, .24)",
             borderRadius: 24,
@@ -147,7 +182,7 @@ export function CvIntelligencePanel() {
               "linear-gradient(135deg, rgba(72, 57, 160, .22), rgba(8, 24, 45, .88))",
             marginBottom: 22,
           }}
-        >
+         data-cv-zone="hero">
           <span className="eyebrow">Atlas CV Intelligence</span>
           <h1 style={{ margin: "8px 0 10px", fontSize: "clamp(30px,5vw,52px)" }}>
             Turn your CV into opportunity intelligence.
@@ -239,7 +274,7 @@ export function CvIntelligencePanel() {
             </label>
 
             {file ? (
-              <div style={{ marginBottom: 14 }}>
+              <div style={{ marginBottom: 14 }} data-cv-zone="privacy">
                 <strong>{file.name}</strong>
                 <small style={{ display: "block", opacity: 0.62 }}>
                   {(file.size / 1024 / 1024).toFixed(2)} MB
@@ -369,7 +404,7 @@ export function CvIntelligencePanel() {
                 gap: 10,
                 marginTop: 22,
               }}
-            >
+             data-cv-zone="intelligence">
               <Link className="button secondary" href="/profile">
                 Back to Profile
               </Link>
@@ -397,7 +432,7 @@ export function CvIntelligencePanel() {
                 background:
                   "linear-gradient(135deg, rgba(118,87,255,.12), rgba(79,142,247,.07))",
               }}
-            >
+             data-cv-zone="opportunities">
               <span
                 style={{
                   display: "block",

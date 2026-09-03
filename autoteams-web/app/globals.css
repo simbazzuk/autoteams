@@ -28083,3 +28083,263 @@ section[data-autoteams-v633="AUTOTEAMS_V633_INLINE_READABILITY"] .eyebrow {
     text-align: center;
   }
 }
+/* ==========================================================================
+   AUTOTEAMS_V715715225_CV_CAREER_DASHBOARD
+   ========================================================================== */
+
+[data-cv-career-dashboard="v715715225"] {
+  position: relative;
+  isolation: isolate;
+  padding-bottom: 72px;
+  background:
+    radial-gradient(900px 440px at 6% 4%, rgba(105, 75, 255, .13), transparent 70%),
+    radial-gradient(760px 460px at 94% 24%, rgba(30, 154, 255, .08), transparent 72%),
+    linear-gradient(180deg, rgba(8, 16, 31, .15), rgba(7, 14, 27, 0));
+}
+
+.teamscience-cv-dashboard-intro-v715715225 {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+  margin: 0 0 22px;
+  padding: 24px 26px;
+  border: 1px solid rgba(119, 99, 255, .32);
+  border-radius: 24px;
+  background:
+    radial-gradient(460px 220px at 100% 0%, rgba(92, 80, 255, .23), transparent 72%),
+    radial-gradient(380px 220px at 0% 100%, rgba(27, 133, 211, .13), transparent 72%),
+    linear-gradient(135deg, rgba(29, 38, 78, .96), rgba(13, 25, 50, .98));
+  box-shadow:
+    0 24px 58px rgba(10, 16, 48, .24),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.teamscience-cv-dashboard-intro-v715715225::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background:
+    linear-gradient(90deg, #9a67ff, #4f8ef7, #2dd3ab);
+}
+
+.teamscience-cv-dashboard-icon-v715715225 {
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  border-radius: 18px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 950;
+  letter-spacing: .05em;
+  border: 1px solid rgba(195, 168, 255, .25);
+  background:
+    linear-gradient(145deg, rgba(132, 75, 229, .95), rgba(63, 105, 230, .92));
+  box-shadow:
+    0 18px 38px rgba(84, 65, 214, .26),
+    inset 0 1px 0 rgba(255,255,255,.16);
+}
+
+.teamscience-cv-dashboard-copy-v715715225 > span {
+  display: block;
+  margin-bottom: 6px;
+  color: #aeb8ff;
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: .12em;
+}
+
+.teamscience-cv-dashboard-copy-v715715225 h1 {
+  margin: 0;
+  font-size: clamp(25px, 3vw, 38px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+}
+
+.teamscience-cv-dashboard-copy-v715715225 p {
+  max-width: 720px;
+  margin: 9px 0 0;
+  color: rgba(207, 219, 238, .72);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.teamscience-cv-dashboard-flow-v715715225 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 13px;
+  border-radius: 16px;
+  border: 1px solid rgba(98, 122, 191, .18);
+  background: rgba(7, 17, 38, .38);
+}
+
+.teamscience-cv-dashboard-flow-v715715225 div {
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+}
+
+.teamscience-cv-dashboard-flow-v715715225 b {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 8px;
+  background: rgba(102, 92, 255, .18);
+  color: #c8ceff;
+  font-size: 10px;
+}
+
+.teamscience-cv-dashboard-flow-v715715225 span {
+  color: rgba(216, 226, 242, .64);
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.teamscience-cv-dashboard-flow-v715715225 i {
+  color: rgba(139, 157, 201, .46);
+  font-style: normal;
+}
+
+[data-cv-zone="hero"] {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(116, 102, 255, .30) !important;
+  background:
+    radial-gradient(520px 240px at 0% 0%, rgba(109, 77, 255, .19), transparent 72%),
+    linear-gradient(145deg, rgba(26, 37, 75, .94), rgba(13, 25, 48, .98)) !important;
+  box-shadow:
+    0 18px 44px rgba(10, 18, 48, .18),
+    inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+[data-cv-zone="intelligence"] {
+  position: relative;
+  border-color: rgba(79, 142, 247, .28) !important;
+  background:
+    radial-gradient(460px 220px at 100% 0%, rgba(79, 142, 247, .13), transparent 72%),
+    linear-gradient(145deg, rgba(19, 35, 64, .96), rgba(11, 23, 43, .98)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+[data-cv-zone="intelligence"]::before {
+  content: "ATLAS INTELLIGENCE";
+  display: inline-flex;
+  margin-bottom: 10px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(118, 87, 255, .24);
+  background: rgba(118, 87, 255, .10);
+  color: #c7cdff;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .09em;
+}
+
+[data-cv-zone="privacy"] {
+  border-color: rgba(45, 211, 171, .22) !important;
+  background:
+    radial-gradient(420px 180px at 0% 0%, rgba(45, 211, 171, .09), transparent 72%),
+    linear-gradient(145deg, rgba(16, 39, 53, .91), rgba(12, 25, 44, .97)) !important;
+}
+
+[data-cv-zone="opportunities"] {
+  border-color: rgba(151, 97, 255, .40) !important;
+  background:
+    radial-gradient(540px 230px at 0% 0%, rgba(166, 76, 255, .25), transparent 70%),
+    radial-gradient(460px 220px at 100% 100%, rgba(44, 128, 255, .15), transparent 70%),
+    linear-gradient(135deg, rgba(55, 34, 104, .96), rgba(14, 29, 57, .98)) !important;
+  box-shadow:
+    0 22px 52px rgba(61, 39, 120, .22),
+    inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+[data-cv-career-dashboard="v715715225"] section,
+[data-cv-career-dashboard="v715715225"] article {
+  scroll-margin-top: 100px;
+}
+
+[data-cv-career-dashboard="v715715225"] section + section {
+  margin-top: 18px;
+}
+
+[data-cv-career-dashboard="v715715225"] h2 {
+  letter-spacing: -.015em;
+}
+
+[data-cv-career-dashboard="v715715225"] p {
+  line-height: 1.58;
+}
+
+[data-cv-career-dashboard="v715715225"] input[type="file"],
+[data-cv-career-dashboard="v715715225"] textarea {
+  border-radius: 13px;
+}
+
+[data-cv-career-dashboard="v715715225"] input[type="file"] {
+  padding: 12px;
+  border: 1px dashed rgba(115, 112, 255, .38);
+  background: rgba(82, 72, 175, .06);
+}
+
+[data-cv-career-dashboard="v715715225"] button:not([disabled]),
+[data-cv-career-dashboard="v715715225"] a.button {
+  transition:
+    transform .17s ease,
+    box-shadow .17s ease,
+    border-color .17s ease;
+}
+
+[data-cv-career-dashboard="v715715225"] button:not([disabled]):hover,
+[data-cv-career-dashboard="v715715225"] a.button:hover {
+  transform: translateY(-1px);
+}
+
+[data-cv-career-dashboard="v715715225"] ul {
+  padding-left: 20px;
+}
+
+[data-cv-career-dashboard="v715715225"] li {
+  margin: 5px 0;
+}
+
+[data-cv-career-dashboard="v715715225"] button:last-of-type {
+  border-color: rgba(255, 91, 119, .20);
+}
+
+@media (max-width: 860px) {
+  .teamscience-cv-dashboard-intro-v715715225 {
+    grid-template-columns: auto 1fr;
+  }
+
+  .teamscience-cv-dashboard-flow-v715715225 {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .teamscience-cv-dashboard-intro-v715715225 {
+    grid-template-columns: 1fr;
+    padding: 19px;
+  }
+
+  .teamscience-cv-dashboard-icon-v715715225 {
+    width: 54px;
+    height: 54px;
+    border-radius: 15px;
+  }
+
+  .teamscience-cv-dashboard-flow-v715715225 {
+    width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+}

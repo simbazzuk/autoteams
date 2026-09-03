@@ -201,16 +201,80 @@ function FirebaseAccountMenu() {
           }
         />
 
-        <Link href="/gemini-team-coach">
-          Gemini Team Coach
+        <Link
+          className={styles.menuItem}
+          href="/gemini-team-coach"
+        >
+          <span
+            className={`${styles.menuIcon} ${styles.coachIcon}`}
+            aria-hidden="true"
+          >
+            AI
+          </span>
+          <span className={styles.menuCopy}>
+            <strong>Gemini Team Coach</strong>
+            <small>AI-powered team insights and advice</small>
+          </span>
+          <span className={styles.menuArrow} aria-hidden="true">
+            &gt;
+          </span>
         </Link>
 
-        <Link href="/profile/privacy">
-          Profile Privacy
+        {/* AUTOTEAMS_V7157152242_CV_CAREER */}
+        <Link
+          className={`${styles.menuItem} ${styles.cvCareerLink}`}
+          href="/profile/cv"
+        >
+          <span
+            className={`${styles.menuIcon} ${styles.cvIcon}`}
+            aria-hidden="true"
+          >
+            CV
+          </span>
+          <span className={styles.menuCopy}>
+            <strong>CV &amp; Career</strong>
+            <small>Review or replace your CV</small>
+          </span>
+          <span className={styles.menuArrow} aria-hidden="true">
+            &gt;
+          </span>
+        </Link>
+        <Link
+          className={styles.menuItem}
+          href="/profile/privacy"
+        >
+          <span
+            className={`${styles.menuIcon} ${styles.privacyIcon}`}
+            aria-hidden="true"
+          >
+            P
+          </span>
+          <span className={styles.menuCopy}>
+            <strong>Profile Privacy</strong>
+            <small>Control profile visibility and consent</small>
+          </span>
+          <span className={styles.menuArrow} aria-hidden="true">
+            &gt;
+          </span>
         </Link>
 
-        <Link href="/settings">
-          Settings
+        <Link
+          className={styles.menuItem}
+          href="/settings"
+        >
+          <span
+            className={`${styles.menuIcon} ${styles.settingsIcon}`}
+            aria-hidden="true"
+          >
+            S
+          </span>
+          <span className={styles.menuCopy}>
+            <strong>Settings</strong>
+            <small>Manage your account and preferences</small>
+          </span>
+          <span className={styles.menuArrow} aria-hidden="true">
+            &gt;
+          </span>
         </Link>
 
         <div
@@ -334,16 +398,80 @@ function LocalAccountMenu() {
           }
         />
 
-        <Link href="/gemini-team-coach">
-          Gemini Team Coach
+        <Link
+          className={styles.menuItem}
+          href="/gemini-team-coach"
+        >
+          <span
+            className={`${styles.menuIcon} ${styles.coachIcon}`}
+            aria-hidden="true"
+          >
+            AI
+          </span>
+          <span className={styles.menuCopy}>
+            <strong>Gemini Team Coach</strong>
+            <small>AI-powered team insights and advice</small>
+          </span>
+          <span className={styles.menuArrow} aria-hidden="true">
+            &gt;
+          </span>
         </Link>
 
-        <Link href="/profile/privacy">
-          Profile Privacy
+        {/* AUTOTEAMS_V7157152242_CV_CAREER */}
+        <Link
+          className={`${styles.menuItem} ${styles.cvCareerLink}`}
+          href="/profile/cv"
+        >
+          <span
+            className={`${styles.menuIcon} ${styles.cvIcon}`}
+            aria-hidden="true"
+          >
+            CV
+          </span>
+          <span className={styles.menuCopy}>
+            <strong>CV &amp; Career</strong>
+            <small>Review or replace your CV</small>
+          </span>
+          <span className={styles.menuArrow} aria-hidden="true">
+            &gt;
+          </span>
+        </Link>
+        <Link
+          className={styles.menuItem}
+          href="/profile/privacy"
+        >
+          <span
+            className={`${styles.menuIcon} ${styles.privacyIcon}`}
+            aria-hidden="true"
+          >
+            P
+          </span>
+          <span className={styles.menuCopy}>
+            <strong>Profile Privacy</strong>
+            <small>Control profile visibility and consent</small>
+          </span>
+          <span className={styles.menuArrow} aria-hidden="true">
+            &gt;
+          </span>
         </Link>
 
-        <Link href="/settings">
-          Settings
+        <Link
+          className={styles.menuItem}
+          href="/settings"
+        >
+          <span
+            className={`${styles.menuIcon} ${styles.settingsIcon}`}
+            aria-hidden="true"
+          >
+            S
+          </span>
+          <span className={styles.menuCopy}>
+            <strong>Settings</strong>
+            <small>Manage your account and preferences</small>
+          </span>
+          <span className={styles.menuArrow} aria-hidden="true">
+            &gt;
+          </span>
         </Link>
       </div>
     </details>
