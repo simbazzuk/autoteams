@@ -5,6 +5,7 @@ import { LandingCtaPalette } from "@/components/home/LandingCtaPalette";
 import { HomeAvailableTeams } from "@/components/home/HomeAvailableTeams";
 import { HomeAcademyFeature } from "@/components/home/HomeAcademyFeature";
 import { HomeHowAutoTeamsWorksV2 } from "@/components/home/HomeHowAutoTeamsWorksV2";
+import { HomeOpportunitiesShowcase } from "@/components/home/HomeOpportunitiesShowcase";
 const useCases = [
   {
     icon: "🏢",
@@ -483,7 +484,13 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-<SocialMediaFooter />
+
+      {/* AUTOTEAMS_V715715153_HOME_OPPORTUNITIES */}
+      <HomeOpportunitiesShowcase />
+
+      {/* AUTOTEAMS_V71571515331_SOCIAL_AFTER_OPPORTUNITIES */}
+      <SocialMediaFooter />
+
 </main>
           <LandingCtaPalette />
     </PageShell>
