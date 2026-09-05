@@ -127,7 +127,7 @@ service cloud.firestore {
         );
     }
 
-
+    
     // AutoTeams Opportunity invitations - v7.15.7.15.9.1
     // Owners create/manage invitations. Recipients may read and respond only.
     match /opportunityInvitations/{invitationId} {
@@ -288,31 +288,9 @@ service cloud.firestore {
       allow delete: if request.auth != null
         && request.auth.uid == userId;
     }
-
-    // ----------------------------------------------------------------------
-    // AUTOTEAMS_V71571515_FEEDBACK_RULES
-    // Signed-in users can submit feedback. Client reads/updates/deletes are denied.
-    // ----------------------------------------------------------------------
-    match /feedback/{feedbackId} {
-      allow create: if request.auth != null
-        && request.resource.data.userId == request.auth.uid
-        && request.resource.data.category in [
-          "idea",
-          "works",
-          "improve",
-          "problem",
-          "feature"
-        ]
-        && request.resource.data.message is string
-        && request.resource.data.message.size() > 0
-        && request.resource.data.message.size() <= 3000
-        && request.resource.data.status == "new";
-
-      allow read, update, delete: if false;
-    }
-
-    match /{document=**} {
+match /{document=**} {
       allow read, write: if false;
     }
   }
 }
+

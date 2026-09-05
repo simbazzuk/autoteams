@@ -301,6 +301,25 @@ function FirebaseAccountMenu() {
           </span>
         </Link>
 
+        <Link
+            className={styles.menuItem}
+            href="/feedback"
+          >
+            <span
+              className={`${styles.menuIcon} ${styles.settingsIcon}`}
+              aria-hidden="true"
+            >
+              F
+            </span>
+            <span className={styles.menuCopy}>
+              <strong>Feedback & Ideas</strong>
+              <small>Share ideas, suggestions and product feedback</small>
+            </span>
+            <span className={styles.menuArrow} aria-hidden="true">
+              &gt;
+            </span>
+          </Link>
+
         <div
           className={
             styles.divider
@@ -521,6 +540,25 @@ function LocalAccountMenu() {
             &gt;
           </span>
         </Link>
+
+        <Link
+            className={styles.menuItem}
+            href="/feedback"
+          >
+            <span
+              className={`${styles.menuIcon} ${styles.settingsIcon}`}
+              aria-hidden="true"
+            >
+              F
+            </span>
+            <span className={styles.menuCopy}>
+              <strong>Feedback & Ideas</strong>
+              <small>Share ideas, suggestions and product feedback</small>
+            </span>
+            <span className={styles.menuArrow} aria-hidden="true">
+              &gt;
+            </span>
+          </Link>
       </div>
     </details>
   );

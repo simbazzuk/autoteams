@@ -1,0 +1,17 @@
+// AutoTeams v7.15.7.15.14
+// Merge this match block INSIDE your existing:
+//   match /databases/{database}/documents { ... }
+//
+// It allows signed-in users to create feedback, but not read/update/delete
+// other feedback documents from the client.
+//
+// match /feedback/{feedbackId} {
+//   allow create: if request.auth != null
+//     && request.resource.data.userId == request.auth.uid
+//     && request.resource.data.category in ["idea", "works", "improve", "problem", "feature"]
+//     && request.resource.data.message is string
+//     && request.resource.data.message.size() > 0
+//     && request.resource.data.message.size() <= 3000
+//     && request.resource.data.status == "new";
+//   allow read, update, delete: if false;
+// }
